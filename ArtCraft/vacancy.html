@@ -1,0 +1,370 @@
+<!-- start html_open.html-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="css/libs.min.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="css/fine-uploader-gallery.css" rel="stylesheet">
+    <script type="text/template" id="qq-template">
+        <div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">
+            <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+            </div>
+            <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+                <span class="qq-upload-drop-area-text-selector"></span>
+            </div>
+            <div class="qq-upload-button-selector qq-upload-button">
+                <div>Upload a file</div>
+            </div>
+            <span class="qq-drop-processing-selector qq-drop-processing">
+                <span>Processing dropped files...</span>
+                <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
+            </span>
+            <ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">
+                <li>
+                    <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+                    <div class="qq-progress-bar-container-selector qq-progress-bar-container">
+                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                    </div>
+                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                    <div class="qq-thumbnail-wrapper">
+                        <img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>
+                    </div>
+                    <button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>
+                    <button type="button" class="qq-upload-retry-selector qq-upload-retry">
+                        <span class="qq-btn qq-retry-icon" aria-label="Retry"></span>
+                        Retry
+                    </button>
+
+                    <div class="qq-file-info">
+                        <div class="qq-file-name">
+                            <span class="qq-upload-file-selector qq-upload-file"></span>
+                            <span class="qq-edit-filename-icon-selector qq-btn qq-edit-filename-icon" aria-label="Edit filename"></span>
+                        </div>
+                        <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+                        <span class="qq-upload-size-selector qq-upload-size"></span>
+                        <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">
+                            <span class="qq-btn qq-delete-icon" aria-label="Delete"></span>
+                        </button>
+                        <button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">
+                            <span class="qq-btn qq-pause-icon" aria-label="Pause"></span>
+                        </button>
+                        <button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">
+                            <span class="qq-btn qq-continue-icon" aria-label="Continue"></span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+
+            <dialog class="qq-alert-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">Close</button>
+                </div>
+            </dialog>
+
+            <dialog class="qq-confirm-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">No</button>
+                    <button type="button" class="qq-ok-button-selector">Yes</button>
+                </div>
+            </dialog>
+
+            <dialog class="qq-prompt-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <input type="text">
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">Cancel</button>
+                    <button type="button" class="qq-ok-button-selector">Ok</button>
+                </div>
+            </dialog>
+        </div>
+    </script>
+</head>
+<body>
+<!-- open .header -->
+<div class="page-preloader">
+	<svg viewBox="0 0 1000 200">
+		<!-- Symbol-->
+		<symbol id="s-text">
+			<text text-anchor="middle" x="50%" y="50%" dy=".35em">Craft Group</text>
+		</symbol>
+		<!-- Duplicate symbols-->
+		<use class="text" xlink:href="#s-text"></use>
+		<use class="text" xlink:href="#s-text"></use>
+		<use class="text" xlink:href="#s-text"></use>
+	</svg>
+</div>
+<!-- end html_open.html-->
+
+<!-- start header-about.html-->
+<header class="header">
+    <div class="container">
+        <div class="header__mobile-btn"><span></span></div>
+
+        <ul class="header__nav">
+            <li class="header__nav-li logo"><a href="index.html"><img src="img/logo_header_red.svg" width="160" height="35" alt=""></a></li>
+            
+            <ul class="header__nav-container">
+                <li class="header__nav-li"><a href="service.html">Услуги</a></li>
+                <li class="header__nav-li"><a class="scroll" href="portfolio.html">Портфолио</a></li>
+                <li class="header__nav-li"><a href="#">Распродажи</a></li>
+                <li class="header__nav-li"><a class="scroll" href="blog.html">Блог</a></li>
+                <li class="header__nav-li"><a href="#">Развеивание мифов</a></li>
+                <li class="header__nav-li active-page dropdown">
+                    <a class="scroll" href="about.html">О нас</a>
+                    <button class="dropdown_mob">></button>
+                    <ul class="header__submenu header__submenu_mob">
+                        <li><a href="feedback.html">Отзывы</a></li>
+                        <li><a href="#">Клиенты</a></li>
+                        <li><a href="vacancy.html">Вакансии</a></li>
+                    </ul>
+                </li>
+                <li class="header__nav-li"><a class="scroll" href="#brief">Контакты</a></li>
+            </ul>
+        </ul>
+    </div>
+</header>
+
+<!-- end header-about.html-->
+
+<!-- start content-vacancy.html-->
+<main class="main-vacancy">
+	<section class="blog blog__single blog_feedback">
+		<div class="container">
+
+			<p class="paragraph">вакансии/стажировки</p>
+
+			<nav class="broadcrumbs">
+				<a class="broadcrumbs__link" href="index.html">Главная</a>
+				<span class="broadcrumbs__divider"> / </span>
+				<span class="broadcrumbs__curr">Отзывы</span>
+			</nav>
+
+			<div class="wrap">
+				<div class="tittle">
+					<span>мы растём</span>
+					<h2>вакансии/стажировки</h2>
+					<p>
+						У нас все больше проектов и направлений, и команда активно расширяется. Поэтому мы находимся в постоянных поисках новых людей, способных сделать нас еще круче.
+					</p>
+				</div>
+
+				<div class="brief__content brief__content_feedback">
+					<p class="feedback-form__title">Отправить своё резюме</p>
+
+					<form id="form_vacancy" class="brief__form form__feedback">
+						<div class="brief__form-message brief__form-message_nomargin" lang="ru">
+							<label for="message_vacancy">Напишите немного о себе</label>
+							<textarea id="message_vacancy" placeholder="Напишите немного о себе"></textarea>
+						</div>
+
+						<div class="brief__form-head brief__form-head_feedback">
+							<div>
+								<label for="name_vacancy">Ваше имя, фамилия *</label>
+								<input id="name_vacancy" type="text" placeholder="Ваше имя" required >
+							</div>
+
+							<div>
+								<label for="speciality_vacancy">Ваша специальность</label>
+								<input id="speciality_vacancy" type="text" placeholder="Ваша специальность" required>
+							</div>
+
+							<div>
+								<label for="mail_vacancy">Ваш e-mail *</label>
+								<input id="mail_vacancy" type="email" placeholder="Ваш e-mail" required>
+							</div>
+
+							<div>
+								<label for="city_vacancy">Ваш город</label>
+								<input id="city_vacancy" type="text" placeholder="Ваш город">
+							</div>
+						</div>
+
+						<div id="uploader" class="uploader"></div>
+
+						<div class="brief__form-desc">
+							<p><span>*</span> обязательные поля</p>
+							<input id="submit_feedback" type="submit" value="Хочу в команду">
+						</div>
+					</form>
+				</div>
+				
+				<div class="vacancies-p__wrap">
+					<h2 class="vacancies-p__title">Свежие вакансии Craft Group</h2>
+
+					<div class="vacancies-p">
+						<div class="vacancies-p__vacancy">
+							<header class="vacancies-p__vacancy-header">
+								<img class="vacancies-p__vacancy-img" src="img/programmer.png" alt="">
+								<h3 class="vacancies-p__vacancy-title">PHP-программист (junior)</h3>
+							</header>
+
+							<div class="feedback-item__content">
+								<div class="feedback-item__desc">
+									<p class="feedback-item__text">Мы ищем разработчика с хорошим техническим бэкграундом, отличными лидерскими качествами и опытом разработки корпоративных и e-commerce информационных систем.Требуемый опыт работы — не требуется. г. Москва, полная занятость, работа в офисе, уровень зарплаты — от 25 000 до 45 000 руб.</p>
+									<a class="vacancies-p__vacancy-more" href="single-vacancy.html">подробнее</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="vacancies-p__vacancy">
+							<header class="vacancies-p__vacancy-header">
+								<img class="vacancies-p__vacancy-img" src="img/programmer.png" alt="">
+								<h3 class="vacancies-p__vacancy-title">PHP-программист (junior)</h3>
+							</header>
+
+							<div class="feedback-item__content">
+								<div class="feedback-item__desc">
+									<p class="feedback-item__text">Мы ищем разработчика с хорошим техническим бэкграундом, отличными лидерскими качествами и опытом разработки корпоративных и e-commerce информационных систем.Требуемый опыт работы — не требуется. г. Москва, полная занятость, работа в офисе, уровень зарплаты — от 25 000 до 45 000 руб.</p>
+									<a class="vacancies-p__vacancy-more" href="single-vacancy.html">подробнее</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="vacancies-p__vacancy">
+							<header class="vacancies-p__vacancy-header">
+								<img class="vacancies-p__vacancy-img" src="img/programmer.png" alt="">
+								<h3 class="vacancies-p__vacancy-title">PHP-программист (junior)</h3>
+							</header>
+
+							<div class="feedback-item__content">
+								<div class="feedback-item__desc">
+									<p class="feedback-item__text">Мы ищем разработчика с хорошим техническим бэкграундом, отличными лидерскими качествами и опытом разработки корпоративных и e-commerce информационных систем.Требуемый опыт работы — не требуется. г. Москва, полная занятость, работа в офисе, уровень зарплаты — от 25 000 до 45 000 руб.</p>
+									<a class="vacancies-p__vacancy-more" href="single-vacancy.html">подробнее</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="vacancies-p__vacancy">
+							<header class="vacancies-p__vacancy-header">
+								<img class="vacancies-p__vacancy-img" src="img/programmer.png" alt="">
+								<h3 class="vacancies-p__vacancy-title">PHP-программист (junior)</h3>
+							</header>
+
+							<div class="feedback-item__content">
+								<div class="feedback-item__desc">
+									<p class="feedback-item__text">Мы ищем разработчика с хорошим техническим бэкграундом, отличными лидерскими качествами и опытом разработки корпоративных и e-commerce информационных систем.Требуемый опыт работы — не требуется. г. Москва, полная занятость, работа в офисе, уровень зарплаты — от 25 000 до 45 000 руб.</p>
+									<a class="vacancies-p__vacancy-more" href="single-vacancy.html">подробнее</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="vacancies-p__vacancy">
+							<header class="vacancies-p__vacancy-header">
+								<img class="vacancies-p__vacancy-img" src="img/programmer.png" alt="">
+								<h3 class="vacancies-p__vacancy-title">PHP-программист (junior)</h3>
+							</header>
+
+							<div class="feedback-item__content">
+								<div class="feedback-item__desc">
+									<p class="feedback-item__text">Мы ищем разработчика с хорошим техническим бэкграундом, отличными лидерскими качествами и опытом разработки корпоративных и e-commerce информационных систем.Требуемый опыт работы — не требуется. г. Москва, полная занятость, работа в офисе, уровень зарплаты — от 25 000 до 45 000 руб.</p>
+									<a class="vacancies-p__vacancy-more" href="single-vacancy.html">подробнее</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="vacancies-p__vacancy">
+							<header class="vacancies-p__vacancy-header">
+								<img class="vacancies-p__vacancy-img" src="img/programmer.png" alt="">
+								<h3 class="vacancies-p__vacancy-title">PHP-программист (junior)</h3>
+							</header>
+
+							<div class="feedback-item__content">
+								<div class="feedback-item__desc">
+									<p class="feedback-item__text">Мы ищем разработчика с хорошим техническим бэкграундом, отличными лидерскими качествами и опытом разработки корпоративных и e-commerce информационных систем.Требуемый опыт работы — не требуется. г. Москва, полная занятость, работа в офисе, уровень зарплаты — от 25 000 до 45 000 руб.</p>
+									<a class="vacancies-p__vacancy-more" href="single-vacancy.html">подробнее</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="vacancies-p__vacancy">
+							<header class="vacancies-p__vacancy-header">
+								<img class="vacancies-p__vacancy-img" src="img/programmer.png" alt="">
+								<h3 class="vacancies-p__vacancy-title">PHP-программист (junior)</h3>
+							</header>
+
+							<div class="feedback-item__content">
+								<div class="feedback-item__desc">
+									<p class="feedback-item__text">Мы ищем разработчика с хорошим техническим бэкграундом, отличными лидерскими качествами и опытом разработки корпоративных и e-commerce информационных систем.Требуемый опыт работы — не требуется. г. Москва, полная занятость, работа в офисе, уровень зарплаты — от 25 000 до 45 000 руб.</p>
+									<a class="vacancies-p__vacancy-more" href="single-vacancy.html">подробнее</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="vacancies-p__desc">
+						<h3 class="vacancies-p__title_small">Мы готовы рассмотреть ваше резюме, если вы:</h3>
+						<p class="vacancies-p__text">Умеющий думать программист, талантливый дизайнер, руководитель проектов, способный эффективно связать заказчика с разработчиком.</p>
+					</div>
+
+					<div class="vacancies-p__conditions">
+						<h3 class="vacancies-p__title_small">Условия работы</h3>
+						<p class="vacancies-p__text">Восьмичасовой рабочий день с очень гибким графиком, полный социальный пакет, оплачиваемый отпуск, большой удобный офис, хороший компьютер, очень скоростной интернет, бесплатный чай/кофе и печенюшки, клёвый коллектив и адекватное руководство.</p>
+						<p class="vacancies-p__text">Ах, и да. У нас тут есть всякие "плюшки", способствующие личному и профессиональному росту. </p>
+					</div>
+				</div>
+
+				<div class="internships">
+					<h2 class="vacancies-p__title">Стажировки. Учим. Прокачиваем.</h2>
+
+					<div class="internships__desc-container">
+						<div class="vacancies-p__vacancy">
+							<header class="vacancies-p__vacancy-header">
+								<img class="vacancies-p__vacancy-img" src="img/programmer.png" alt="">
+								<h3 class="vacancies-p__vacancy-title">PHP-программист (junior)</h3>
+							</header>
+
+							<div class="feedback-item__content">
+								<div class="feedback-item__desc">
+									<p class="feedback-item__text">Мы ищем разработчика с хорошим техническим бэкграундом, отличными лидерскими качествами и опытом разработки корпоративных и e-commerce информационных систем.Требуемый опыт работы — не требуется. г. Москва, полная занятость, работа в офисе, уровень зарплаты — от 25 000 до 45 000 руб.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="internships__desc">
+							<p class="internships__text">Месяц-два в студии, командная работа, погружение в рабочий процесс и опытный ментор, иногда могут заменить год обучения в университете.</p>
+							<p class="internships__text">ВАЖНО: это не курсы программирования. Технические аспекты вы учите самостоятельно. Мы курируем, даем реальные задачи и обратную связь. Стажировка это способ примерить вас к команде, к принципам работы, прежде чем брать на работу.</p>
+							<a class="vacancies-p__vacancy-more vacancies-p__vacancy-more_relative" href="#form_vacancy">Записаться</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+<!-- start footer.html-->
+<section class="brief brief_footer" id="brief">
+
+
+    <div class="animate-circle"></div>
+
+    <img src="img/balloon.png" alt="" class="balloon">
+
+    <p class="fill-brief"><span>покорить вершины легко!</span>Осталось только заполнить бриф</p>
+
+</section>
+
+<!-- end footer.html-->
+</main>
+<!-- end content-vacancy.html-->
+
+<!-- start html_close.html-->
+<script src='js/jquery-3.2.1.min.js' type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/jquery.dotdotdot.js"></script>
+<script src="js/fine-uploader.min.js"></script>
+<script src="js/script.min.js" type="text/javascript"></script>
+<a href="#" class="scrollup"></a>
+
+</body>
+</html>
+<!-- end html_close.html-->

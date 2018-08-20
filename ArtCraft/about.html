@@ -1,0 +1,494 @@
+<!-- start html_open.html-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="css/libs.min.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="css/fine-uploader-gallery.css" rel="stylesheet">
+    <script type="text/template" id="qq-template">
+        <div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">
+            <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+            </div>
+            <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+                <span class="qq-upload-drop-area-text-selector"></span>
+            </div>
+            <div class="qq-upload-button-selector qq-upload-button">
+                <div>Upload a file</div>
+            </div>
+            <span class="qq-drop-processing-selector qq-drop-processing">
+                <span>Processing dropped files...</span>
+                <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
+            </span>
+            <ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">
+                <li>
+                    <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+                    <div class="qq-progress-bar-container-selector qq-progress-bar-container">
+                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                    </div>
+                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                    <div class="qq-thumbnail-wrapper">
+                        <img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>
+                    </div>
+                    <button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>
+                    <button type="button" class="qq-upload-retry-selector qq-upload-retry">
+                        <span class="qq-btn qq-retry-icon" aria-label="Retry"></span>
+                        Retry
+                    </button>
+
+                    <div class="qq-file-info">
+                        <div class="qq-file-name">
+                            <span class="qq-upload-file-selector qq-upload-file"></span>
+                            <span class="qq-edit-filename-icon-selector qq-btn qq-edit-filename-icon" aria-label="Edit filename"></span>
+                        </div>
+                        <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+                        <span class="qq-upload-size-selector qq-upload-size"></span>
+                        <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">
+                            <span class="qq-btn qq-delete-icon" aria-label="Delete"></span>
+                        </button>
+                        <button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">
+                            <span class="qq-btn qq-pause-icon" aria-label="Pause"></span>
+                        </button>
+                        <button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">
+                            <span class="qq-btn qq-continue-icon" aria-label="Continue"></span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+
+            <dialog class="qq-alert-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">Close</button>
+                </div>
+            </dialog>
+
+            <dialog class="qq-confirm-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">No</button>
+                    <button type="button" class="qq-ok-button-selector">Yes</button>
+                </div>
+            </dialog>
+
+            <dialog class="qq-prompt-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <input type="text">
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">Cancel</button>
+                    <button type="button" class="qq-ok-button-selector">Ok</button>
+                </div>
+            </dialog>
+        </div>
+    </script>
+</head>
+<body>
+<!-- open .header -->
+<div class="page-preloader">
+	<svg viewBox="0 0 1000 200">
+		<!-- Symbol-->
+		<symbol id="s-text">
+			<text text-anchor="middle" x="50%" y="50%" dy=".35em">Craft Group</text>
+		</symbol>
+		<!-- Duplicate symbols-->
+		<use class="text" xlink:href="#s-text"></use>
+		<use class="text" xlink:href="#s-text"></use>
+		<use class="text" xlink:href="#s-text"></use>
+	</svg>
+</div>
+<!-- end html_open.html-->
+
+<!-- start header-about.html-->
+<header class="header">
+    <div class="container">
+        <div class="header__mobile-btn"><span></span></div>
+
+        <ul class="header__nav">
+            <li class="header__nav-li logo"><a href="index.html"><img src="img/logo_header_red.svg" width="160" height="35" alt=""></a></li>
+            
+            <ul class="header__nav-container">
+                <li class="header__nav-li"><a href="service.html">Услуги</a></li>
+                <li class="header__nav-li"><a class="scroll" href="portfolio.html">Портфолио</a></li>
+                <li class="header__nav-li"><a href="#">Распродажи</a></li>
+                <li class="header__nav-li"><a class="scroll" href="blog.html">Блог</a></li>
+                <li class="header__nav-li"><a href="#">Развеивание мифов</a></li>
+                <li class="header__nav-li active-page dropdown">
+                    <a class="scroll" href="about.html">О нас</a>
+                    <button class="dropdown_mob">></button>
+                    <ul class="header__submenu header__submenu_mob">
+                        <li><a href="feedback.html">Отзывы</a></li>
+                        <li><a href="#">Клиенты</a></li>
+                        <li><a href="vacancy.html">Вакансии</a></li>
+                    </ul>
+                </li>
+                <li class="header__nav-li"><a class="scroll" href="#brief">Контакты</a></li>
+            </ul>
+        </ul>
+    </div>
+</header>
+
+<!-- end header-about.html-->
+
+<!-- start content-about.html-->
+<main class="main-about">
+	<section class="blog blog__single blog_about">
+      	<div class="container">
+
+            <p class="paragraph">о нас</p>
+
+            <nav class="broadcrumbs">
+	           	<a class="broadcrumbs__link" href="index.html">Главная</a>
+	           	<span class="broadcrumbs__divider"> / </span>
+	          	<span class="broadcrumbs__curr">О нас</span>
+	        </nav>
+
+            <div class="wrap">
+				<div class="about">
+	            	<div class="tittle">
+		                <span>немного</span>
+		                <h2>о компании</h2>
+		                <p>
+		                    Мы прекрасно понимаем, каким должен быть интернет-продукт и как этого добиться. 
+							Мы объединяем цифровое мастерство с новаторским мышлением, чтобы реализовать
+							 все ваши идеи и пожелания. Мы предлагаем исключительный уровень сервиса и 
+							стремимся стать долгосрочными партнерами.
+		                </p>
+		            </div>
+
+					<div class="about__content">
+						<div class="key">
+							<div class="key__head">
+								<h2 class="key__title">Ключевые</h2>
+								
+								<div class="key__head-sub">
+									<h3 class="key__sub-title"><span class="red-letter">У</span>слуги</h3>
+									<h3 class="key__sub-title"><span class="red-letter">К</span>омпании</h3>
+								</div>
+							</div>
+
+							<ul class="key__desc">
+								<li><a class="key__desc-link" href="#">Разработка сайтов</a></li>
+								<li><a class="key__desc-link" href="#">Веб-дизайн</a></li>
+								<li><a class="key__desc-link" href="#">Продвижение в социальных сетях</a></li>
+								<li><a class="key__desc-link" href="#">Системная интеграция</a></li>
+								<li><a class="key__desc-link" href="#">Услуги хостинга/аренда сервера</a></li>
+							</ul>
+
+							<a href="#" class="red_btn">Посмотреть все услуги</a>
+						</div>
+
+						<div class="pros">
+							<h2 class="pros__title">3 наших основных преимущества</h2>
+
+							<ul class="pros__desc">
+								<li class="pros__element">
+									<img src="img/icons/results-icon1.png" alt="">
+									<span class="pros__text"><span class="red-text">Клиент</span> наш партнёр. В каждом проекте схема работы над продуктом не изменна. Мы слаженно работаем вместе с клиентом, одной командой. Только так мы можем понять, что именно вы хотите и предложить лучшее решение.</span>
+								</li>
+
+								<li class="pros__element">
+									<img src="img/icons/results-icon1.png" alt="">
+									<span class="pros__text"><span class="red-text">Высокая компетенция. </span>Мы выполняем проекты различной степени сложности. Ведь чем сложнее проект, тем больше современных технологий мы используем, а значит, тем интереснее для нас задача.</span>
+								</li>
+
+								<li class="pros__element">
+									<img src="img/icons/results-icon1.png" alt="">
+									<span class="pros__text"><span class="red-text">Гарантия качества. </span> Мы знаем, как важны для наших клиентов качество и сроки выполнения работ, поэтому всегда соблюдаем свои обязательства и делаем чуть больше, чем обещано в договоре.</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+	            </div>
+
+	            <div class="feedback">
+	            	<div class="tittle">
+		                <span>Отзывы</span>
+		                <h2>наших клиентов</h2>
+		                <p>
+		                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut atque eum, deserunt dolores, veritatis voluptatem sunt cum voluptas porro eaque temporibus voluptatibus obcaecati laudantium placeat a sed. Debitis, doloremque, voluptatibus?
+		                </p>
+		            </div>
+
+		            <div class="feedback__content">
+		            	<div class="feedback__social">
+		            		<div class="soc__block soc__vk">
+		            			<div class="soc__icon">
+		            				<a href="https://vk.com"><img src="img/vk.svg" width="19" height="19" alt=""></a>
+		            			</div>
+
+		            			<div class="soc__desc">
+		            				<p>Отзывы о нашей работе ВК</p>
+		            				<a href="#">www.vk.com</a>
+		            			</div>
+		            		</div>
+
+		            		<div class="soc__block soc__be">
+		            			<div class="soc__icon">
+		            				<a href="#"><img src="img/be-p.png" alt=""></a>
+		            			</div>
+
+		            			<div class="soc__desc">
+		            				<p>Крупные биржи рунета</p>
+		            				<a href="#">www.behance.net</a>
+		            			</div>
+		            		</div>
+
+		            		<div class="soc__block soc__ussr">
+		            			<div class="soc__icon">
+		            				<a href="#"><img src="img/sickle-and-hammer.svg" width="19" height="19" alt=""></a>
+		            			</div>
+
+		            			<div class="soc__desc">
+		            				<p>Частные клиенты</p>
+		            				<a href="#">www.behance.net</a>
+		            			</div>
+		            		</div>
+		            	</div>
+
+		            	<div class="feedback__slider">
+		            		<div class="feedback__slide">
+		            			<p class="feedback__slide-comment">отзывы в группе вк</p>
+
+		            			<a class="feedback__slide-link" href="https://vk.com">
+		            				<img class="feedback__slide-img" src="img/vk-feedback.jpg" alt="">
+		            			</a>
+		            		</div>
+
+		            		<div class="feedback__slide">
+		            			<p class="feedback__slide-comment">отзывы в группе вк</p>
+
+		            			<a class="feedback__slide-link" href="https://vk.com">
+		            				<img class="feedback__slide-img" src="img/vk-feedback.jpg" alt="">
+		            			</a>
+		            		</div>
+
+		            		<div class="feedback__slide">
+		            			<p class="feedback__slide-comment">отзывы в группе вк</p>
+
+		            			<a class="feedback__slide-link" href="https://vk.com">
+		            				<img class="feedback__slide-img" src="img/vk-feedback.jpg" alt="">
+		            			</a>
+		            		</div>
+
+		            		<div class="feedback__slide">
+		            			<p class="feedback__slide-comment">отзывы в группе вк</p>
+
+		            			<a class="feedback__slide-link" href="https://vk.com">
+		            				<img class="feedback__slide-img" src="img/vk-feedback.jpg" alt="">
+		            			</a>
+		            		</div>
+
+		            		<div class="feedback__slide">
+		            			<p class="feedback__slide-comment">отзывы в группе вк</p>
+
+		            			<a class="feedback__slide-link" href="https://vk.com">
+		            				<img class="feedback__slide-img" src="img/vk-feedback.jpg" alt="">
+		            			</a>
+		            		</div>
+		            	</div>
+		            </div>
+	            </div>
+
+	            <div class="partners">
+	            	<div class="tittle">
+		                <span>Серьёзные</span>
+		                <h2>партнёры</h2>
+		                <p>
+		                    Мы работаем с хорошими компаниями, большими и маленькими, холдингами и стартапами, из России и по всему миру.
+		                </p>
+		            </div>
+
+		            <div class="partners__blocks">
+		            	<div class="partners__block"><a href="#"><img src="img/azbuka.jpg" alt=""></a></div>
+		            	<div class="partners__block"><a href="#"><img src="img/lukoil.jpg" alt=""></a></div>
+		            	<div class="partners__block"><a href="#"><img src="img/umms.jpg" alt=""></a></div>
+		            	<div class="partners__block"><a href=""><img src="img/azbuka.jpg" alt=""></a></div>
+		            	<div class="partners__block"><a href=""><img src="img/lukoil.jpg" alt=""></a></div>
+		            	<div class="partners__block"><a href=""><img src="img/umms.jpg" alt=""></a></div>
+		            </div>
+	            </div>
+
+	            <div class="vacancies">
+	            	<div class="tittle">
+		                <span>Мы растём</span>
+		                <h2>вакансии</h2>
+		                <p>
+		                    Мы растем, у нас все больше проектов и направлений, и команда активно 
+							расширяется. Поэтому мы находимся в постоянных поисках новых людей, 
+							способных сделать нас еще круче.
+		                </p>
+		            </div>
+
+					<div class="vacancies__content">
+						<ul class="vacancies__list">
+							<li class="vacancies__vacancy">
+								<img class="vacancies__vacancy-img" src="img/icons/results-icon2.png" width="30" height="30" alt="">
+
+								<p class="vacancies__vacancy-text"><span class="red-text">Вакансии. </span>Если вы дизайнер, программист PHP, менеджер и не только, то присылайте резюме и портфолио на *******Возможно, мы ищем именно вас. </p>
+							</li>
+
+							<li class="vacancies__vacancy vacancies__vacancy_actual">
+								<h4 class="vacancies__vacancy-title">Копирайтер</h4>
+
+								<ul class="vacancies__actual">
+									<li class="vacancies__vacancy-text_grey">Требования:</li>
+									<li class="vacancies__vacancy-text_grey">умение грамотно и структурировано излагать свои мысли;</li>
+									<li class="vacancies__vacancy-text_grey">свободное владение ПК;</li>
+									<li class="vacancies__vacancy-text_grey">уверенный пользователь Internet;</li>
+									<li class="vacancies__vacancy-text_grey">ответственности и умение доводить все до конца.</li>
+								</ul>
+							</li>
+
+							<li class="vacancies__vacancy">
+								<img class="vacancies__vacancy-img" src="img/icons/results-icon2.png" width="30" height="30" alt="">
+
+								<p class="vacancies__vacancy-text"><span class="red-text">Стажировки. </span>Месяц-два в студии, командная работа, погружение в рабочий процесс и опытный ментор, иногда могут заменить год обучения в университете.</p>
+							</li>
+						</ul>
+
+						<div class="vacancies__send">
+							<img class="vacancies__send-img" src="img/man.png" width="147" height="219" alt="">
+
+							<div class="vacancies__desc">
+								<h2 class="vacancies__desc-title">Это будет лучшая  работа в вашей жизни!</h2>
+								<p class="vacancies__desc-comment">Направляя свое резюме и иные персональные данные по указанному адресу электронной почты, я даю свое согласие на обработку персональных данных.</p>
+								<a class="red_btn red_btn_hidden" href="#">Посмотреть все вакансии</a>
+							</div>
+
+							<a class="red_btn red_btn_shown" href="#">Посмотреть все вакансии</a>
+
+						</div>
+					</div>
+	            </div>
+			</div>
+
+        </div>
+    </section>
+	
+<!-- start brief.html-->
+<section class="brief" id="brief">
+
+    <div class="container">
+        <div class="brief__head">
+            <p class="paragraph">наш бриф</p>
+            <div class="wrap">
+                <div class="tittle">
+                    <span class="block_span_title">заполните</span>
+                    <h2 class="block_title">наш бриф</h2>
+                    <p>
+                        Хорошо заполненный бриф - первый и очень важный этап успешно и вовремя завершённого проекта.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="brief__content">
+            <form id="form" class="brief__form">
+                <div class="brief__form-head">
+                    <div>
+                        <label for="name">Ваше имя, фамилия *</label>
+                        <input id="name" type="text" placeholder="Ваше имя" required >
+                    </div>
+
+                    <div>
+                        <label for="phone">Ваш номер телефона *</label>
+                        <input id="phone" type="tel" placeholder="Номер телефона" required>
+                    </div>
+
+                    <div>
+                        <label for="mail">Ваш e-mail *</label>
+                        <input id="mail" type="email" placeholder="Номер телефона" required>
+                    </div>
+
+                    <div>
+                        <label for="skype">Ваш skype</label>
+                        <input id="skype" type="text" placeholder="Номер телефона">
+                    </div>
+                </div>
+
+                <div class="brief__form-message" lang="ru">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" placeholder="Ваше сообщение"></textarea>
+
+                    <!-- <input type="file" name="file-2[]" id="file-2" class="inputfile inputfile-2" data-multiple-caption="{count} файла(ов) выбрано" multiple />
+                    <label for="file-2"><img src="img/clip.png" width="13" height="13" alt=""> <span>Прикрепить файл&hellip;</span></label> -->
+                    <div id="uploader" class="uploader"></div>
+                </div>
+
+                <div class="brief__form-services">
+                    <h3>Какие услуги Вас интересуют?</h3>
+
+                    <input id="ckeckbox_mob" type="checkbox" name="ckeckbox_mob">
+                    <label for="ckeckbox_mob"><span></span>Дизайн сайта или дизайн landing-page</label>
+
+                    <input id="ckeckbox_supp" type="checkbox" name="ckeckbox_supp">
+                    <label for="ckeckbox_supp"><span></span> Дизайн печатной продукции (все виды)</label>
+
+                    <input id="ckeckbox_site" type="checkbox" name="ckeckbox_site">
+                    <label for="ckeckbox_site"><span></span>Посадка сайта на WordPress</label>
+
+                    <input id="ckeckbox_seo" type="checkbox" name="ckeckbox_seo">
+                    <label for="ckeckbox_seo"><span></span>Разработка интернет-магазина на платформе YI2</label>
+                </div>
+                <div class="brief__form-desc">
+                    <p><span>*</span> обязательные поля</p>
+                    <input id="submit" type="submit" value="Отправить бриф">
+                </div>
+            </form>
+            <div class="brief__contacts">
+                <h3>Наши контакты</h3>
+                <div class="brief__tel">
+                    <img src="img/phone-ico.png" alt="">
+                    <strong>+7 (950) 815-57-50</strong>
+                </div>
+                <div class="brief__social">
+                    <strong>Соц. сети</strong>
+                    <a href="https://vk.com"><img src="img/vk-ico.png" alt=""></a>
+                    <a href="https://facebook.com"><img src="img/fb-ico.png" alt=""></a>
+                </div>
+                <div class="brief__messengers">
+                    <strong>Мессенджеры</strong>
+                    <a href="#"><img src="img/telegram-ico.png" alt=""></a>
+                    <a href="#"><img src="img/003-whatsapp.png" alt=""></a>
+                    <a href="#"><img src="img/wu-ico.png" alt=""></a>
+                </div>
+                <div class="brief__email">
+                    <strong>E-mail</strong>
+                    <a href="mailto:info@artcraft.ru">info@artcraft.ru</a>
+                </div>
+            </div>
+        </div>
+        
+
+        
+
+    </div>
+
+    <div class="animate-circle"></div>
+
+    <img src="img/balloon.png" alt="" class="balloon">
+
+    <p class="fill-brief"><span>покорить вершины легко!</span>Осталось только заполнить бриф</p>
+
+</section>
+
+<!-- end brief.html-->
+</main>
+<!-- end content-about.html-->
+
+<!-- start html_close.html-->
+<script src='js/jquery-3.2.1.min.js' type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/jquery.dotdotdot.js"></script>
+<script src="js/fine-uploader.min.js"></script>
+<script src="js/script.min.js" type="text/javascript"></script>
+<a href="#" class="scrollup"></a>
+
+</body>
+</html>
+<!-- end html_close.html-->
