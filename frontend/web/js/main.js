@@ -324,6 +324,35 @@ $(document).ready(function() { // вся мaгия пoсле зaгрузки с�
 			alert('Вы не заполнили все поля!');
 		}
 	});
+
+
+	$(document).on('submit', '#send_vacancy', function (e) {
+		e.preventDefault();
+		console.log(123);
+		var data = $(this).serialize();
+		$.ajax({
+			url: '/site/send-form',
+			type: 'post',
+			data: data,
+			// contentType: false,
+			// processData: false,
+			success: function (response) {
+
+				console.log(response)
+
+				// console.log(response);
+				// alert(response.message);
+                //
+				// if (response.result == 'success') {
+				// 	/*form.reset();*/
+				// 	$('#form_feedback').trigger('reset');
+				// 	$('#send_form').trigger('reset');
+				// 	$('.qq-upload-success').remove();
+				// 	$('.fileUp').remove();
+				// }
+			}
+		});
+	})
 /*Masonry*/
 	$('.grid').imagesLoaded( function() {
 		$('.grid').masonry({
