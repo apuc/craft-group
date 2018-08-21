@@ -6,6 +6,7 @@
  * Time: 11:23
  *
  * @var $model \frontend\models\SendForm
+ * @var $isLabels bool
  *
  */
 use yii\widgets\ActiveForm;
@@ -54,12 +55,18 @@ use yii\widgets\ActiveForm;
 
     </div>
 
+<?php if ($isLabels): ?>
+    <?= $this->render('_labels', [
+        'form' => $form,
+        'model' => $model
+    ]); ?>
+<?php endif ?>
     <div class="service__form-message" lang="ru">
         <?= $form->field($model, 'message', [
             'options' => [
                 'class' => 'form-group service__form-textarea'
             ]
-        ])->textarea(['placeholder' => 'Ваше сообщение'])->label() ?>
+        ])->textarea(['placeholder' => 'Ваше сообщение'])->label($message) ?>
         <div class="service__form-file">
 
             <!--<script>

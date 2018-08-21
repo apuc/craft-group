@@ -120,7 +120,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			</div>
 			<div class="brief__content">
 				<?= \frontend\components\SendFormWidget::widget([
-					'subject'=>\frontend\models\SendForm::VACANCY
+					'subject'=>\frontend\models\SendForm::VACANCY,
+					'message'=>'Напишите немного о себе'
 				])?>
 			</div>
 

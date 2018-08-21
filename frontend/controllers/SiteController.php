@@ -273,12 +273,20 @@ class SiteController extends Controller
             $model = new SendForm();
             $model->load(Yii::$app->request->post());
             if ($model->validate()) {
+
+                $model->setRadioListForm();
+
                 $message = 'Имя: ' . $model->name . '<br>';
 
                 $message .= 'Телефон: ' . $model->phone . '<br>';
                 $message .= 'E-mail: ' . $model->email . '<br>';
+                
                 if ($model->skype) {
                     $message .= 'Skype: ' . $model->skype . '<br>';
+                }
+
+                if (!empty($model->radioListForm)) {
+                    $message .= "Заказаны следующие услуги: " . implode(",", $model->radioListForm) . "<br>";
                 }
 
                 if ($model->message) {
