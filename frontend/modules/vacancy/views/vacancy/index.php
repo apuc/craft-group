@@ -68,11 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
 										<?=$value['description'];?>
 									<?php endif;?>
 								</p>
-								<ul class="services_item-ul vacancies_item-ul">
-									<li class="services_item-li vacancies-item-li">Требыемый опыт работы - <span class="vacancies-ul-span"><?=$serv[1] ?? '';?></span></li>
-									<li class="services_item-li vacancies-item-li">Полная занятость,<span class="vacancies-ul-span"><?=$serv[2] ?? '';?></span></li>
-									<li class="services_item-li vacancies-item-li">Уровень зарплаты - <span class="vacancies-ul-span"><?=$serv[3] ?? '';?></span></li>
-								</ul>
+								
 								<a href="<?=Url::to(['single-vacancy', 'slug' => $value['slug']])?>" class="services_item-more vacancies_item-more">Подробнее</a>
 							</div>
 						<?php endforeach;?>
