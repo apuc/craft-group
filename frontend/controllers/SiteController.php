@@ -20,6 +20,8 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use himiklab\sitemap\behaviors\SitemapBehavior;
 use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * Site controller
@@ -29,8 +31,8 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-	
-    
+
+
     public function behaviors()
     {
         return [
@@ -57,21 +59,21 @@ class SiteController extends Controller
                 ],
             ],
             'sitemap' => [
-	            'class' => SitemapBehavior::className(),
-	            'scope' => function ($model) {
-		            /** @var \yii\db\ActiveQuery $model */
-		            $model->select(['url', 'lastmod']);
-		            $model->andWhere(['is_deleted' => 0]);
-	            },
-	            'dataClosure' => function ($model) {
-		            /** @var self $model */
-		            return [
-			            'loc' => Url::to($model->url, true),
-			            'lastmod' => strtotime($model->lastmod),
-			            'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
-			            'priority' => 0.8
-		            ];
-	            }
+                'class' => SitemapBehavior::className(),
+                'scope' => function ($model) {
+                    /** @var \yii\db\ActiveQuery $model */
+                    $model->select(['url', 'lastmod']);
+                    $model->andWhere(['is_deleted' => 0]);
+                },
+                'dataClosure' => function ($model) {
+                    /** @var self $model */
+                    return [
+                        'loc' => Url::to($model->url, true),
+                        'lastmod' => strtotime($model->lastmod),
+                        'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
+                        'priority' => 0.8
+                    ];
+                }
             ],
         ];
     }
@@ -94,41 +96,41 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-	public function actionIndex()
-	{
-		$blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();
-		$b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
-		$portfolio = Portfolio::find()->where(['options'=>1])->asArray()->limit(7)->all();
-		$title = KeyValue::getValue('main_page_meta_title');
-		$key = KeyValue::getValue('main_page_meta_key');
-		$desc = KeyValue::getValue('main_page_meta_desc');
-		$domain_verify = KeyValue::getValue('main_page_meta_p:domain_verify');
-		$main = Main::find()->all();
-		\Yii::$app->view->registerMetaTag([
-			'name' => 'description',
-			'content' => $desc,
-		]);
-		\Yii::$app->view->registerMetaTag([
-			'name' => 'keywords',
-			'content' => $key,
-		]);
-		\Yii::$app->view->registerMetaTag([
-			'name' => 'p:domain_verify',
-			'content' => $domain_verify,
-		]);
-		Yii::$app->opengraph->title = KeyValue::getValue('main_og_title');
-		Yii::$app->opengraph->description = KeyValue::getValue('main_og_description');
-		Yii::$app->opengraph->image = KeyValue::getValue('main_og_image');
-		Yii::$app->opengraph->url = KeyValue::getValue('main_og_url');
-		Yii::$app->opengraph->siteName = KeyValue::getValue('main_og_site_name');
-		Yii::$app->opengraph->type = KeyValue::getValue('main_og_type');
-		
-		
-		$this->view->params['contacts'] = Contacts::find()->asArray()->all();
-		
-		return $this->render('index', ['blog' => $blog, 'portfolio' => $portfolio,
-		                               'title'=> $title, 'main' => $main, 'b_cur' => $b_cur]);
-	}
+    public function actionIndex()
+    {
+        $blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date' => SORT_DESC])->asArray()->all();
+        $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
+        $portfolio = Portfolio::find()->where(['options' => 1])->asArray()->limit(7)->all();
+        $title = KeyValue::getValue('main_page_meta_title');
+        $key = KeyValue::getValue('main_page_meta_key');
+        $desc = KeyValue::getValue('main_page_meta_desc');
+        $domain_verify = KeyValue::getValue('main_page_meta_p:domain_verify');
+        $main = Main::find()->all();
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => $desc,
+        ]);
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $key,
+        ]);
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'p:domain_verify',
+            'content' => $domain_verify,
+        ]);
+        Yii::$app->opengraph->title = KeyValue::getValue('main_og_title');
+        Yii::$app->opengraph->description = KeyValue::getValue('main_og_description');
+        Yii::$app->opengraph->image = KeyValue::getValue('main_og_image');
+        Yii::$app->opengraph->url = KeyValue::getValue('main_og_url');
+        Yii::$app->opengraph->siteName = KeyValue::getValue('main_og_site_name');
+        Yii::$app->opengraph->type = KeyValue::getValue('main_og_type');
+
+
+        $this->view->params['contacts'] = Contacts::find()->asArray()->all();
+
+        return $this->render('index', ['blog' => $blog, 'portfolio' => $portfolio,
+            'title' => $title, 'main' => $main, 'b_cur' => $b_cur]);
+    }
 
     /**
      * Logs in a user.
@@ -265,28 +267,66 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-	
+
     /*Отправка письма*/
-	public function actionSendForm()
-	{
-		return SendForm::sendMail();
-	}
-	
-	public function beforeAction($action)
-	{
-		if ($this->action->id == 'send-form')
-		{
-			$this->enableCsrfValidation = false;
-		}
-		
-		return parent::beforeAction($action);
-		
-	}
+    public function actionSendForm()
+    {
+        if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+            $model = new SendForm();
+            $model->load(Yii::$app->request->post());
+            if ($model->validate()) {
+
+                $model->setRadioListForm();
+
+                $message = 'Имя: ' . $model->name . '<br>';
+
+                $message .= 'Телефон: ' . $model->phone . '<br>';
+                $message .= 'E-mail: ' . $model->email . '<br>';
+                
+                if ($model->skype) {
+                    $message .= 'Skype: ' . $model->skype . '<br>';
+                }
+
+                if (!empty($model->radioListForm)) {
+                    $message .= "Заказаны следующие услуги: " . implode(",", $model->radioListForm) . "<br>";
+                }
+
+                if ($model->message) {
+                    $message .= 'Сообщение: ' . $model->message . '<br>';
+                }
+
+//                $mail = Yii::$app->mailer->compose()
+//                    ->setFrom(['canya.panfilov.95@yandex.ru' => 'Письмо с сайта web-artcraft.com'])
+//                    ->setTo('canya.panfilov.95@gmail.com')
+//                    ->setSubject($model->subject)
+////                    ->setTextBody($message)
+//                    ->setHtmlBody('<b>' . $message . '</b>')
+//                    ->send();
+//                var_dump($mail);
+            } else {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
+        }
+
+
+//        return SendForm::sendMail();
+    }
+
+    public function beforeAction($action)
+    {
+        if ($this->action->id == 'send-form') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+
+    }
 
     public function actionError()
     {
         $this->layout = 'error';
         return $this->render('error');
     }
-	
+
 }

@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle
 	    'css/fine-uploader-gallery.css',
     ];
     public $js = [
-    	'js/jquery-3.2.1.min.js',
+//    	'js/jquery-3.2.1.min.js',
 	    'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js',
 	    'js/slick.min.js',
 	    'js/jquery.dotdotdot.js',

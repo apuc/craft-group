@@ -1,0 +1,21 @@
+.itemWrapper {
+    width: 200px;
+    padding: 5px;
+    background-color: gray;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.itemWrapper img {
+    width: 100%;
+}
+
+#dropArea {
+    width: 200px;
+    height: 100px;
+    border-radius: 5px;
+    margin: 5px;
+    border: 2px dashed gray;
+    background-color: ghostwhite;
+}
