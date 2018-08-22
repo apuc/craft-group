@@ -69,11 +69,8 @@ class VacancyController extends Controller
 	{
 		$vacancy = Vacancy::find()->where(['slug'=>$slug])->one();
 		$all_vacancy = Vacancy::find()->where(['options' => 2])->asArray()->limit(3)->offset($vacancy['id'])->all();
+		$vacancy->updateCounters(['views' => 1]);
 		$vacancy = $vacancy->toArray();
-		if($vacancy->updateCounters(['views' => 1])) {
-			return $this->render('single-vacancy', ['vacancy' => $vacancy, 'all' => $all_vacancy]);
-		} else {
-			return $this->redirect(['/'.$slug]);
-		}
+		return $this->render('single-vacancy', ['vacancy' => $vacancy, 'all' => $all_vacancy]);
 	}
 }
