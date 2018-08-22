@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							<div id="<?=$value['slug']?>" class="services_item tittle">
 								<p class="services_item-p">
 									<?php $serv = explode('*-' , $value['description']);?>
-									<?php if($serv[0]):?>
+									<?php if($serv):?>
 										<?=$serv[0]?>
 									<?php else:?>
 										<?=$value['description'];?>
