@@ -119,50 +119,10 @@ $this->params['breadcrumbs'][] = $this->title;
 				</div>
 			</div>
 			<div class="brief__content">
-				<form id="form" class="service__form" enctype="multipart/form-data">
-					<div class="service__form-head">
-						<div class="service__form-head_item">
-							<label for="name">Ваше имя, фамилия *</label>
-							<input class="service__form_input" id="name" type="text" placeholder="Ваше имя" required >
-						</div>
-
-						<div class="service__form-head_item">
-							<label for="phone">Ваш номер телефона *</label>
-							<input class="service__form_input js_phone-mask" id="phone" type="tel" placeholder="Номер телефона" required>
-						</div>
-
-						<div class="service__form-head_item">
-							<label for="mail">Ваш e-mail *</label>
-							<input class="service__form_input" id="mail" type="email" placeholder="Ваш e-mail" required>
-						</div>
-
-						<div class="service__form-head_item">
-							<label for="skype">Ваш skype</label>
-							<input class="service__form_input" id="skype" type="text" placeholder="Ваш Skype">
-						</div>
-					</div>
-
-					<div class="service__form-message" lang="ru">
-						<div class="service__form-textarea">
-							<label for="message">Напишите немного о себе</label>
-							<textarea id="message" placeholder="Ваше сообщение"></textarea>
-						</div>
-						<div class="service__form-file">
-							<div class="btn-file__wrap">
-								<input type="file" class="input-file">
-								<div class="btn-input-file">
-									<img src="img/clip-black.png" alt="" width="25" height="25">
-									<span>Прикрепить файл</span>
-								</div>
-							</div>
-							<span class="service__form-files">jpg, jpeg, png. gif, zip, rar, pdf, doc, xls</span>
-						</div>
-					</div>
-					<div class="service__form-desc">
-						<span class="service__form-desc_span">Нажимая кнопку «Отправить» я даю свое <span class="service__form-desc_red">согласие на обработку персональных данных</span></span>
-						<input class="service__form-submit" id="submit" type="submit" value="Хочу в команду">
-					</div>
-				</form>
+				<?= \frontend\components\SendFormWidget::widget([
+					'subject'=>\frontend\models\SendForm::VACANCY,
+					'message'=>'Напишите немного о себе'
+				])?>
 			</div>
 
 		</div>
