@@ -86,7 +86,11 @@ class PortfolioController extends Controller
 		                      ->where(['slug'=>$slug])
 		                      ->asArray()
 		                      ->one();
-		return $this->render('single-portfolio', ['portfolio'=>$portfolio, 'b_cur'=>$b_cur, 'blog'=>$blog]);
+		if($portfolio) {
+			return $this->render('single-portfolio', ['portfolio'=>$portfolio, 'b_cur'=>$b_cur, 'blog'=>$blog]);
+		} else {
+			return $this->redirect(['/'.$slug]);
+		}
 	}
 	
 	public function actionMore() {
