@@ -8,9 +8,9 @@ use common\models\BlogSlider;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /**
-* @var $vacancy array
-* @var $all array
-* @var $title string
+ * @var $vacancy array
+ * @var $all array
+ * @var $title string
  * @var $b_cur object
  * @var $blog array
  */
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						<?=$vacancy[0]['description']?>
 					</p>
 				</div>
-				
+
 				<div class="all-services">
 					<div class="services-bottom">
 						<?php $i=0; foreach ($all as $k => $v):?>
@@ -54,14 +54,14 @@ $this->params['breadcrumbs'][] = $this->title;
 									<?=$v['title']?>
 								</button>
 							<?php endif;?>
-						<?php $i++; endforeach;?>
+							<?php $i++; endforeach;?>
 					</div>
 
 					<div class="services-text">
 						<?php foreach ($all as $key => $value):?>
 							<div id="<?=$value['slug']?>" class="services_item tittle">
 								<p class="services_item-p">
-									<?php $serv = explode('*-' , $value['description']);?>
+									<?php $serv = explode('*' , $value['description']);?>
 									<?php if($serv):?>
 										<?=$serv[0]?>
 									<?php else:?>
@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
 									<?php endif;?>
 								</p>
 								<ul class="services_item-ul vacancies_item-ul">
-									<li class="services_item-li vacancies-item-li">Требыемый опыт работы - <span class="vacancies-ul-span"><?=$serv[1] ?? '';?></span></li>
+									<li class="services_item-li vacancies-item-li">Требуемый опыт работы - <span class="vacancies-ul-span"><?=$serv[1] ?? '';?></span></li>
 									<li class="services_item-li vacancies-item-li">Полная занятость,<span class="vacancies-ul-span"><?=$serv[2] ?? '';?></span></li>
 									<li class="services_item-li vacancies-item-li">Уровень зарплаты - <span class="vacancies-ul-span"><?=$serv[3] ?? '';?></span></li>
 								</ul>
@@ -79,8 +79,8 @@ $this->params['breadcrumbs'][] = $this->title;
 						
 						<?php preg_match('|<div class="conditions">(.*?)</div>|isU', $vacancy[0]['file'], $match);
 						?>
-<!--						--><?//=$match[1]?>
-					
+						<!--						--><?//=$match[1]?>
+
 					</div>
 				</div>
 
