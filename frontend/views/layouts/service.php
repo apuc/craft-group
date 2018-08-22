@@ -221,8 +221,10 @@ if(explode('/',$active)) {
 </header>
 
 <!-- end header-service.html-->
-123
 <?= $content?>
+<!-- start blog.html-->
+<?= \frontend\components\BlogWidget::widget();?>
+<!-- end blog.html-->
 
 <section class="footer-section">
 

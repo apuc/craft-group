@@ -31,7 +31,7 @@ class SendFormWidget extends \yii\base\Widget
 
         if ($this->isLabels) $model->setRadioList();
 
-        return $this->render('form', [
+        return $this->render('send-form/form', [
             'model' => $model,
             'widget' => $this,
         ]);
