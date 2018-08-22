@@ -69,7 +69,11 @@ class BlogController extends Controller
 		$blog = BlogSlider::find()->where(['slug'=>$slug])->asArray()->one();
 		$slider = BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();
 		$all = BlogSlider::find()->where(['h1' => 'current'])->one();
-		return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
+		if($blog) {
+			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
+		} else {
+			return $this->redirect(['/'.$slug]);
+		}
 	}
 	
 }
