@@ -20,6 +20,8 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use himiklab\sitemap\behaviors\SitemapBehavior;
 use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * Site controller
@@ -301,6 +303,9 @@ class SiteController extends Controller
 //                    ->setHtmlBody('<b>' . $message . '</b>')
 //                    ->send();
 //                var_dump($mail);
+            } else {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
             }
         }
 

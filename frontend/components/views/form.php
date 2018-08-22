@@ -15,41 +15,43 @@ use yii\widgets\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin([
+    'action' => \yii\helpers\Url::to(['/site/send-form']),
     'id' => 'send_vacancy',
     'options' => [
         'class' => 'service__form',
         'enctype' => 'multipart/form-data'
-    ]
+    ],
+//    'enableAjaxValidation' => true,
 ]); ?>
     <div class="service__form-head">
 
         <?= $form->field($model, 'subject', [
             'options' => [
-                'class' => 'form-group service__form-head_item hidden'
+                'class' => 'service__form-head_item hidden'
             ]
         ])->hiddenInput()->label(false) ?>
 
         <?= $form->field($model, 'name', [
             'options' => [
-                'class' => 'form-group service__form-head_item'
+                'class' => 'service__form-head_item'
             ]
         ])->textInput(['class' => 'service__form_input', 'placeholder' => 'Ваше имя'])->label() ?>
 
         <?= $form->field($model, 'phone', [
             'options' => [
-                'class' => 'form-group service__form-head_item'
+                'class' => 'service__form-head_item'
             ]
         ])->textInput(['class' => 'service__form_input js_phone-mask', 'placeholder' => 'Номер телефона'])->label() ?>
 
         <?= $form->field($model, 'email', [
             'options' => [
-                'class' => 'form-group service__form-head_item'
+                'class' => 'service__form-head_item'
             ]
         ])->textInput(['class' => 'service__form_input', 'placeholder' => 'Ваш e-mail'])->label() ?>
 
         <?= $form->field($model, 'skype', [
             'options' => [
-                'class' => 'form-group service__form-head_item'
+                'class' => 'service__form-head_item'
             ]
         ])->textInput(['class' => 'service__form_input', 'placeholder' => 'Ваше Skype'])->label() ?>
 
@@ -64,7 +66,7 @@ use yii\widgets\ActiveForm;
     <div class="service__form-message" lang="ru">
         <?= $form->field($model, 'message', [
             'options' => [
-                'class' => 'form-group service__form-textarea'
+                'class' => 'service__form-textarea'
             ]
         ])->textarea(['placeholder' => 'Ваше сообщение'])->label($message) ?>
         <div class="service__form-file">

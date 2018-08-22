@@ -33,7 +33,8 @@ class SendForm extends Model
         return [
             [['name', 'phone', 'email', 'skype', 'message', 'subject'], 'string'],
             [['name', 'phone', 'email'], 'required', 'message' => "Неверно заполненое поле"],
-            [['email'], 'email'],
+            [['email'], 'email', 'message' => "Неверно заполненое поле"],
+            [['phone'], 'phoneLength'],
             [['radioListForm'], 'safe']
         ];
     }
@@ -70,9 +71,17 @@ class SendForm extends Model
     {
         $this->setRadioList();
         if (!empty($this->radioListForm)) {
-            foreach ($this->radioListForm as $key => $item){
+            foreach ($this->radioListForm as $key => $item) {
                 $this->radioListForm[$key] = $this->radioList[$key];
             }
+        }
+    }
+
+    public function phoneLength()
+    {
+        $this->phone = str_replace(array('_'), '', $this->phone);
+        if (strlen($this->phone) < 16) {
+            $this->addError('phone', "Неверно заполненое поле");
         }
     }
 
