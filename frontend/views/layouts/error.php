@@ -20,6 +20,7 @@ $about = \common\models\Menu::find()->where(['page'=>'about'])->all();
 $menu = \common\models\Menu::find()->where(['page'=> 'other'])->orderBy(['position'=> SORT_ASC])->all();
 
 \frontend\assets\AppAsset::register($this);
+$img = Url::to('@web/img/');
 ?>
 <?php $this->beginPage() ?>
 <!-- start html_open.html-->
@@ -146,7 +147,7 @@ $menu = \common\models\Menu::find()->where(['page'=> 'other'])->orderBy(['positi
         </div>
 
         <div class="not-found__error-dog">
-            <img src="img/dog.png" alt="">
+            <img src="<?=$img?>dog.png" alt="">
 
         </div>
     </div>
