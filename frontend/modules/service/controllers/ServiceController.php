@@ -73,7 +73,12 @@ class ServiceController extends Controller
 		$service = Service::find()->where(['slug'=>$slug])->asArray()->one();
 		$portfolio = Portfolio::find()->where(['id'=> json_decode($service['portfolio'])])->asArray()->all();
 		$feedback = Feedback::find()->andWhere(['status' => 1])->andWhere(['category' => $service['id']])->asArray()->all();
-		return $this->render('single-service', ['service'=>$service, 'portfolio' => $portfolio, 'feedback' => $feedback]);
+		if($service) {
+			return $this->render('single-service', ['service'=>$service, 'portfolio' => $portfolio, 'feedback' => $feedback]);
+		} else {
+			return $this->redirect(['/'.$slug]);
+		}
+		
 	}
     
 }
