@@ -5,7 +5,7 @@ namespace frontend\modules\feedback;
 /**
  * feedback module definition class
  */
-class feedback extends \yii\base\Module
+class Feedback extends \yii\base\Module
 {
     /**
      * @inheritdoc
@@ -18,6 +18,8 @@ class feedback extends \yii\base\Module
     public function init()
     {
         parent::init();
+        $this->layout = 'service';
+        $this->layoutPath = '@frontend/views/layouts';
 
         // custom initialization code goes here
     }
