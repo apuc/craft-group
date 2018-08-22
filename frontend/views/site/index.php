@@ -117,7 +117,7 @@ $this->registerJsFile('/js/fine-uploader.min.js');
                 <?= \frontend\components\SendFormWidget::widget([
                     'subject' => \frontend\models\SendForm::USULUGI,
                     'isLabels' => true,
-                    'message'=>'Сообщение'
+                    'messageLabel'=>'Сообщение'
                 ]) ?>
                 <!--<form id="send_form" class="service__form" enctype="multipart/form-data">
 					<input type="hidden" name="filePath" id="filePath">

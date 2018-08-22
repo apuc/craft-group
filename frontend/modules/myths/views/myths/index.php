@@ -82,7 +82,7 @@ $img = Url::to('@web/img/');
 				<?= \frontend\components\SendFormWidget::widget([
 					'subject' => \frontend\models\SendForm::USULUGI,
 					'isLabels' => true,
-					'message'=>'Сообщение'
+					'messageLabel'=>'Сообщение'
 				]) ?>
 			</div>
 		</div>
