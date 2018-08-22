@@ -18,6 +18,14 @@ use common\models\BlogSlider;
  */
 class AboutController extends Controller
 {
+	public function actions()
+	{
+		return [
+			'error' => [
+				'class' => 'yii\web\ErrorAction',
+			],
+		];
+	}
     /**
      * @inheritdoc
      */
