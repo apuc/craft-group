@@ -17,6 +17,7 @@ class SendForm extends Model
 
     const VACANCY = 'Заявка на вакансию';
     const USULUGI = 'Заявка на услугу';
+    const FEEDBACK = 'Отзыв';
 
     public $name;
     public $phone;
@@ -35,6 +36,7 @@ class SendForm extends Model
             [['name', 'phone', 'email'], 'required', 'message' => "Неверно заполненое поле"],
             [['email'], 'email', 'message' => "Неверно заполненое поле"],
             [['phone'], 'phoneLength'],
+//            [['phone'], 'frontend\components\PhoneValidator'],
             [['radioListForm'], 'safe']
         ];
     }

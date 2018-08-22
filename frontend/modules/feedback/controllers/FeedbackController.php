@@ -39,11 +39,12 @@ class FeedbackController extends Controller
      */
     public function actionIndex()
     {
+		$this->view->title = 'Отзывы';
         $dataProvider = new ActiveDataProvider([
             'query' => Feedback::find(),
         ]);
 		$model = new Feedback();
-		$feedback = Feedback::find()->where(['status' => 1])->all();
+		$feedback = Feedback::find()->where(['status' => 1])->limit(7)->all();
         $service = Service::find()->where(['options'=> 2])->asArray()->all();
 	    $title = KeyValue::getValue('feedback_page_meta_title');
 	    $key = KeyValue::getValue('feedback_page_meta_key');

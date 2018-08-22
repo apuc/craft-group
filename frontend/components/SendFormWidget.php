@@ -15,8 +15,12 @@ class SendFormWidget extends \yii\base\Widget
 {
 
     public $subject;
-    public $message;
+    public $messageLabel;
+    public $messagePlaceholder = 'Ваше соощение';
+    public $textButton = 'Отправить бриф';
     public $isLabels = false;
+    public $idForm = 'send_vacancy';
+    public $fileExtension = "jpg, jpeg, png, gif, zip, rar, pdf, doc, xls";
 
     public function run()
     {
@@ -27,14 +31,9 @@ class SendFormWidget extends \yii\base\Widget
 
         if ($this->isLabels) $model->setRadioList();
 
-        $message = $this->message;
-
-        $isLabels = $this->isLabels;
-
-        return $this->render('form', [
+        return $this->render('send-form/form', [
             'model' => $model,
-            'isLabels' => $isLabels,
-            'message' => $message
+            'widget' => $this,
         ]);
     }
 }

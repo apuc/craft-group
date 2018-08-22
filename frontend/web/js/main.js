@@ -326,7 +326,7 @@ $(document).ready(function() { // вся мaгия пoсле зaгрузки с�
 	});
 
 
-	$(document).on('submit', '#send_vacancy', function (e) {
+	$(document).on('submit', '#send_vacancy, #send_feedback', function (e) {
 		e.preventDefault();
 		console.log(123);
 		var data = $(this).serialize();

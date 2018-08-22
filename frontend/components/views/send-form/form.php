@@ -7,16 +7,19 @@
  *
  * @var $model \frontend\models\SendForm
  * @var $isLabels bool
+ * @var $messagePlaceholder string
+ * @var $messageLabel string
+ * @var $textButton string
+ * @var $idForm string
+ * @var $widget frontend\components\SendFormWidget
  *
  */
 use yii\widgets\ActiveForm;
-
-
 ?>
 
 <?php $form = ActiveForm::begin([
     'action' => \yii\helpers\Url::to(['/site/send-form']),
-    'id' => 'send_vacancy',
+    'id' => $widget->idForm,
     'options' => [
         'class' => 'service__form',
         'enctype' => 'multipart/form-data'
@@ -57,7 +60,7 @@ use yii\widgets\ActiveForm;
 
     </div>
 
-<?php if ($isLabels): ?>
+<?php if ($widget->isLabels): ?>
     <?= $this->render('_labels', [
         'form' => $form,
         'model' => $model
@@ -68,7 +71,7 @@ use yii\widgets\ActiveForm;
             'options' => [
                 'class' => 'service__form-textarea'
             ]
-        ])->textarea(['placeholder' => 'Ваше сообщение'])->label($message) ?>
+        ])->textarea(['placeholder' => $widget->messagePlaceholder])->label($widget->messageLabel) ?>
         <div class="service__form-file">
 
             <!--<script>
@@ -148,12 +151,12 @@ use yii\widgets\ActiveForm;
                     <span>Прикрепить файл</span>
                 </div>
             </div>
-            <span class="service__form-files">jpg, jpeg, png. gif, zip, rar, pdf, doc, xls</span>
+            <span class="service__form-files"><?= $widget->fileExtension?></span>
         </div>
     </div>
     <div class="service__form-desc">
                         <span class="service__form-desc_span">Нажимая кнопку «Отправить» я даю свое <span
                                 class="service__form-desc_red">согласие на обработку персональных данных</span></span>
-        <input class="service__form-submit" id="submit" type="submit" value="Хочу в команду">
+        <input class="service__form-submit" id="submit" type="submit" value="<?= $widget->textButton?>">
     </div>
 <?php ActiveForm::end(); ?>
