@@ -13,6 +13,7 @@ class m180823_102529_create_tabale_order_service extends Migration
     public function safeUp()
     {
         $this->createTable('order_service_list', [
+            'id' => $this->primaryKey(),
             'order_id' => $this->integer(),
             'service_list_id' => $this->integer()
         ]);
@@ -28,15 +29,16 @@ class m180823_102529_create_tabale_order_service extends Migration
             'order_service_list',
             'order_id',
             'order',
-            'id'
+            'id',
+            'CASCADE'
         );
-        
+
         $this->createIndex(
             'idx-order_service_list-service_list_id',
             'order_service_list',
             'service_list_id'
         );
-        
+
         $this->addForeignKey(
             'fk-order_service_list-service_list_id',
             'order_service_list',
@@ -44,8 +46,6 @@ class m180823_102529_create_tabale_order_service extends Migration
             'service_list',
             'id'
         );
-        
-        
 
 
     }
@@ -56,9 +56,9 @@ class m180823_102529_create_tabale_order_service extends Migration
     public function safeDown()
     {
         $this->dropForeignKey('fk-order_service_list-service_list_id', 'order_service_list');
-        
+
         $this->dropIndex('idx-order_service_list-service_list_id', 'order_service_list');
-        
+
         $this->dropForeignKey('fk-order_service_list-order_id', 'order_service_list');
 
         $this->dropIndex('idx-order_service_list-order_id', 'order_service_list');

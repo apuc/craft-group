@@ -45,11 +45,11 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'phone' => 'Phone',
-            'email' => 'Email',
+            'name' => 'Имя',
+            'phone' => 'Телефон',
+            'email' => 'e-mail',
             'skype' => 'Skype',
-            'message' => 'Message',
+            'message' => 'Cообщение',
         ];
     }
 

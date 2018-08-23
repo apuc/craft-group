@@ -283,7 +283,7 @@ class SiteController extends Controller
 
                 $message .= 'Телефон: ' . $model->phone . '<br>';
                 $message .= 'E-mail: ' . $model->email . '<br>';
-                
+
                 if ($model->skype) {
                     $message .= 'Skype: ' . $model->skype . '<br>';
                 }
@@ -297,8 +297,11 @@ class SiteController extends Controller
                 }
 
                 $mail = Yii::$app->mailer->compose()
-                    ->setFrom(['canya.panfilov.95@yandex.ru' => 'Письмо с сайта web-artcraft.com'])
-                    ->setTo('canya.panfilov.95@gmail.com')
+                    ->setFrom(['info@web-artcraft.com' => 'Письмо с сайта web-artcraft.com'])
+                    ->setTo([
+                        'dmitryi.zavadskyi@yandex.ru',
+//                        'canya.panfilov.95@gmail.com'
+                    ])
                     ->setSubject($model->subject)
 //                    ->setTextBody($message)
                     ->setHtmlBody('<b>' . $message . '</b>')

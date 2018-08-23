@@ -9,7 +9,7 @@
 namespace backend\models;
 
 
-class Order
+class Order extends \common\models\Order
 {
 
 }
