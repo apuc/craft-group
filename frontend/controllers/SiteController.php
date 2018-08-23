@@ -277,6 +277,7 @@ class SiteController extends Controller
             if ($model->validate()) {
 
                 $model->setRadioListForm();
+                $model->save();
 
                 $message = 'Имя: ' . $model->name . '<br>';
 
