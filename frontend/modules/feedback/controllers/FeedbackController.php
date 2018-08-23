@@ -44,7 +44,7 @@ class FeedbackController extends Controller
             'query' => Feedback::find(),
         ]);
 		$model = new Feedback();
-		$feedback = Yii::$app->cache->getOrSet("feedback", function (){
+		$feedback = Yii::$app->cache->getOrSet("feedback_main", function (){
 			return Feedback::find()->where(['status' => 1])->limit(7)->all();});
         $service = Yii::$app->cache->getOrSet("service", function (){
 	        return Service::find()->where(['options'=> 2])->asArray()->limit(7)->all();});
