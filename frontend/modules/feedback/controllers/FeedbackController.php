@@ -44,8 +44,10 @@ class FeedbackController extends Controller
             'query' => Feedback::find(),
         ]);
 		$model = new Feedback();
-		$feedback = Feedback::find()->where(['status' => 1])->limit(7)->all();
-        $service = Service::find()->where(['options'=> 2])->asArray()->all();
+		$feedback = Yii::$app->cache->getOrSet("feedback", function (){
+			return Feedback::find()->where(['status' => 1])->limit(7)->all();});
+        $service = Yii::$app->cache->getOrSet("service", function (){
+	        return Service::find()->where(['options'=> 2])->asArray()->limit(7)->all();});
 	    $title = KeyValue::getValue('feedback_page_meta_title');
 	    $key = KeyValue::getValue('feedback_page_meta_key');
 	    $desc = KeyValue::getValue('feedback_page_meta_desc');
