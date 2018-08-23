@@ -116,16 +116,16 @@ return [
 	            '/myths/<slug>' => '/myths/myths/single-myths',
             ],
         ],
-        'view' => [
-	        'as YandexMetrika' => [
-		        'class' => \hiqdev\yii2\YandexMetrika\Behavior::class,
-		        'builder' => [
-			        'class' => \hiqdev\yii2\YandexMetrika\CodeBuilder::class,
-			        'id' => $params['yandexMetrika.id'],
-			        'params' => $params['yandexMetrika.params'],
-		        ],
-	        ],
-        ],
+//        'view' => [
+//	        'as YandexMetrika' => [
+//		        'class' => \hiqdev\yii2\YandexMetrika\Behavior::class,
+//		        'builder' => [
+//			        'class' => \hiqdev\yii2\YandexMetrika\CodeBuilder::class,
+//			        'id' => $params['yandexMetrika.id'],
+//			        'params' => $params['yandexMetrika.params'],
+//		        ],
+//	        ],
+//        ],
 	    /*Thumbnail image*/
         'thumbnail' => [
 	        'class' => 'himiklab\thumbnail\EasyThumbnail',
