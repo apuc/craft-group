@@ -96,11 +96,10 @@ class PortfolioController extends Controller
 		$blog = Yii::$app->cache->getOrSet("portfolio_single_blog", function (){
 			return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 		$b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
-		$portfolio = Yii::$app->cache->getOrSet("portfolio_single", function (){
-			return Portfolio::find()
+		$portfolio = Portfolio::find()
 		                      ->where(['slug'=>$slug])
 		                      ->asArray()
-		                      ->one();});
+		                      ->one();
 		if($portfolio) {
 			return $this->render('single-portfolio', ['portfolio'=>$portfolio, 'b_cur'=>$b_cur, 'blog'=>$blog]);
 		} else {
@@ -111,13 +110,12 @@ class PortfolioController extends Controller
 	public function actionMore() {
 		if ( isset( $_POST ) ) {
 			$offset = ( $_POST['inpage'] *  $_POST['page'] ) - $_POST['inpage'];
-			$more   = Yii::$app->cache->getOrSet("portfolio_single_more", function (){
-				return Portfolio::find()
+			$more   = Portfolio::find()
 			                    ->where( [ '!=','h1','all' ] )
 			                    ->andWhere( [ '!=','h1','brief' ] )
 			                    ->offset( $offset )
 			                    ->limit($_POST['inpage'])
-			                    ->all();});
+			                    ->all();
 		}
 		
 		return $this->render( 'more-portfolio',[ 'more' => $more ] );
