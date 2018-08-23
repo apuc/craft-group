@@ -101,8 +101,7 @@ class SiteController extends Controller
 	    
         $blog = Yii::$app->cache->getOrSet("blog", function (){
         	return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date' => SORT_DESC])->asArray()->limit(7)->all();});
-        $b_cur = Yii::$app->cache->getOrSet("b_cur", function (){
-	        return BlogSlider::find()->where(['h1' => 'current'])->one();});
+        $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
         $portfolio = Yii::$app->cache->getOrSet("portfolio", function (){
 	        return Portfolio::find()->where(['options' => 1])->asArray()->limit(7)->all();});
         $title = Yii::$app->cache->getOrSet("title", function (){
