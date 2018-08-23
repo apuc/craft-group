@@ -303,6 +303,8 @@ class SiteController extends Controller
 //                    ->setHtmlBody('<b>' . $message . '</b>')
 //                    ->send();
 //                var_dump($mail);
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
             } else {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);

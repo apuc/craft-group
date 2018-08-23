@@ -26,18 +26,22 @@ class SendForm extends Model
     public $message;
     public $subject;
     public $radioListForm;
+    public $site;
+    public $file;
+    public $fileName;
 
     public $radioList;
 
     public function rules()
     {
         return [
-            [['name', 'phone', 'email', 'skype', 'message', 'subject'], 'string'],
+            [['name', 'phone', 'email', 'skype', 'message', 'subject', 'site', 'fileName'], 'string'],
             [['name', 'phone', 'email'], 'required', 'message' => "Неверно заполненое поле"],
             [['email'], 'email', 'message' => "Неверно заполненое поле"],
             [['phone'], 'phoneLength'],
 //            [['phone'], 'frontend\components\PhoneValidator'],
-            [['radioListForm'], 'safe']
+            [['radioListForm'], 'safe'],
+            [['file'], 'file'],
         ];
     }
 
@@ -48,6 +52,7 @@ class SendForm extends Model
             "phone" => "Ваш номер телефона *",
             "email" => "Ваш e-mail *",
             "skype" => "Ваш skype",
+            "site" => "Ваш сайт"
         ];
     }
 

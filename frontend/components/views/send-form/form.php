@@ -15,6 +15,7 @@
  *
  */
 use yii\widgets\ActiveForm;
+
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -24,7 +25,7 @@ use yii\widgets\ActiveForm;
         'class' => 'service__form',
         'enctype' => 'multipart/form-data'
     ],
-//    'enableAjaxValidation' => true,
+    'enableAjaxValidation' => true,
 ]); ?>
     <div class="service__form-head">
 
@@ -52,11 +53,11 @@ use yii\widgets\ActiveForm;
             ]
         ])->textInput(['class' => 'service__form_input', 'placeholder' => 'Ваш e-mail'])->label() ?>
 
-        <?= $form->field($model, 'skype', [
+        <?= $form->field($model, $widget->field, [
             'options' => [
                 'class' => 'service__form-head_item'
             ]
-        ])->textInput(['class' => 'service__form_input', 'placeholder' => 'Ваше Skype'])->label() ?>
+        ])->textInput(['class' => 'service__form_input', 'placeholder' => $model->attributeLabels()[$widget->field]])->label() ?>
 
     </div>
 
@@ -151,12 +152,12 @@ use yii\widgets\ActiveForm;
                     <span>Прикрепить файл</span>
                 </div>
             </div>
-            <span class="service__form-files"><?= $widget->fileExtension?></span>
+            <span class="service__form-files"><?= $widget->fileExtension ?></span>
         </div>
     </div>
     <div class="service__form-desc">
                         <span class="service__form-desc_span">Нажимая кнопку «Отправить» я даю свое <span
                                 class="service__form-desc_red">согласие на обработку персональных данных</span></span>
-        <input class="service__form-submit" id="submit" type="submit" value="<?= $widget->textButton?>">
+        <input class="service__form-submit" id="submit" type="submit" value="<?= $widget->textButton ?>">
     </div>
 <?php ActiveForm::end(); ?>

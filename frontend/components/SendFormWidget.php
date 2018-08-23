@@ -14,6 +14,9 @@ use frontend\models\SendForm;
 class SendFormWidget extends \yii\base\Widget
 {
 
+    const SITE = 0;
+    const SKYPE = 1;
+
     public $subject;
     public $messageLabel;
     public $messagePlaceholder = 'Ваше соощение';
@@ -21,6 +24,8 @@ class SendFormWidget extends \yii\base\Widget
     public $isLabels = false;
     public $idForm = 'send_vacancy';
     public $fileExtension = "jpg, jpeg, png, gif, zip, rar, pdf, doc, xls";
+    public $skypeOrSite = self::SKYPE;
+    public $field;
 
     public function run()
     {
@@ -30,6 +35,9 @@ class SendFormWidget extends \yii\base\Widget
         $model->subject = $this->subject;
 
         if ($this->isLabels) $model->setRadioList();
+
+        if ($this->skypeOrSite == self::SKYPE) $this->field = 'skype';
+        if ($this->skypeOrSite == self::SITE) $this->field = 'site';
 
         return $this->render('send-form/form', [
             'model' => $model,

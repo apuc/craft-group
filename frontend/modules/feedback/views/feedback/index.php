@@ -34,7 +34,8 @@
                     'messageLabel' => 'Текст вашего отзыва',
                     'messagePlaceholder' => 'Ваш отзыв',
                     'textButton' => 'Опубликовать',
-                    'fileExtension' => 'jpg, jpeg, png'
+                    'fileExtension' => 'jpg, jpeg, png',
+                    'skypeOrSite'=>\frontend\components\SendFormWidget::SITE
                 ]) ?>
             </div>
 
