@@ -11,13 +11,17 @@
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use Yii;
 
-$contacts = \backend\modules\contacts\models\Contacts::find()->asArray()->all();
+$contacts = Yii::$app->cache->getOrSet("contacts", function (){
+	return Contacts::find()->asArray()->limit(7)->all();});
+$logo = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'logo'])->one();
 $phone = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'phone'])->one();
 $email = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'email'])->one();
-$logo = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'logo'])->one();
-$about = \common\models\Menu::find()->where(['page'=>'about'])->all();
-$menu = \common\models\Menu::find()->where(['page'=> 'other'])->orderBy(['position'=> SORT_ASC])->all();
+$about = Yii::$app->cache->getOrSet("about", function (){
+	return \common\models\Menu::find()->where(['page'=>'about'])->limit(7)->all();});
+$menu = Yii::$app->cache->getOrSet("menu", function (){
+	return \common\models\Menu::find()->where(['page'=> 'other'])->orderBy(['position'=> SORT_ASC])->limit(7)->all();});
 
 \frontend\assets\AppAsset::register($this);
 $img = Url::to('@web/img/');
