@@ -98,14 +98,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date' => SORT_DESC])->asArray()->all();
-        $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
-        $portfolio = Portfolio::find()->where(['options' => 1])->asArray()->limit(7)->all();
-        $title = KeyValue::getValue('main_page_meta_title');
-        $key = KeyValue::getValue('main_page_meta_key');
-        $desc = KeyValue::getValue('main_page_meta_desc');
-        $domain_verify = KeyValue::getValue('main_page_meta_p:domain_verify');
-        $main = Main::find()->all();
+	    
+        $blog = Yii::$app->cache->getOrSet("blog", function (){
+        	return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date' => SORT_DESC])->asArray()->limit(7)->all();});
+        $b_cur = Yii::$app->cache->getOrSet("b_cur", function (){
+	        return BlogSlider::find()->where(['h1' => 'current'])->limit(1)->one();});
+        $portfolio = Yii::$app->cache->getOrSet("portfolio", function (){
+	        return Portfolio::find()->where(['options' => 1])->asArray()->limit(7)->all();});
+        $title = Yii::$app->cache->getOrSet("title", function (){
+	        return KeyValue::getValue('main_page_meta_title');});
+        $key = Yii::$app->cache->getOrSet("key", function (){
+	        return KeyValue::getValue('main_page_meta_key');});
+        $desc = Yii::$app->cache->getOrSet("desc", function (){
+	        return KeyValue::getValue('main_page_meta_desc');});
+        $domain_verify = Yii::$app->cache->getOrSet("dom_verify", function (){
+	        return KeyValue::getValue('main_page_meta_p:domain_verify');});
+        $main = Yii::$app->cache->getOrSet("main", function (){
+	        return Main::find()->all();});
         \Yii::$app->view->registerMetaTag([
             'name' => 'description',
             'content' => $desc,
@@ -118,15 +127,22 @@ class SiteController extends Controller
             'name' => 'p:domain_verify',
             'content' => $domain_verify,
         ]);
-        Yii::$app->opengraph->title = KeyValue::getValue('main_og_title');
-        Yii::$app->opengraph->description = KeyValue::getValue('main_og_description');
-        Yii::$app->opengraph->image = KeyValue::getValue('main_og_image');
-        Yii::$app->opengraph->url = KeyValue::getValue('main_og_url');
-        Yii::$app->opengraph->siteName = KeyValue::getValue('main_og_site_name');
-        Yii::$app->opengraph->type = KeyValue::getValue('main_og_type');
+        Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("og_title", function (){
+	        return KeyValue::getValue('main_og_title');});
+        Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("og_desc", function (){
+	        return KeyValue::getValue('main_og_description');});
+        Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("og_img", function (){
+	        return KeyValue::getValue('main_og_image');});
+        Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("og_url", function (){
+	        return KeyValue::getValue('main_og_url');});
+        Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("og_site_name", function (){
+	        return KeyValue::getValue('main_og_site_name');});
+        Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("og_type", function (){
+	        return KeyValue::getValue('main_og_type');});
 
 
-        $this->view->params['contacts'] = Contacts::find()->asArray()->all();
+        $this->view->params['contacts'] = Yii::$app->cache->getOrSet("contacts_cache", function (){
+	        return Contacts::find()->asArray()->limit(7)->all();});
 
         return $this->render('index', ['blog' => $blog, 'portfolio' => $portfolio,
             'title' => $title, 'main' => $main, 'b_cur' => $b_cur]);
