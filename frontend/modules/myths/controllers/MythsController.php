@@ -36,9 +36,12 @@ class MythsController extends Controller
      */
     public function actionIndex()
     {
-	    $blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();
-	    $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
-	    $myths = Myths::find()->where(['options' => 2])->all();
+	    $blog = Yii::$app->cache->getOrSet("myth_blog", function (){
+		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
+	    $b_cur = Yii::$app->cache->getOrSet("myth_b_cur", function (){
+		    return BlogSlider::find()->where(['h1' => 'current'])->limit(7)->one();});
+	    $myths = Yii::$app->cache->getOrSet("myths", function (){
+		    return Myths::find()->where(['options' => 2])->limit(7)->all();});
         $dataProvider = new ActiveDataProvider([
             'query' => Myths::find(),
         ]);
