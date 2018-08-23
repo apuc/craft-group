@@ -145,7 +145,8 @@ use yii\widgets\ActiveForm;
 
 
             <div class="btn-file__wrap">
-                <input type="file" class="input-file">
+                <?= $form->field($model, 'files[]')->fileInput(['multiple' => true, 'class'=>'input-file'])->label(false)?>
+<!--                <input type="file" class="input-file">-->
                 <div class="btn-input-file">
                     <img src="img/clip-black.png" alt="" width="25" height="25">
                     <span>Прикрепить файл</span>

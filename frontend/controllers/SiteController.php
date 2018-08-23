@@ -21,6 +21,7 @@ use frontend\models\ContactForm;
 use himiklab\sitemap\behaviors\SitemapBehavior;
 use yii\helpers\Url;
 use yii\web\Response;
+use yii\web\UploadedFile;
 use yii\widgets\ActiveForm;
 
 /**
@@ -275,7 +276,11 @@ class SiteController extends Controller
             $model = new SendForm();
             $post = Yii::$app->request->post();
             $model->load($post);
+
+            $model->files = UploadedFile::getInstances($model, 'files');
+
             if ($model->validate()) {
+                
                 $model->save($post);
 
                 $model->setRadioListForm();
@@ -296,17 +301,17 @@ class SiteController extends Controller
                     $message .= 'Сообщение: ' . $model->message . '<br>';
                 }
 
-                $mail = Yii::$app->mailer->compose()
-                    ->setFrom(['info@web-artcraft.com' => 'Письмо с сайта web-artcraft.com'])
-                    ->setTo([
-                        'dmitryi.zavadskyi@yandex.ru',
-//                        'canya.panfilov.95@gmail.com'
-                    ])
-                    ->setSubject($model->subject)
-//                    ->setTextBody($message)
-                    ->setHtmlBody('<b>' . $message . '</b>')
-                    ->send();
-                var_dump($mail);
+//                $mail = Yii::$app->mailer->compose()
+//                    ->setFrom(['info@web-artcraft.com' => 'Письмо с сайта web-artcraft.com'])
+//                    ->setTo([
+//                        'dmitryi.zavadskyi@yandex.ru',
+////                        'canya.panfilov.95@gmail.com'
+//                    ])
+//                    ->setSubject($model->subject)
+////                    ->setTextBody($message)
+//                    ->setHtmlBody('<b>' . $message . '</b>')
+//                    ->send();
+//                var_dump($mail);
             } else {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
@@ -315,6 +320,19 @@ class SiteController extends Controller
 
 
 //        return SendForm::sendMail();
+    }
+
+    public function actionUploadFile()
+    {
+        if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+            $model = new SendForm();
+            $post = Yii::$app->request->post();
+            $model->load($post);
+
+            $model->files = UploadedFile::getInstances($model, 'files');
+            var_dump($model->files);
+            die;
+        }
     }
 
     public function beforeAction($action)
