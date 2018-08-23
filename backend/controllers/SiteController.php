@@ -65,7 +65,7 @@ class SiteController extends Controller
     
     public function delCache() {
 	    Yii::$app->cache->flush();
-	    return true;
+	    return $this->render('index');
     }
 
     /**
