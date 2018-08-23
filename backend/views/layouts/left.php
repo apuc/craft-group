@@ -72,6 +72,8 @@
 	                 'url' => ['/menu/menu']],
 					['label' => 'Опции', 'icon' => 'fas fa-service',
 						'url' => ['/key-value']],
+	                ['label' => 'Очистить кэш', 'icon' => 'fas fa-service',
+	                 'url' => ['/del-cache']],
 //                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
 //                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
 //                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
