@@ -40,7 +40,7 @@ class MythsController extends Controller
 		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 	    $b_cur =  BlogSlider::find()->where(['h1' => 'current'])->one();
 	    $myths = Yii::$app->cache->getOrSet("myths_main", function (){
-		    return Myths::find()->where(['options' => 2])->limit(7)->all();});
+		    return Myths::find()->where(['options' => 2])->all();});
         $dataProvider = new ActiveDataProvider([
             'query' => Myths::find(),
         ]);
