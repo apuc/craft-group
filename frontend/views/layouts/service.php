@@ -24,7 +24,8 @@ $phone = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'ph
 $email = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'email'])->one();
 $about = Yii::$app->cache->getOrSet("about", function (){
 return \common\models\Menu::find()->where(['page'=>'about'])->limit(7)->all();});
-$menu = \common\models\Menu::find()->where(['page'=> 'other'])->orderBy(['position'=> SORT_ASC])->all();
+$menu = Yii::$app->cache->getOrSet("menu", function (){
+return \common\models\Menu::find()->where(['page'=> 'other'])->orderBy(['position'=> SORT_ASC])->limit(7)->all();});
 
 AppAsset::register($this);
 
