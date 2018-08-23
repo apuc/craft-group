@@ -359,6 +359,7 @@ if(explode('/',$active)) {
 
 <?php $this->endBody() ?>
 <a href="#" class="scrollup"></a>
+<?= \frontend\components\YandexWidget::widget()?>
 </body>
 </html>
 <!-- end html_close-index.html-->
