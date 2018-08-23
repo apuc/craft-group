@@ -54,7 +54,7 @@ class AboutController extends Controller
             'query' => About::find(),
         ]);
 		$about = Yii::$app->cache->getOrSet("about", function (){
-			return About::find()->asArray()->limit(7)->all();});
+			return About::find()->asArray()->all();});
 		$feedback = Yii::$app->cache->getOrSet("feedback", function (){
 			return Feedback::find()->asArray()->limit(7)->all();});
 	    $title = Yii::$app->cache->getOrSet("about_meta_title", function (){
