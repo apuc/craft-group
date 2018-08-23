@@ -273,12 +273,12 @@ class SiteController extends Controller
     {
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
             $model = new SendForm();
-            $model->load(Yii::$app->request->post());
+            $post = Yii::$app->request->post();
+            $model->load($post);
             if ($model->validate()) {
+                $model->save($post);
 
                 $model->setRadioListForm();
-                $model->save();
-
                 $message = 'Имя: ' . $model->name . '<br>';
 
                 $message .= 'Телефон: ' . $model->phone . '<br>';
@@ -289,21 +289,21 @@ class SiteController extends Controller
                 }
 
                 if (!empty($model->radioListForm)) {
-                    $message .= "Заказаны следующие услуги: " . implode(",", $model->radioListForm) . "<br>";
+                    $message .= "Заказаны следующие услуги: " . implode(", ", $model->radioListForm) . "<br>";
                 }
 
                 if ($model->message) {
                     $message .= 'Сообщение: ' . $model->message . '<br>';
                 }
 
-//                $mail = Yii::$app->mailer->compose()
-//                    ->setFrom(['canya.panfilov.95@yandex.ru' => 'Письмо с сайта web-artcraft.com'])
-//                    ->setTo('canya.panfilov.95@gmail.com')
-//                    ->setSubject($model->subject)
-////                    ->setTextBody($message)
-//                    ->setHtmlBody('<b>' . $message . '</b>')
-//                    ->send();
-//                var_dump($mail);
+                $mail = Yii::$app->mailer->compose()
+                    ->setFrom(['canya.panfilov.95@yandex.ru' => 'Письмо с сайта web-artcraft.com'])
+                    ->setTo('canya.panfilov.95@gmail.com')
+                    ->setSubject($model->subject)
+//                    ->setTextBody($message)
+                    ->setHtmlBody('<b>' . $message . '</b>')
+                    ->send();
+                var_dump($mail);
             } else {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);

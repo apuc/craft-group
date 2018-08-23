@@ -8,7 +8,11 @@
 
 namespace frontend\models;
 
+use common\models\Order;
+use common\models\OrderServiceList;
+use common\models\ServiceList;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use yii\base\Model;
 
@@ -28,6 +32,8 @@ class SendForm extends Model
     public $radioListForm;
 
     public $radioList;
+
+    private $serviceList;
 
     public function rules()
     {
@@ -53,20 +59,16 @@ class SendForm extends Model
 
     public function setRadioList()
     {
-        $this->radioList = [
-            0 => 'Готовое решение',
-            1 => 'Интернет-магазин',
-            2 => 'Индивидуальный проект',
-            3 => 'Корпоративные системы',
-            4 => 'Landing page',
-            5 => 'UI/UX Design',
-            6 => 'Поддержка',
-            7 => 'Логотип',
-            8 => 'Репутационный маркетинг',
-            9 => 'Полиграфическая продукция',
-            10 => 'Брендинг и айдентика',
-            11 => 'Digital Design'
-        ];
+        if (is_null($this->radioList)) {
+            /**
+             * @var $radioList [] ServiceList
+             */
+            $serviceList = ServiceList::find()->all();
+
+            foreach ($serviceList as $item) {
+                $this->radioList[$item->id] = $item->name;
+            }
+        }
     }
 
     public function setRadioListForm()
@@ -74,7 +76,7 @@ class SendForm extends Model
         $this->setRadioList();
         if (!empty($this->radioListForm)) {
             foreach ($this->radioListForm as $key => $item) {
-                $this->radioListForm[$key] = $this->radioList[$key];
+                $this->radioListForm[$key] = $this->radioList[$item];
             }
         }
     }
@@ -87,6 +89,23 @@ class SendForm extends Model
         }
     }
 
+    public function save($post)
+    {
+        switch ($this->subject) {
+            case self::USULUGI:
+                $order = new Order();
+                $orderData['Order'] = $post['SendForm'];
+                $order->load($orderData);
+                $order->save();
+                foreach ($this->radioListForm as $item) {
+                    $orderServiceList = new OrderServiceList();
+                    $orderServiceList->order_id = $order->id;
+                    $orderServiceList->service_list_id = $item;
+                    $orderServiceList->save();
+                }
+                break;
+        }
+    }
 
     static public function sendMail()
     {
