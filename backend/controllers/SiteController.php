@@ -62,11 +62,6 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
-    
-    public function delCache() {
-	    Yii::$app->cache->flush();
-	    return $this->render('index');
-    }
 
     /**
      * Login action.
