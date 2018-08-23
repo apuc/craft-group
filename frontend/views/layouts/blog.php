@@ -24,7 +24,8 @@ return \backend\modules\contacts\models\Contacts::find()->asArray()->limit(7)->a
 $phone = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'phone'])->one();
 $email = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'email'])->one();
 $logo = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'logo'])->one();
-$menu = \common\models\Menu::find()->where(['page' => 'main'])->all();
+$menu = Yii::$app->cache->getOrSet("menu", function (){
+return \common\models\Menu::find()->where(['page' => 'main'])->limit(15)->all();});
 $about = Yii::$app->cache->getOrSet("about", function (){
 return \common\models\Menu::find()->where(['page' => 'about'])->limit(7)->all();});
 
