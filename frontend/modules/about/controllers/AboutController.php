@@ -64,7 +64,7 @@ class AboutController extends Controller
 	    $desc = Yii::$app->cache->getOrSet("about_meta_desc", function (){
 		    return KeyValue::getValue('about_page_meta_desc');});
 	    $service = Yii::$app->cache->getOrSet("service", function (){
-		    return Service::find()->where(['!=', 'position', ''])->limit(7)->all();});
+		    return Service::find()->where(['!=', 'position', ''])->all();});
 	    \Yii::$app->view->registerMetaTag([
 		    'name' => 'description',
 		    'content' => $desc,
