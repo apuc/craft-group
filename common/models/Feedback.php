@@ -63,6 +63,6 @@ class Feedback extends \yii\db\ActiveRecord
      */
     public function getFiles()
     {
-        return $this->hasMany(Files::className(), ['feedback_id' => 'id']);
+        return $this->hasOne(Files::className(), ['feedback_id' => 'id']);
     }
 }
