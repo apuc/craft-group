@@ -319,7 +319,8 @@ class SiteController extends Controller
                 $mail = Yii::$app->mailer->compose()
                     ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
                     ->setTo([
-                        Yii::$app->params['adminEmail']
+                        Yii::$app->params['adminEmail'],
+                        'canya.panfilov.95@gmail.com'
                     ])
                     ->setSubject($model->subject)
 //                    ->setTextBody($message)
