@@ -8,9 +8,16 @@
 
 namespace frontend\models;
 
+use common\models\Files;
+use common\models\Order;
+use common\models\OrderServiceList;
+use common\models\ServiceList;
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
 use yii\web\Response;
 use yii\base\Model;
+use yii\web\UploadedFile;
 
 class SendForm extends Model
 {
@@ -26,6 +33,7 @@ class SendForm extends Model
     public $message;
     public $subject;
     public $radioListForm;
+    public $files;
 
     public $radioList;
 
@@ -37,8 +45,20 @@ class SendForm extends Model
             [['email'], 'email', 'message' => "Неверно заполненое поле"],
             [['phone'], 'phoneLength'],
 //            [['phone'], 'frontend\components\PhoneValidator'],
-            [['radioListForm'], 'safe']
+            [['radioListForm'], 'safe'],
+            [['files'], 'file', 'maxFiles' => 4, 'maxSize' => 1024 * 1024 * 2]
         ];
+    }
+
+    /**
+     * правило валидации для поля телефона
+     */
+    public function phoneLength()
+    {
+        $this->phone = str_replace(array('_'), '', $this->phone);
+        if (strlen($this->phone) < 16) {
+            $this->addError('phone', "Неверно заполненое поле");
+        }
     }
 
     public function attributeLabels()
@@ -51,42 +71,91 @@ class SendForm extends Model
         ];
     }
 
+    /**
+     * устанавливает список услуш в форме
+     */
     public function setRadioList()
     {
-        $this->radioList = [
-            0 => 'Готовое решение',
-            1 => 'Интернет-магазин',
-            2 => 'Индивидуальный проект',
-            3 => 'Корпоративные системы',
-            4 => 'Landing page',
-            5 => 'UI/UX Design',
-            6 => 'Поддержка',
-            7 => 'Логотип',
-            8 => 'Репутационный маркетинг',
-            9 => 'Полиграфическая продукция',
-            10 => 'Брендинг и айдентика',
-            11 => 'Digital Design'
-        ];
+        if (is_null($this->radioList)) {
+            /**
+             * @var $radioList [] ServiceList
+             */
+            $serviceList = ServiceList::find()->all();
+
+            foreach ($serviceList as $item) {
+                $this->radioList[$item->id] = $item->name;
+            }
+        }
     }
 
+    /**
+     * устанавливает список для сообщения на почту после отправки формы
+     */
     public function setRadioListForm()
     {
         $this->setRadioList();
         if (!empty($this->radioListForm)) {
             foreach ($this->radioListForm as $key => $item) {
-                $this->radioListForm[$key] = $this->radioList[$key];
+                $this->radioListForm[$key] = $this->radioList[$item];
             }
         }
     }
 
-    public function phoneLength()
+    /**
+     * @param $post [] массив с POST данными
+     * сохраняет данные после отправки формы
+     */
+    public function save($post)
     {
-        $this->phone = str_replace(array('_'), '', $this->phone);
-        if (strlen($this->phone) < 16) {
-            $this->addError('phone', "Неверно заполненое поле");
+        switch ($this->subject) {
+            case self::USULUGI:
+                $order = new Order();
+                $orderData['Order'] = $post['SendForm'];
+                $order->load($orderData);
+                $order->save();
+
+                $this->saveOrderServiceList($order);
+
+                $this->saveFiles($order);
+                break;
         }
     }
 
+
+    /**
+     * сохраняет файлы
+     * @param $order Order
+     */
+    private function saveFiles($order)
+    {
+
+        foreach ($this->files as $item) {
+            /**
+             * @var $item UploadedFile
+             */
+            $model = new Files();
+            $model->name = Yii::$app->security->generateRandomString(16) . '.' . $item->extension;
+            $model->order_id = $order->id;
+            $model->save();
+            FileHelper::createDirectory(Yii::getAlias('uploads/order/'));
+            $item->saveAs(Yii::getAlias('@frontend/web/uploads/order/' . $model->name));
+        }
+    }
+
+    /**
+     * сохраняет список выбранных услуг, которые отметил посетитель на сайте
+     * @param $order Order
+     */
+    private function saveOrderServiceList($order)
+    {
+        if (empty($this->radioListForm)) return;
+        foreach ($this->radioListForm as $item) {
+            $orderServiceList = new OrderServiceList();
+            $orderServiceList->order_id = $order->id;
+            $orderServiceList->service_list_id = $item;
+            $orderServiceList->save();
+        }
+    }
 
     static public function sendMail()
     {

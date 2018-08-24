@@ -21,6 +21,7 @@ use frontend\models\ContactForm;
 use himiklab\sitemap\behaviors\SitemapBehavior;
 use yii\helpers\Url;
 use yii\web\Response;
+use yii\web\UploadedFile;
 use yii\widgets\ActiveForm;
 
 /**
@@ -288,44 +289,61 @@ class SiteController extends Controller
     {
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
             $model = new SendForm();
-            $model->load(Yii::$app->request->post());
+            $post = Yii::$app->request->post();
+            $model->load($post);
+
+            $model->files = UploadedFile::getInstances($model, 'files');
+
             if ($model->validate()) {
 
-                $model->setRadioListForm();
+                $model->save($post);
 
+                $model->setRadioListForm();
                 $message = 'Имя: ' . $model->name . '<br>';
 
                 $message .= 'Телефон: ' . $model->phone . '<br>';
                 $message .= 'E-mail: ' . $model->email . '<br>';
-                
+
                 if ($model->skype) {
                     $message .= 'Skype: ' . $model->skype . '<br>';
                 }
 
                 if (!empty($model->radioListForm)) {
-                    $message .= "Заказаны следующие услуги: " . implode(",", $model->radioListForm) . "<br>";
+                    $message .= "Заказаны следующие услуги: " . implode(", ", $model->radioListForm) . "<br>";
                 }
 
                 if ($model->message) {
                     $message .= 'Сообщение: ' . $model->message . '<br>';
                 }
 
-//                $mail = Yii::$app->mailer->compose()
-//                    ->setFrom(['canya.panfilov.95@yandex.ru' => 'Письмо с сайта web-artcraft.com'])
-//                    ->setTo('canya.panfilov.95@gmail.com')
-//                    ->setSubject($model->subject)
-////                    ->setTextBody($message)
-//                    ->setHtmlBody('<b>' . $message . '</b>')
-//                    ->send();
-//                var_dump($mail);
+                $mail = Yii::$app->mailer->compose()
+                    ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
+                    ->setTo([
+                        Yii::$app->params['adminEmail']
+                    ])
+                    ->setSubject($model->subject)
+//                    ->setTextBody($message)
+                    ->setHtmlBody('<b>' . $message . '</b>')
+                    ->send();
             } else {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
         }
-
-
 //        return SendForm::sendMail();
+    }
+
+    public function actionUploadFile()
+    {
+        if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+            $model = new SendForm();
+            $post = Yii::$app->request->post();
+            $model->load($post);
+
+            $model->files = UploadedFile::getInstances($model, 'files');
+            var_dump($model->files);
+            die;
+        }
     }
 
     public function beforeAction($action)
