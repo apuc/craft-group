@@ -280,7 +280,7 @@ class SiteController extends Controller
             $model->files = UploadedFile::getInstances($model, 'files');
 
             if ($model->validate()) {
-                
+
                 $model->save($post);
 
                 $model->setRadioListForm();
@@ -301,24 +301,20 @@ class SiteController extends Controller
                     $message .= 'Сообщение: ' . $model->message . '<br>';
                 }
 
-//                $mail = Yii::$app->mailer->compose()
-//                    ->setFrom(['info@web-artcraft.com' => 'Письмо с сайта web-artcraft.com'])
-//                    ->setTo([
-//                        'dmitryi.zavadskyi@yandex.ru',
-////                        'canya.panfilov.95@gmail.com'
-//                    ])
-//                    ->setSubject($model->subject)
-////                    ->setTextBody($message)
-//                    ->setHtmlBody('<b>' . $message . '</b>')
-//                    ->send();
-//                var_dump($mail);
+                $mail = Yii::$app->mailer->compose()
+                    ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
+                    ->setTo([
+                        Yii::$app->params['adminEmail']
+                    ])
+                    ->setSubject($model->subject)
+//                    ->setTextBody($message)
+                    ->setHtmlBody('<b>' . $message . '</b>')
+                    ->send();
             } else {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
         }
-
-
 //        return SendForm::sendMail();
     }
 

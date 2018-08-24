@@ -9,6 +9,8 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/order');
+var_dump(Yii::$app->params);die;
 ?>
 <div class="order-view">
 
@@ -37,11 +39,37 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'Услуги',
                 'format' => 'html',
                 'value' => function ($model) {
+                    /**
+                     * @var $model backend\models\Order
+                     */
                     $service = '';
+                    if (empty($model->orderServiceLists)) return 'Услуг не заказывали';
                     foreach ($model->orderServiceLists as $item) {
                         $service .= $item->serviceList->name . ', ';
                     }
                     return $service;
+                }
+            ],
+            [
+                'attribute' => 'Файлы',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    /**
+                     * @var $model backend\models\Order
+                     */
+                    $txt = '';
+
+                    foreach ($model->files as $file) {
+                        $txt .= Html::a(
+                            $file->name,
+                            Yii::getAlias('@files/' . $file->name),
+                            ['target' => '_blank']
+                        );
+
+                        $txt .= '<br>';
+                    }
+
+                    return $txt;
                 }
             ]
         ],

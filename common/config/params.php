@@ -1,6 +1,6 @@
 <?php
 return [
     'adminEmail' => 'dmitryi.zavadskyi@yandex.ru',
-    'supportEmail' => 'support@example.com',
+    'supportEmail' => 'info@web-artcraft.com',
     'user.passwordResetTokenExpire' => 3600,
 ];

@@ -102,7 +102,7 @@ class SendForm extends Model
     }
 
     /**
-     * @param $post[] массив с POST данными
+     * @param $post [] массив с POST данными
      * сохраняет данные после отправки формы
      */
     public function save($post)
@@ -148,6 +148,7 @@ class SendForm extends Model
      */
     private function saveOrderServiceList($order)
     {
+        if (empty($this->radioListForm)) return;
         foreach ($this->radioListForm as $item) {
             $orderServiceList = new OrderServiceList();
             $orderServiceList->order_id = $order->id;
