@@ -14,7 +14,7 @@ use Yii;
  * @property string $skype
  * @property string $message
  *
- * @property Files[] $files
+ * @property Files $files
  * @property OrderServiceList[] $orderServiceLists
  */
 class Order extends \yii\db\ActiveRecord

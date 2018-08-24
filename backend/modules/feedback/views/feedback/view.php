@@ -56,15 +56,15 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
                      */
                     $txt = '';
 
-                    foreach ($model->files as $file) {
+
                         $txt .= Html::a(
-                            $file->name,
-                            Yii::getAlias('@files/' . $file->name),
+                            $model->files->name,
+                            Yii::getAlias('@files/' . $model->files->name),
                             ['target' => '_blank']
                         );
 
                         $txt .= '<br>';
-                    }
+
 
                     return $txt;
                 }
