@@ -99,6 +99,7 @@ return [
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
+			'cachePath' => Yii::getAlias('@frontend') . '/runtime/cache'
         ],
         'opengraph' => [
 	        'class' => 'fgh151\opengraph\OpenGraph',
