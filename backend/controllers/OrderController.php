@@ -107,13 +107,12 @@ class OrderController extends Controller
 
         $model = $this->findModel($id);
 
-        $serviceList = $model->orderServiceLists;
-
-        if (!empty($serviceList)) {
-            foreach ($serviceList as $item) {
-                $item->delete();
-            }
+//        var_dump();die;
+        foreach ($model->files as $file) {
+            $path = Yii::getAlias("@frontend/web/uploads/order/" . $file->name);
+            if (file_exists($path)) unlink($path);
         }
+
         $model->delete();
 
 
