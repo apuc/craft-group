@@ -14,6 +14,7 @@
  * @var $widget frontend\components\SendFormWidget
  *
  */
+use frontend\components\SendFormWidget;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
@@ -149,8 +150,12 @@ use yii\widgets\ActiveForm;
 
 
             <div class="btn-file__wrap">
-                <?= $form->field($model, 'files[]')->fileInput(['multiple' => true, 'class'=>'input-file'])->label(false)?>
-<!--                <input type="file" class="input-file">-->
+                <?php if ($widget->fileOrFiles == SendFormWidget::FILES): ?>
+                    <?= $form->field($model, $widget->fileOrFiles)->fileInput(['multiple' => true, 'class' => 'input-file'])->label(false) ?>
+                <?php elseif ($widget->fileOrFiles == SendFormWidget::FILE): ?>
+                    <?= $form->field($model, $widget->fileOrFiles)->fileInput(['class' => 'input-file'])->label(false) ?>
+                <?php endif; ?>
+                <!--                <input type="file" class="input-file">-->
                 <div class="btn-input-file">
                     <img src="img/clip-black.png" alt="" width="25" height="25">
                     <span>Прикрепить файл</span>

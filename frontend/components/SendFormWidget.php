@@ -16,6 +16,9 @@ class SendFormWidget extends \yii\base\Widget
 
     const SITE = 0;
     const SKYPE = 1;
+    
+    const FILES = 'files[]';
+    const FILE = 'file';
 
     public $subject;
     public $messageLabel;
@@ -25,6 +28,7 @@ class SendFormWidget extends \yii\base\Widget
     public $idForm = 'send_vacancy';
     public $fileExtension = "jpg, jpeg, png, gif, zip, rar, pdf, doc, xls";
     public $skypeOrSite = self::SKYPE;
+    public $fileOrFiles = self::FILES;
     public $field;
 
     public function run()
