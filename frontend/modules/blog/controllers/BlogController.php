@@ -39,11 +39,15 @@ class BlogController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => BlogSlider::find(),
         ]);
-        $blog = BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();
+        $blog = Yii::$app->cache->getOrSet("blog", function (){
+	        return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 	    $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
-	    $title = KeyValue::getValue('blog_page_meta_title');
-	    $key = KeyValue::getValue('blog_page_meta_key');
-	    $desc = KeyValue::getValue('blog_page_meta_desc');
+	    $title = Yii::$app->cache->getOrSet("blog_page_meta_tilte", function (){
+		    return KeyValue::getValue('blog_page_meta_title');});
+	    $key = Yii::$app->cache->getOrSet("blog_page_meta_key", function (){
+		    return KeyValue::getValue('blog_page_meta_key');});
+	    $desc = Yii::$app->cache->getOrSet("blog_page_meta_desc", function (){
+		    return KeyValue::getValue('blog_page_meta_desc');});
 	    \Yii::$app->view->registerMetaTag([
 		    'name' => 'description',
 		    'content' => $desc,
@@ -52,12 +56,18 @@ class BlogController extends Controller
 		    'name' => 'keywords',
 		    'content' => $key,
 	    ]);
-	    Yii::$app->opengraph->title = KeyValue::getValue('blog_og_title');
-	    Yii::$app->opengraph->description = KeyValue::getValue('blog_og_description');
-	    Yii::$app->opengraph->image = KeyValue::getValue('blog_og_image');
-	    Yii::$app->opengraph->url = KeyValue::getValue('blog_og_url');
-	    Yii::$app->opengraph->siteName = KeyValue::getValue('blog_og_site_name');
-	    Yii::$app->opengraph->type = KeyValue::getValue('blog_og_type');
+	    Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("blog_og_title", function (){
+		    return KeyValue::getValue('blog_og_title');});
+	    Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("blog_og_desc", function (){
+		    return KeyValue::getValue('blog_og_description');});
+	    Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("blog_og_image", function (){
+		    return KeyValue::getValue('blog_og_image');});
+	    Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("blog_og_url", function (){
+		    return KeyValue::getValue('blog_og_url');});
+	    Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("blog_og_site_name", function (){
+		    return KeyValue::getValue('blog_og_site_name');});
+	    Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("blog_og_type", function (){
+		    return KeyValue::getValue('blog_og_type');});
 	    
         return $this->render('index', [
             'dataProvider' => $dataProvider, 'blog'=> $blog, 'title' => $title, 'b_cur' => $b_cur,
@@ -67,9 +77,14 @@ class BlogController extends Controller
 	public function actionSingleBlog($slug)
 	{
 		$blog = BlogSlider::find()->where(['slug'=>$slug])->asArray()->one();
-		$slider = BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();
+		$slider = Yii::$app->cache->getOrSet("slider", function (){
+			return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 		$all = BlogSlider::find()->where(['h1' => 'current'])->one();
-		return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
+		if($blog) {
+			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
+		} else {
+			return $this->redirect(['/'.$slug]);
+		}
 	}
 	
 }

@@ -37,7 +37,7 @@ $img = Url::to('@web/img/');
 					<a class="single-p__fancybox" href="<?=$portfolio['file']?>" data-fancybox="images" data-caption="
                         <div class='portfolio__block-caption'>
                             <span><?=$portfolio['title']?> </span>
-                            <a href='#'>Смотреть работу на <span class='gradient'>behance.ru</span></a>
+<!--                            <a href='#'>Смотреть работу на <span class='gradient'>behance.ru</span></a>-->
                         </div">
 						
 						<img src="<?=$portfolio['file']?>" alt="">

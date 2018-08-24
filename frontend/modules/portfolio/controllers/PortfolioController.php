@@ -42,20 +42,27 @@ class PortfolioController extends Controller
      */
     public function actionIndex()
     {
-	    $blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();
+	    $blog = Yii::$app->cache->getOrSet("portfolio_blog", function (){
+		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 	    $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
     	$dataProvider = new ActiveDataProvider([
             'query' => Portfolio::find(),
         ]);
-        $portfolio = Portfolio::find()
-                              ->where(['!=', 'h1', 'all'])
-                              ->andWhere(['!=', 'h1', 'brief'])
-                              ->asArray()
-                              ->all();
-	    $title = KeyValue::getValue('portfolio_page_meta_title');
-	    $key = KeyValue::getValue('portfolio_page_meta_key');
-	    $desc = KeyValue::getValue('portfolio_page_meta_desc');
-	    $count = KeyValue::getValue('portfolio_count');
+        $portfolio = Yii::$app->cache->getOrSet("portfolio_main", function (){
+	        return Portfolio::find()
+								->where(['!=', 'h1', 'all'])
+								->andWhere(['!=', 'h1', 'brief'])
+								->asArray()
+								->limit(7)
+								->all();});
+	    $title = Yii::$app->cache->getOrSet("portfolio_page_meta_title", function (){
+		    return KeyValue::getValue('portfolio_page_meta_title');});
+	    $key = Yii::$app->cache->getOrSet("portfolio_page_meta_key", function (){
+		    return KeyValue::getValue('portfolio_page_meta_key');});
+	    $desc = Yii::$app->cache->getOrSet("portfolio_page_meta_desc", function (){
+		    return KeyValue::getValue('portfolio_page_meta_desc');});
+	    $count = Yii::$app->cache->getOrSet("portfolio_count", function (){
+		    return KeyValue::getValue('portfolio_count');});
 	    if(!$count){
 	    	$count = 5;
 	    };
@@ -67,12 +74,18 @@ class PortfolioController extends Controller
 		    'name' => 'keywords',
 		    'content' => $key,
 	    ]);
-	    Yii::$app->opengraph->title = KeyValue::getValue('portfolio_og_title');
-	    Yii::$app->opengraph->description = KeyValue::getValue('portfolio_og_description');
-	    Yii::$app->opengraph->image = KeyValue::getValue('portfolio_og_image');
-	    Yii::$app->opengraph->url = KeyValue::getValue('portfolio_og_url');
-	    Yii::$app->opengraph->siteName = KeyValue::getValue('portfolio_og_site_name');
-	    Yii::$app->opengraph->type = KeyValue::getValue('portfolio_og_type');
+	    Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("portfolio_og_title", function (){
+		    return KeyValue::getValue('portfolio_og_title');});
+	    Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("portfolio_og_description", function (){
+		    return KeyValue::getValue('portfolio_og_description');});
+	    Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("portfolio_og_image", function (){
+		    return KeyValue::getValue('portfolio_og_image');});
+	    Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("portfolio_og_url", function (){
+		    return KeyValue::getValue('portfolio_og_url');});
+	    Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("portfolio_og_site_name", function (){
+		    return KeyValue::getValue('portfolio_og_site_name');});
+	    Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("portfolio_og_type", function (){
+		    return KeyValue::getValue('portfolio_og_type');});
         return $this->render('index', [
             'dataProvider' => $dataProvider, 'portfolio' => $portfolio, 'title' => $title, 'count' => $count, 'blog'=>$blog, 'b_cur' => $b_cur,
         ]);
@@ -80,13 +93,18 @@ class PortfolioController extends Controller
     
 	public function actionSinglePortfolio($slug)
 	{
-		$blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();
+		$blog = Yii::$app->cache->getOrSet("portfolio_single_blog", function (){
+			return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 		$b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
 		$portfolio = Portfolio::find()
 		                      ->where(['slug'=>$slug])
 		                      ->asArray()
 		                      ->one();
-		return $this->render('single-portfolio', ['portfolio'=>$portfolio, 'b_cur'=>$b_cur, 'blog'=>$blog]);
+		if($portfolio) {
+			return $this->render('single-portfolio', ['portfolio'=>$portfolio, 'b_cur'=>$b_cur, 'blog'=>$blog]);
+		} else {
+			return $this->redirect(['/'.$slug]);
+		}
 	}
 	
 	public function actionMore() {

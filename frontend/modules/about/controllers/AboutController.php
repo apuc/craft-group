@@ -18,6 +18,14 @@ use common\models\BlogSlider;
  */
 class AboutController extends Controller
 {
+	public function actions()
+	{
+		return [
+			'error' => [
+				'class' => 'yii\web\ErrorAction',
+			],
+		];
+	}
     /**
      * @inheritdoc
      */
@@ -39,16 +47,21 @@ class AboutController extends Controller
      */
     public function actionIndex()
     {
-	    $blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();
+	    $blog = Yii::$app->cache->getOrSet("blog", function (){
+		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 	    $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
         $dataProvider = new ActiveDataProvider([
             'query' => About::find(),
         ]);
 		$about = About::find()->asArray()->all();
-		$feedback = Feedback::find()->asArray()->all();
-	    $title = KeyValue::getValue('about_page_meta_title');
-	    $key = KeyValue::getValue('about_page_meta_key');
-	    $desc = KeyValue::getValue('about_page_meta_desc');
+		$feedback = Yii::$app->cache->getOrSet("feedback", function (){
+			return Feedback::find()->asArray()->limit(7)->all();});
+	    $title = Yii::$app->cache->getOrSet("about_meta_title", function (){
+		    return KeyValue::getValue('about_page_meta_title');});
+	    $key = Yii::$app->cache->getOrSet("about_meta_key", function (){
+		    return KeyValue::getValue('about_page_meta_key');});
+	    $desc = Yii::$app->cache->getOrSet("about_meta_desc", function (){
+		    return KeyValue::getValue('about_page_meta_desc');});
 	    $service = Service::find()->where(['!=', 'position', ''])->all();
 	    \Yii::$app->view->registerMetaTag([
 		    'name' => 'description',
@@ -58,12 +71,18 @@ class AboutController extends Controller
 		    'name' => 'keywords',
 		    'content' => $key,
 	    ]);
-	    Yii::$app->opengraph->title = KeyValue::getValue('about_og_title');
-	    Yii::$app->opengraph->description = KeyValue::getValue('about_og_description');
-	    Yii::$app->opengraph->image = KeyValue::getValue('about_og_image');
-	    Yii::$app->opengraph->url = KeyValue::getValue('about_og_url');
-	    Yii::$app->opengraph->siteName = KeyValue::getValue('about_og_site_name');
-	    Yii::$app->opengraph->type = KeyValue::getValue('about_og_type');
+	    Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("about_og_title", function (){
+		    return KeyValue::getValue('about_og_title');});
+	    Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("about_og_desc", function (){
+		    return KeyValue::getValue('about_og_description');});
+	    Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("about_og_image", function (){
+		    return KeyValue::getValue('about_og_image');});
+	    Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("about_og_url", function (){
+		    return KeyValue::getValue('about_og_url');});
+	    Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("about_og_site_name", function (){
+		    return KeyValue::getValue('about_og_site_name');});
+	    Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("about_og_type", function (){
+		    return KeyValue::getValue('about_og_type');});
 	    
         return $this->render('index', [
             'dataProvider' => $dataProvider, 'about' => $about, 'feedback' => $feedback, 'title' => $title, 'service' => $service, 'blog'=>$blog, 'b_cur'=>$b_cur,

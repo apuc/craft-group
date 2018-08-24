@@ -39,16 +39,22 @@ class ServiceController extends Controller
      */
     public function actionIndex()
     {
-	    $blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();
+	    $blog = Yii::$app->cache->getOrSet("service_blog", function (){
+		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 	    $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
         $dataProvider = new ActiveDataProvider([
             'query' => Service::find(),
         ]);
-        $service = Service::find()->where(['options' => 1])->asArray()->all();
-        $services = Service::find()->where(['options' => 2])->orderBy(['position' => SORT_ASC])->asArray()->all();
-	    $title = KeyValue::getValue('service_page_meta_title');
-	    $key = KeyValue::getValue('service_page_meta_key');
-	    $desc = KeyValue::getValue('service_page_meta_desc');
+        $service = Yii::$app->cache->getOrSet("service_main", function (){
+	        return Service::find()->where(['options' => 1])->asArray()->limit(7)->all();});
+        $services = Yii::$app->cache->getOrSet("services_main", function (){
+	        return Service::find()->where(['options' => 2])->orderBy(['position' => SORT_ASC])->asArray()->limit(7)->all();});
+	    $title = Yii::$app->cache->getOrSet("service_page_meta_title", function (){
+		    return KeyValue::getValue('service_page_meta_title');});
+	    $key = Yii::$app->cache->getOrSet("service_page_meta_key", function (){
+		    return KeyValue::getValue('service_page_meta_key');});
+	    $desc = Yii::$app->cache->getOrSet("service_page_meta_desc", function (){
+		    return KeyValue::getValue('service_page_meta_desc');});
 	    \Yii::$app->view->registerMetaTag([
 		    'name' => 'description',
 		    'content' => $desc,
@@ -57,12 +63,18 @@ class ServiceController extends Controller
 		    'name' => 'keywords',
 		    'content' => $key,
 	    ]);
-	    Yii::$app->opengraph->title = KeyValue::getValue('service_og_title');
-	    Yii::$app->opengraph->description = KeyValue::getValue('service_og_description');
-	    Yii::$app->opengraph->image = KeyValue::getValue('service_og_image');
-	    Yii::$app->opengraph->url = KeyValue::getValue('service_og_url');
-	    Yii::$app->opengraph->siteName = KeyValue::getValue('service_og_site_name');
-	    Yii::$app->opengraph->type = KeyValue::getValue('service_og_type');
+	    Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("service_og_title", function (){
+		    return KeyValue::getValue('service_og_title');});
+	    Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("service_og_description", function (){
+		    return KeyValue::getValue('service_og_description');});
+	    Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("service_og_image", function (){
+		    return KeyValue::getValue('service_og_image');});
+	    Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("service_og_url", function (){
+		    return KeyValue::getValue('service_og_url');});
+	    Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("service_og_site", function (){
+		    return KeyValue::getValue('service_og_site_name');});
+	    Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("service_og_type", function (){
+		    return KeyValue::getValue('service_og_type');});
         return $this->render('index', [
             'dataProvider' => $dataProvider, 'service' => $service, 'all' => $services, 'title' => $title, 'blog'=>$blog, 'b_cur' => $b_cur,
         ]);
@@ -73,7 +85,12 @@ class ServiceController extends Controller
 		$service = Service::find()->where(['slug'=>$slug])->asArray()->one();
 		$portfolio = Portfolio::find()->where(['id'=> json_decode($service['portfolio'])])->asArray()->all();
 		$feedback = Feedback::find()->andWhere(['status' => 1])->andWhere(['category' => $service['id']])->asArray()->all();
-		return $this->render('single-service', ['service'=>$service, 'portfolio' => $portfolio, 'feedback' => $feedback]);
+		if($service) {
+			return $this->render('single-service', ['service'=>$service, 'portfolio' => $portfolio, 'feedback' => $feedback]);
+		} else {
+			return $this->redirect(['/'.$slug]);
+		}
+		
 	}
     
 }
