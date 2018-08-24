@@ -8,7 +8,7 @@
 
 namespace frontend\models;
 
-use common\models\Files;
+use common\models\Feedback;
 use common\models\Order;
 use common\models\OrderServiceList;
 use common\models\ServiceList;
@@ -34,6 +34,7 @@ class SendForm extends Model
     public $subject;
     public $radioListForm;
     public $files;
+    public $file;
     public $site;
 
     public $radioList;
@@ -48,6 +49,7 @@ class SendForm extends Model
 //            [['phone'], 'frontend\components\PhoneValidator'],
             [['radioListForm'], 'safe'],
             [['files'], 'file', 'maxFiles' => 4, 'maxSize' => 1024 * 1024 * 2, 'tooBig' => 'Максимальный размер файла 2 мб', 'wrongExtension' => 'Максимальное количество файлов 4'],
+            [['file'], 'file', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => 'Максимальный размер файла 2 мб'],
         ];
     }
 
@@ -80,7 +82,7 @@ class SendForm extends Model
     {
         if (is_null($this->radioList)) {
             /**
-             * @var $radioList [] ServiceList
+             * @var $serviceList[] ServiceList
              */
             $serviceList = ServiceList::find()->all();
 
@@ -120,6 +122,13 @@ class SendForm extends Model
 
                 $this->saveFiles($order);
                 break;
+            case self::FEEDBACK:
+                $feedback = new Feedback();
+                $feedbackData['Feedback'] = $post['SendForm'];
+                $feedback->load($feedbackData);
+                $feedback->save();
+                
+                $this->saveFile(Files::FEEDBACK, $feedback->id, $this->file);
         }
     }
 
@@ -142,6 +151,21 @@ class SendForm extends Model
             FileHelper::createDirectory(Yii::getAlias('uploads/order/'));
             $item->saveAs(Yii::getAlias('@frontend/web/uploads/order/' . $model->name));
         }
+    }
+
+    /**
+     * @param integer $extension
+     * @param integer $model_id
+     * @param UploadedFile $file
+     * @throws \yii\base\Exception
+     */
+    private function saveFile($extension, $model_id, $file){
+        $modelFile = new Files();
+        $modelFile->name = Yii::$app->security->generateRandomString(16) . '.' . $file->extension;
+        $modelFile->setExtensionId($extension, $model_id);
+        $modelFile->save();
+        FileHelper::createDirectory(Yii::getAlias('uploads/order/'));
+        $file->saveAs(Yii::getAlias('@frontend/web/uploads/order/' . $modelFile->name));
     }
 
     /**
