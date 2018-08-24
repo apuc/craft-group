@@ -301,15 +301,13 @@ class SiteController extends Controller
     /*Отправка письма*/
     public function actionSendForm()
     {
-//        var_dump(Yii::$app->params['adminEmail']);
-//        var_dump(Yii::$app->params['supportEmail']);
-//        die;
         if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
             $model = new SendForm();
             $post = Yii::$app->request->post();
             $model->load($post);
 
             $model->files = UploadedFile::getInstances($model, 'files');
+            $model->file = UploadedFile::getInstance($model, 'file');
 
             if ($model->validate()) {
 
@@ -333,22 +331,30 @@ class SiteController extends Controller
                     $message .= 'Сообщение: ' . $model->message . '<br>';
                 }
 
-                $mail = Yii::$app->mailer->compose()
-                    ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
-                    ->setTo([
-                        Yii::$app->params['adminEmail'],
-                        'canya.panfilov.95@gmail.com'
-                    ])
-                    ->setSubject($model->subject)
-//                    ->setTextBody($message)
-                    ->setHtmlBody('<b>' . $message . '</b>')
-                    ->send();
-            } else {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                return ActiveForm::validate($model);
+//                $mail = Yii::$app->mailer->compose()
+//                    ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
+//                    ->setTo([
+//                        Yii::$app->params['adminEmail'],
+//                        'canya.panfilov.95@gmail.com'
+//                    ])
+//                    ->setSubject($model->subject)
+////                    ->setTextBody($message)
+//                    ->setHtmlBody('<b>' . $message . '</b>')
+//                    ->send();
             }
         }
 //        return SendForm::sendMail();
+    }
+
+    public function actionValidate()
+    {
+        if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+            $model = new SendForm();
+            $post = Yii::$app->request->post();
+            $model->load($post);
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
     }
 
     public function actionUploadFile()

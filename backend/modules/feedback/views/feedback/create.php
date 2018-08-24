@@ -4,10 +4,10 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Feedback */
+/* @var $model backend\modules\feedback\models\Feedback */
 
-$this->title = Yii::t('feedback', 'Create Feedback');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('feedback', 'Feedbacks'), 'url' => ['index']];
+$this->title = 'Create Feedback';
+$this->params['breadcrumbs'][] = ['label' => 'Feedbacks', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="feedback-create">

@@ -3,8 +3,8 @@
 namespace backend\modules\feedback\controllers;
 
 use Yii;
-use common\models\Feedback;
-use backend\modules\feedback\controllers\FeedbackSearch;
+use backend\modules\feedback\models\Feedback;
+use backend\modules\feedback\models\FeedbackSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class FeedbackController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -122,6 +122,6 @@ class FeedbackController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('feedback', 'The requested page does not exist.'));
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

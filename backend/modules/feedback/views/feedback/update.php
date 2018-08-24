@@ -3,14 +3,12 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Feedback */
+/* @var $model backend\modules\feedback\models\Feedback */
 
-$this->title = Yii::t('feedback', 'Update Feedback: {nameAttribute}', [
-    'nameAttribute' => $model->title,
-]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('feedback', 'Feedbacks'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('feedback', 'Update');
+$this->title = 'Update Feedback: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Feedbacks', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="feedback-update">
 

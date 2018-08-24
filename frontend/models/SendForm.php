@@ -8,7 +8,7 @@
 
 namespace frontend\models;
 
-use common\models\Files;
+use common\models\Feedback;
 use common\models\Order;
 use common\models\OrderServiceList;
 use common\models\ServiceList;
@@ -34,19 +34,22 @@ class SendForm extends Model
     public $subject;
     public $radioListForm;
     public $files;
+    public $file;
+    public $site;
 
     public $radioList;
 
     public function rules()
     {
         return [
-            [['name', 'phone', 'email', 'skype', 'message', 'subject'], 'string'],
+            [['name', 'phone', 'email', 'skype', 'message', 'subject', 'site'], 'string'],
             [['name', 'phone', 'email'], 'required', 'message' => "Неверно заполненое поле"],
             [['email'], 'email', 'message' => "Неверно заполненое поле"],
             [['phone'], 'phoneLength'],
 //            [['phone'], 'frontend\components\PhoneValidator'],
             [['radioListForm'], 'safe'],
             [['files'], 'file', 'maxFiles' => 4, 'maxSize' => 1024 * 1024 * 2, 'tooBig' => 'Максимальный размер файла 2 мб', 'wrongExtension' => 'Максимальное количество файлов 4'],
+            [['file'], 'file', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => 'Максимальный размер файла 2 мб'],
         ];
     }
 
@@ -68,6 +71,7 @@ class SendForm extends Model
             "phone" => "Ваш номер телефона *",
             "email" => "Ваш e-mail *",
             "skype" => "Ваш skype",
+            "site" => "Ваш сайт"
         ];
     }
 
@@ -78,7 +82,7 @@ class SendForm extends Model
     {
         if (is_null($this->radioList)) {
             /**
-             * @var $radioList [] ServiceList
+             * @var $serviceList [] ServiceList
              */
             $serviceList = ServiceList::find()->all();
 
@@ -118,13 +122,21 @@ class SendForm extends Model
 
                 $this->saveFiles($order);
                 break;
+            case self::FEEDBACK:
+                $feedback = new Feedback();
+                $feedbackData['Feedback'] = $post['SendForm'];
+                $feedback->load($feedbackData);
+                $feedback->status = Feedback::STATUS_DISABLED;
+                $feedback->save();
+
+                $this->saveFile(Files::FEEDBACK, $feedback->id, 'feedback', $this->file);
         }
     }
 
 
     /**
      * сохраняет файлы
-     * @param $order Order
+     * @param Order $order
      */
     private function saveFiles($order)
     {
@@ -133,13 +145,26 @@ class SendForm extends Model
             /**
              * @var $item UploadedFile
              */
-            $model = new Files();
-            $model->name = Yii::$app->security->generateRandomString(16) . '.' . $item->extension;
-            $model->order_id = $order->id;
-            $model->save();
-            FileHelper::createDirectory(Yii::getAlias('uploads/order/'));
-            $item->saveAs(Yii::getAlias('@frontend/web/uploads/order/' . $model->name));
+            $this->saveFile(Files::ORDER, $order->id, 'order', $item);
         }
+    }
+
+    /**
+     * сохраняет файл
+     * @param integer $extension
+     * @param integer $model_id
+     * @param string $path
+     * @param UploadedFile $file
+     * @throws \yii\base\Exception
+     */
+    private function saveFile($extension, $model_id, $path, $file)
+    {
+        $modelFile = new Files();
+        $modelFile->name = Yii::$app->security->generateRandomString(16) . '.' . $file->extension;
+        $modelFile->setExtensionId($extension, $model_id);
+        $modelFile->save();
+        FileHelper::createDirectory(Yii::getAlias("uploads/{$path}/"));
+        $file->saveAs(Yii::getAlias("@frontend/web/uploads/{$path}/" . $modelFile->name));
     }
 
     /**

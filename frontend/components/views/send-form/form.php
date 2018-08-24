@@ -14,17 +14,22 @@
  * @var $widget frontend\components\SendFormWidget
  *
  */
+use frontend\components\SendFormWidget;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+
 ?>
 
 <?php $form = ActiveForm::begin([
-    'action' => \yii\helpers\Url::to(['/site/send-form']),
+//    'action' => \yii\helpers\Url::to(['/site/send-form']),
     'id' => $widget->idForm,
     'options' => [
         'class' => 'service__form',
         'enctype' => 'multipart/form-data'
     ],
-//    'enableAjaxValidation' => true,
+    'validationUrl' => Url::to(['/site/validate']),
+    'enableAjaxValidation' => true
+
 ]); ?>
     <div class="service__form-head">
 
@@ -42,7 +47,7 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'phone', [
             'options' => [
-                'class' => 'service__form-head_item'
+                'class' => 'service__form-head_item',
             ]
         ])->textInput(['class' => 'service__form_input js_phone-mask', 'placeholder' => 'Номер телефона'])->label() ?>
 
@@ -52,11 +57,11 @@ use yii\widgets\ActiveForm;
             ]
         ])->textInput(['class' => 'service__form_input', 'placeholder' => 'Ваш e-mail'])->label() ?>
 
-        <?= $form->field($model, 'skype', [
+        <?= $form->field($model, $widget->field, [
             'options' => [
                 'class' => 'service__form-head_item'
             ]
-        ])->textInput(['class' => 'service__form_input', 'placeholder' => 'Ваше Skype'])->label() ?>
+        ])->textInput(['class' => 'service__form_input', 'placeholder' => $model->attributeLabels()[$widget->field]])->label() ?>
 
     </div>
 
@@ -145,19 +150,23 @@ use yii\widgets\ActiveForm;
 
 
             <div class="btn-file__wrap">
-                <?= $form->field($model, 'files[]')->fileInput(['multiple' => true, 'class'=>'input-file'])->label(false)?>
-<!--                <input type="file" class="input-file">-->
+                <?php if ($widget->fileOrFiles == SendFormWidget::FILES): ?>
+                    <?= $form->field($model, $widget->fileOrFiles)->fileInput(['multiple' => true, 'class' => 'input-file'])->label(false) ?>
+                <?php elseif ($widget->fileOrFiles == SendFormWidget::FILE): ?>
+                    <?= $form->field($model, $widget->fileOrFiles)->fileInput(['class' => 'input-file'])->label(false) ?>
+                <?php endif; ?>
+                <!--                <input type="file" class="input-file">-->
                 <div class="btn-input-file">
                     <img src="img/clip-black.png" alt="" width="25" height="25">
                     <span>Прикрепить файл</span>
                 </div>
             </div>
-            <span class="service__form-files"><?= $widget->fileExtension?></span>
+            <span class="service__form-files"><?= $widget->fileExtension ?></span>
         </div>
     </div>
     <div class="service__form-desc">
                         <span class="service__form-desc_span">Нажимая кнопку «Отправить» я даю свое <span
                                 class="service__form-desc_red">согласие на обработку персональных данных</span></span>
-        <input class="service__form-submit" id="submit" type="submit" value="<?= $widget->textButton?>">
+        <input class="service__form-submit" id="submit" type="submit" value="<?= $widget->textButton ?>">
     </div>
 <?php ActiveForm::end(); ?>

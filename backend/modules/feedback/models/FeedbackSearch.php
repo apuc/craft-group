@@ -1,30 +1,30 @@
 <?php
 
-namespace backend\modules\feedback\controllers;
+namespace backend\modules\feedback\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Feedback;
+use backend\modules\feedback\models\Feedback;
 
 /**
- * FeedbackSearch represents the model behind the search form of `common\models\Feedback`.
+ * FeedbackSearch represents the model behind the search form of `backend\modules\feedback\models\Feedback`.
  */
 class FeedbackSearch extends Feedback
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['title', 'h1', 'meta_key', 'meta_desc', 'description', 'file', 'href', 'city', 'email', 'name', 'site', 'category', 'status', 'date'], 'safe'],
+            [['id', 'status'], 'integer'],
+            [['name', 'phone', 'email', 'site', 'message'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -60,22 +60,14 @@ class FeedbackSearch extends Feedback
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
+            'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'h1', $this->h1])
-            ->andFilterWhere(['like', 'meta_key', $this->meta_key])
-            ->andFilterWhere(['like', 'meta_desc', $this->meta_desc])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'file', $this->file])
-            ->andFilterWhere(['like', 'href', $this->href])
-            ->andFilterWhere(['like', 'city', $this->city])
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'site', $this->site])
-            ->andFilterWhere(['like', 'category', $this->category])
-            ->andFilterWhere(['like', 'status', $this->status]);
+            ->andFilterWhere(['like', 'message', $this->message]);
 
         return $dataProvider;
     }

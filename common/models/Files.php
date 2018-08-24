@@ -10,7 +10,9 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property int $order_id
+ * @property int $feedback_id
  *
+ * @property Feedback $feedback
  * @property Order $order
  */
 class Files extends \yii\db\ActiveRecord
@@ -29,8 +31,9 @@ class Files extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_id'], 'integer'],
+            [['order_id', 'feedback_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
+            [['feedback_id'], 'exist', 'skipOnError' => true, 'targetClass' => Feedback::className(), 'targetAttribute' => ['feedback_id' => 'id']],
             [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_id' => 'id']],
         ];
     }
@@ -44,7 +47,16 @@ class Files extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'order_id' => 'Order ID',
+            'feedback_id' => 'Feedback ID',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFeedback()
+    {
+        return $this->hasOne(Feedback::className(), ['id' => 'feedback_id']);
     }
 
     /**
