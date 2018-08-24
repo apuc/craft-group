@@ -82,7 +82,7 @@ class SendForm extends Model
     {
         if (is_null($this->radioList)) {
             /**
-             * @var $serviceList[] ServiceList
+             * @var $serviceList [] ServiceList
              */
             $serviceList = ServiceList::find()->all();
 
@@ -126,16 +126,17 @@ class SendForm extends Model
                 $feedback = new Feedback();
                 $feedbackData['Feedback'] = $post['SendForm'];
                 $feedback->load($feedbackData);
+                $feedback->status = Feedback::STATUS_DISABLED;
                 $feedback->save();
-                
-                $this->saveFile(Files::FEEDBACK, $feedback->id, $this->file);
+
+                $this->saveFile(Files::FEEDBACK, $feedback->id, 'feedback', $this->file);
         }
     }
 
 
     /**
      * сохраняет файлы
-     * @param $order Order
+     * @param Order $order
      */
     private function saveFiles($order)
     {
@@ -144,28 +145,26 @@ class SendForm extends Model
             /**
              * @var $item UploadedFile
              */
-            $model = new Files();
-            $model->name = Yii::$app->security->generateRandomString(16) . '.' . $item->extension;
-            $model->order_id = $order->id;
-            $model->save();
-            FileHelper::createDirectory(Yii::getAlias('uploads/order/'));
-            $item->saveAs(Yii::getAlias('@frontend/web/uploads/order/' . $model->name));
+            $this->saveFile(Files::ORDER, $order->id, 'order', $item);
         }
     }
 
     /**
+     * сохраняет файл
      * @param integer $extension
      * @param integer $model_id
+     * @param string $path
      * @param UploadedFile $file
      * @throws \yii\base\Exception
      */
-    private function saveFile($extension, $model_id, $file){
+    private function saveFile($extension, $model_id, $path, $file)
+    {
         $modelFile = new Files();
         $modelFile->name = Yii::$app->security->generateRandomString(16) . '.' . $file->extension;
         $modelFile->setExtensionId($extension, $model_id);
         $modelFile->save();
-        FileHelper::createDirectory(Yii::getAlias('uploads/order/'));
-        $file->saveAs(Yii::getAlias('@frontend/web/uploads/order/' . $modelFile->name));
+        FileHelper::createDirectory(Yii::getAlias("uploads/{$path}/"));
+        $file->saveAs(Yii::getAlias("@frontend/web/uploads/{$path}/" . $modelFile->name));
     }
 
     /**

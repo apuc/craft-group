@@ -19,7 +19,8 @@ class m180824_105926_change_table_feedback extends Migration
             'phone' => $this->string(255),
             'email' => $this->string(255),
             'site' => $this->string(255),
-            'message' => $this->text()
+            'message' => $this->text(),
+            'status'=>$this->integer(11)
         ]);
 
     }
