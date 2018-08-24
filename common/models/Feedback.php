@@ -49,12 +49,12 @@ class Feedback extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'phone' => 'Phone',
+            'name' => 'Имя',
+            'phone' => 'Телефон',
             'email' => 'Email',
-            'site' => 'Site',
-            'message' => 'Message',
-            'status' => 'Status',
+            'site' => 'Сайт',
+            'message' => 'Сообщение',
+            'status' => 'Статус',
         ];
     }
 
