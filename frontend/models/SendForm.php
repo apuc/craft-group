@@ -46,7 +46,7 @@ class SendForm extends Model
             [['phone'], 'phoneLength'],
 //            [['phone'], 'frontend\components\PhoneValidator'],
             [['radioListForm'], 'safe'],
-            [['files'], 'file', 'maxFiles' => 4, 'maxSize' => 1024 * 1024 * 2]
+            [['files'], 'file', 'maxFiles' => 4, 'maxSize' => 1024 * 1024 * 2, 'tooBig' => 'Максимальный размер файла 2 мб', 'wrongExtension' => 'Максимальное количество файлов 4'],
         ];
     }
 
