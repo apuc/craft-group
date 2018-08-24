@@ -34,13 +34,14 @@ class SendForm extends Model
     public $subject;
     public $radioListForm;
     public $files;
+    public $site;
 
     public $radioList;
 
     public function rules()
     {
         return [
-            [['name', 'phone', 'email', 'skype', 'message', 'subject', 'site', 'fileName'], 'string'],
+            [['name', 'phone', 'email', 'skype', 'message', 'subject', 'site'], 'string'],
             [['name', 'phone', 'email'], 'required', 'message' => "Неверно заполненое поле"],
             [['email'], 'email', 'message' => "Неверно заполненое поле"],
             [['phone'], 'phoneLength'],

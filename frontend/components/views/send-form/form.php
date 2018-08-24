@@ -14,18 +14,21 @@
  * @var $widget frontend\components\SendFormWidget
  *
  */
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 ?>
 
 <?php $form = ActiveForm::begin([
-    'action' => \yii\helpers\Url::to(['/site/send-form']),
+//    'action' => \yii\helpers\Url::to(['/site/send-form']),
     'id' => $widget->idForm,
     'options' => [
         'class' => 'service__form',
         'enctype' => 'multipart/form-data'
     ],
-    'enableAjaxValidation' => true,
+    'validationUrl' => Url::to(['/site/validate']),
+    'enableAjaxValidation' => true
+
 ]); ?>
     <div class="service__form-head">
 
@@ -43,7 +46,7 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'phone', [
             'options' => [
-                'class' => 'service__form-head_item'
+                'class' => 'service__form-head_item',
             ]
         ])->textInput(['class' => 'service__form_input js_phone-mask', 'placeholder' => 'Номер телефона'])->label() ?>
 
