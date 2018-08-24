@@ -29,7 +29,8 @@ class m180823_102920_create_tabale_files extends Migration
             'files',
             'order_id',
             'order',
-            'id'
+            'id',
+            'CASCADE'
         );
     }
 
