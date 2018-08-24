@@ -10,7 +10,6 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/order');
-var_dump(Yii::$app->params);die;
 ?>
 <div class="order-view">
 
