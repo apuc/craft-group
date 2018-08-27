@@ -6,6 +6,7 @@ use common\models\KeyValue;
 use Yii;
 use common\models\Vacancy;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
