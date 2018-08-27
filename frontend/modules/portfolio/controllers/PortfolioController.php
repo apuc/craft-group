@@ -100,10 +100,10 @@ class PortfolioController extends Controller
 		                      ->where(['slug'=>$slug])
 		                      ->asArray()
 		                      ->one();
-		Yii::$app->opengraph->title = $portfolio->title;
-		Yii::$app->opengraph->description = $portfolio->description;
-		Yii::$app->opengraph->image = $portfolio->file;
-		Yii::$app->opengraph->url = $portfolio->slug;
+		Yii::$app->opengraph->title = $portfolio['title'];
+		Yii::$app->opengraph->description = $portfolio['description'];
+		Yii::$app->opengraph->image = $portfolio['file'];
+		Yii::$app->opengraph->url = $portfolio['slug'];
 		Yii::$app->opengraph->siteName = '';
 		Yii::$app->opengraph->type = '';
 		if($portfolio) {
