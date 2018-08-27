@@ -39,6 +39,8 @@ class SendForm extends Model
     public $file;
     public $site;
 
+    public $thankMessage;
+
     public $radioList;
 
     public function rules()
@@ -123,6 +125,8 @@ class SendForm extends Model
                 $this->saveOrderServiceList($order);
 
                 $this->saveFiles(\frontend\models\Files::ORDER, $order, 'order');
+
+                $this->thankMessage = "Спасибо за, то что выбрали нашу компанию, мы с Вами скоро свяжемся. </br>";
                 break;
             case self::FEEDBACK:
                 $feedback = new Feedback();
@@ -132,6 +136,8 @@ class SendForm extends Model
                 $feedback->save();
 
                 $this->saveFile(\frontend\models\Files::FEEDBACK, $feedback->id, 'feedback', $this->file);
+
+                $this->thankMessage = 'Спасибо за оставленный отзыв. </br>';
                 break;
             case self::VACANCY:
                 $vacancy = new VacancyOrder();
@@ -139,6 +145,7 @@ class SendForm extends Model
                 $vacancy->load($vacancyData);
                 $vacancy->save();
                 $this->saveFiles(\frontend\models\Files::VACANCY_ORDER, $vacancy, 'vacancy_order');
+                $this->thankMessage = 'Спасибо отклик на вакансию, мы с Вами скоро свяжемся. </br>';
         }
     }
 
