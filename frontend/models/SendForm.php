@@ -12,6 +12,7 @@ use common\models\Feedback;
 use common\models\Order;
 use common\models\OrderServiceList;
 use common\models\ServiceList;
+use common\models\VacancyOrder;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -130,6 +131,12 @@ class SendForm extends Model
                 $feedback->save();
 
                 $this->saveFile(Files::FEEDBACK, $feedback->id, 'feedback', $this->file);
+                break;
+            case self::VACANCY:
+                $vacancy = new VacancyOrder();
+                $vacancyData['VacancyOrder'] = $post['SendForm'];
+                $vacancy->load($vacancyData);
+                var_dump($vacancy);die;
         }
     }
 
