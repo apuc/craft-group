@@ -5,29 +5,26 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "feedback".
+ * This is the model class for table "order".
  *
  * @property int $id
  * @property string $name
  * @property string $phone
  * @property string $email
- * @property string $site
+ * @property string $skype
  * @property string $message
- * @property int $status
  *
- * @property Files[] $files
+ * @property Files $files
+ * @property OrderServiceList[] $orderServiceLists
  */
-class Feedback extends \yii\db\ActiveRecord
+class Order extends \yii\db\ActiveRecord
 {
-    const STATUS_ENABLED = 1;
-    const STATUS_DISABLED = 0;
-
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'feedback';
+        return 'order';
     }
 
     /**
@@ -37,8 +34,7 @@ class Feedback extends \yii\db\ActiveRecord
     {
         return [
             [['message'], 'string'],
-            [['status'], 'integer'],
-            [['name', 'phone', 'email', 'site'], 'string', 'max' => 255],
+            [['name', 'phone', 'email', 'skype'], 'string', 'max' => 255],
         ];
     }
 
@@ -51,10 +47,9 @@ class Feedback extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Имя',
             'phone' => 'Телефон',
-            'email' => 'Email',
-            'site' => 'Сайт',
-            'message' => 'Сообщение',
-            'status' => 'Статус',
+            'email' => 'e-mail',
+            'skype' => 'Skype',
+            'message' => 'Cообщение',
         ];
     }
 
@@ -63,6 +58,14 @@ class Feedback extends \yii\db\ActiveRecord
      */
     public function getFiles()
     {
-        return $this->hasOne(Files::className(), ['feedback_id' => 'id']);
+        return $this->hasMany(Files::className(), ['order_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderServiceLists()
+    {
+        return $this->hasMany(OrderServiceList::className(), ['order_id' => 'id']);
     }
 }

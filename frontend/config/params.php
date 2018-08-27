@@ -9,7 +9,7 @@
  */
 
 return [
-    'adminEmail' => 'admin@example.com',
+//    'adminEmail' => 'admin@example.com',
     'yandexMetrika.id'      => 47718664,
     'yandexMetrika.params'  => [
 	    'webvisor'              => true,

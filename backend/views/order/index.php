@@ -4,37 +4,37 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\feedback\models\FeedbackSearch */
+/* @var $searchModel backend\models\OrderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Отзывы';
+$this->title = 'Заказы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="feedback-index">
+<div class="order-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+   <!-- <p>
+        <?/*= Html::a('Create Order', ['create'], ['class' => 'btn btn-success']) */?>
+    </p>
+-->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-//            'id',
+            
             'name',
             'phone',
             'email:email',
-            'site',
+            'skype',
             //'message:ntext',
-            [
-                'attribute' => 'status',
-                'value' => function ($model) {
-                    return ($model->status) ? "Активен" : "Не активен";
-                }
-            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template'=>'{view} {delete}'
+            ],
         ],
     ]); ?>
 </div>

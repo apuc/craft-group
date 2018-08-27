@@ -4,22 +4,23 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Feedback */
+/* @var $model backend\modules\feedback\models\Feedback */
 
-$this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('feedback', 'Feedbacks'), 'url' => ['index']];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Feedbacks', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 ?>
 <div class="feedback-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('feedback', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('feedback', 'Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('feedback', 'Are you sure you want to delete this item?'),
+                'confirm' => 'Удалить отзыв',
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,21 +29,46 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'title',
-            'h1',
-            'meta_key',
-            'meta_desc',
-            'description:ntext',
-            'file:ntext',
-            'href:ntext',
-            'city',
-            'email:email',
+//            'id',
             'name',
+            'phone',
+            'email:email',
             'site',
-            'category',
-            'status',
-            'date',
+            'message:ntext',
+            [
+                'attribute' => 'status',
+                'value' => function ($model) {
+                    return ($model->status) ? "Активен" : "Не активен";
+                }
+            ],
+            [
+                'attribute' => 'status',
+                'value' => function ($model) {
+                    return ($model->status) ? "Активен" : "Не активен";
+                }
+            ],
+            [
+                'attribute' => 'Файлы',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    /**
+                     * @var $model backend\models\Order
+                     */
+                    $txt = '';
+
+
+                        $txt .= Html::a(
+                            $model->files->name,
+                            Yii::getAlias('@files/' . $model->files->name),
+                            ['target' => '_blank']
+                        );
+
+                        $txt .= '<br>';
+
+
+                    return $txt;
+                }
+            ]
         ],
     ]) ?>
 

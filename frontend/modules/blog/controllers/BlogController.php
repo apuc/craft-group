@@ -40,7 +40,7 @@ class BlogController extends Controller
             'query' => BlogSlider::find(),
         ]);
         $blog = Yii::$app->cache->getOrSet("blog", function (){
-	        return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
+	        return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();});
 	    $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
 	    $title = Yii::$app->cache->getOrSet("blog_page_meta_tilte", function (){
 		    return KeyValue::getValue('blog_page_meta_title');});

@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\feedback\models\FeedbackSearch */
+/* @var $model backend\models\OrderSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="feedback-search">
+<div class="order-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -23,11 +23,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email') ?>
 
-    <?= $form->field($model, 'site') ?>
+    <?= $form->field($model, 'skype') ?>
 
     <?php // echo $form->field($model, 'message') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
