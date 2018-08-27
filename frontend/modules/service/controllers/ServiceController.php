@@ -7,6 +7,7 @@ use common\models\KeyValue;
 use common\models\Portfolio;
 use Yii;
 use common\models\Service;
+use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -85,6 +86,12 @@ class ServiceController extends Controller
 		$service = Service::find()->where(['slug'=>$slug])->asArray()->one();
 		$portfolio = Portfolio::find()->where(['id'=> json_decode($service['portfolio'])])->asArray()->all();
 		$feedback = Feedback::find()->andWhere(['status' => 1])->andWhere(['category' => $service['id']])->asArray()->all();
+		Yii::$app->opengraph->title = $service['title'];
+		Yii::$app->opengraph->description = $service['description'];
+		Yii::$app->opengraph->image = $service['file'];
+		Yii::$app->opengraph->url = Url::home('https').'service/'.$slug;
+		Yii::$app->opengraph->siteName =  Yii::$app->name;
+		Yii::$app->opengraph->type = 'article';
 		if($service) {
 			return $this->render('single-service', ['service'=>$service, 'portfolio' => $portfolio, 'feedback' => $feedback]);
 		} else {
