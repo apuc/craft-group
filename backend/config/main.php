@@ -49,7 +49,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
-            'baseUrl' => '/admin',
+            'baseUrl' => '/secure',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
