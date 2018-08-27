@@ -42,12 +42,6 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
                 }
             ],
             [
-                'attribute' => 'status',
-                'value' => function ($model) {
-                    return ($model->status) ? "Активен" : "Не активен";
-                }
-            ],
-            [
                 'attribute' => 'Файлы',
                 'format' => 'raw',
                 'value' => function ($model) {

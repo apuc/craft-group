@@ -107,8 +107,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <p class="novelty__text vacancies-text">Стажировка это способ примерить вас к команде, к
                                 принципам работы,
                                 прежде чем брать в команду.</p>
-                            <a href="#"
-                               class="vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty vacancies-novelty-more">Записаться</a>
+                            <a href="#brief"
+                               class="vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty vacancies-novelty-more scroll">Записаться</a>
                         </div>
                     </div>
                 </div>
