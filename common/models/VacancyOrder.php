@@ -44,11 +44,11 @@ class VacancyOrder extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'phone' => 'Phone',
+            'name' => 'Имя',
+            'phone' => 'Телефон',
             'email' => 'Email',
             'skype' => 'Skype',
-            'message' => 'Message',
+            'message' => 'Сообщение',
         ];
     }
 

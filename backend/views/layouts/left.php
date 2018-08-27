@@ -76,6 +76,8 @@
 	                 'url' => ['/cache']],
 					['label' => 'Заказы', 'icon' => 'first-order',
 						'url' => ['/order']],
+					['label' => 'Заявка на вакансию', 'icon' => 'first-order',
+						'url' => ['/vacancy-order']],
 //                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
 //                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
 //                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
