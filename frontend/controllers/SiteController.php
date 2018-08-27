@@ -331,16 +331,16 @@ class SiteController extends Controller
                     $message .= 'Сообщение: ' . $model->message . '<br>';
                 }
 
-//                $mail = Yii::$app->mailer->compose()
-//                    ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
-//                    ->setTo([
-//                        Yii::$app->params['adminEmail'],
-//                        'canya.panfilov.95@gmail.com'
-//                    ])
-//                    ->setSubject($model->subject)
-////                    ->setTextBody($message)
-//                    ->setHtmlBody('<b>' . $message . '</b>')
-//                    ->send();
+                $mail = Yii::$app->mailer->compose()
+                    ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
+                    ->setTo([
+                        Yii::$app->params['adminEmail'],
+                        'canya.panfilov.95@gmail.com'
+                    ])
+                    ->setSubject($model->subject)
+//                    ->setTextBody($message)
+                    ->setHtmlBody('<b>' . $message . '</b>')
+                    ->send();
             }
         }
 //        return SendForm::sendMail();
