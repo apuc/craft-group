@@ -85,7 +85,8 @@ class ServiceController extends Controller
 	{
 		$service = Service::find()->where(['slug'=>$slug])->asArray()->one();
 		$portfolio = Portfolio::find()->where(['id'=> json_decode($service['portfolio'])])->asArray()->all();
-		$feedback = Feedback::find()->andWhere(['status' => 1])->andWhere(['category' => $service['id']])->asArray()->all();
+//		$feedback = Feedback::find()->andWhere(['status' => 1])->andWhere(['category' => $service['id']])->asArray()->all();
+		$feedback = Feedback::find()->andWhere(['status' => 1])->asArray()->all();
 		Yii::$app->opengraph->title = $service['title'];
 		Yii::$app->opengraph->description = $service['description'];
 		Yii::$app->opengraph->image = $service['file'];
