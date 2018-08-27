@@ -104,7 +104,7 @@ class PortfolioController extends Controller
 		Yii::$app->opengraph->title = $portfolio['title'];
 		Yii::$app->opengraph->description = $portfolio['description'];
 		Yii::$app->opengraph->image = $portfolio['file'];
-		Yii::$app->opengraph->url = Url::to('/portfolio'.$portfolio['slug']);
+		Yii::$app->opengraph->url = Yii::$app->request->url;
 		Yii::$app->opengraph->siteName = Url::to('/');
 		Yii::$app->opengraph->type = 'article';
 		if($portfolio) {
