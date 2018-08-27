@@ -80,6 +80,12 @@ class VacancyController extends Controller
 		$all_vacancy = Vacancy::find()->where(['options' => 2])->asArray()->limit(3)->offset($vacancy['id'])->all();
 		$vacancy->updateCounters(['views' => 1]);
 		$vacancy = $vacancy->toArray();
+		Yii::$app->opengraph->title = $vacancy->title;
+		Yii::$app->opengraph->description = $vacancy->description;
+		Yii::$app->opengraph->image = $vacancy->file;
+		Yii::$app->opengraph->url = Url::home('https').'blog/'.$slug;
+		Yii::$app->opengraph->siteName =  Yii::$app->name;
+		Yii::$app->opengraph->type = 'article';
 		return $this->render('single-vacancy', ['vacancy' => $vacancy, 'all' => $all_vacancy]);
 	}
 }
