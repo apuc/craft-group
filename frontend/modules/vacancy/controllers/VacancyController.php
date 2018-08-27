@@ -36,9 +36,6 @@ class VacancyController extends Controller
      */
     public function actionIndex()
     {
-	    $blog = Yii::$app->cache->getOrSet("vacancy_blog", function (){
-		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
-	    $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
         $dataProvider = new ActiveDataProvider([
             'query' => Vacancy::find(),
         ]);
@@ -73,7 +70,7 @@ class VacancyController extends Controller
 	    Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("vacancy_og_type", function (){
 		    return KeyValue::getValue('vacancy_og_type');});
         return $this->render('index', [
-            'dataProvider' => $dataProvider, 'vacancy' => $vacancy, 'all' => $all_vacancy, 'title' => $title, 'b_cur'=>$b_cur, 'blog'=>$blog,
+            'dataProvider' => $dataProvider, 'vacancy' => $vacancy, 'all' => $all_vacancy, 'title' => $title
         ]);
     }
 	

@@ -4,23 +4,23 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\feedback\models\Feedback */
+/* @var $model backend\models\VacancyOrder */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Feedbacks', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Vacancy Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
+Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/vacancy_order');
 ?>
-<div class="feedback-view">
+<div class="vacancy-order-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Удалить отзыв',
+                'confirm' => 'Вы уверены, что хотите удалить заявку на вакансию?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,18 +29,12 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-//            'id',
+            'id',
             'name',
             'phone',
             'email:email',
-            'site',
+            'skype',
             'message:ntext',
-            [
-                'attribute' => 'status',
-                'value' => function ($model) {
-                    return ($model->status) ? "Активен" : "Не активен";
-                }
-            ],
             [
                 'attribute' => 'Файлы',
                 'format' => 'raw',
@@ -50,15 +44,15 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
                      */
                     $txt = '';
 
-
+                    foreach ($model->files as $file) {
                         $txt .= Html::a(
-                            $model->files->name,
-                            Yii::getAlias('@files/' . $model->files->name),
+                            $file->name,
+                            Yii::getAlias('@files/' . $file->name),
                             ['target' => '_blank']
                         );
 
                         $txt .= '<br>';
-
+                    }
 
                     return $txt;
                 }
