@@ -61,6 +61,11 @@ class About extends \yii\db\ActiveRecord
 	
 	public function afterSave($insert, $changedAttributes){
 		parent::afterSave($insert, $changedAttributes);
-		Yii::$app->cache->flush();
+		if(Yii::$app->cache->flush()){
+			Yii::$app->session->setFlash('success', 'Кэш очищен');
+		} else {
+			Yii::$app->session->setFlash('error', 'Ошибка');
+		}
+		return false;
 	}
 }
