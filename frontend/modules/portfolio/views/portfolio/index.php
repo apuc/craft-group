@@ -67,12 +67,12 @@ $img = Url::to('@web/img/');
 										<a class="grid-item__watch" href="<?=Url::to(['single-portfolio', 'slug' => $value['slug']])?>">Посмотреть работу</a>
 	<!--									--><?php //preg_match('%<img.*?src=["\'](.*?)["\'].*?/>%i', $value['file'], $matches);
 	//									$imgSrc = $matches[1];?>
-										
+
 										<a class="grid-item__fancybox" href="<?=$value['file']?>" data-fancybox="images" data-caption="
 											<div class='portfolio__block-caption'>
 												<span><?=$value['title']?> </span>
 											</div">
-			
+
 											<span class="magnifier">
 												<img src="<?=$img?>full-size.svg" width="20" height="20" alt="">
 											</span>
@@ -84,7 +84,7 @@ $img = Url::to('@web/img/');
 						<?php endif;?>
 					</div>
 				</div>
-				
+
 				<button type="button" class="more_btn" id="curButton"  data-inpage="<?=$count?>"  data-page="1">Загрузить ещё</button>
 			</div>
 
