@@ -45,12 +45,12 @@ $type = isset($type) ? $type : 'text';
     <div class="form-group">
         <?= Html::submitButton(Yii::t('seo', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
-	<?php if(isset($_GET['id']&& $_GET['url'])):?>
+	<?php if(isset($_GET['id'])&& isset($_GET['url'])):?>
 		<p>
 			<?= Html::a(Yii::t('seo', 'Return back'), [$_GET['url'].'/update?id='.$_GET['id']])?>
 		</p>
 	<?php endif;?>
-	<?php if(isset($_POST['KeyValue']['url'] && $_POST['KeyValue']['id'])):?>
+	<?php if(isset($_POST['KeyValue']['url']) && isset($_POST['KeyValue']['id'])):?>
 		<p>
 			<?= Html::a(Yii::t('seo', 'Return back'), [$_POST['KeyValue']['url'].'/update?id='.$_POST['KeyValue']['id']])?>
 		</p>
