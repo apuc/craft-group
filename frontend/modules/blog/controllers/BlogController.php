@@ -80,6 +80,12 @@ class BlogController extends Controller
 		$slider = Yii::$app->cache->getOrSet("slider", function (){
 			return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 		$all = BlogSlider::find()->where(['h1' => 'current'])->one();
+		Yii::$app->opengraph->title = $blog['title'];
+		Yii::$app->opengraph->description = $blog['description'];
+		Yii::$app->opengraph->image = $blog['file'];
+		Yii::$app->opengraph->url = Url::home('https').'blog/'.$slug;
+		Yii::$app->opengraph->siteName = Url::home('https');
+		Yii::$app->opengraph->type = 'article';
 		if($blog) {
 			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
 		} else {
