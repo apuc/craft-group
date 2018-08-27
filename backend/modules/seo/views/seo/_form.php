@@ -39,10 +39,22 @@ $type = isset($type) ? $type : 'text';
         ]); ?>
     <?php endif; ?>
     <?= $form->field($model, 'dt_add')->hiddenInput(['value' => time()])->label(false) ?>
+	<?= $form->field($model, 'url')->hiddenInput(['value' => $_GET['url'] ?? ''])->label(false) ?>
+	<?= $form->field($model, 'id')->hiddenInput(['value' => $_GET['id'] ?? ''])->label(false) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('seo', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
+	<?php if($_GET['id']&& $_GET['url']):?>
+		<p>
+			<?= Html::a(Yii::t('seo', 'Return back'), [$_GET['url'].'/update?id='.$_GET['id']])?>
+		</p>
+	<?php endif;?>
+	<?php if($_POST['KeyValue']['url'] && $_POST['KeyValue']['id']):?>
+		<p>
+			<?= Html::a(Yii::t('seo', 'Return back'), [$_POST['KeyValue']['url'].'/update?id='.$_POST['KeyValue']['id']])?>
+		</p>
+	<?php endif;?>
 
     <?php ActiveForm::end(); ?>
 
