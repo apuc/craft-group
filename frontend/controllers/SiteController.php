@@ -9,6 +9,7 @@ use common\models\Main;
 use frontend\models\SendForm;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -331,15 +332,29 @@ class SiteController extends Controller
                     $message .= 'Сообщение: ' . $model->message . '<br>';
                 }
 
+                $model->thankMessage .= Html::a(
+                    'Следите за нами с социальных сетях ВК ',
+                    'https://vk.com/web_craft_group'
+                );
+
                 $mail = Yii::$app->mailer->compose()
                     ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
                     ->setTo([
                         Yii::$app->params['adminEmail'],
-                        'canya.panfilov.95@gmail.com'
                     ])
                     ->setSubject($model->subject)
 //                    ->setTextBody($message)
                     ->setHtmlBody('<b>' . $message . '</b>')
+                    ->send();
+
+                $mail2 = Yii::$app->mailer->compose()
+                    ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
+                    ->setTo([
+                        $model->email
+                    ])
+//                    ->setSubject($model->subject)
+//                    ->setTextBody($message)
+                    ->setHtmlBody('<b>' . $model->thankMessage . '</b>')
                     ->send();
             }
         }

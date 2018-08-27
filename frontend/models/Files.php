@@ -13,6 +13,7 @@ class Files extends \common\models\Files
 {
     const ORDER = 1;
     const FEEDBACK = 2;
+    const VACANCY_ORDER = 3;
 
     /**
      * @param number $extension
@@ -22,6 +23,7 @@ class Files extends \common\models\Files
     {
         if ($extension == self::ORDER) $this->order_id = $value;
         if ($extension == self::FEEDBACK) $this->feedback_id = $value;
+        if ($extension == self::VACANCY_ORDER) $this->vacancy_order_id = $value;
     }
 
 }

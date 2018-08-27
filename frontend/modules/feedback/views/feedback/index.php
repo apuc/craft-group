@@ -33,7 +33,7 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
                     'subject' => \frontend\models\SendForm::FEEDBACK,
                     'messageLabel' => 'Текст вашего отзыва',
                     'messagePlaceholder' => 'Ваш отзыв',
-                    'textButton' => 'Опубликовать',
+                    'textButton' => 'Отправить',
                     'fileExtension' => 'jpg, jpeg, png',
                     'skypeOrSite' => \frontend\components\SendFormWidget::SITE,
                     'fileOrFiles' => \frontend\components\SendFormWidget::FILE

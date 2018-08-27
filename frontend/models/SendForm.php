@@ -9,9 +9,11 @@
 namespace frontend\models;
 
 use common\models\Feedback;
+use common\models\Files;
 use common\models\Order;
 use common\models\OrderServiceList;
 use common\models\ServiceList;
+use common\models\VacancyOrder;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -36,6 +38,8 @@ class SendForm extends Model
     public $files;
     public $file;
     public $site;
+
+    public $thankMessage;
 
     public $radioList;
 
@@ -120,7 +124,9 @@ class SendForm extends Model
 
                 $this->saveOrderServiceList($order);
 
-                $this->saveFiles($order);
+                $this->saveFiles(\frontend\models\Files::ORDER, $order, 'order');
+
+                $this->thankMessage = "Спасибо за, то что выбрали нашу компанию, мы с Вами скоро свяжемся. </br>";
                 break;
             case self::FEEDBACK:
                 $feedback = new Feedback();
@@ -129,23 +135,35 @@ class SendForm extends Model
                 $feedback->status = Feedback::STATUS_DISABLED;
                 $feedback->save();
 
-                $this->saveFile(Files::FEEDBACK, $feedback->id, 'feedback', $this->file);
+                $this->saveFile(\frontend\models\Files::FEEDBACK, $feedback->id, 'feedback', $this->file);
+
+                $this->thankMessage = 'Спасибо за оставленный отзыв. </br>';
+                break;
+            case self::VACANCY:
+                $vacancy = new VacancyOrder();
+                $vacancyData['VacancyOrder'] = $post['SendForm'];
+                $vacancy->load($vacancyData);
+                $vacancy->save();
+                $this->saveFiles(\frontend\models\Files::VACANCY_ORDER, $vacancy, 'vacancy_order');
+                $this->thankMessage = 'Спасибо отклик на вакансию, мы с Вами скоро свяжемся. </br>';
         }
     }
 
 
     /**
      * сохраняет файлы
-     * @param Order $order
+     * @param Order|VacancyOrder $model
+     * @param number $extension
+     * @param string $path
      */
-    private function saveFiles($order)
+    private function saveFiles($extension, $model, $path)
     {
 
         foreach ($this->files as $item) {
             /**
              * @var $item UploadedFile
              */
-            $this->saveFile(Files::ORDER, $order->id, 'order', $item);
+            $this->saveFile($extension, $model->id, $path, $item);
         }
     }
 
@@ -159,7 +177,7 @@ class SendForm extends Model
      */
     private function saveFile($extension, $model_id, $path, $file)
     {
-        $modelFile = new Files();
+        $modelFile = new \frontend\models\Files();
         $modelFile->name = Yii::$app->security->generateRandomString(16) . '.' . $file->extension;
         $modelFile->setExtensionId($extension, $model_id);
         $modelFile->save();
