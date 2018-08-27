@@ -15,7 +15,8 @@ use kartik\select2\Select2;
  * @var $feedback array
  */
 $portfolio = \common\models\Portfolio::find()->asArray()->all();
-$feedback = \common\models\Feedback::find()->andWhere(['status' => 1])->andWhere(['category' => $model->id])->asArray()->all();
+//$feedback = \common\models\Feedback::find()->andWhere(['status' => 1])->andWhere(['category' => $model->id])->asArray()->all();
+$feedback = \common\models\Feedback::find()->andWhere(['status' => 1])->asArray()->all();
 $por       = [];
 $feed     = [];
 foreach ( $portfolio as $key => $value ) {
