@@ -18,7 +18,6 @@ return [
 	'about' => 'О нас',
 	'feedback' => 'Отзывы',
 	'vacancy' => 'Вакансии',
-	'Return back' => 'Вернутся назад',
 	'Create Key Value' => 'Создать',
 	'Create title' => 'Создать заголовок',
 	'Create description' => 'Создать описание',

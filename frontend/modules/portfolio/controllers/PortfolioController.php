@@ -96,12 +96,6 @@ class PortfolioController extends Controller
 		$blog = Yii::$app->cache->getOrSet("portfolio_single_blog", function (){
 			return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
 		$b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
-		Yii::$app->opengraph->title = KeyValue::getValue($slug.'_portfolio_og_title');
-		Yii::$app->opengraph->description = KeyValue::getValue($slug.'_portfolio_og_description');
-		Yii::$app->opengraph->image = KeyValue::getValue($slug.'_portfolio_og_image');
-		Yii::$app->opengraph->url = KeyValue::getValue($slug.'_portfolio_og_url');
-		Yii::$app->opengraph->siteName = KeyValue::getValue($slug.'_portfolio_og_site_name');
-		Yii::$app->opengraph->type = KeyValue::getValue($slug.'_portfolio_og_type');
 		$portfolio = Portfolio::find()
 		                      ->where(['slug'=>$slug])
 		                      ->asArray()

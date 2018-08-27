@@ -63,23 +63,4 @@ PreviewAsset::register($this);
 
     <?php ActiveForm::end(); ?>
 
-	<p>
-		<?= Html::a(Yii::t('seo', 'Create og title'), ['/seo/seo/create-og-title', 'slug' => $model->slug.'_portfolio', 'id'=> $model->id, 'url'=> '/portfolio/portfolio'], ['class' => 'btn btn-primary']) ?>
-	</p>
-	<p>
-		<?= Html::a(Yii::t('seo', 'Create og description'), ['/seo/seo/create-og-desc', 'slug' => $model->slug.'_portfolio'], ['class' => 'btn btn-primary']) ?>
-	</p>
-	<p>
-		<?= Html::a(Yii::t('seo', 'Create og type'), ['/seo/seo/create-og-type', 'slug' => $model->slug.'_portfolio'], ['class' => 'btn btn-primary']) ?>
-	</p>
-	<p>
-		<?= Html::a(Yii::t('seo', 'Create og url'), ['/seo/seo/create-og-url', 'slug' => $model->slug.'_portfolio'], ['class' => 'btn btn-primary']) ?>
-	</p>
-	<p>
-		<?= Html::a(Yii::t('seo', 'Create og image'), ['/seo/seo/create-og-image', 'slug' => $model->slug.'_portfolio'], ['class' => 'btn btn-primary']) ?>
-	</p>
-	<p>
-		<?= Html::a(Yii::t('seo', 'Create og site-name'), ['/seo/seo/create-og-site-name', 'slug' => $model->slug.'_portfolio'], ['class' => 'btn btn-primary']) ?>
-	</p>
-
 </div>
