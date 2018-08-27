@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 use common\models\BlogSlider;
 
 /**
@@ -103,9 +104,9 @@ class PortfolioController extends Controller
 		Yii::$app->opengraph->title = $portfolio['title'];
 		Yii::$app->opengraph->description = $portfolio['description'];
 		Yii::$app->opengraph->image = $portfolio['file'];
-		Yii::$app->opengraph->url = $portfolio['slug'];
-		Yii::$app->opengraph->siteName = '';
-		Yii::$app->opengraph->type = '';
+		Yii::$app->opengraph->url = Url::to('/portfolio'.$portfolio['slug']);
+		Yii::$app->opengraph->siteName = Url::to('/');
+		Yii::$app->opengraph->type = 'article';
 		if($portfolio) {
 			return $this->render('single-portfolio', ['portfolio'=>$portfolio, 'b_cur'=>$b_cur, 'blog'=>$blog]);
 		} else {
