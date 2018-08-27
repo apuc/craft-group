@@ -52,4 +52,14 @@ class Menu extends \yii\db\ActiveRecord
             'page' => Yii::t('menu', 'Page'),
         ];
     }
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+		if(Yii::$app->cache->flush()){
+			Yii::$app->session->setFlash('success', 'Кэш очищен');
+		} else {
+			Yii::$app->session->setFlash('error', 'Ошибка');
+		}
+		return false;
+	}
 }

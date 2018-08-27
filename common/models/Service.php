@@ -137,4 +137,14 @@ class Service extends \yii\db\ActiveRecord {
 		$this->feedback = json_decode($this->feedback);
 		return true;
 	}
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+		if(Yii::$app->cache->flush()){
+			Yii::$app->session->setFlash('success', 'Кэш очищен');
+		} else {
+			Yii::$app->session->setFlash('error', 'Ошибка');
+		}
+		return false;
+	}
 }

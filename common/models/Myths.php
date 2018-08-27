@@ -89,4 +89,14 @@ class Myths extends \yii\db\ActiveRecord
             'options' => Yii::t('myths', 'Options'),
         ];
     }
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+		if(Yii::$app->cache->flush()){
+			Yii::$app->session->setFlash('success', 'Кэш очищен');
+		} else {
+			Yii::$app->session->setFlash('error', 'Ошибка');
+		}
+		return false;
+	}
 }

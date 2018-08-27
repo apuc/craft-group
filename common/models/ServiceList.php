@@ -50,4 +50,14 @@ class ServiceList extends \yii\db\ActiveRecord
     {
         return $this->hasMany(OrderServiceList::className(), ['service_list_id' => 'id']);
     }
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+		if(Yii::$app->cache->flush()){
+			Yii::$app->session->setFlash('success', 'Кэш очищен');
+		} else {
+			Yii::$app->session->setFlash('error', 'Ошибка');
+		}
+		return false;
+	}
 }
