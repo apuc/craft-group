@@ -85,7 +85,7 @@ class BlogController extends Controller
 		Yii::$app->opengraph->description = $blog['description'];
 		Yii::$app->opengraph->image = $blog['file'];
 		Yii::$app->opengraph->url = Url::home('https').'blog/'.$slug;
-		Yii::$app->opengraph->siteName = Url::home('https');
+		Yii::$app->opengraph->siteName =  Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
 		if($blog) {
 			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
