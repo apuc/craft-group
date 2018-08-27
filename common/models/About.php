@@ -58,4 +58,9 @@ class About extends \yii\db\ActiveRecord
             'options' => Yii::t('about', 'Options'),
         ];
     }
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+		Yii::$app->cache->flush();
+	}
 }
