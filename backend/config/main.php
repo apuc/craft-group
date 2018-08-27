@@ -95,16 +95,16 @@ return [
 //        ],
        
     ],
-    'controllerMap' => [
-	    'elfinder' => [
-		    'class' => 'mihaildev\elfinder\PathController',
-		    'access' => ['@'],
-		    'root' => [
-			    'baseUrl'=>'@web',
-			    'basePath'=>'@webroot',
-			    'path' => 'upload/global',
-			    'name' => 'Global'
-		    ],
+//    'controllerMap' => [
+//	    'elfinder' => [
+//		    'class' => 'mihaildev\elfinder\PathController',
+//		    'access' => ['@'],
+//		    'root' => [
+//			    'baseUrl'=>'@web',
+//			    'basePath'=>'@webroot',
+//			    'path' => 'upload/global',
+//			    'name' => 'Global'
+//		    ],
 //		    'watermark' => [
 //			    'source'         => __DIR__.'/logo.png', // Path to Water mark image
 //			    'marginRight'    => 5,          // Margin right pixel
@@ -114,8 +114,7 @@ return [
 //			    'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP, // Target image formats ( bit-field )
 //			    'targetMinPixel' => 200         // Target image minimum pixel size
 //		    ]
-	    ]
-    ],
-	
+//	    ]
+//    ],
     'params' => $params,
 ];
