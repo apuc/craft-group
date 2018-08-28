@@ -8,6 +8,7 @@ use backend\modules\main\controllers\MainSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * MainController implements the CRUD actions for Main model.
@@ -26,7 +27,22 @@ class MainController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+	            'class' => AccessControl::className(),
+	            'rules' => [
+		            [
+			            'actions' => ['login', 'error'],
+			            'allow' => true,
+		            ],
+		            [
+			            'actions' => ['logout', 'index', 'view', 'create', 'update'],
+			            'allow' => true,
+			            'roles' => ['@'],
+		            ],
+	            ],
+            ],
         ];
+        
     }
 
     /**

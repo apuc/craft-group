@@ -8,6 +8,7 @@ use backend\modules\blog_slider\models\BlogSliderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * BlogSliderController implements the CRUD actions for BlogSlider model.
@@ -25,6 +26,20 @@ class BlogSliderController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            'access' => [
+	            'class' => AccessControl::className(),
+	            'rules' => [
+		            [
+			            'actions' => ['login', 'error'],
+			            'allow' => true,
+		            ],
+		            [
+			            'actions' => ['logout', 'index', 'view', 'create', 'update'],
+			            'allow' => true,
+			            'roles' => ['@'],
+		            ],
+	            ],
             ],
         ];
     }

@@ -8,6 +8,7 @@ use backend\modules\myths\controllers\MythsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * MythsController implements the CRUD actions for Myths model.
@@ -24,6 +25,20 @@ class MythsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+                'access' => [
+	                'class' => AccessControl::className(),
+	                'rules' => [
+		                [
+			                'actions' => ['login', 'error'],
+			                'allow' => true,
+		                ],
+		                [
+			                'actions' => ['logout', 'index', 'view', 'create', 'update'],
+			                'allow' => true,
+			                'roles' => ['@'],
+		                ],
+	                ],
                 ],
             ],
         ];
