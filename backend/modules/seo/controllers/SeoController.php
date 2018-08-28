@@ -29,9 +29,17 @@ class SeoController extends Controller
             ],
             'access' => [
 	            'class' => AccessControl::className(),
-	            'denyCallback' => function ($rule, $action) {
-		            throw new \Exception('У вас нет доступа к этой странице');
-	            }
+	            'rules' => [
+		            [
+			            'actions' => ['login', 'error'],
+			            'allow' => true,
+		            ],
+		            [
+			            'actions' => [],
+			            'allow' => true,
+			            'roles' => ['@'],
+		            ],
+	            ],
             ],
         ];
     }
