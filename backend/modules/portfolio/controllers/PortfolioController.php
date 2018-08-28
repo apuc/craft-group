@@ -26,20 +26,20 @@ class PortfolioController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
-                'access' => [
-	                'class' => AccessControl::className(),
-	                'rules' => [
-		                [
-			                'actions' => ['login', 'error'],
-			                'allow' => true,
-		                ],
-		                [
-			                'actions' => ['logout', 'index', 'view', 'create', 'update'],
-			                'allow' => true,
-			                'roles' => ['@'],
-		                ],
-	                ],
-                ],
+            ],
+            'access' => [
+	            'class' => AccessControl::className(),
+	            'rules' => [
+		            [
+			            'actions' => ['login', 'error'],
+			            'allow' => true,
+		            ],
+		            [
+			            'actions' => ['logout', 'index', 'view', 'create', 'update'],
+			            'allow' => true,
+			            'roles' => ['@'],
+		            ],
+	            ],
             ],
 	        
         ];
