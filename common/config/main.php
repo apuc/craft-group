@@ -132,8 +132,8 @@ return [
 
         ],
         'authManager'  => [
-//	        'class'        => 'yii\rbac\DbManager',
-	        'class' => 'dektrium\rbac\components\DbManager',
+	        'class'        => 'yii\rbac\DbManager',
+//	        'class' => 'dektrium\rbac\components\DbManager',
         ],
 	    
         'i18n' => [
