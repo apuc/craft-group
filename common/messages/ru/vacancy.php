@@ -21,4 +21,5 @@ return [
 	'Are you sure you want to delete this item?' => 'Вы серьезно хотите удалить эту запись?',
 	'Demands' => 'Требования',
 	'Conditions' => 'Условия',
+	'Image' => 'Картинка страницы',
 ];

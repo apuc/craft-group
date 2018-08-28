@@ -83,7 +83,7 @@ class VacancyController extends Controller
 		$vacancy = $vacancy->toArray();
 		Yii::$app->opengraph->title = $vacancy['title'];
 		Yii::$app->opengraph->description = $vacancy['description'];
-		Yii::$app->opengraph->image = $vacancy['file'];
+		Yii::$app->opengraph->image = $vacancy['img'];
 		Yii::$app->opengraph->url = Url::home('https').'vacancy/'.$slug;
 		Yii::$app->opengraph->siteName =  Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';

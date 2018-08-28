@@ -24,6 +24,7 @@ use yii\helpers\Url;
  * @property string $feedback
  * @property int $dt_add
  * @property int $position
+ * @property string $img
  */
 class Service extends \yii\db\ActiveRecord {
 	/**
@@ -77,8 +78,8 @@ class Service extends \yii\db\ActiveRecord {
 	public function rules() {
 		return [
 			[ [ 'title','options' ],'required' ],
-			[ [ 'h1','meta_key','meta_desc','file','description','portfolio','href','slug','options', 'feedback', 'dt_add', 'position'],'safe' ],
-			[ [ 'file','description','href' ],'string' ],
+			[ [ 'h1','meta_key','meta_desc','file','description','portfolio','href','slug','options', 'feedback', 'dt_add', 'position', 'img'],'safe' ],
+			[ [ 'file','description','href','img' ],'string' ],
 			[ [ 'title','h1','meta_key','meta_desc','slug' ],'string','max' => 255 ],
 			[ [ 'options'],'string','max' => 3 ],
 			[['position'],'string', 'max' => 11]
@@ -103,6 +104,7 @@ class Service extends \yii\db\ActiveRecord {
 			'slug'        => Yii::t( 'service','Slug' ),
 			'dt_add'        => Yii::t( 'service','Date' ),
 			'position'        => Yii::t( 'service','Position' ),
+			'img'        => Yii::t( 'service','Image' ),
 		];
 	}
 	

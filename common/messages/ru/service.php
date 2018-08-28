@@ -17,5 +17,6 @@ return [
 	'Save' => 'Сохранить',
 	'Update' => 'Обновить',
 	'Delete' => 'Удалить',
+	'Image' => 'Картинка страницы',
 	'Are you sure you want to delete this item?' => 'Вы серьезно хотите удалить эту запись?',
 ];

@@ -89,7 +89,7 @@ class ServiceController extends Controller
 		$feedback = Feedback::find()->andWhere(['status' => 1])->asArray()->all();
 		Yii::$app->opengraph->title = $service['title'];
 		Yii::$app->opengraph->description = $service['description'];
-		Yii::$app->opengraph->image = $service['file'];
+		Yii::$app->opengraph->image = $service['img'];
 		Yii::$app->opengraph->url = Url::home('https').'service/'.$slug;
 		Yii::$app->opengraph->siteName =  Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';

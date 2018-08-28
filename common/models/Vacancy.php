@@ -23,6 +23,7 @@ use yii\helpers\Url;
  * @property string $date
  * @property string $demands
  * @property string $conditions
+ * @property string $img
  */
 class Vacancy extends \yii\db\ActiveRecord
 {
@@ -64,8 +65,8 @@ class Vacancy extends \yii\db\ActiveRecord
     {
         return [
 	        [['title', 'options'], 'required'],
-	        [['file', 'description', 'href'], 'string'],
-	        [['h1', 'meta_key', 'meta_desc', 'file', 'description', 'href', 'slug', 'date', 'views', 'demands', 'conditions'], 'safe'],
+	        [['file', 'description', 'href','img'], 'string'],
+	        [['h1', 'meta_key', 'meta_desc', 'file', 'description', 'href', 'slug', 'date', 'views', 'demands', 'conditions','img'], 'safe'],
 	        [['title', 'h1', 'meta_key', 'meta_desc', 'slug'], 'string', 'max' => 255],
 	        [['views'], 'integer'],
 	        [['options'], 'string', 'max' => 3],
@@ -92,6 +93,7 @@ class Vacancy extends \yii\db\ActiveRecord
             'date' => Yii::t('vacancy', 'Date'),
             'demands' => Yii::t('vacancy', 'Demands'),
             'conditions' => Yii::t('vacancy', 'Conditions'),
+            'img' => Yii::t('vacancy', 'Image'),
         ];
     }
 	
