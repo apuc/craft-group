@@ -132,8 +132,8 @@ return [
 
         ],
         'authManager'  => [
-	        'class'        => 'yii\rbac\DbManager',
-//	        'class' => 'dektrium\rbac\components\DbManager',
+//	        'class'        => 'yii\rbac\DbManager',
+	        'class' => 'dektrium\rbac\components\DbManager',
         ],
 	    
         'i18n' => [
@@ -166,7 +166,7 @@ return [
 			'root' => [
 				'baseUrl'=>'',
 				'basePath'=>'@frontend/web',
-				'path' => 'uploads/global',
+				'path' => 'upload/global',
 				'name' => 'Global'
 			],
 //		    'watermark' => [
