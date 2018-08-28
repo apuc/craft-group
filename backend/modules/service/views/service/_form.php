@@ -7,6 +7,7 @@ use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
 use kartik\select2\Select2;
 use xtarantulz\preview\PreviewAsset;
+PreviewAsset::register($this);
 
 
 /* @var $this yii\web\View */

@@ -6,6 +6,7 @@ use mihaildev\elfinder\InputFile;
 use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
 use xtarantulz\preview\PreviewAsset;
+PreviewAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Vacancy */
