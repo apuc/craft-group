@@ -29,9 +29,6 @@ class SiteController extends Controller
                         'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-	                        return User::isUserAdmin(Yii::$app->user->identity->username);
-                        }
                     ],
                 ],
             ],
@@ -78,7 +75,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->loginAdmin()) {
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
             return $this->render('login', [
