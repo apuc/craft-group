@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * KeyValueController implements the CRUD actions for KeyValue model.
@@ -20,6 +21,20 @@ class CacheController extends Controller {
 				'class'   => VerbFilter::className(),
 				'actions' => [
 					'delete' => [ 'POST' ],
+				],
+			],
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'actions' => ['login', 'error'],
+						'allow' => true,
+					],
+					[
+						'actions' => ['logout', 'index', 'view', 'create', 'update'],
+						'allow' => true,
+						'roles' => ['@'],
+					],
 				],
 			],
 		];
