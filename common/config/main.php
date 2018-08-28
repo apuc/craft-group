@@ -166,7 +166,7 @@ return [
 			'root' => [
 				'baseUrl'=>'',
 				'basePath'=>'@frontend/web',
-				'path' => 'upload/global',
+				'path' => 'uploads/global',
 				'name' => 'Global'
 			],
 //		    'watermark' => [
