@@ -348,6 +348,9 @@ if(explode('/',$active)) {
 									echo '<a href="'.$value['description'].'" class="fab">'.$inst.'</a>';
 									break;
 							}
+							if($value['file']=='instagram'){
+								echo '<a href="'.$value['description'].'" class="fab">'.$inst.'</a>';
+							}
 						?>
 					<?php }?>
 				<?php }?>

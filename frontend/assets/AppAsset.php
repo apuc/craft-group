@@ -23,6 +23,8 @@ class AppAsset extends AssetBundle
 	    'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js',
 	    'js/slick.min.js',
 	    'js/jquery.dotdotdot.js',
+	    'js/jquery.photoswipe.js',
+	    'js/jquery.photoswipe-global.js',
 //	    'js/fine-uploader.min.js',
 	    'js/jquery.inputmask.bundle.js',
 	    'js/phone.js',
@@ -35,8 +37,6 @@ class AppAsset extends AssetBundle
 	    'js/sticky-script.js',
 	    'js/slick-feedback.js',
 	    'js/allservices.js',
-	    'js/jquery.photoswipe.js',
-	    'js/jquery.photoswipe-global.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
