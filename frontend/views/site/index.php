@@ -60,7 +60,7 @@ $this->registerJsFile('/js/fine-uploader.min.js');
                                     <?= EasyThumbnailImage::thumbnailImg(
                                         $home . $value['file'],
 	                                    getimagesize ($home.$value['file'])[0],
-                                        800,
+	                                    getimagesize ($home.$value['file'])[1],
                                         EasyThumbnailImage::THUMBNAIL_OUTBOUND); ?>
                                 </a>
                                 <span></span>
