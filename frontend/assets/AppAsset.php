@@ -17,6 +17,7 @@ class AppAsset extends AssetBundle
 	    'css/libs.min.css',
 	    'css/styles.min.css',
 	    'css/fine-uploader-gallery.css',
+	    'css/photoswipe.css',
     ];
     public $js = [
 //    	'js/jquery-3.2.1.min.js',
