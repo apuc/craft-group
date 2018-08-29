@@ -77,7 +77,7 @@ $img = Url::to('@web/img/');
 												<img src="<?=$img?>full-size.svg" width="20" height="20" alt="">
 											</span>
 										</a>
-										<img class="grid-item__img" src="<?=$value['file']?>" style="max-height: 500px">
+										<img class="grid-item__img" src="<?=$value['file']?>" style="width: 245px;">
 									</div>
 								<?php $i++; endif;?>
 							<?php endforeach;?>
