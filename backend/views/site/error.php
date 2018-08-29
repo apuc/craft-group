@@ -9,6 +9,9 @@ use yii\helpers\Url;
 /* @var $exception Exception */
 
 $this->title = $name;
+if(Yii::$app->user->isGuest){
+	Yii::$app->response->redirect(Url::to(['/'], true));
+}
 ?>
 <section class="content">
 
