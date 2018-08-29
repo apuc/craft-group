@@ -59,7 +59,7 @@ $this->registerJsFile('/js/fine-uploader.min.js');
                                 <a href="<?= Url::toRoute(['/portfolio/' . $value['slug']]); ?>">
                                     <?= EasyThumbnailImage::thumbnailImg(
                                         $home . $value['file'],
-                                        1024,
+	                                    getimagesize ($home.$value['file'])[0],
                                         800,
                                         EasyThumbnailImage::THUMBNAIL_OUTBOUND); ?>
                                 </a>
