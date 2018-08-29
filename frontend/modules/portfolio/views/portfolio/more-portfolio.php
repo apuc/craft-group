@@ -31,7 +31,7 @@ $n         = 0;
 					<img src="<?=$img?>img/full-size.svg" width="20" height="20" alt="">
 				</span>
 			</a>
-			<img src="<?=$value->file?>" style="width: 245px">
+			<img src="<?=$value->file?>" style="width: 245px; height: 500px">
 		</div>
 	<?php endforeach;?>
 		<input type="hidden" id="countItems" data-count="<?=$n?>" value="<?=$n?>">
