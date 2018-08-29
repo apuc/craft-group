@@ -35,6 +35,8 @@ class AppAsset extends AssetBundle
 	    'js/sticky-script.js',
 	    'js/slick-feedback.js',
 	    'js/allservices.js',
+	    'js/jquery.photoswipe.js',
+	    'js/jquery.photoswipe-global.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
