@@ -336,17 +336,18 @@ if(explode('/',$active)) {
 				?>
 				<?php foreach ($contacts as $key => $value){?>
 					<?php if($value['name'] == 'social'){?>
-						<?php switch($value['file']){
-							case 'vk':
-								echo '<a href="'.$value['description'].'" class="fab">'.$vk.'</a>';
-								break;
-							case 'facebook':
-								echo '<a href="'.$value['description'].'" class="fab">'.$fb.'</a>';
-								break;
-							case 'instagram':
-								echo '<a href="'.$value['description'].'" class="fab">'.$inst.'</a>';
-								break;
-						}
+						<?php
+							switch($value['file']){
+								case 'vk':
+									echo '<a href="'.$value['description'].'" class="fab">'.$vk.'</a>';
+									break;
+								case 'facebook':
+									echo '<a href="'.$value['description'].'" class="fab">'.$fb.'</a>';
+									break;
+								case 'instagram':
+									echo '<a href="'.$value['description'].'" class="fab">'.$inst.'</a>';
+									break;
+							}
 						?>
 					<?php }?>
 				<?php }?>
