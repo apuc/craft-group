@@ -9,7 +9,6 @@ use yii\helpers\Url;
 /* @var $exception Exception */
 
 $this->title = $name;
-Yii::$app->response->redirect(Url::to(['/'], true));
 ?>
 <section class="content">
 
