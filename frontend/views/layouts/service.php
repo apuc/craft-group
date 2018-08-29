@@ -17,7 +17,7 @@ use backend\modules\contacts\models\Contacts;
 
 
 $contacts = Yii::$app->cache->getOrSet("contacts", function (){
-return Contacts::find()->asArray()->limit(7)->all();});
+return Contacts::find()->asArray()->limit(100)->all();});
 $logo = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'logo'])->one();
 $phone = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'phone'])->one();
 $email = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'email'])->one();
@@ -347,9 +347,6 @@ if(explode('/',$active)) {
 								case 'instagram':
 									echo '<a href="'.$value['description'].'" class="fab">'.$inst.'</a>';
 									break;
-							}
-							if($value['file']=='instagram'){
-								echo '<a href="'.$value['description'].'" class="fab">'.$inst.'</a>';
 							}
 						?>
 					<?php }?>
