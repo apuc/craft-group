@@ -31,7 +31,7 @@ class CacheController extends Controller {
 						'allow' => true,
 					],
 					[
-						'actions' => ['logout', 'index', 'view', 'create', 'update'],
+						'actions' => [],
 						'allow' => true,
 						'roles' => ['@'],
 					],
