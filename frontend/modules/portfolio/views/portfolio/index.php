@@ -67,7 +67,7 @@ $img = Url::to('@web/img/');
 										<div class="photoGrid">
 											<img class="grid-item__img" src="<?=$value['file']?>">
 										</div>
-										<span>
+										<span class="full-size">
 											<img src="<?=$img?>full-size.svg" width="20" height="20" alt="">
 										</span>
 										<div class="grid-item__links">
