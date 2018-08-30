@@ -278,6 +278,16 @@ $this->params['breadcrumbs'][] = $this->title;
 					'isLabels' => true,
 					'messageLabel'=>'Сообщение'
 				]) ?>
+				<div class="brief-massage">
+					<button class="brief-massage-close">
+						<span></span>
+						<span></span>
+					</button>
+					<img src="img/massage_success.png">
+					<h2>Бриф отправлен!</h2>
+					<p>Ожидайте, скоро мы с вами свяжемся.</p>
+					<p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
+				</div>
 			</div>
 		</div>
 	</section>
