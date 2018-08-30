@@ -342,6 +342,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             processData: false,
             success: function (response) {
                 console.log(response);
+                $('.brief-massage').show();
             }
         });
     });
