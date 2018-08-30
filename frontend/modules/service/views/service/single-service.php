@@ -18,11 +18,11 @@ $this->title =  $service['title'];
 $img = Url::to('@web/img/');
 ?>
 <!-- start content-service-corp.html-->
-<main class="main-service">
-	<section class="blog blog__single blog_about">
+<main class="main-service main-service-smm">
+	<section class="blog blog__single blog_about service-smm">
 		<div class="container">
-			
-			<p class="paragraph">Услуги</p>
+
+			<p class="paragraph"><?=$service['title']?></p>
 
 			<nav class="broadcrumbs">
 				<a class="broadcrumbs__link" href="<?=Url::to('/')?>">Главная</a>
@@ -31,102 +31,73 @@ $img = Url::to('@web/img/');
 				<span class="broadcrumbs__divider"> / </span>
 				<span class="broadcrumbs__curr"><?=$service['title']?></span>
 			</nav>
-			
-			<div class="wrap">
-				<div class="tittle">
-					<span>наши услуги</span>
-					<h2><?=$service['title']?></h2>
-				</div>
-				
-				<div class="store__desc">
+
+			<div class="wrap wrap-services">
+				<h1><?=$service['title']?></h1>
+				<div class="service-smm__content">
+					<div class="service-smm__main">
+						<img class="service-smm__main-img" src="<?=$img?>/imgsmm.png" alt="">
 						<p class="store__desc-text"><?=$service['description']?></p>
-				</div>
-				<?php preg_match_all('|<div class="after">(.*?)</div>|isU', $service['file'], $match);
-				      $service['file'] = preg_replace('|<div class="after">(.*?)</div>|isU', '', $service['file']);
-				      $service['file'] = str_replace('<ul', '<ul class="store__adv-list"', $service['file']);
-				      $service['file'] = str_replace('<li', '<li class="store__adv-elem"', $service['file']);
-				      
-				?>
-				<?php if($portfolio):?>
-					<div class="store">
-						<?=$service['file'];?>
-						
-						<div class="store__gallery">
-							<div class="store__gallery-row">
-								<div class="store__gallery-item store__gallery-item_portfolio store__gallery-item_bigger">
-									<img class="store__gallery-img" src="<?=$img?>services-img.jpg" alt="">
-									<a class="gallery__block-link" href="<?= Url::to(['/portfolio'])?>">Посмотреть все работы</a>
-								</div>
-								<?php $i = 0; foreach ( $portfolio as $key => $value ):?>
-									<?php if($i < 2):?>
-										<div class="store__gallery-item store__gallery-item_smaller">
-											<a href="<?= Url::to(['/portfolio/'.$value['slug']])?>">
-												<img class="store__gallery-img" src="<?=$value['file']?>">
-											</a>
-										</div>
-									<?php endif;?>
-									<?php $i++; endforeach;?>
-							</div>
-							
-							<div class="store__gallery-row">
-								<?php $n = 0; foreach ( $portfolio as $key => $value ):?>
-									<?php if($n > 1):?>
-										<div class="store__gallery-item store__gallery-item_smaller">
-											<a href="<?=Url::to(['/portfolio/'.$value['slug']])?>">
-												<img class="store__gallery-img" src="<?=$value['file']?>">
-											</a>
-										</div>
-									<?php endif;?>
-								<?php $n++; endforeach;?>
-								
-								<div class="store__gallery-item store__gallery-item_brief store__gallery-item_bigger">
-									<h2>
-										<a class="scroll" href="#brief">Заполните <br> бриф</a>
-									</h2>
-								</div>
-							</div>
-						</div>
-						
+						<a class="gallery__block-link gallery__block-link_audit" href="#">Посмотреть портфолио</a>
 					</div>
-					<?php if(!empty($match[1][0])):?>
-						<?=$match[1][0]?>
-					<?php endif;?>
-				<?php else:?>
-					<?=$service['file'];?>
-				<?php endif;?>
-				<div class="feedbacks">
-					<h2 class="feedbacks__title">Благодарные отзывы наших клиентов</h2>
-					
-					<div class="wrapper">
-						<div class="grid grid_feedback">
-							<?php foreach ($feedback as $key => $value):?>
-								<div class="feedback-item">
-									<header class="feedback-item__header">
-										<div class="feedback-item__site">
-											<a class="feedback-item__site-link" href="<?=$value['site']?>"><?=$value['site']?></a>
-										</div>
-										
-										<div class="feedback-item__name">
-											<p class="feedback-item__name-text"><?=$value['name']?> (<?=$value['city']?>)</p>
-										</div>
-									</header>
-									
-									<div class="feedback-item__content">
-										<div class="feedback-item__desc">
-											<p class="feedback-item__text"><?=$value['description']?></p>
-											<p class="feedback-item__text"><?=$value['file']?></p>
-										</div>
-										
-										<div class="feedback-item__from">
-											<a class="feedback-item__from-link" href="https://vk.com"><img class="feedback-item__from-img feedback-item__from-img_vk" src="<?=$img?>vk.svg" alt="">отзыв в группе VK</a>
-										</div>
-									</div>
+
+					<div class="service-smm__aside">
+						<div class="service-smm__gallery">
+							<img class="smm-item-img" src="<?=$img?>/ssm-gallery.png" height="210">
+							<a class="gallery__block-link" href="#">Посмотреть</a>
+						</div>
+						<div class="service-smm__other">
+							<h3 class="service-smm__other-title">Другие услуги нашей студии</h3>
+							<?php foreach ($services as $key => $value):?>
+								<div class="other__item other__item_design">
+									<span class="other__item_desc"><?=$value->title?></span>
+									<a class="gallery__block-link" href="<?=Url::to($value->slug)?>">Посмотреть</a>
+									<img class="smm-item-img" src="<?=$img?>/service1.png" height="170">
 								</div>
 							<?php endforeach;?>
-							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<!-- start brief.html-->
+	<section class="service-brief" id="brief">
+
+		<div class="container">
+			<div class="brief__head">
+				<p class="paragraph">наш бриф</p>
+				<div class="wrap">
+					<div class="tittle">
+						<span class="block_span_title">закажите</span>
+						<h2 class="block_title">услугу</h2>
+						<p>
+							Перестаньте платить деньги за процесс. Получите гарантированный результат.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="brief__content">
+				<?= \frontend\components\SendFormWidget::widget([
+					'subject' => \frontend\models\SendForm::USULUGI,
+					'isLabels' => true,
+					'messageLabel'=>'Сообщение'
+				]) ?>
+				<div class="brief-massage">
+					<button class="brief-massage-close">
+						<span></span>
+						<span></span>
+					</button>
+					<img src="/img/massage_success.png">
+					<h2>Бриф отправлен!</h2>
+					<p>Ожидайте, скоро мы с вами свяжемся.</p>
+					<p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end brief.html-->
+	
+</main>
+<!-- end content-service-smm.html-->
