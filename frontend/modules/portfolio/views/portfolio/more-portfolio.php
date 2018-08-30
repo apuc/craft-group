@@ -32,6 +32,8 @@ $n         = 0;
 				</span>
 			</a>
 			<img src="<?=$value->file?>" style="width: 245px;">
+			<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark">
+			</a>
 		</div>
 	<?php endforeach;?>
 		<input type="hidden" id="countItems" data-count="<?=$n?>" value="<?=$n?>">
