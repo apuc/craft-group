@@ -37,7 +37,7 @@ $img = Url::to('@web/img/');
 				<h1><?=$service['title']?></h1>
 				<div class="service-smm__content">
 					<div class="service-smm__main">
-						<img class="service-smm__main-img" src="<?=$img?>/imgsmm.png" alt="">
+						<img class="service-smm__main-img" src="<?=$service['img'] ?? $img.'/imgsmm.png'?>" alt="">
 						<p class="store__desc-text"><?=$service['description']?></p>
 						<a class="gallery__block-link gallery__block-link_audit" href="<?=Url::to('/portfolio')?>">Посмотреть портфолио</a>
 					</div>
