@@ -64,47 +64,64 @@ $img = Url::to('@web/img/');
 						</div>
 					<?php endif;?>
 				</div>
-				
-				<div class="brief__content_vacancy brief__content_feedback">
-					<p class="feedback-form__title">Отправить своё резюме</p>
-					
-					<form id="form_vacancy" class="brief__form form__feedback">
-						<div class="brief__form-message brief__form-message_nomargin" lang="ru">
-							<label for="message_vacancy">Напишите немного о себе</label>
-							<textarea id="message_vacancy" placeholder="Напишите немного о себе"></textarea>
-						</div>
-						
-						<div class="brief__form-head brief__form-head_feedback">
-							<div>
-								<label for="name_vacancy">Ваше имя, фамилия *</label>
-								<input id="name_vacancy" name="name" type="text" placeholder="Ваше имя" required >
-							</div>
-							
-							<div>
-								<label for="speciality_vacancy">Ваша специальность</label>
-								<input id="speciality_vacancy" name="specialty" type="text" placeholder="Ваша специальность" required>
-								<input name="subject" type="text" value="Заявка на работу <?=$vacancy['title']?>" hidden>
-							</div>
-							
-							<div>
-								<label for="mail_vacancy">Ваш e-mail *</label>
-								<input id="mail_vacancy" type="email" name="email" placeholder="Ваш e-mail" required>
-							</div>
-							
-							<div>
-								<label for="city_vacancy">Ваш город</label>
-								<input id="city_vacancy" name="city" type="text" placeholder="Ваш город">
-							</div>
-						</div>
-						
-						<div id="uploader" class="uploader"></div>
-						
-						<div class="brief__form-desc">
-							<p><span>*</span> обязательные поля</p>
-							<input id="submit_feedback" class="send_vacancy" type="submit" value="Хочу в команду">
-						</div>
-					</form>
+
+				<div class="brief__content">
+					<?= \frontend\components\SendFormWidget::widget([
+						'subject' => \frontend\models\SendForm::VACANCY,
+						'messageLabel' => 'Напишите немного о себе',
+						'textButton' => 'Хочу в команду'
+					]) ?>
+					<div class="brief-massage">
+						<button class="brief-massage-close">
+							<span></span>
+							<span></span>
+						</button>
+						<img src="/img/massage_success.png">
+						<h2>Резюме отправлено!</h2>
+						<p>Ожидайте, скоро мы с вами свяжемся.</p>
+						<p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
+					</div>
 				</div>
+<!--				<div class="brief__content_vacancy brief__content_feedback">-->
+<!--					<p class="feedback-form__title">Отправить своё резюме</p>-->
+<!--					-->
+<!--					<form id="form_vacancy" class="brief__form form__feedback">-->
+<!--						<div class="brief__form-message brief__form-message_nomargin" lang="ru">-->
+<!--							<label for="message_vacancy">Напишите немного о себе</label>-->
+<!--							<textarea id="message_vacancy" placeholder="Напишите немного о себе"></textarea>-->
+<!--						</div>-->
+<!--						-->
+<!--						<div class="brief__form-head brief__form-head_feedback">-->
+<!--							<div>-->
+<!--								<label for="name_vacancy">Ваше имя, фамилия *</label>-->
+<!--								<input id="name_vacancy" name="name" type="text" placeholder="Ваше имя" required >-->
+<!--							</div>-->
+<!--							-->
+<!--							<div>-->
+<!--								<label for="speciality_vacancy">Ваша специальность</label>-->
+<!--								<input id="speciality_vacancy" name="specialty" type="text" placeholder="Ваша специальность" required>-->
+<!--								<input name="subject" type="text" value="Заявка на работу --><?//=$vacancy['title']?><!--" hidden>-->
+<!--							</div>-->
+<!--							-->
+<!--							<div>-->
+<!--								<label for="mail_vacancy">Ваш e-mail *</label>-->
+<!--								<input id="mail_vacancy" type="email" name="email" placeholder="Ваш e-mail" required>-->
+<!--							</div>-->
+<!--							-->
+<!--							<div>-->
+<!--								<label for="city_vacancy">Ваш город</label>-->
+<!--								<input id="city_vacancy" name="city" type="text" placeholder="Ваш город">-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						-->
+<!--						<div id="uploader" class="uploader"></div>-->
+<!--						-->
+<!--						<div class="brief__form-desc">-->
+<!--							<p><span>*</span> обязательные поля</p>-->
+<!--							<input id="submit_feedback" class="send_vacancy" type="submit" value="Хочу в команду">-->
+<!--						</div>-->
+<!--					</form>-->
+<!--				</div>-->
 				
 				<div class="vacancies-p__wrap">
 					<h2 class="vacancies-p__title">Больше вакансий, которые вас заинтересуют</h2>
