@@ -39,7 +39,7 @@ $img = Url::to('@web/img/');
 					<div class="service-smm__main">
 						<img class="service-smm__main-img" src="<?=$img?>/imgsmm.png" alt="">
 						<p class="store__desc-text"><?=$service['description']?></p>
-						<a class="gallery__block-link gallery__block-link_audit" href="#">Посмотреть портфолио</a>
+						<a class="gallery__block-link gallery__block-link_audit" href="<?=Url::to('/portfolio')?>">Посмотреть портфолио</a>
 					</div>
 
 					<div class="service-smm__aside">
@@ -53,7 +53,7 @@ $img = Url::to('@web/img/');
 								<div class="other__item other__item_design">
 									<span class="other__item_desc"><?=$value->title?></span>
 									<a class="gallery__block-link" href="<?=Url::to($value->slug)?>">Посмотреть</a>
-									<img class="smm-item-img" src="<?=$img?>/service1.png" height="170">
+									<img class="smm-item-img" src="<?=$value->img ?? $img.'/service1.png'?>" height="170">
 								</div>
 							<?php endforeach;?>
 						</div>
