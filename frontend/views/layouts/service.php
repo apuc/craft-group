@@ -173,7 +173,7 @@ if(explode('/',$active)) {
 						<?php endforeach;?>
 					</ul>
 				</li>
-				<li class="header__nav-li"><a class="scroll" href="#brief">Контакты</a></li>
+				<li class="header__nav-li"><a class="portfolio-scroll" href="#brief">Контакты</a></li>
 			</ul>
 			<li class="header__callback header__callback_mobile">
 				<!--					<img class="header__callback_img" src="--><?//=Url::to('img/phone-ico.png')?><!--" alt="">-->
