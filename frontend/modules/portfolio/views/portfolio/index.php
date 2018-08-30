@@ -65,7 +65,7 @@ $img = Url::to('@web/img/');
 								<?php if($i <= $count - 1):?>
 									<div class="grid-item">
 										<div class="photoGrid">
-											<img class="grid-item__img" src="/img/ballon.png" alt="Шарик">
+											<img class="grid-item__img" src="<?=$value['file']?>">
 										</div>
 										<span>
 											<img src="<?=$img?>full-size.svg" width="20" height="20" alt="">
