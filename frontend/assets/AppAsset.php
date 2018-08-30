@@ -15,6 +15,7 @@ class AppAsset extends AssetBundle
 //        'css/site.css',
 	    'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css',
 	    'css/photoswipe.css',
+	    'css/default-skin/default-skin.css',
 	    'css/libs.min.css',
 	    'css/styles.min.css',
 	    'css/fine-uploader-gallery.css',
@@ -31,7 +32,6 @@ class AppAsset extends AssetBundle
 	    'js/jquery.inputmask.bundle.js',
 	    'js/phone.js',
 	    'js/phone-ru.js',
-	    'js/script.min.js',
 	    'js/imagesloaded.pkgd.min.js',
 	    'js/masonry.pkgd.min.js',
 	    'js/main.js',
@@ -39,6 +39,7 @@ class AppAsset extends AssetBundle
 	    'js/sticky-script.js',
 	    'js/slick-feedback.js',
 	    'js/allservices.js',
+	    'js/script.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
