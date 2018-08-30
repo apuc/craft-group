@@ -14,10 +14,10 @@ class AppAsset extends AssetBundle
     public $css = [
 //        'css/site.css',
 	    'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css',
+	    'css/photoswipe.css',
 	    'css/libs.min.css',
 	    'css/styles.min.css',
 	    'css/fine-uploader-gallery.css',
-	    'css/photoswipe.css',
     ];
     public $js = [
 //    	'js/jquery-3.2.1.min.js',
