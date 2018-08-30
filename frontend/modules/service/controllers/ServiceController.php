@@ -84,6 +84,7 @@ class ServiceController extends Controller
 	public function actionSingleService($slug)
 	{
 		$service = Service::find()->where(['slug'=>$slug])->asArray()->one();
+		$services = Service::find()->where(['options'=>2])->all();
 		$portfolio = Portfolio::find()->where(['id'=> json_decode($service['portfolio'])])->asArray()->all();
 //		$feedback = Feedback::find()->andWhere(['status' => 1])->andWhere(['category' => $service['id']])->asArray()->all();
 		$feedback = Feedback::find()->andWhere(['status' => 1])->asArray()->all();
@@ -94,7 +95,7 @@ class ServiceController extends Controller
 		Yii::$app->opengraph->siteName =  Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
 		if($service) {
-			return $this->render('single-service', ['service'=>$service, 'portfolio' => $portfolio, 'feedback' => $feedback]);
+			return $this->render('single-service', ['service'=>$service, 'portfolio' => $portfolio, 'feedback' => $feedback, 'services' => $services]);
 		} else {
 			return $this->redirect(['/'.$slug]);
 		}
