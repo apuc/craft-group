@@ -32,8 +32,7 @@ $n         = 0;
 				</span>
 			</a>
 			<img src="<?=$value->file?>" style="width: 245px;">
-			<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark">
-			</a>
+			<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true"><img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px;"></a>
 		</div>
 	<?php endforeach;?>
 		<input type="hidden" id="countItems" data-count="<?=$n?>" value="<?=$n?>">
