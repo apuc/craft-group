@@ -346,6 +346,10 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             }
         });
     });
+    $(document).on('click', '.brief-massage-close', function () {
+	    e.preventDefault();
+	    $('.brief-massage').hide();
+    });
     /*Masonry*/
     $('.grid').imagesLoaded(function () {
         $('.grid').masonry({
