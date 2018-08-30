@@ -64,21 +64,16 @@ $img = Url::to('@web/img/');
 							<?php $i = 0; foreach ($portfolio as $key => $value):?>
 								<?php if($i <= $count - 1):?>
 									<div class="grid-item">
-										<a class="grid-item__watch" href="<?=Url::to(['single-portfolio', 'slug' => $value['slug']])?>">Посмотреть работу</a>
-	<!--									--><?php //preg_match('%<img.*?src=["\'](.*?)["\'].*?/>%i', $value['file'], $matches);
-	//									$imgSrc = $matches[1];?>
-
-										<a class="grid-item__fancybox" href="<?=$value['file']?>" data-fancybox="images" data-caption="
-											<div class='portfolio__block-caption'>
-												<span><?=$value['title']?> </span>
-											</div">
-
-											<span class="magnifier">
-												<img src="<?=$img?>full-size.svg" width="20" height="20" alt="">
-											</span>
-										</a>
-										<img class="grid-item__img" src="<?=$value['file']?>" style="width: 245px;">
-										<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true"><img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px;"></a>
+										<div class="photoGrid">
+											<img class="grid-item__img" src="/img/ballon.png" alt="Шарик">
+										</div>
+										<span>
+											<img src="<?=$img?>full-size.svg" width="20" height="20" alt="">
+										</span>
+										<div class="grid-item__links">
+											<a class="dotportfolio" href="<?=Url::to(['single-portfolio', 'slug' => $value['slug']])?>"><?=$value['title']?></a>
+											<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true"><img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px;"></a>
+										</div>
 									</div>
 								<?php $i++; endif;?>
 							<?php endforeach;?>
