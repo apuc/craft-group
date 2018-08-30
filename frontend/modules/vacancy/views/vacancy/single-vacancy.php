@@ -65,23 +65,42 @@ $img = Url::to('@web/img/');
 					<?php endif;?>
 				</div>
 
-				<div class="brief__content">
-					<?= \frontend\components\SendFormWidget::widget([
-						'subject' => \frontend\models\SendForm::VACANCY,
-						'messageLabel' => 'Напишите немного о себе',
-						'textButton' => 'Хочу в команду'
-					]) ?>
-					<div class="brief-massage">
-						<button class="brief-massage-close">
-							<span></span>
-							<span></span>
-						</button>
-						<img src="/img/massage_success.png">
-						<h2>Резюме отправлено!</h2>
-						<p>Ожидайте, скоро мы с вами свяжемся.</p>
-						<p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
+				<section class="service-brief vacancies-brief" id="brief">
+
+					<div class="container">
+						<div class="brief__head">
+							<p class="paragraph">резюме</p>
+							<div class="wrap">
+								<div class="tittle">
+									<span>отправьте</span>
+									<h2>свое резюме</h2>
+									<!--<p>-->
+									<!--Перестаньте платить деньги за процесс. Получите гарантированный результат.-->
+									<!--</p>-->
+								</div>
+							</div>
+						</div>
+						<div class="brief__content">
+							<?= \frontend\components\SendFormWidget::widget([
+								'subject' => \frontend\models\SendForm::VACANCY,
+								'messageLabel' => 'Напишите немного о себе',
+								'textButton' => 'Хочу в команду'
+							]) ?>
+							<div class="brief-massage">
+								<button class="brief-massage-close">
+									<span></span>
+									<span></span>
+								</button>
+								<img src="/img/massage_success.png">
+								<h2>Резюме отправлено!</h2>
+								<p>Ожидайте, скоро мы с вами свяжемся.</p>
+								<p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
+							</div>
+						</div>
+
 					</div>
-				</div>
+
+				</section>
 <!--				<div class="brief__content_vacancy brief__content_feedback">-->
 <!--					<p class="feedback-form__title">Отправить своё резюме</p>-->
 <!--					-->
