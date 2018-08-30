@@ -78,6 +78,8 @@ $img = Url::to('@web/img/');
 											</span>
 										</a>
 										<img class="grid-item__img" src="<?=$value['file']?>" style="width: 245px;">
+										<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark">
+										</a>
 									</div>
 								<?php $i++; endif;?>
 							<?php endforeach;?>

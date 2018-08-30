@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     public $js = [
 //    	'js/jquery-3.2.1.min.js',
 	    'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js',
+	    '//assets.pinterest.com/js/pinit.js type="text/javascript" async defer',
 	    'js/slick.min.js',
 	    'js/jquery.dotdotdot.js',
 	    'js/jquery.photoswipe.js',
