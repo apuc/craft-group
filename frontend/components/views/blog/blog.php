@@ -32,7 +32,10 @@ use yii\helpers\Url;
                 <?php if ($b_cur): ?>
                     <div class="blog__block-link_main">
                         <img src="<?= $b_cur->file ?>">
-                        <a class="blog__link" href="<?= Url::to(['/blog']); ?>"><?= $b_cur->title ?></a>
+	                    <a class="blog__link" href="<?= Url::to(['/blog']); ?>">
+		                    <span class="blog-link-pc"><?= $b_cur->title ?></span>
+		                    <span class="blog-link-mob">Все новости</span>
+	                    </a>
                     </div>
                 <?php endif; ?>
                 <div class="blog__slider--wrap">
