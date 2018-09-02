@@ -37,10 +37,10 @@ $img = Url::to('@web/img/');
 				</nav>
 
 				<div class="wrap wrap-services">
-
-					<h1 class="blog-single-title"><?=$blog['h1']?></h1>
+					
 					<div class="blog-single__content">
 						<div class="blog-single__main">
+							<h1 class="blog-single-title"><?=$blog['h1']?></h1>
 							<img class="blog-single__main-img" src="<?=$blog['file']?>" alt="">
 							<div class="blog-single__text">
 								<?=$blog['description']?>
