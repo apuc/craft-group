@@ -167,6 +167,22 @@ use yii\widgets\ActiveForm;
     <div class="service__form-desc">
                         <span class="service__form-desc_span">Нажимая кнопку «Отправить» я даю свое <span
                                 class="service__form-desc_red">согласие на обработку персональных данных</span></span>
-        <input class="service__form-submit" id="submit" type="submit" value="<?= $widget->textButton ?>">
-    </div>
+		<div class="service__submit-block">
+			<input class="service__form-submit" id="submit" type="submit" value="<?= $widget->textButton ?>">
+			<div class="sk-fading-circle">
+				<div class="sk-circle sk-circle-1"></div>
+				<div class="sk-circle sk-circle-2"></div>
+				<div class="sk-circle sk-circle-3"></div>
+				<div class="sk-circle sk-circle-4"></div>
+				<div class="sk-circle sk-circle-5"></div>
+				<div class="sk-circle sk-circle-6"></div>
+				<div class="sk-circle sk-circle-7"></div>
+				<div class="sk-circle sk-circle-8"></div>
+				<div class="sk-circle sk-circle-9"></div>
+				<div class="sk-circle sk-circle-10"></div>
+				<div class="sk-circle sk-circle-11"></div>
+				<div class="sk-circle sk-circle-12"></div>
+			</div>
+		</div>
+	</div>
 <?php ActiveForm::end(); ?>
