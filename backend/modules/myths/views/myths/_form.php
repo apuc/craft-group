@@ -24,8 +24,10 @@ PreviewAsset::register($this);
     <?= $form->field($model, 'meta_key')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'meta_desc')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+	
+	<?= $form->field($model, 'description')->widget(CKEditor::className(), [
+		'editorOptions' => ElFinder::ckeditorOptions('elfinder',['enterMode' => 2, 'forceEnterMode'=>false, 'shiftEnterMode'=>1  ]),
+	]);?>
 	
 	<?=$form->field($model, 'file')->widget(InputFile::className(), [
 		'language'      => 'ru',
