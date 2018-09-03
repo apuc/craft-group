@@ -26,6 +26,8 @@ class AppAsset extends AssetBundle
 	    'https://assets.pinterest.com/js/pinit.js',
 	    'js/slick.min.js',
 	    'js/jquery.dotdotdot.js',
+	    'js/jquery.photoswipe.js',
+	    'js/jquery.photoswipe-global.js',
 //	    'js/fine-uploader.min.js',
 	    'js/jquery.inputmask.bundle.js',
 	    'js/phone.js',
