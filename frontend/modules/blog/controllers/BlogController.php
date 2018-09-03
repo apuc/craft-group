@@ -79,7 +79,7 @@ class BlogController extends Controller
 	{
 		$blog = BlogSlider::find()->where(['slug'=>$slug])->asArray()->one();
 		$slider = Yii::$app->cache->getOrSet("slider", function (){
-			return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
+			return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();});
 		$all = BlogSlider::find()->where(['h1' => 'current'])->one();
 		Yii::$app->opengraph->title = $blog['title'];
 		Yii::$app->opengraph->description = $blog['description'];
