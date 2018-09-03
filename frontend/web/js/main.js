@@ -343,6 +343,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             success: function (response) {
                 console.log(response);
                 $('.brief-massage').show();
+	            $('div.brief-massage').toggleClass('brief-massage-active');
 	            $('#send_vacancy').trigger('reset');
             }
         });
