@@ -46,30 +46,32 @@ $img = Url::to('@web/img/');
 								<?=$blog['description']?>
 							</div>
 						</div>
-						<div class="blog-single__aside">
-							<?php if($all):?>
-								<div class="blog-single__gallery">
-									<img class="blog-item-img" src="<?=$all->file?>" height="210"?>
-									<a class="blog__link" href="<?=Url::to(['/blog']);?>"><?=$all->title?></a>
+						<div id="sidebar" class="blog-single__aside sidebar">
+							<div class="sidebar__inner sidebarBlog">
+								<?php if($all):?>
+									<div class="blog-single__gallery">
+										<img class="blog-item-img" src="<?=$all->file?>" height="210"?>
+										<a class="blog__link" href="<?=Url::to(['/blog']);?>"><?=$all->title?></a>
+									</div>
+								<?php endif;?>
+								<div class="blog-single__other">
+									<h3 class="blog-single__other-title">Другие новости</h3>
+									<?php $i=0; foreach ($slider as $key => $value):?>
+										<?php if( $value['options'] && $i < 4):?>
+											<div class="blog__item blog__item_design blog__slider--slide">
+												<img src="<?=$value['file']?>">
+												<div class="slide__title">
+													<h3 class="slide__post-title"><?=$value['title']?></h3>
+													<time class="slide__post-time"><?=$value['date'] = BlogSlider::getTime(strtotime($value['date']));?></time>
+												</div>
+												<div class="slide__hover">
+													<span class="dotdot"><?=$value['description']?></span>
+													<a href="<?=Url::to(['/blog', 'slug' => $value['slug']])?>">Читать далее</a>
+												</div>
+											</div>
+										<?php endif;?>
+									<?php $i++; endforeach;?>
 								</div>
-							<?php endif;?>
-							<div class="blog-single__other">
-								<h3 class="blog-single__other-title">Другие новости</h3>
-								<?php $i=0; foreach ($slider as $key => $value):?>
-									<?php if( $value['options'] && $i < 4):?>
-										<div class="blog__item blog__item_design blog__slider--slide">
-											<img src="<?=$value['file']?>">
-											<div class="slide__title">
-												<h3 class="slide__post-title"><?=$value['title']?></h3>
-												<time class="slide__post-time"><?=$value['date'] = BlogSlider::getTime(strtotime($value['date']));?></time>
-											</div>
-											<div class="slide__hover">
-												<span class="dotdot"><?=$value['description']?></span>
-												<a href="<?=Url::to(['/blog', 'slug' => $value['slug']])?>">Читать далее</a>
-											</div>
-										</div>
-									<?php endif;?>
-								<?php $i++; endforeach;?>
 							</div>
 						</div>
 					</div>
