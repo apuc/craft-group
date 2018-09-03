@@ -17,6 +17,7 @@ use common\models\BlogSlider;
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
 PortfolioAsset::register($this);
+
 $home = (Url::home(true));
 
 $img = Url::to('@web/img/');
