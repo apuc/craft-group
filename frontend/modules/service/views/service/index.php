@@ -56,8 +56,8 @@ $img = Url::to('@web/img/');
 	                                <?=$v['description'];?>
                                 </p>
                                 <ul class="services_item-ul">
-	                                <?php if(explode(',' , $value['description'])):?>
-		                                <?php $serv = explode(',' , $value['description']);?>
+	                                <?php if(explode(',' , $v['file'])):?>
+		                                <?php $serv = explode(',' , $v['file']);?>
 		                                <?= $serv[0]?>
 	                                <?php else:?>
 	                                    <?= $v['file']?>
