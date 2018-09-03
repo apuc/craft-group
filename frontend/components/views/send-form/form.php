@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'subject', [
             'options' => [
-                'class' => 'service__form-head_item hidden'
+                'class' => 'service__form-head_item hidden', 'style' => 'display:none'
             ]
         ])->hiddenInput()->label(false) ?>
 
