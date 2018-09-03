@@ -52,17 +52,24 @@ $img = Url::to('@web/img/');
                     <div class="services-text">
                         <?php foreach ($all as $k => $v): ?>
                             <div id="<?= $v['slug'] ?>" class="services_item tittle">
-                                <p class="services_item-p"><?= $v['meta_desc'] ?></p>
+                                <p class="services_item-p">
+	                                <?php if(explode('*' , $v['description'])):?>
+		                                <?php $serv = explode('*' , $v['description']);?>
+		                                <?= $serv[0]?>
+	                                <?php else:?>
+		                                <?=$v['description'];?>
+	                                <?php endif;?>
+                                </p>
                                 <ul class="services_item-ul">
-                                    <li class="services_item-li">Оформление группы Вконтакте <a
-                                            href="<?= Url::to(['single-service', 'slug' => $v['slug']]) ?>"
-                                            class="services_item-more">Подробнее</a></li>
-                                    <li class="services_item-li">Живые обложки <a
-                                            href="<?= Url::to(['single-service', 'slug' => $v['slug']]) ?>"
-                                            class="services_item-more">Подробнее</a></li>
-                                    <li class="services_item-li">Оформление сообществ в Facebook <a
-                                            href="<?= Url::to(['single-service', 'slug' => $v['slug']]) ?>"
-                                            class="services_item-more">Подробнее</a></li>
+                                    <?php if($serv[0]):?>
+	                                    <?php  foreach ($serv as $key => $value):?>
+	                                        <?php if(!$key[0]):?>
+		                                    <li class="services_item-li"><?= $value;?><a
+					                                    href="<?= Url::to(['single-service', 'slug' => $v['slug']]) ?>"
+					                                    class="services_item-more">Подробнее</a></li>
+	                                        <?php endif;?>
+	                                    <?php endforeach;?>
+	                                <?php endif;?>
                                 </ul>
                             </div>
                         <?php endforeach; ?>
