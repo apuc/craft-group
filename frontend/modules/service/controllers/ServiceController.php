@@ -84,7 +84,7 @@ class ServiceController extends Controller
 	public function actionSingleService($slug)
 	{
 		$service = Service::find()->where(['slug'=>$slug])->asArray()->one();
-		$services = Service::find()->where(['options'=>2])->all();
+		$services = Service::find()->where(['options'=>2])->limit(4)->all();
 		$portfolio = Portfolio::find()->where(['id'=> json_decode($service['portfolio'])])->asArray()->all();
 //		$feedback = Feedback::find()->andWhere(['status' => 1])->andWhere(['category' => $service['id']])->asArray()->all();
 		$feedback = Feedback::find()->andWhere(['status' => 1])->asArray()->all();
