@@ -17,6 +17,8 @@ $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css');
 $this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css');
+$this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js');
+$this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js');
 $this->registerJsFile('/js/PhotoSw.js');
 
 $img = Url::to('@web/img/');
