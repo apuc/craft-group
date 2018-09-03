@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use  yii\helpers\Url;
-use frontend\assets\PortfolioAsset;
 use common\models\BlogSlider;
 
 /* @var $this yii\web\View */
@@ -16,7 +15,6 @@ use common\models\BlogSlider;
 
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
-PortfolioAsset::register($this);
 
 $home = (Url::home(true));
 
