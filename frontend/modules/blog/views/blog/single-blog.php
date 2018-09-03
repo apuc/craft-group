@@ -38,7 +38,7 @@ $img = Url::to('@web/img/');
 
 				<div class="wrap wrap-services">
 					
-					<div class="blog-single__content">
+					<div class="blog-single__content main">
 						<div class="blog-single__main">
 							<h1 class="blog-single-title"><?=$blog['h1']?></h1>
 							<img class="blog-single__main-img" src="<?=$blog['file']?>" alt="">
