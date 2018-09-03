@@ -57,7 +57,7 @@ $img = Url::to('@web/img/');
                                 </p>
                                 <ul class="services_item-ul">
                                     <?php if(explode(',' , $v['file'])):?>
-	                                    <?php $serv = explode('*' , $v['file']);?>
+	                                    <?php $serv = explode(',' , $v['file']);?>
                                         <?php if($serv):?>
 		                                    <?php foreach ($serv as $key => $value):?>
 			                                    <li class="services_item-li"><?= $value;?><a
