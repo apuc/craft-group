@@ -18,8 +18,6 @@ class PortfolioAsset extends AssetBundle
 	public $css = [
 //        'css/site.css',
 		'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css',
-		'css/photoswipe.css',
-		'css/default-skin/default-skin.css',
 		'css/libs.min.css',
 		'css/styles.min.css',
 		'css/fine-uploader-gallery.css',
