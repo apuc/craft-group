@@ -66,7 +66,7 @@ $img = Url::to('@web/img/');
 								<?php if($i <= $count - 1):?>
 									<div class="grid-item">
 										<figure class="photoGrid">
-											<a href="<?=$value['file']?>" data-size="<?=getimagesize ($value['file'])[0]x
+											<a href="<?=$value['file']?>" data-size="<?=getimagesize ($value['file'])[0].'x'.
 											getimagesize ($value['file'])[1]?>">
 												<img src="<?=$value['file']?>">
 											</a>
