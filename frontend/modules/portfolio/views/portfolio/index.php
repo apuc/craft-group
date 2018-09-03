@@ -15,11 +15,7 @@ use common\models\BlogSlider;
 
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css');
-$this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css');
-$this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js', ['position'=>\yii\web\View::POS_END]);
-$this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js',['position'=>\yii\web\View::POS_END]);
-$this->registerJsFile('/js/PhotoSw.js');
+\frontend\assets\PortfolioAsset::register($this);
 
 $img = Url::to('@web/img/');
 ?>
