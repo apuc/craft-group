@@ -66,9 +66,11 @@ $img = Url::to('@web/img/');
 							<?php $i = 0; foreach ($portfolio as $key => $value):?>
 								<?php if($i <= $count - 1):?>
 									<div class="grid-item">
-										<div class="photoGrid">
-											<img class="grid-item__img" src="<?=$value['file']?>">
-										</div>
+										<figure class="photoGrid">
+											<a href="<?=$value['file']?>" data-size="1400x5471">
+												<img src="<?=$value['file']?>">
+											</a>
+										</figure>
 										<span class="full-size">
 											<img src="<?=$img?>full-size.svg" width="20" height="20" alt="">
 										</span>
