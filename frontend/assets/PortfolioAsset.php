@@ -11,7 +11,8 @@ namespace frontend\assets;
 use yii\web\AssetBundle;
 
 
-class PortfolioAsset {
+class PortfolioAsset extends AssetBundle
+{
 	public $basePath = '@webroot';
 	public $baseUrl = '@web';
 	public $css = [
