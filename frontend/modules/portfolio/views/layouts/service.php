@@ -14,6 +14,7 @@ use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use yii\helpers\Url;
 use backend\modules\contacts\models\Contacts;
+use frontend\assets\PortfolioAsset;
 
 
 $contacts = Contacts::find()->asArray()->all();
@@ -22,9 +23,7 @@ $phone = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'ph
 $email = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'email'])->one();
 $about = \common\models\Menu::find()->where(['page'=>'about'])->all();
 $menu = \common\models\Menu::find()->where(['page'=> 'other'])->orderBy(['position'=> SORT_ASC])->all();
-
-AppAsset::register($this);
-
+PortfolioAsset::register($this);
 $active = Url::to();
 if(explode('/',$active)) {
 	$active = explode('/',$active); $active = "/".$active[1];
