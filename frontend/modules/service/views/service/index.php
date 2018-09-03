@@ -53,23 +53,19 @@ $img = Url::to('@web/img/');
                         <?php foreach ($all as $k => $v): ?>
                             <div id="<?= $v['slug'] ?>" class="services_item tittle">
                                 <p class="services_item-p">
-	                                <?php if(explode('*' , $v['description'])):?>
-		                                <?php $serv = explode('*' , $v['description']);?>
-		                                <?= $serv[0]?>
-	                                <?php else:?>
-		                                <?=$v['description'];?>
-	                                <?php endif;?>
+	                                <?=$v['description'];?>
                                 </p>
                                 <ul class="services_item-ul">
-                                    <?php if($serv[0]):?>
-	                                    <?php $i=0; foreach ($serv as $key => $value):?>
-	                                        <?php if($i):?>
-		                                    <li class="services_item-li"><?= $value;?><a
-					                                    href="<?= Url::to(['single-service', 'slug' => $v['slug']]) ?>"
-					                                    class="services_item-more">Подробнее</a></li>
-	                                        <?php endif;?>
-	                                    <?php $i++; endforeach;?>
-	                                <?php endif;?>
+                                    <?php if(explode(',' , $v['file'])):?>
+	                                    <?php $serv = explode('*' , $v['file']);?>
+                                        <?php if($serv):?>
+		                                    <?php foreach ($serv as $key => $value):?>
+			                                    <li class="services_item-li"><?= $value;?><a
+						                                    href="<?= Url::to(['single-service', 'slug' => $v['slug']]) ?>"
+						                                    class="services_item-more">Подробнее</a></li>
+		                                    <?php endforeach;?>
+                                        <?php endif;?>
+                                    <?php endif;?>
                                 </ul>
                             </div>
                         <?php endforeach; ?>

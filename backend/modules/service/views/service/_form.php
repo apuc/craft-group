@@ -49,7 +49,7 @@ foreach ( $feedback as $key => $value ) {
 	
 	<?=$form->field( $model,'file' )->widget( CKEditor::className(),[
 		'editorOptions' => ElFinder::ckeditorOptions( 'elfinder',['enterMode' => 2, 'forceEnterMode'=>false, 'shiftEnterMode'=>1  ] ),
-	] )->label('Контент и картинки');?>
+	] )->label('Контент и картинки или список услуг');?>
 
 	<?=$form->field( $model,'options' )->dropDownList( [
 		'1' => 'На странице услуги',
