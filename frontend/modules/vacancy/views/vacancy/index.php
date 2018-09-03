@@ -60,28 +60,28 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
 
                     <div class="services-text">
-                        <?php foreach ($all as $key => $value): ?>
-                            <div id="<?= $value['slug'] ?>" class="services_item tittle">
-                                <p class="services_item-p">
-                                    <?= $value['description'] ?>
-                                </p>
-                                <ul class="services_item-ul vacancies_item-ul">
-                                    <li class="services_item-li vacancies-item-li">Требыемый опыт работы - <span
-                                            class="vacancies-ul-span"> не требуется</span></li>
-                                    <li class="services_item-li vacancies-item-li">Полная занятость,<span
-                                            class="vacancies-ul-span"> работа в офисе</span></li>
-                                    <li class="services_item-li vacancies-item-li">Уровень зарплаты - <span
-                                            class="vacancies-ul-span"> от 25 000 до 45 000 руб.</span></li>
-                                </ul>
-                                <a href="<?= Url::to(['single-vacancy', 'slug' => $value['slug']]) ?>"
-                                   class="services_item-more vacancies_item-more">Подробнее</a>
-                            </div>
-                        <?php endforeach; ?>
+	                    <?php foreach ($all as $key => $value):?>
+		                    <div id="<?=$value['slug']?>" class="services_item tittle">
+			                    <p class="services_item-p">
+				                    <?php if(explode('*' , $value['description'])):?>
+					                    <?php $serv = explode('*' , $value['description']);?>
+					                    <?= $serv[0]?>
+				                    <?php else:?>
+					                    <?=$value['description'];?>
+				                    <?php endif;?>
+			                    </p>
+			                    <ul class="services_item-ul vacancies_item-ul">
+				                    <li class="services_item-li vacancies-item-li">Требуемый опыт работы - <span class="vacancies-ul-span"> <?=$serv[1] ?? '';?></span></li>
+				                    <li class="services_item-li vacancies-item-li">Полная занятость,<span class="vacancies-ul-span"> <?=$serv[2] ?? '';?></span></li>
+				                    <li class="services_item-li vacancies-item-li">Уровень зарплаты - <span class="vacancies-ul-span"> <?=$serv[3] ?? '';?></span></li>
+			                    </ul>
+			                    <a href="<?=Url::to(['single-vacancy', 'slug' => $value['slug']])?>" class="services_item-more vacancies_item-more">Подробнее</a>
+		                    </div>
+	                    <?php endforeach;?>
 
                         <?php preg_match('|<div class="conditions">(.*?)</div>|isU', $vacancy[0]['file'], $match);
                         ?>
-                        <!--						--><? //=$match[1]?>
-
+	                    
                     </div>
                 </div>
 
