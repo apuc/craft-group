@@ -26,8 +26,6 @@ class AppAsset extends AssetBundle
 	    'https://assets.pinterest.com/js/pinit.js',
 	    'js/slick.min.js',
 	    'js/jquery.dotdotdot.js',
-	    'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css',
-	    'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css',
 //	    'js/fine-uploader.min.js',
 	    'js/jquery.inputmask.bundle.js',
 	    'js/phone.js',
@@ -40,7 +38,6 @@ class AppAsset extends AssetBundle
 	    'js/slick-feedback.js',
 	    'js/allservices.js',
 	    'js/script.min.js',
-	    'js/PhotoSw.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
