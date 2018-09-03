@@ -17,6 +17,7 @@ use common\models\BlogSlider;
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
 PortfolioAsset::register($this);
+$home = (Url::home(true));
 
 $img = Url::to('@web/img/');
 ?>
@@ -66,8 +67,8 @@ $img = Url::to('@web/img/');
 								<?php if($i <= $count - 1):?>
 									<div class="grid-item">
 										<figure class="photoGrid">
-											<a href="<?=$value['file']?>" data-size="<?=getimagesize ($value['file'])[0].'x'.
-											getimagesize ($value['file'])[1]?>">
+											<a href="<?=$value['file']?>" data-size="<?=getimagesize ($home.$value['file'])[0].'x'.
+											getimagesize ($home.$value['file'])[1]?>">
 												<img src="<?=$value['file']?>">
 											</a>
 										</figure>
