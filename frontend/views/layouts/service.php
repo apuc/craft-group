@@ -12,6 +12,7 @@
 use cybercog\yii\googleanalytics\widgets\GATracking;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
+use frontend\assets\PortfolioAsset;
 use yii\helpers\Url;
 use backend\modules\contacts\models\Contacts;
 
@@ -25,8 +26,12 @@ $about = Yii::$app->cache->getOrSet("about", function (){
 return \common\models\Menu::find()->where(['page'=>'about'])->limit(7)->all();});
 $menu = Yii::$app->cache->getOrSet("menu", function (){
 return \common\models\Menu::find()->where(['page'=> 'other'])->orderBy(['position'=> SORT_ASC])->limit(7)->all();});
+if(Url::to() == '/portfolio') {
+	PortfolioAsset::register($this);
+} else {
+	AppAsset::register($this);
+}
 
-AppAsset::register($this);
 
 $active = Url::to();
 if(explode('/',$active)) {
