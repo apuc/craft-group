@@ -32,7 +32,6 @@ class PortfolioAsset extends AssetBundle
 		'js/jquery.dotdotdot.js',
 		'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js',
 		'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js',
-		'js/PhotoSw.js',
 //	    'js/fine-uploader.min.js',
 		'js/jquery.inputmask.bundle.js',
 		'js/phone.js',
@@ -45,6 +44,7 @@ class PortfolioAsset extends AssetBundle
 		'js/slick-feedback.js',
 		'js/allservices.js',
 		'js/script.min.js',
+		'js/PhotoSw.js',
 	];
 	public $depends = [
 		'yii\web\YiiAsset',
