@@ -62,13 +62,13 @@ $img = Url::to('@web/img/');
                                 </p>
                                 <ul class="services_item-ul">
                                     <?php if($serv[0]):?>
-	                                    <?php  foreach ($serv as $key => $value):?>
-	                                        <?php if(!$key[0]):?>
+	                                    <?php $i=0; foreach ($serv as $key => $value):?>
+	                                        <?php if($i):?>
 		                                    <li class="services_item-li"><?= $value;?><a
 					                                    href="<?= Url::to(['single-service', 'slug' => $v['slug']]) ?>"
 					                                    class="services_item-more">Подробнее</a></li>
 	                                        <?php endif;?>
-	                                    <?php endforeach;?>
+	                                    <?php $i++; endforeach;?>
 	                                <?php endif;?>
                                 </ul>
                             </div>
