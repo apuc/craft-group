@@ -56,11 +56,17 @@ $img = Url::to('@web/img/');
 	                                <?=$v['description'];?>
                                 </p>
                                 <ul class="services_item-ul">
-                                    
-	                                    <li class="services_item-li"><?= $v['file'];?><a
+	                                <?php if(explode(',' , $value['description'])):?>
+		                                <?php $serv = explode(',' , $value['description']);?>
+		                                <?= $serv[0]?>
+	                                <?php else:?>
+	                                    <?= $v['file']?>
+	                                <?php endif;?>
+	                                <?php foreach ($serv as $key => $value): ?>
+	                                    <li class="services_item-li"><?= $value;?><a
 				                                    href="<?= Url::to(['single-service', 'slug' => $v['slug']]) ?>"
 				                                    class="services_item-more">Подробнее</a></li>
-		                                
+		                                <?php endforeach;?>
                                 </ul>
                             </div>
                         <?php endforeach; ?>
