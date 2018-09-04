@@ -14,6 +14,7 @@ use himiklab\thumbnail\EasyThumbnailImage;
 
 $img = Url::to('@web/img/');
 $n         = 0;
+$home = (Url::home(true));
 ?>
 <?php  foreach($more as $key => $value):?>
 	<?php $n++;?>
