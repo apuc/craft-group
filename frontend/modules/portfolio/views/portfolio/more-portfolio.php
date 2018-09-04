@@ -10,6 +10,7 @@
  */
 
 use yii\helpers\Url;
+use himiklab\thumbnail\EasyThumbnailImage;
 
 $img = Url::to('@web/img/');
 $n         = 0;
@@ -31,7 +32,11 @@ $n         = 0;
 					<img src="<?=$img?>/full-size.svg" width="20" height="20" alt="">
 				</span>
 		</a>
-		<img class="grid-item__img" src="<?=$value->file?>">
+		<?= EasyThumbnailImage::thumbnailImg(
+			$home . $value['file'],
+			getimagesize ($home.$value['file'])[0],
+			getimagesize ($home.$value['file'])[1],
+			EasyThumbnailImage::THUMBNAIL_OUTBOUND); ?>
 		<div class="grid-item__links">
 			<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true"><img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px; border-radius: 50%;"></a>
 		</div>
