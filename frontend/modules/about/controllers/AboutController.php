@@ -48,7 +48,7 @@ class AboutController extends Controller
     public function actionIndex()
     {
 	    $blog = Yii::$app->cache->getOrSet("blog", function (){
-		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
+		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();});
 	    $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
         $dataProvider = new ActiveDataProvider([
             'query' => About::find(),

@@ -44,7 +44,7 @@ class PortfolioController extends Controller
     public function actionIndex()
     {
 	    $blog = Yii::$app->cache->getOrSet("portfolio_blog", function (){
-		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
+		    return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();});
 	    $b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
     	$dataProvider = new ActiveDataProvider([
             'query' => Portfolio::find(),
@@ -95,7 +95,7 @@ class PortfolioController extends Controller
 	public function actionSinglePortfolio($slug)
 	{
 		$blog = Yii::$app->cache->getOrSet("portfolio_single_blog", function (){
-			return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->limit(7)->all();});
+			return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();});
 		$b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
 		$portfolio = Portfolio::find()
 		                      ->where(['slug'=>$slug])
