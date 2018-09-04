@@ -78,8 +78,6 @@ $img = Url::to('@web/img/');
 
 										</a>
 										<img class="grid-item__img" src="<?=$value['file']?>">
-										<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark">
-										</a>
 										<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true"><img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px;"></a>
 									</div>
 									<?php $i++; endif;?>
