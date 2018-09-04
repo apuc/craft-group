@@ -17,7 +17,6 @@ use cybercog\yii\googleanalytics\widgets\GATracking;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use yii\helpers\Url;
-use Yii;
 
 $contacts = Yii::$app->cache->getOrSet("contacts", function (){
 return \backend\modules\contacts\models\Contacts::find()->asArray()->all();});
