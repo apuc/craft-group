@@ -20,7 +20,7 @@ use yii\helpers\Url;
 use Yii;
 
 $contacts = Yii::$app->cache->getOrSet("contacts", function (){
-return \backend\modules\contacts\models\Contacts::find()->asArray()->limit(30)->all();});
+return \backend\modules\contacts\models\Contacts::find()->asArray()->all();});
 $phone = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'phone'])->one();
 $email = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'email'])->one();
 $logo = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'logo'])->one();
