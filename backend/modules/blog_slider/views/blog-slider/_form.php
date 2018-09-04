@@ -53,7 +53,7 @@ PreviewAsset::register($this);
 
     <?= $form->field($model, 'slug')->hiddenInput(['maxlength' => true, 'hidden' => true])->label(false)?>
 
-    <?= $form->field($model, 'date')->hiddenInput(['value'=> date('Y-m-d H:i:s') ])->label(false) ?>
+    <?= $form->field($model, 'date')->hiddenInput(['value'=> ($model->date) ? $model->date : date('Y-m-d H:i:s') ])->label(false) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('blog', 'Save'), ['class' => 'btn btn-success']) ?>
