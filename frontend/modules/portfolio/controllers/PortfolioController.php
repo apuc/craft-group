@@ -54,7 +54,7 @@ class PortfolioController extends Controller
 								->where(['!=', 'h1', 'all'])
 								->andWhere(['!=', 'h1', 'brief'])
 								->asArray()
-								->limit(7)
+								->limit(15)
 								->all();});
 	    $title = Yii::$app->cache->getOrSet("portfolio_page_meta_title", function (){
 		    return KeyValue::getValue('portfolio_page_meta_title');});
