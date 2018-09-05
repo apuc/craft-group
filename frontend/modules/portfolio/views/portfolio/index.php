@@ -80,19 +80,6 @@ $img = Url::to('@web/img/');
 
 										</a>
 										<?php
-										if(getimagesize ($home.$value['file'])[1] > 450)
-										{
-											$height = 450;
-										}else {
-											$height = getimagesize ($home.$value['file'])[1];
-										}
-										$width = 510;
-										?>
-<!--										--><?php//= EasyThumbnailImage::thumbnailImg(
-//											$home . $value['file'],
-//											$width, $height,
-//											EasyThumbnailImage::THUMBNAIL_OUTBOUND, ['class' => 'grid-item__img']); ?>
-										<?php
 										$image = Yii::getAlias('@frontend/web/uploads/global/'.rawurldecode(basename($value['file'])));
 										Imagick::open($image)->resize(510, false)->saveTo(Yii::getAlias('@frontend/web/uploads/thumbnail/'.rawurldecode(basename($value['file']))));
 										
