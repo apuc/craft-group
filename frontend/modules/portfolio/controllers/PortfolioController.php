@@ -64,8 +64,6 @@ class PortfolioController extends Controller
 		    return KeyValue::getValue('portfolio_page_meta_desc');});
 	    $count = Yii::$app->cache->getOrSet("portfolio_count", function (){
 		    return KeyValue::getValue('portfolio_count');});
-	    $more = Yii::$app->cache->getOrSet("portfolio_more", function (){
-		    return KeyValue::getValue('portfolio_more');});
 	    if(!$count){
 	    	$count = 5;
 	    };
@@ -92,7 +90,7 @@ class PortfolioController extends Controller
 	    Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("portfolio_og_type", function (){
 		    return KeyValue::getValue('portfolio_og_type');});
         return $this->render('index', [
-            'dataProvider' => $dataProvider, 'portfolio' => $portfolio, 'title' => $title, 'count' => $count, 'blog'=>$blog, 'b_cur' => $b_cur, 'more'=>$more,
+            'dataProvider' => $dataProvider, 'portfolio' => $portfolio, 'title' => $title, 'count' => $count, 'blog'=>$blog, 'b_cur' => $b_cur,
         ]);
     }
     
@@ -120,12 +118,14 @@ class PortfolioController extends Controller
 	
 	public function actionMore() {
 		if ( isset( $_POST ) ) {
+			$get_more = Yii::$app->cache->getOrSet("portfolio_more", function (){
+				return KeyValue::getValue('portfolio_more');});
 			$offset = ( $_POST['inpage'] *  $_POST['page'] ) - $_POST['inpage'];
 			$more   = Portfolio::find()
 			                    ->where( [ '!=','h1','all' ] )
 			                    ->andWhere( [ '!=','h1','brief' ] )
 			                    ->offset( $offset )
-			                    ->limit($_POST['inpage'])
+			                    ->limit(($get_more) ? $get_more : $_POST['inpage'])
 			                    ->all();
 		}
 		
