@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use  yii\helpers\Url;
 use common\models\BlogSlider;
 use himiklab\thumbnail\EasyThumbnailImage;
+use tpmanc\imagick\Imagick;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -87,11 +88,12 @@ $img = Url::to('@web/img/');
 										}
 										$width = 510;
 										?>
-										<?= EasyThumbnailImage::thumbnailImg(
-											$home . $value['file'],
-											$width, $height,
-											EasyThumbnailImage::THUMBNAIL_OUTBOUND, ['class' => 'grid-item__img']); ?>
-<!--										--><?php //=Imagick::open($home.$value['file'])->resize(510, false)->saveTo($home.'/uploads/thumbnail/'.basename($value['file']));?>
+<!--										--><?php//= EasyThumbnailImage::thumbnailImg(
+//											$home . $value['file'],
+//											$width, $height,
+//											EasyThumbnailImage::THUMBNAIL_OUTBOUND, ['class' => 'grid-item__img']); ?>
+										<?php Imagick::open(Yii::getAlias('@frontend/web/'.$value['file']))->resize(510, false)->saveTo(Yii::getAlias('@frontend/web/uploads/thumbnail/'.basename($value['file'])));?>
+										<img class="grid-item__img" src="<?=$home.'uploads/thumbnail/'.basename($value['file'])?>">
 										<div class="grid-item__links">
 											<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true"><img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px; border-radius: 50%;"></a>
 										</div>
