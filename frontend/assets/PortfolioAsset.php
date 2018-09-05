@@ -24,7 +24,7 @@ class PortfolioAsset extends AssetBundle
 		'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css',
 	];
 	public $js = [
-//    	'js/jquery-3.2.1.min.js',
+    	'js/jquery-3.2.1.min.js',
 		'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js',
 		'https://assets.pinterest.com/js/pinit.js',
 		'js/slick.min.js',
@@ -38,10 +38,10 @@ class PortfolioAsset extends AssetBundle
 		'js/imagesloaded.pkgd.min.js',
 		'js/masonry.pkgd.min.js',
 		'js/main.js',
-		'js/jquery.sticky-sidebar.js',
-		'js/sticky-script.js',
+//		'js/jquery.sticky-sidebar.js',
+//		'js/sticky-script.js',
 		'js/slick-feedback.js',
-		'js/allservices.js',
+//		'js/allservices.js',
 		'js/script.min.js',
 		'js/PhotoSw.js',
 	];
