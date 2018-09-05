@@ -129,7 +129,7 @@ return [
 	    /*Thumbnail image*/
         'thumbnail' => [
 	        'class' => 'himiklab\thumbnail\EasyThumbnail',
-	        'cacheAlias' => 'assets/gallery_thumbnails',
+	        'cacheAlias' => 'uploads/thumbnail',
         ],
     ],
     'params' => $params,
