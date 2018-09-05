@@ -66,6 +66,11 @@ $img = Url::to('@web/img/');
 						<?php if($portfolio):?>
 							<?php $i = 0; foreach ($portfolio as $key => $value):?>
 								<?php if($i <= $count - 1):?>
+									<?php
+										$path = str_replace(basename($value['file']), '', $value['file']);
+										$image = Yii::getAlias('@frontend/web/'.$path.rawurldecode(basename($value['file'])));
+										Imagick::open($image)->resize(300, false)->saveTo(Yii::getAlias('@frontend/web/uploads/thumbnail/'.rawurldecode(basename($value['file']))));
+									?>
 									<div class="grid-item">
 										<figure class="photoGrid">
 											<?php $w = getimagesize($home.$value['file'])[0];
