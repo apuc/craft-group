@@ -84,16 +84,12 @@ $img = Url::to('@web/img/');
 										$image = Yii::getAlias('@frontend/web/'.$path.rawurldecode(basename($value['file'])));
 										Imagick::open($image)->resize(300, false)->saveTo(Yii::getAlias('@frontend/web/uploads/thumbnail/'.rawurldecode(basename($value['file']))));
 										?>
-<!--										<img class="grid-item__img" src="--><?php//=$home.'uploads/thumbnail/'.basename($value['file'])?><!--">-->
+										<img class="grid-item__img" src="<?php//=$home.'uploads/thumbnail/'.basename($value['file'])?>">
 										<?php
 										$width = getimagesize(Yii::getAlias('@frontend/web/uploads/thumbnail/'.rawurldecode(basename($value['file']))))[0];
 										$height = getimagesize(Yii::getAlias('@frontend/web/uploads/thumbnail/'.rawurldecode(basename($value['file']))))[1];
 										
 										?>
-										<?= EasyThumbnailImage::thumbnailImg(
-											$home.'uploads/thumbnail/'.basename($value['file']),
-											$width, $height,
-											EasyThumbnailImage::THUMBNAIL_OUTBOUND, ['class' => 'grid-item__img']); ?>
 										<div class="grid-item__links">
 											<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true"><img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px; border-radius: 50%;"></a>
 										</div>
