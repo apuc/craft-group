@@ -87,10 +87,11 @@ $img = Url::to('@web/img/');
 										}
 										$width = 510;
 										?>
-										<?= EasyThumbnailImage::thumbnailImg(
-											$home . $value['file'],
-											$width, getimagesize ($home.$value['file'])[1],
-											EasyThumbnailImage::THUMBNAIL_OUTBOUND, ['class' => 'grid-item__img']); ?>
+<!--										--><?//= EasyThumbnailImage::thumbnailImg(
+//											$home . $value['file'],
+//											$width, getimagesize ($home.$value['file'])[1],
+//											EasyThumbnailImage::THUMBNAIL_OUTBOUND, ['class' => 'grid-item__img']); ?>
+										<?=Imagick::open($home.$value['file'])->resize(510, false)->saveTo($home.'/uploads/thumbnail/'.basename($value['file']));?>
 										<div class="grid-item__links">
 											<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true"><img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px; border-radius: 50%;"></a>
 										</div>
