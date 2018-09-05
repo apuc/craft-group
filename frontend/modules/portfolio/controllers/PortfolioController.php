@@ -64,9 +64,13 @@ class PortfolioController extends Controller
 		    return KeyValue::getValue('portfolio_page_meta_desc');});
 	    $count = Yii::$app->cache->getOrSet("portfolio_count", function (){
 		    return KeyValue::getValue('portfolio_count');});
+	    $more = Yii::$app->cache->getOrSet("portfolio_more", function (){
+		    return KeyValue::getValue('portfolio_more');});
 	    if(!$count){
 	    	$count = 5;
 	    };
+	    
+	    
 	    \Yii::$app->view->registerMetaTag([
 		    'name' => 'description',
 		    'content' => $desc,
@@ -88,7 +92,7 @@ class PortfolioController extends Controller
 	    Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("portfolio_og_type", function (){
 		    return KeyValue::getValue('portfolio_og_type');});
         return $this->render('index', [
-            'dataProvider' => $dataProvider, 'portfolio' => $portfolio, 'title' => $title, 'count' => $count, 'blog'=>$blog, 'b_cur' => $b_cur,
+            'dataProvider' => $dataProvider, 'portfolio' => $portfolio, 'title' => $title, 'count' => $count, 'blog'=>$blog, 'b_cur' => $b_cur, 'more'=>$more,
         ]);
     }
     

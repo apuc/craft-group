@@ -13,6 +13,7 @@ use tpmanc\imagick\Imagick;
  * @var $portfolio array
  * @var $title string
  * @var $count integer
+ * @var $more integer
  */
 
 $this->title = $title;
@@ -95,7 +96,7 @@ $img = Url::to('@web/img/');
 					</div>
 				</div>
 
-				<button type="button" class="more_btn" id="curButton"  data-inpage="<?=$count?>"  data-page="1">Загрузить ещё</button>
+				<button type="button" class="more_btn" id="curButton"  data-inpage="<?=($more) ? $more : $count?>"  data-page="1">Загрузить ещё</button>
 			</div>
 
 		</div>
