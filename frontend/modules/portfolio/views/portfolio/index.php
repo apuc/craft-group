@@ -88,10 +88,10 @@ $img = Url::to('@web/img/');
 										}
 										$width = 510;
 										?>
-										<?php//= EasyThumbnailImage::thumbnailImg(
-											//$home . $value['file'],
-										//	$width, $height,
-										//	EasyThumbnailImage::THUMBNAIL_OUTBOUND, ['class' => 'grid-item__img']); ?>
+<!--										--><?php//= EasyThumbnailImage::thumbnailImg(
+//											$home . $value['file'],
+//											$width, $height,
+//											EasyThumbnailImage::THUMBNAIL_OUTBOUND, ['class' => 'grid-item__img']); ?>
 										<?php
 										$image = Yii::getAlias('@frontend/web/uploads/global/'.rawurldecode(basename($value['file'])));
 										Imagick::open($image)->resize(510, false)->saveTo(Yii::getAlias('@frontend/web/uploads/thumbnail/'.rawurldecode(basename($value['file']))));
