@@ -80,9 +80,9 @@ $img = Url::to('@web/img/');
 
 										</a>
 										<?php
-										$image = Yii::getAlias('@frontend/web/uploads/global/'.rawurldecode(basename($value['file'])));
+										$path = str_replace(basename($value['file']), '', $value['file']);
+										$image = Yii::getAlias('@frontend/web/'.$path.rawurldecode(basename($value['file'])));
 										Imagick::open($image)->resize(510, false)->saveTo(Yii::getAlias('@frontend/web/uploads/thumbnail/'.rawurldecode(basename($value['file']))));
-										
 										?>
 										<img class="grid-item__img" src="<?=$home.'uploads/thumbnail/'.basename($value['file'])?>">
 										<div class="grid-item__links">

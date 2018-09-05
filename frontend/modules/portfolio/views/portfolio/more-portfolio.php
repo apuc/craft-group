@@ -11,6 +11,7 @@
 
 use yii\helpers\Url;
 use himiklab\thumbnail\EasyThumbnailImage;
+use tpmanc\imagick\Imagick;
 
 $img = Url::to('@web/img/');
 $n         = 0;
@@ -34,18 +35,11 @@ $home = (Url::home(true));
 				</span>
 		</a>
 		<?php
-			if(getimagesize ($home.$value['file'])[1] > 450)
-			{
-				$height = 450;
-			}else {
-				$height = getimagesize ($home.$value['file'])[1];
-			}
-			$width = 510;
+		$path = str_replace(basename($value['file']), '', $value['file']);
+		$image = Yii::getAlias('@frontend/web/'.$path.rawurldecode(basename($value['file'])));
+		Imagick::open($image)->resize(510, false)->saveTo(Yii::getAlias('@frontend/web/uploads/thumbnail/'.rawurldecode(basename($value['file']))));
 		?>
-		<?= EasyThumbnailImage::thumbnailImg(
-			$home . $value['file'],
-			$width, $height,
-			EasyThumbnailImage::THUMBNAIL_OUTBOUND, ['class' => 'grid-item__img']); ?>
+		<img class="grid-item__img" src="<?=$home.'uploads/thumbnail/'.basename($value['file'])?>">
 		<div class="grid-item__links">
 			<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true"><img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px; border-radius: 50%;"></a>
 		</div>
