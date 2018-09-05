@@ -19,7 +19,7 @@ $home = (Url::home(true));
 ?>
 <?php  foreach($more as $key => $value):?>
 	<?php $n++;?>
-	<div class="grid-item">
+	<div class="grid-item grid-item_hidden">
 		<a class="grid-item__watch" href="<?=Url::to(['single-portfolio', 'slug' => $value->slug])?>">
 			Посмотреть работу
 		</a>
