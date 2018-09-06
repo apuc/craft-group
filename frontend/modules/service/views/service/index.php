@@ -71,6 +71,25 @@ $img = Url::to('@web/img/');
 
                 </div>
 
+	            <div class="services-mobile">
+		            <?php foreach ($all as $k => $v): ?>
+			            <div class="btn_services-mob">
+				            <h2>SMM и Digital design</h2>
+			            </div>
+			            <div class="services_item-mob flipIn">
+				            <p class="services_item-p"> <?=$v['description'];?></p>
+				            <ul class="services_item-ul-mob">
+					            <?php if(explode(',' , $v['file'])):?>
+						            <?php $serv = explode(',' , $v['file']);?>
+					            <?php endif;?>
+					            <?php foreach ($serv as $key => $value): ?>
+					                <li><a href="<?= Url::to(['single-service', 'slug' => $v['slug']]) ?>" class="services_item-more-mob"><?= $value;?></a></li>
+					            <?php endforeach;?>
+				            </ul>
+			            </div>
+		            <?php endforeach;?>
+	            </div>
+
                 <div class="novelty">
                     <?= $service[2]['file'] ?>
 
