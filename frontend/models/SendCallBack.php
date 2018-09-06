@@ -72,8 +72,7 @@ class SendCallBack extends Model {
 		Yii::$app->mailer->compose()
 		                         ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
 		                         ->setTo([
-			                         'shlykovn@mail.ru',
-//					                         Yii::$app->params['adminEmail'],
+					                         Yii::$app->params['adminEmail'],
 		                         ])
 		                         ->setSubject($subject)
 //                    ->setTextBody($message)
