@@ -51,8 +51,10 @@ $img = Url::to('@web/img/');
 							<h3 class="service-smm__other-title">Другие услуги нашей студии</h3>
 							<?php foreach ($services as $key => $value):?>
 								<div class="other__item other__item_design">
-									<span class="other__item_desc"><?=$value->title?></span>
-									<a class="gallery__block-link" href="<?=Url::to($value->slug)?>">Посмотреть</a>
+									<div class="other-item-block">
+										<span class="other__item_desc"><?=$value->title?></span>
+										<a class="gallery__block-link" href="<?=Url::to($value->slug)?>">Посмотреть</a>
+									</div>
 									<img class="smm-item-img" src="<?=$value->img ?? $img.'/service1.png'?>" height="170">
 								</div>
 							<?php endforeach;?>
