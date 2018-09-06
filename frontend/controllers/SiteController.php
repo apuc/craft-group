@@ -385,7 +385,7 @@ class SiteController extends Controller
 				$model->sendMail($message, $model->subject);
 				$result = [
 					'result'  => 'success',
-					'message' => 'Ваше сообщение успешно отправлено'
+					'message' => 'Ваша заявка отправлена!'
 				];
 			} else {
 				$result = [

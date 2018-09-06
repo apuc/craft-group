@@ -361,6 +361,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 				if(res.result == 'success') {
 					$('#send_phone').trigger('reset');
 					$('.fancybox-close-small').click();
+					alert(res.message);
 				} else {
 					alert(res.message);
 				}
