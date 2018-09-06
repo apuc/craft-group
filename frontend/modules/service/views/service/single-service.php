@@ -55,7 +55,7 @@ $img = Url::to('@web/img/');
 										<span class="other__item_desc"><?=$value->title?></span>
 										<a class="gallery__block-link" href="<?=Url::to($value->slug)?>">Посмотреть</a>
 									</div>
-									<img class="smm-item-img" src="<?=$value->img ?? $img.'/service1.png'?>" height="170">
+									<img class="smm-item-img" src="<?=$value->img ?? $img.'service1.png'?>" height="170">
 								</div>
 							<?php endforeach;?>
 						</div>
