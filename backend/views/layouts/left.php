@@ -53,6 +53,8 @@
 	                 'url' => ['/vacancy/vacancy']],
 	                ['label' => Yii::t('myths', 'Myths'), 'icon' => 'far fa-comments',
 	                 'url' => ['/myths/myths']],
+	                ['label' => Yii::t('call_back', 'Call'), 'icon' => 'fas fa-mobile',
+	                 'url' => ['/call_back/call-back']],
 	                [
 		                'label' => 'SEO',
 		                'icon' => 'fas fa-wrench',
