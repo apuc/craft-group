@@ -85,21 +85,52 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
 
+	            <div class="services-mobile">
+		            <?php foreach ($all as $key => $value):?>
+			            <div class="btn_services-mob">
+				            <h2><?=$value['title']?></h2>
+			            </div>
+			            <div class="services_item-mob flipIn">
+				            <p class="services_item-p">
+					            <?php if(explode('*' , $value['description'])):?>
+						            <?php $serv = explode('*' , $value['description']);?>
+						            <?= $serv[0]?>
+					            <?php else:?>
+						            <?=$value['description'];?>
+					            <?php endif;?>
+				            </p>
+				            <div class="services_item-mob mt-1">
+					            <p>Требыемый опыт работы - </p>
+					            <p><?=$serv[1] ?? '';?></p>
+				            </div>
+				            <div class="services_item-mob">
+					            <p>Полная занятость,</p>
+					            <p><?=$serv[2] ?? '';?></p>
+				            </div>
+				            <div class="services_item-mob mb-1">
+					            <p>Уровень зарплаты - </p>
+					            <p><?=$serv[3] ?? '';?></p>
+				            </div>
+				            <a href="<?=Url::to(['single-vacancy', 'slug' => $value['slug']])?>" class="services_more-mob">Подробнее</a>
+			            </div>
+		            <?php endforeach;?>
+	            </div>
+
 
                 <div class="novelty vacancies-novelty">
                     <img class="novelty__img vacancies-novelty-img" src="img/mans.png" width="535" height="500" alt="">
 
-                    <div class="novelty__desc vacancies-novelty-desc">
+                    <div class="novelty__desc">
                         <div class="novelty__head">
                             <h2 class="novelty__big-title novelty-red-title vacancies-novelty-title">Стажировка</h2>
                         </div>
-                        <div class="novelty__body">
+                        <div class="novelty__body vacancies-body">
                             <h3 class="novelty__title vacancies-title"><span class="novelty__title_gray">Учим</span>
                                 <span
                                     class="novelty__title_red novelty-black-title">Командная работа, опытный ментор</span>
                             </h3>
                             <h3 class="novelty__title vacancies-title novelty__title_margin">Прокачиваем</h3>
-                            <p class="novelty__text novelty-text">В офисе вам дадут индивидуальную программу развития,
+                            <p class="novelty__text vacancies-text">В офисе вам дадут индивидуальную программу развития,
                                 стол, стул и наставника (свой компьютер приветствуется).
                                 Взамен, заберут ваше время и ваши руки. ВАЖНО это не курсы программирования. Технические
                                 аспекты вы учите самостоятельно. Мы курируем,
