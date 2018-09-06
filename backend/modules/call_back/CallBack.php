@@ -5,7 +5,7 @@ namespace backend\modules\call_back;
 /**
  * call_back module definition class
  */
-class call_back extends \yii\base\Module
+class callBack extends \yii\base\Module
 {
     /**
      * {@inheritdoc}

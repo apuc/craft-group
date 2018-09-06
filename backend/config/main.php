@@ -45,6 +45,9 @@ return [
 	    'myths' => [
 		    'class' => 'backend\modules\myths\myths',
 	    ],
+	    'call_back' => [
+		    'class' => 'backend\modules\call_back\CallBack',
+	    ],
     ],
     'components' => [
         'request' => [

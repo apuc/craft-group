@@ -8,7 +8,6 @@ use backend\modules\call_back\controllers\CallBackSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
  * CallBackController implements the CRUD actions for CallBack model.
@@ -26,20 +25,6 @@ class CallBackController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
-            ],
-            'access' => [
-	            'class' => AccessControl::className(),
-	            'rules' => [
-		            [
-			            'actions' => ['login', 'error'],
-			            'allow' => true,
-		            ],
-		            [
-			            'actions' => ['logout', 'index', 'view', 'create', 'update'],
-			            'allow' => true,
-			            'roles' => ['@'],
-		            ],
-	            ],
             ],
         ];
     }
