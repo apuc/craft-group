@@ -372,13 +372,13 @@ AppAsset::register($this);
                     <?php if ($value['name'] == 'social') { ?>
                         <?php switch ($value['file']) {
                             case 'vk':
-                                echo '<a href="' . $value['description'] . '" class="fab">' . $vk . '</a>';
+                                echo '<a href="' . $value['description'] . '" target="blank" class="fab">' . $vk . '</a>';
                                 break;
                             case 'facebook':
-                                echo '<a href="' . $value['description'] . '" class="fab">' . $fb . '</a>';
+                                echo '<a href="' . $value['description'] . '" target="blank" class="fab">' . $fb . '</a>';
                                 break;
                             case 'instagram':
-                                echo '<a href="' . $value['description'] . '" class="fab">' . $inst . '</a>';
+                                echo '<a href="' . $value['description'] . '" target="blank" class="fab">' . $inst . '</a>';
                                 break;
                         }
                         ?>
