@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
     	'js/jquery-3.2.1.min.js',
+	    'js/jquery.fancybox.js',
 	    'https://assets.pinterest.com/js/pinit.js',
 	    'js/slick.min.js',
 	    'js/jquery.dotdotdot.js',
@@ -34,7 +35,6 @@ class AppAsset extends AssetBundle
 	    'js/phone-ru.js',
 	    'js/imagesloaded.pkgd.min.js',
 	    'js/masonry.pkgd.min.js',
-	    'js/jquery.fancybox.js',
 	    'js/main.js',
 	    'js/jquery.sticky-sidebar.js',
 	    'js/sticky-script.js',
