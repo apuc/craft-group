@@ -392,6 +392,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
                 $('.more_btn').attr('data-page', count);
                 $('.grid_p').append($response).imagesLoaded(function () {
 	                $('div.grid-item').removeClass('grid-item_hidden');
+	                $('div.sk-fading-circle').removeClass('sk-fading-circle-active');
                     $('.grid_p').masonry('appended', $response, true);
                 });
                 if ($('#countItems').val() == 0) {
