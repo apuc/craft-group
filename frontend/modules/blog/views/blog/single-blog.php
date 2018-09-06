@@ -51,7 +51,7 @@ $img = Url::to('@web/img/');
 								<?php if($all):?>
 									<div class="blog-single__gallery">
 										<img class="blog-item-img" src="<?=$all->file?>" height="210"?>
-										<a class="blog__link" href="<?=Url::to(['/blog']);?>"><?=$all->title?></a>
+										<a class="blog__link" href="<?=Url::to(['/blog']);?>"><span class="blog-link-pc"><?=$all->title?></span><span class="blog-link-mob">Все новости</span></a>
 									</div>
 								<?php endif;?>
 								<div class="blog-single__other">
