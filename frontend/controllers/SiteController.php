@@ -396,7 +396,6 @@ class SiteController extends Controller
 			// возвращаем результат
 			\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-
 			return $result;
 		}
 	}
