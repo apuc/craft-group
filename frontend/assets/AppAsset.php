@@ -24,7 +24,7 @@ class AppAsset extends AssetBundle
 	    'css/fine-uploader-gallery.css',
     ];
     public $js = [
-    	'js/jquery-3.2.1.min.js',
+	    'js/jquery-3.2.1.min.js',
 	    'js/jquery.fancybox.js',
 	    'https://assets.pinterest.com/js/pinit.js',
 	    'js/slick.min.js',
@@ -33,10 +33,12 @@ class AppAsset extends AssetBundle
 	    'js/jquery.inputmask.bundle.js',
 	    'js/phone.js',
 	    'js/phone-ru.js',
+	    'js/sticky-sidebar.js',
 	    'js/imagesloaded.pkgd.min.js',
 	    'js/masonry.pkgd.min.js',
 	    'js/main.js',
 	    'js/jquery.sticky-sidebar.js',
+//	    'js/jquery.fancybox.js',
 	    'js/sticky-script.js',
 	    'js/slick-feedback.js',
 	    'js/allservices.js',
