@@ -344,13 +344,13 @@ if(explode('/',$active)) {
 						<?php
 							switch($value['file']){
 								case 'vk':
-									echo '<a href="'.$value['description'].'" class="fab">'.$vk.'</a>';
+									echo '<a href="'.$value['description'].'" target="_blank" class="fab">'.$vk.'</a>';
 									break;
 								case 'facebook':
-									echo '<a href="'.$value['description'].'" class="fab">'.$fb.'</a>';
+									echo '<a href="'.$value['description'].'" target="_blank" class="fab">'.$fb.'</a>';
 									break;
 								case 'instagram':
-									echo '<a href="'.$value['description'].'" class="fab">'.$inst.'</a>';
+									echo '<a href="'.$value['description'].'" target="_blank" class="fab">'.$inst.'</a>';
 									break;
 							}
 						?>

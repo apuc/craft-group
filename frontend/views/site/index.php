@@ -26,7 +26,7 @@ $this->registerJsFile('/js/fine-uploader.min.js');
 
         <div class="animate-circle">
             <p>
-                <a href="https://www.behance.net/CraftGroup"> <img src="img/be.png" alt=""></a>
+                <a href="https://www.behance.net/CraftGroup" target="_blank"> <img src="img/be.png" alt=""></a>
                 <span>Больше уникального дизайна в нашем профиле. Только свежие и качественные работы.</span>
             </p>
         </div>
