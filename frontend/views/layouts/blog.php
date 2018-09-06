@@ -251,6 +251,13 @@ AppAsset::register($this);
                 <button class="header__callback_bottom">Заказать обратный звонок</button>
             </div>
         </div>
+	
+	    <?= \frontend\components\SendCallBackWidget::widget([
+		    'subject' => \frontend\models\SendCallBack::CALLBACK,
+		    'isLabels' => true,
+		    'messageLabel'=>'Сообщение'
+	    ]) ?>
+	    
         <!-- <button class="header__open-btn" type="button">Узнать больше</button> -->
     </div>
     <div class="header__overlay"></div>

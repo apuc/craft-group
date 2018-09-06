@@ -360,6 +360,45 @@ class SiteController extends Controller
         }
 //        return SendForm::sendMail();
     }
+	
+	/*Отправка обратного звонка*/
+	public function actionCallBack()
+	{
+		if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+			
+			$model = new SendCallBack();
+			$post = Yii::$app->request->post();
+			
+			$model->load($post);
+			
+			if ($model->validate()) {
+				
+				$model->save($post);
+				
+				$message = 'Телефон: ' . $model->phone . '<br>';
+				
+				$model->thankMessage .= Html::a(
+					'Следите за нами с социальных сетях ВК ',
+					'https://vk.com/web_craft_group'
+				);
+				$model->sendMail($message, $model->subject);
+				$result = [
+					'result'  => 'success',
+					'message' => 'Ваше сообщение успешно отправлено'
+				];
+			} else {
+				$result = [
+					'result'  => 'error',
+					'message' => 'Возникла ошибка при отправке. Не верно введет телефон'
+				];
+			}
+			// возвращаем результат
+			\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+
+			return $result;
+		}
+	}
 
     public function actionValidate()
     {

@@ -347,6 +347,27 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             }
         });
     });
+
+	/*send phone call_back*/
+	$(document).on('submit', '#send_phone', function (e) {
+		e.preventDefault();
+		var data = $(this).serialize();
+		$.ajax({
+			url: '/site/call-back',
+			type: 'post',
+			data: data,
+			success: function (res) {
+				console.log(res.message);
+				if(res.result == 'success') {
+					$('#send_phone').trigger('reset');
+					$('.fancybox-close-small').click();
+				} else {
+					alert(res.message);
+				}
+			}
+		});
+	});
+
     $(document).on('click', '.brief-massage-close', function (e) {
 	    e.preventDefault();
 	    $('.brief-massage').hide();
