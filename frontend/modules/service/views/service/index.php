@@ -74,7 +74,7 @@ $img = Url::to('@web/img/');
 	            <div class="services-mobile">
 		            <?php foreach ($all as $k => $v): ?>
 			            <div class="btn_services-mob">
-				            <h2>SMM и Digital design</h2>
+				            <h2><?=$v['title']?></h2>
 			            </div>
 			            <div class="services_item-mob flipIn">
 				            <p class="services_item-p"> <?=$v['description'];?></p>
