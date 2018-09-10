@@ -57,7 +57,7 @@ $img = Url::to('@web/img/');
 										<figure class="photoGrid">
 
 											<a href="<?= $value->getFile() ?>"
-											   data-size="<?= $value->getImageOriginal()->getWidth() ?>x<?= $value->getImageOriginal()->getHeight() ?>"></a>
+											   data-size="<?= $value->getImageOriginal()->getWidth() ?>x<?= $value->getImageOriginal()->getHeight() ?>" class="portfolio-open-image"></a>
 											<a href="<?= Url::to(['single-portfolio', 'slug' => $value->slug]) ?>">
 												<img src="<?= $home . $value->getThumbnailUrl() ?>">
 											</a>
