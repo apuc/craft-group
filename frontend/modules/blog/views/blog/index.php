@@ -51,8 +51,7 @@ $img = Url::to('@web/img/');
 									<a href="<?= Url::to(['single-blog', 'slug' => $value->slug]) ?>">
 										<!--										--><?php //preg_match('%<img.*?src=["\'](.*?)["\'].*?/>%i', $value['file'], $matches);
 										//										$imgSrc = $matches[1];?>
-										<?php $value->getImage()?>
-										<img class="blog__block-img" src="<?= $value->getImage() ?>" alt="">
+										<img class="blog__block-img" src="<?= $value->file ?>" alt="">
 									</a>
 
 									<h2 class="blog__block-title">
