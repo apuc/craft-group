@@ -18,6 +18,6 @@ class Blog extends BlogSlider
 {
 	public function getImage()
 	{
-		return file_exists(Yii::getAlias('@frontend/web').$this->file) ? $this->file : Url::to(['@web/images/new/blog3']);	//TODO: вставить заглушку
+		return file_exists(Yii::getAlias('@frontend/web').$this->file) ? $this->file : Url::to(['@web/images/new/blog3.png']);	//TODO: вставить заглушку
 	}
 }
