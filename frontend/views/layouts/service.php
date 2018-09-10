@@ -199,7 +199,7 @@ if(explode('/',$active)) {
                 </svg>
 				<div class="header__callback_text">
 					<span class="header__callback_top"><?=$phone->description ?? ''?></span>
-					<button class="header__callback_bottom">Заказать обратный звонок</button>
+					<a href="#phoneMassage" rel="nofollow" class="header__callback_bottom">Заказать обратный звонок</a>
 				</div>
 			</li>
 		</ul>
@@ -223,7 +223,7 @@ if(explode('/',$active)) {
             </svg>
 		<div class="header__callback_text">
 			<span class="header__callback_top"><?=$phone->description ?? ''?></span>
-			<button class="header__callback_bottom">Заказать обратный звонок</button>
+			<a href="#phoneMassage" rel="nofollow" class="header__callback_bottom">Заказать обратный звонок</a>
 		</div>
 	</div>
 	
