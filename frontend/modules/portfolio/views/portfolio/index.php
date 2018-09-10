@@ -31,7 +31,7 @@ $img = Url::to('@web/img/');
 			<p class="paragraph">наши работы</p>
 
 			<nav class="broadcrumbs">
-				<a class="broadcrumbs__link" href="<?=Url::to(['/'])?>">Главная</a>
+				<a class="broadcrumbs__link" href="<?= Url::to(['/']) ?>">Главная</a>
 				<span class="broadcrumbs__divider"> / </span>
 				<span class="broadcrumbs__curr">Портфолио</span>
 			</nav>
@@ -48,56 +48,64 @@ $img = Url::to('@web/img/');
 				</div>
 
 				<div class="wrapper">
-<!--					<div class="grid-preloader">-->
-<!--						<svg viewBox="0 0 1000 200">-->
-<!--							<!-- Symbol-->
-<!--							<symbol id="s-text">-->
-<!--								<text text-anchor="middle" x="50%" y="50%" dy=".35em">Craft Group</text>-->
-<!--							</symbol>-->
-<!--							<!-- Duplicate symbols-->
-<!--							<use class="text" xlink:href="#s-text"></use>-->
-<!--							<use class="text" xlink:href="#s-text"></use>-->
-<!--							<use class="text" xlink:href="#s-text"></use>-->
-<!--						</svg>-->
-<!--<!--						<p class="text-preloader">Загружаем галерею</p>-->
-<!--					</div>-->
-
 					<div class="grid_p">
-						<?php if($portfolio):?>
-							<?php $i = 0; foreach ($portfolio as $key => $value):?>
-								<?php if($i <= $count - 1):?>
+						<?php if ($portfolio): ?>
+							<?php $i = 0;
+							foreach ($portfolio as $key => $value): ?>
+								<?php if ($i <= $count - 1): ?>
 									<?php
-										$path = str_replace(basename($value['file']), '', $value['file']);
-										$image = Yii::getAlias('@frontend/web/'.$path.rawurldecode(basename($value['file'])));
-										Imagick::open($image)->resize(300, false)->saveTo(Yii::getAlias('@frontend/web/uploads/thumbnail/'.rawurldecode(basename($value['file']))));
+									$path = str_replace(basename($value['file']), '', $value['file']);
+									$imagePathOriginal = Yii::getAlias('@frontend/web/' . $path . rawurldecode(basename($value['file'])));
+									if (file_exists($imagePathOriginal)) {
+										$imagePathThumbnail = Yii::getAlias('@frontend/web/uploads/thumbnail/' . rawurldecode(basename($value['file'])));
+										$imageOriginal = Imagick::open($imagePathOriginal);
+										$imageOriginal->resize(300, false)->saveTo($imagePathThumbnail);
+										$thumbnail = Imagick::open($imagePathThumbnail);
+										$file = $value['file'];
+									} else {
+										$imagePathThumbnail = Yii::getAlias('@frontend/web/uploads/thumbnail/blog3.png');
+										$imageOriginal = Imagick::open(Yii::getAlias('@frontend/web/images/new/blog3.png'));
+										$imageOriginal->resize(300, false)->saveTo($imagePathThumbnail);
+										$thumbnail = Imagick::open($imagePathThumbnail);
+										$file = '/images/new/blog3.png';
+									} ?>
 									?>
 									<div class="grid-item">
 										<figure class="photoGrid">
-											<?php $w = getimagesize($home.$value['file'])[0];
-											$h = getimagesize($home.$value['file'])[1];
-											?>
-											<a href="<?=$value['file']?>" data-size="<?=$w?>x<?=$h?>"></a>
-											<a href="<?=Url::to(['single-portfolio', 'slug' => $value['slug']])?>">
-												<img src="<?=$home.'uploads/thumbnail/'.basename($value['file'])?>">
+
+											<a href="<?= $file ?>"
+											   data-size="<?= $imageOriginal->getWidth() ?>x<?= $imageOriginal->getHeight() ?>"></a>
+											<a href="<?= Url::to(['single-portfolio', 'slug' => $value['slug']]) ?>">
+												<?php if (file_exists($imagePathOriginal)): ?>
+													<img
+														src="<?= $home . 'uploads/thumbnail/' . basename($value['file']) ?>">
+												<?php else: ?>
+													<img src="<?= $home . 'uploads/thumbnail/blog3.png' ?>">
+												<?php endif; ?>
 											</a>
 										</figure>
 										<span class="full-size">
-                                            <img src="<?=$img?>full-size.svg" width="20" height="20" alt="">
+                                            <img src="<?= $img ?>full-size.svg" width="20" height="20" alt="">
                                         </span>
 										<div class="grid-item__links">
-											<a href="<?=Url::to(['single-portfolio', 'slug' => $value['slug']])?>" class="dotportfolio"><?=$value['title']?></a>
-											<a data-pin-do="buttonPin" data-pin-custom="true" data-pin-log="button_pinit" data-pin-href="https://ru.pinterest.com/pin/create/button?guid=zm1Vh8DTZiLD-1&amp;url=https%3A%2F%2Fweb-artcraft.com%2Fportfolio&amp;media=undefined&amp;description=%D0%9F%D0%BE%D1%80%D1%82%D1%84%D0%BE%D0%BB%D0%B8%D0%BE%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%B2%D0%B5%D0%B1-%D1%81%D1%82%D1%83%D0%B4%D0%B8%D0%B8%20Craft%20Group%3A%20%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%20%D0%B8%20%D1%83%D0%BF%D0%B0%D0%BA%D0%BE%D0%B2%D0%BA%D0%B8%2C%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BB%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20%D0%B8%20%D0%BB%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%BF%D0%B5%D0%B9%D0%B4%D0%B6.">
-												<img src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png" style="width: 25px; height: 25px; border-radius: 50%">
+											<a href="<?= Url::to(['single-portfolio', 'slug' => $value['slug']]) ?>"
+											   class="dotportfolio"><?= $value['title'] ?></a>
+											<a data-pin-do="buttonPin" data-pin-custom="true"
+											   data-pin-log="button_pinit"
+											   data-pin-href="https://ru.pinterest.com/pin/create/button?guid=zm1Vh8DTZiLD-1&amp;url=https%3A%2F%2Fweb-artcraft.com%2Fportfolio&amp;media=undefined&amp;description=%D0%9F%D0%BE%D1%80%D1%82%D1%84%D0%BE%D0%BB%D0%B8%D0%BE%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%B2%D0%B5%D0%B1-%D1%81%D1%82%D1%83%D0%B4%D0%B8%D0%B8%20Craft%20Group%3A%20%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%20%D0%B8%20%D1%83%D0%BF%D0%B0%D0%BA%D0%BE%D0%B2%D0%BA%D0%B8%2C%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BB%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%20%D0%B8%20%D0%BB%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%BF%D0%B5%D0%B9%D0%B4%D0%B6.">
+												<img
+													src="https://addons.opera.com/media/extensions/55/19155/1.1-rev1/icons/icon_64x64.png"
+													style="width: 25px; height: 25px; border-radius: 50%">
 											</a>
 										</div>
 									</div>
-									<?php $i++; endif;?>
-							<?php endforeach;?>
-						<?php endif;?>
+									<?php $i++; endif; ?>
+							<?php endforeach; ?>
+						<?php endif; ?>
 					</div>
 				</div>
 
-				<button type="button" class="more_btn" id="curButton"  data-inpage="<?=$count?>"  data-page="1">
+				<button type="button" class="more_btn" id="curButton" data-inpage="<?= $count ?>" data-page="1">
 					Загрузить ещё
 					<div class='sk-fading-circle sk-fading-circle-position'>
 						<div class='sk-circle sk-circle-1'></div>
@@ -139,7 +147,7 @@ $img = Url::to('@web/img/');
 				<?= \frontend\components\SendFormWidget::widget([
 					'subject' => \frontend\models\SendForm::USULUGI,
 					'isLabels' => true,
-					'messageLabel'=>'Сообщение'
+					'messageLabel' => 'Сообщение'
 				]) ?>
 				<div class="brief-massage">
 					<button class="brief-massage-close">
