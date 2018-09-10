@@ -76,7 +76,10 @@ $img = Url::to('@web/img/');
 											<?php $w = getimagesize($home.$value['file'])[0];
 											$h = getimagesize($home.$value['file'])[1];
 											?>
-											<a href="<?=$value['file']?>" data-size="<?=$w?>x<?=$h?>"><img src="<?=$home.'uploads/thumbnail/'.basename($value['file'])?>"></a>
+											<a href="<?=$value['file']?>" data-size="<?=$w?>x<?=$h?>"></a>
+											<a href="<?=Url::to(['single-portfolio', 'slug' => $value['slug']])?>">
+												<img src="<?=$home.'uploads/thumbnail/'.basename($value['file'])?>">
+											</a>
 										</figure>
 										<span class="full-size">
                                             <img src="<?=$img?>full-size.svg" width="20" height="20" alt="">
