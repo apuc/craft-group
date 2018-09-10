@@ -348,11 +348,13 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         });
     });
 
+    // init fancybox meessage
+	$('.js_phoneMassage').fancybox();
+
 	/*send phone call_back*/
 	$(document).on('click', '.js_phoneMassage', function (e) {
 		e.preventDefault();
 		var data = $('#send_phone').serialize();
-		$('.js_phoneMassage').fancybox(); return false;
 		$.ajax({
 			url: '/site/call-back',
 			type: 'post',
@@ -360,13 +362,10 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 			success: function (res) {
 				console.log(res.message);
 				if(res.result === 'success') {
-					// answerCallBack();
-					// $.fancybox.close();
-					$('.js_phoneMassage').fancybox();
+					$('#send_phone').trigger('reset');
 				} else {
 					alert(res.message);
 				}
-				// $('#send_phone').trigger('reset');
 			}
 		});
 	});
