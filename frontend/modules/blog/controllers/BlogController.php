@@ -11,6 +11,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Expression;
 
 /**
  * BlogController implements the CRUD actions for BlogSlider model.
@@ -79,7 +80,7 @@ class BlogController extends Controller
 	public function actionSingleBlog($slug)
 	{
 		$blog = BlogSlider::find()->where(['slug'=>$slug])->asArray()->one();
-		$slider = BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->anWhere(['!=', 'slug', $slug])->orderBy(['date'=> SORT_DESC])->asArray()->all();
+		$slider = BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->anWhere(['!=', 'slug', $slug])->orderBy(new Expression('rand()'), ['date'=> SORT_DESC])->asArray()->all();
 		$all = BlogSlider::find()->where(['h1' => 'current'])->one();
 		Yii::$app->opengraph->title = $blog['title'];
 		Yii::$app->opengraph->description = $blog['description'];
