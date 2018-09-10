@@ -21,10 +21,11 @@ class AppAsset extends AssetBundle
 	    'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
 	    'css/libs.min.css',
 	    'css/styles.min.css',
+	    'css/uploader.css',
 	    'css/fine-uploader-gallery.css',
     ];
     public $js = [
-	    'js/jquery-3.2.1.min.js',
+//	    'js/jquery-3.2.1.min.js',
 	    'js/jquery.fancybox.js',
 	    'https://assets.pinterest.com/js/pinit.js',
 	    'js/slick.min.js',
@@ -42,6 +43,7 @@ class AppAsset extends AssetBundle
 	    'js/sticky-script.js',
 	    'js/slick-feedback.js',
 	    'js/allservices.js',
+	    'js/Uploader.js',
 	    'js/script.min.js',
     ];
     public $depends = [

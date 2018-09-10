@@ -162,6 +162,15 @@ use yii\widgets\ActiveForm;
                 </div>
             </div>
             <span class="service__form-files"><?= $widget->fileExtension ?></span>
+	        <div id="wrapperCont">
+		        <div class="itemWrapper" style="display: inline-flex;">
+			        <div class="delItem">
+				        <span></span>
+				        <span></span>
+			        </div>
+			        <div class="itemTitle"></div>
+		        </div>
+	        </div>
         </div>
     </div>
     <div class="service__form-desc">

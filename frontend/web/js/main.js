@@ -348,20 +348,21 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         });
     });
 
+    // init fancybox meessage
+	$('.js_phoneMassage').fancybox();
+
 	/*send phone call_back*/
-	$(document).on('submit', '#send_phone', function (e) {
+	$(document).on('click', '.js_phoneMassage', function (e) {
 		e.preventDefault();
-		var data = $(this).serialize();
+		var data = $('#send_phone').serialize();
 		$.ajax({
 			url: '/site/call-back',
 			type: 'post',
 			data: data,
 			success: function (res) {
 				console.log(res.message);
-				if(res.result == 'success') {
+				if(res.result === 'success') {
 					$('#send_phone').trigger('reset');
-					$('.fancybox-close-small').click();
-					alert(res.message);
 				} else {
 					alert(res.message);
 				}

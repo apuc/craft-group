@@ -25,24 +25,22 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
       if (linkEl.hasAttribute('data-size')) {
         size = linkEl.getAttribute('data-size').split('x');
+        // create slide object
+        item = {
+          src: linkEl.getAttribute('href'),
+          w: parseInt(size[0], 10),
+          h: parseInt(size[1], 10)
+        };
+
+        if(linkEl.children.length > 0) {
+          // <img> thumbnail element, retrieving thumbnail url
+          item.msrc = linkEl.children[0].getAttribute('src');
+        }
+
+        item.el = figureEl; // save link to element for getThumbBoundsFn
+        items.push(item);
       }
-
-      // create slide object
-      item = {
-        src: linkEl.getAttribute('href'),
-        w: parseInt(size[0], 10),
-        h: parseInt(size[1], 10)
-      };
-
-      if(linkEl.children.length > 0) {
-        // <img> thumbnail element, retrieving thumbnail url
-        item.msrc = linkEl.children[0].getAttribute('src');
-      }
-
-      item.el = figureEl; // save link to element for getThumbBoundsFn
-      items.push(item);
     }
-
     return items;
   };
 
@@ -56,46 +54,45 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     e = e || window.event;
     if (e.target.hasAttribute('data-size')) {
       e.preventDefault ? e.preventDefault() : e.returnValue = false;
-    }
+      var eTarget = e.target || e.srcElement;
 
-    var eTarget = e.target || e.srcElement;
+      // find root element of slide
+      var clickedListItem = closest(eTarget, function(el) {
+        return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+      });
 
-    // find root element of slide
-    var clickedListItem = closest(eTarget, function(el) {
-      return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
-    });
-
-    if(!clickedListItem) {
-      return;
-    }
-
-    // find index of clicked item by looping through all child nodes
-    // alternatively, you may define index via data- attribute
-    var clickedGallery = clickedListItem.parentNode,
-      childNodes = clickedListItem.parentNode.childNodes,
-      numChildNodes = childNodes.length,
-      nodeIndex = 0,
-      index;
-
-    for (var i = 0; i < numChildNodes; i++) {
-      if(childNodes[i].nodeType !== 1) {
-        continue;
+      if(!clickedListItem) {
+        return;
       }
 
-      if(childNodes[i] === clickedListItem) {
-        index = nodeIndex;
-        break;
+      // find index of clicked item by looping through all child nodes
+      // alternatively, you may define index via data- attribute
+      var clickedGallery = clickedListItem.parentNode,
+        childNodes = clickedListItem.parentNode.childNodes,
+        numChildNodes = childNodes.length,
+        nodeIndex = 0,
+        index;
+
+      for (var i = 0; i < numChildNodes; i++) {
+        if(childNodes[i].nodeType !== 1) {
+          continue;
+        }
+
+        if(childNodes[i] === clickedListItem) {
+          index = nodeIndex;
+          break;
+        }
+        nodeIndex++;
       }
-      nodeIndex++;
+
+
+
+      if(index >= 0) {
+        // open PhotoSwipe if valid index found
+        openPhotoSwipe( index, clickedGallery );
+      }
     }
-
-
-
-    if(index >= 0) {
-      // open PhotoSwipe if valid index found
-      openPhotoSwipe( index, clickedGallery );
-    }
-    return false;
+    // return false;
   };
 
   // parse picture index and gallery index from URL (#&pid=1&gid=2)
