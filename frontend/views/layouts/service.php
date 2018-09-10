@@ -171,7 +171,7 @@ if(explode('/',$active)) {
 				<?php endforeach;?>
 				<li class="header__nav-li dropdown <?= ($active=='/about') ? 'active-page': ''?>">
 					<a href="<?=Url::to('/about');?>">О нас</a>
-					<button class="dropdown_mob">></button>
+					<button class="dropdown_mob"></button>
 					<ul class="header__submenu header__submenu_mob">
 						<?php foreach ($about as $val):?>
 							<li><a href="<?=Url::to($val->href);?>"><?=$val->title?></a></li>
