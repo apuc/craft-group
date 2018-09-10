@@ -265,6 +265,18 @@ AppAsset::register($this);
     <img src="<?= Url::to('@web/img/balloon.png'); ?>" alt="" class="balloon">
     <div class="clouds cloud1"></div>
     <div class="clouds cloud2"></div>
+	<div class="phone-brief-overlay">
+		<div class="phone-brief-massage">
+			<div class="phone-massage-close">
+				<span></span>
+				<span></span>
+			</div>
+			<img src="/img/massage_success.png">
+			<h2>Ваш номер отправлен!</h2>
+			<p>Ожидайте, скоро мы с вами свяжемся.</p>
+			<p>А пока вы можете посмотреть <a href="<?=Url::to(['/portfolio'])?>">наши работы</a></p>
+		</div>
+	</div>
 </header>
 
 <!-- end header-index.html-->

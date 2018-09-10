@@ -348,13 +348,17 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         });
     });
 
-    // init fancybox meessage
-	$('.js_phoneMassage').fancybox();
+	// close send call-back
+	$(document).on('click', '.phone-massage-close', function () {
+		$('.phone-brief-overlay').removeClass('phone-massage-active');
+		$('body').css('overflow', 'visible')
+	});
+
 
 	/*send phone call_back*/
-	$(document).on('click', '.js_phoneMassage', function (e) {
+	$(document).on('submit', '#send_phone', function (e) {
 		e.preventDefault();
-		var data = $('#send_phone').serialize();
+		var data = $(this).serialize();
 		$.ajax({
 			url: '/site/call-back',
 			type: 'post',
@@ -363,6 +367,9 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 				console.log(res.message);
 				if(res.result === 'success') {
 					$('#send_phone').trigger('reset');
+					$('.phone-brief-overlay').addClass('phone-massage-active');
+					$('body').css('overflow', 'hidden');
+					$.fancybox.close();
 				} else {
 					alert(res.message);
 				}

@@ -36,9 +36,7 @@ use \yii\helpers\Html;
 					<?= $form->field($model, 'dt_add')->hiddenInput(['value'=> time()])->label(false);?>
 				</div>
 				<div class="phone-massage-submite">
-					<a href='#phoneBrief' rel="nofollow" class="phone-massage-btn js_phoneMassage">
-						<?=$widget->textButton?>
-					</a>
+					<?php echo Html::button($widget->textButton, ['type'=>'submit','class' => 'phone-massage-btn js_phoneMassage']);?>
 					<div class='sk-fading-circle'>
 						<div class='sk-circle sk-circle-1'></div>
 						<div class='sk-circle sk-circle-2'></div>
@@ -57,13 +55,5 @@ use \yii\helpers\Html;
 			<?php ActiveForm::end(); ?>
 			<p class="service__form-desc_span">Нажимая кнопку «Отправить» я даю свое <br><span class="service__form-desc_red">согласие на обработку персональных данных</span>
 			</p>
-		</div>
-	</div>
-	<div id="phoneBrief" class="fancybox-content">
-		<div class="phone-brief-massage">
-			<img src="/img/massage_success.png">
-			<h2>Ваш номер отправлен!</h2>
-			<p>Ожидайте, скоро мы с вами свяжемся.</p>
-			<p>А пока вы можете посмотреть <a href="<?=Url::to(['/portfolio'])?>">наши работы</a></p>
 		</div>
 	</div>
