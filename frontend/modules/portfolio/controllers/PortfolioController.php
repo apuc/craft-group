@@ -3,8 +3,8 @@
 namespace frontend\modules\portfolio\controllers;
 
 use common\models\KeyValue;
+use frontend\modules\portfolio\models\Portfolio;
 use Yii;
-use backend\modules\portfolio\models\Portfolio;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -53,7 +53,6 @@ class PortfolioController extends Controller
 	        return Portfolio::find()
 								->where(['!=', 'h1', 'all'])
 								->andWhere(['!=', 'h1', 'brief'])
-								->asArray()
 								->limit(12)
 								->all();});
 	    $title = Yii::$app->cache->getOrSet("portfolio_page_meta_title", function (){
