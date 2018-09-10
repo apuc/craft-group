@@ -26,7 +26,7 @@ $img = Url::to('@web/img/');
 			<p class="paragraph">развеивание мифов</p>
 
 			<nav class="broadcrumbs">
-				<a class="broadcrumbs__link" href="<?=Url::to(['/'])?>">Главная</a>
+				<a class="broadcrumbs__link" href="<?= Url::to(['/']) ?>">Главная</a>
 				<span class="broadcrumbs__divider"> / </span>
 				<span class="broadcrumbs__curr">Развеивание мифов</span>
 			</nav>
@@ -43,25 +43,28 @@ $img = Url::to('@web/img/');
 
 				<div class="all-services">
 					<div class="services-bottom">
-						<?php $i=0; foreach ($myths as $myth):?>
-							<button class="btn_services" onclick="openService(event, '<?=$myth->slug?>')"  id="<?=($i == 0) ? 'defaultOpen':'';?>">
-								<?=$myth->title?>
+						<?php $i = 0;
+						foreach ($myths as $myth): ?>
+							<button class="btn_services" onclick="openService(event, '<?= $myth->slug ?>')"
+									id="<?= ($i == 0) ? 'defaultOpen' : ''; ?>">
+								<?= $myth->title ?>
 							</button>
-						<?php $i++; endforeach;?>
+							<?php $i++; endforeach; ?>
 					</div>
 					<div class="services-text">
-						<?php foreach ($myths as $myth):?>
-							<div id="<?=$myth->slug?>" class="services_item tittle">
-								<p class="services_item-p"><?=$myth->description?></p>
+						<?php foreach ($myths as $myth): ?>
+							<div id="<?= $myth->slug ?>" class="services_item tittle">
+								<p class="services_item-p"><?= iconv_substr($myth->description, 0, 750, 'UTF-8') . '...'; ?></p>
+								<a href="<?= Url::to(['single-myths', 'slug'=>$myth->slug])?>" class="services_item-more vacancies_item-more">Подробнее</a>
 							</div>
-						<?php endforeach;?>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- end content-myths.html-->
-	
+
 	<!-- start brief.html-->
 	<section class="service-brief" id="brief">
 
@@ -82,7 +85,7 @@ $img = Url::to('@web/img/');
 				<?= \frontend\components\SendFormWidget::widget([
 					'subject' => \frontend\models\SendForm::USULUGI,
 					'isLabels' => true,
-					'messageLabel'=>'Сообщение'
+					'messageLabel' => 'Сообщение'
 				]) ?>
 				<div class="brief-massage">
 					<button class="brief-massage-close">
