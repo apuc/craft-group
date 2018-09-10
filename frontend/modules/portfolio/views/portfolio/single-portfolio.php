@@ -85,7 +85,7 @@ $img = Url::to('@web/img/');
 						<div class="single__order">
 							<?= \common\models\KeyValue::getValue('single_portfolio')?>
 							
-							<a href="#brief" class="order__btn scroll">Заказать</a>
+							<a href="#brief" class="order__btn portfolio-scroll">Заказать</a>
 						</div>
 						<?php if($portfolio['stock']):?>
 							<div class="single-p__stock">
