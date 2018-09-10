@@ -39,7 +39,6 @@ use \yii\helpers\Html;
 					<a href='#phoneBrief' rel="nofollow" class="phone-massage-btn js_phoneMassage">
 						<?=$widget->textButton?>
 					</a>
-<!--					--><?php//= Html::submitButton($widget->textButton, ['class' => 'phone-massage-btn js_phoneMassage']);?>
 					<div class='sk-fading-circle'>
 						<div class='sk-circle sk-circle-1'></div>
 						<div class='sk-circle sk-circle-2'></div>
