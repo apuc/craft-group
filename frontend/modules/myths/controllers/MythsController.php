@@ -67,7 +67,6 @@ class MythsController extends Controller
 //		} else {
 //			return $this->redirect(['/'.$slug]);
 //		}
-		
 		return $this->render('single-myths', ['myths' => $myths, 'slider' => $slider, 'all' => $all ]);
 	}
 
