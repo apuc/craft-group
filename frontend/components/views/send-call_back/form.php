@@ -36,8 +36,10 @@ use \yii\helpers\Html;
 					<?= $form->field($model, 'dt_add')->hiddenInput(['value'=> time()])->label(false);?>
 				</div>
 				<div class="phone-massage-submite">
-<!--					<a data-fancybox data-src="#phoneBrief" href="javascript:;" onclick="$.fancybox.close();" class="phone-massage-btn js_phoneMassage">Отправить</a>-->
-					<?= Html::submitButton($widget->textButton, ['class' => 'phone-massage-btn js_phoneMassage']);?>
+					<a href='#phoneBrief' rel="nofollow" class="phone-massage-btn js_phoneMassage">
+						<?=$widget->textButton?>
+					</a>
+<!--					--><?php//= Html::submitButton($widget->textButton, ['class' => 'phone-massage-btn js_phoneMassage']);?>
 					<div class='sk-fading-circle'>
 						<div class='sk-circle sk-circle-1'></div>
 						<div class='sk-circle sk-circle-2'></div>

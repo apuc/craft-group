@@ -349,22 +349,24 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
     });
 
 	/*send phone call_back*/
-	$(document).on('submit', '#send_phone', function (e) {
+	$(document).on('click', '.js_phoneMassage', function (e) {
 		e.preventDefault();
-		var data = $(this).serialize();
+		var data = $('#send_phone').serialize();
+		$('.js_phoneMassage').fancybox(); return false;
 		$.ajax({
 			url: '/site/call-back',
 			type: 'post',
 			data: data,
 			success: function (res) {
 				console.log(res.message);
-				if(res.result == 'success') {
-					$('#send_phone').trigger('reset');
-					$.fancybox.close();
-					alert(res.message);
+				if(res.result === 'success') {
+					// answerCallBack();
+					// $.fancybox.close();
+					$('.js_phoneMassage').fancybox();
 				} else {
 					alert(res.message);
 				}
+				// $('#send_phone').trigger('reset');
 			}
 		});
 	});
