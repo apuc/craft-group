@@ -197,4 +197,4 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 };
 
 // execute above function
-initPhotoSwipeFromDOM('.grid');
+initPhotoSwipeFromDOM('.grid_p');
