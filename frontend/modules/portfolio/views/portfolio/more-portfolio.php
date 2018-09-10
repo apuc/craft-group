@@ -26,10 +26,7 @@ $home = (Url::home(true));
 	?>
 	<div class="grid-item grid-item_hidden">
 		<figure class="photoGrid">
-			<?php $w = getimagesize($home.$value['file'])[0] ?? '';
-			$h = getimagesize($home.$value['file'])[1] ?? '';
-			?>
-			<a href="<?=$value['file']?>" class="portfolio-open-image" data-size="<?=$w?>x<?=$h?>" class="portfolio-open-image"></a>
+			<a href="<?= $value->getFile() ?>" data-size="<?= $value->getImageOriginal()->getWidth() ?>x<?= $value->getImageOriginal()->getHeight() ?>" class="portfolio-open-image"></a>
 			<a href="<?=Url::to(['single-portfolio', 'slug' => $value['slug']])?>">
 				<img src="<?=$home.'uploads/thumbnail/'.basename($value['file'])?>">
 			</a>
