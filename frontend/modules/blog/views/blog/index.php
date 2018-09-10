@@ -45,7 +45,7 @@ $img = Url::to('@web/img/');
 
 				<div class="blog__blocks">
 					<?php foreach ($blog as $key => $value): ?>
-						<?php if ($value->h1 !== 'current'): ?>
+						
 							<article class="blog__block">
 								<div class="blog__block-wrap">
 									<a href="<?= Url::to(['single-blog', 'slug' => $value->slug]) ?>">
@@ -73,7 +73,7 @@ $img = Url::to('@web/img/');
 									</a>
 								</footer>
 							</article>
-						<?php endif; ?>
+						
 					<?php endforeach; ?>
 				</div>
 
