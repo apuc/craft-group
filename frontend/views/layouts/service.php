@@ -226,6 +226,25 @@ if(explode('/',$active)) {
 			<button class="header__callback_bottom">Заказать обратный звонок</button>
 		</div>
 	</div>
+	
+	<?= \frontend\components\SendCallBackWidget::widget([
+		'subject' => \frontend\models\SendCallBack::CALLBACK,
+		'isLabels' => true,
+		'messageLabel'=>'Сообщение'
+	]) ?>
+	
+	<div class="phone-brief-overlay">
+		<div class="phone-brief-massage">
+			<div class="phone-massage-close">
+				<span></span>
+				<span></span>
+			</div>
+			<img src="/img/massage_success.png">
+			<h2>Ваш номер отправлен!</h2>
+			<p>Ожидайте, скоро мы с вами свяжемся.</p>
+			<p>А пока вы можете посмотреть <a href="<?=Url::to(['/portfolio'])?>">наши работы</a></p>
+		</div>
+	</div>
 </header>
 
 <!-- end header-service.html-->

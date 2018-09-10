@@ -139,7 +139,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 принципам работы,
                                 прежде чем брать в команду.</p>
                             <a href="#brief"
-                               class="vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty vacancies-novelty-more scroll">Записаться</a>
+                               class="vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty vacancies-novelty-more portfolio-scroll">Записаться</a>
                         </div>
                     </div>
                 </div>
