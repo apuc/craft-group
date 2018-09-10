@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
 	    'css/fine-uploader-gallery.css',
     ];
     public $js = [
-	    'js/jquery-3.2.1.min.js',
+//	    'js/jquery-3.2.1.min.js',
 	    'js/jquery.fancybox.js',
 	    'https://assets.pinterest.com/js/pinit.js',
 	    'js/slick.min.js',
