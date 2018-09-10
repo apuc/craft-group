@@ -2,6 +2,8 @@
 /**
  * @var $feedback [] \common\models\Feedback
  */
+use yii\helpers\Url;
+
 Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 ?>
 
