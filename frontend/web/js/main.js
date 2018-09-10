@@ -360,7 +360,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 				console.log(res.message);
 				if(res.result == 'success') {
 					$('#send_phone').trigger('reset');
-					$('.fancybox-close-small').click();
+					$.fancybox.close();
 					alert(res.message);
 				} else {
 					alert(res.message);

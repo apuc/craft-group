@@ -390,7 +390,7 @@ class SiteController extends Controller
 			} else {
 				$result = [
 					'result'  => 'error',
-					'message' => 'Возникла ошибка при отправке. Не верно введет телефон'
+					'message' => 'Возникла ошибка при отправке. Не верно введен телефон!'
 				];
 			}
 			// возвращаем результат
