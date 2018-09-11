@@ -52,7 +52,7 @@ $img = Url::to('@web/img/');
 					</div>
 					<div class="services-text">
 						<?php foreach ($myths as $myth): ?>
-							<div id="<?= $myth->slug ?>" class="services_item tittle">
+							<div id="<?= $myth->slug ?>" class="services_item title-element">
 								<p class="services_item-p"><?= $myth->getText() ?></p>
 								<a href="<?= Url::to(['single-myths', 'slug' => $myth->slug]) ?>"
 								   class="services_item-more vacancies_item-more">Подробнее</a>

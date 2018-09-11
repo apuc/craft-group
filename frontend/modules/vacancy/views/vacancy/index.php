@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="services-text">
 	                    <?php foreach ($all as $key => $value):?>
-		                    <div id="<?=$value['slug']?>" class="services_item tittle">
+		                    <div id="<?=$value['slug']?>" class="services_item title-element">
 			                    <p class="services_item-p">
 				                    <?php if(explode('*' , $value['description'])):?>
 					                    <?php $serv = explode('*' , $value['description']);?>
