@@ -90,7 +90,7 @@ class BlogController extends Controller
 		Yii::$app->opengraph->type = 'article';
 		$id_arr =[];
 		foreach ($slider as $slide){
-			$id_arr=[$slide->id];
+			$id_arr[]= $slide->id;
 		}
 		$this->view->params['rand_blog'] = $id_arr;
 		$this->view->params['curr_blog'] = $slug;
