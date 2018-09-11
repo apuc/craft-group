@@ -9,7 +9,6 @@ use common\models\BlogSlider;
 /**
  * @var \frontend\modules\blog\models\Blog[] $blog
  * @var $title string
- * @var $b_cur object
  */
 
 $this->title = $title;
