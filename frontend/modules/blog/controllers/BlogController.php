@@ -88,6 +88,12 @@ class BlogController extends Controller
 		Yii::$app->opengraph->url = Url::home('https').'blog/'.$slug;
 		Yii::$app->opengraph->siteName =  Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
+		$id_arr =[];
+		foreach ($slider as $slide){
+			$id_arr=[$slide->id];
+		}
+		$this->view->params['rand_blog'] = $id_arr;
+		$this->view->params['curr_blog'] = $slug;
 		if($blog) {
 			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
 		} else {
