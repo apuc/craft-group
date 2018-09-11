@@ -54,7 +54,7 @@ class MythsController extends Controller
 	{
 		$myths = Myths::find()->where(['slug'=>$slug])->one();
 		$slider = Yii::$app->cache->getOrSet("slider", function (){
-			return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->asArray()->all();});
+			return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->orderBy(['date'=> SORT_DESC])->all();});
 		$all = BlogSlider::find()->where(['h1' => 'current'])->one();
 //		Yii::$app->opengraph->title = $blog['title'];
 //		Yii::$app->opengraph->description = $blog['description'];
