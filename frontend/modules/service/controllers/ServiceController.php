@@ -74,7 +74,7 @@ class ServiceController extends Controller
 	    Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("service_og_type", function (){
 		    return KeyValue::getValue('service_og_type');});
         return $this->render('index', [
-            'dataProvider' => $dataProvider, 'service' => $service, 'all' => $services, 'title' => $title, 'blog'=>$blog, 'b_cur' => $b_cur,
+            'dataProvider' => $dataProvider, 'service' => $service, 'all' => $services, 'title' => $title
         ]);
     }
 	
