@@ -40,7 +40,6 @@ class PortfolioAsset extends AssetBundle
 		'js/masonry.pkgd.min.js',
 		'js/main.js',
 //		'js/jquery.sticky-sidebar.js',
-//		'js/sticky-script.js',
 		'js/slick-feedback.js',
 		'js/Uploader.js',
 //		'js/allservices.js',
