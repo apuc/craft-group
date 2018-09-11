@@ -2,8 +2,8 @@
 
 namespace frontend\modules\myths\controllers;
 
+use frontend\modules\myths\models\Myths;
 use Yii;
-use common\models\Myths;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /**
  * @var $b_cur object
  * @var $blog array
- * @var $myths
+ * @var Myths[] $myths
  */
 
 
@@ -54,7 +54,7 @@ $img = Url::to('@web/img/');
 					<div class="services-text">
 						<?php foreach ($myths as $myth): ?>
 							<div id="<?= $myth->slug ?>" class="services_item tittle">
-								<p class="services_item-p"><?= iconv_substr($myth->description, 0, 750, 'UTF-8') . '...'; ?></p>
+								<p class="services_item-p"><?= $myth->getText() ?></p>
 								<a href="<?= Url::to(['single-myths', 'slug'=>$myth->slug])?>" class="services_item-more vacancies_item-more">Подробнее</a>
 							</div>
 						<?php endforeach; ?>

@@ -44,7 +44,7 @@ $img = Url::to('@web/img/');
 						<div class="blog-single__main">
 							<h1 class="blog-single-title"><?= $myths->title ?></h1>
 							<div class="blog-single__text">
-								<?= $myths->description; ?>
+								<?= $myths->content; ?>
 							</div>
 						</div>
 						<div id="sidebar" class="blog-single__aside sidebar">
