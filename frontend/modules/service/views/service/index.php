@@ -11,8 +11,6 @@ use common\models\BlogSlider;
  * @var $service array
  * @var $all array
  * @var $title string
- * @var $blog array
- * @var $b_cur object
  */
 
 
