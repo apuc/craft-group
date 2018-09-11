@@ -1,51 +1,3 @@
-// var uploader = new qq.FineUploader({
-// 		failedUploadTextDisplay: {
-// 			mode: 'default',
-// 			responseProperty: 'error',
-// 		},
-// 		element: document.getElementById("fine-uploader"),
-// 		validation: {
-// 			allowedExtensions: ['jpeg', 'png', 'jpg'],
-// 			itemLimit: 5,
-// 			sizeLimit: 31457280
-// 		},
-// 		template: 'qq-template',
-// 		request: {
-// 			endpoint: '../../frontend/web/includes/fine-uploader/endpoint.php',
-// 			forceMultipart: false,
-// 		},
-// 		deleteFile: {
-// 			enabled: true,
-// 			endpoint: '../../frontend/web/includes/fine-uploader/endpoint.php'
-// 		},
-// 		retry: {
-// 			enableAuto: true
-// 		},
-// 		dragAndDrop: {
-// 			disableDefaultDropzone: true //отключаем дроп-зону
-// 		},
-// 		messages: { //русифицируем некоторые сообщения и кнопки
-// 			typeError: "{file}: неверный тип файла. Принимаются только файлы форматов: {extensions}.",
-// 			sizeError: "{file}: файл слишком большой. Максимальный размер: {sizeLimit}.",
-// 			tooManyItemsError: "Вы пытаетесь закачать {netItems}-й файл. Максимальное количество: {itemLimit}."
-// 		},
-// 		text: {
-// 			uploadButton: 'Прикрепить файлы',
-// 			failUpload: 'Не закачан!'
-// 		},
-// 		callbacks: {
-// 			onComplete: function (event, id, fileName, responseJSON) {
-// 				// console.log($("#filePath").val(fileName.path));
-// 				$('#send_form').append('<input class="fileUp" name="file[]" id="file_'+ fileName.uuid +'" type="hidden" value="' + fileName.path + '">');
-// 			},
-// 			onDeleteComplete: function(id, xhr, isError) {
-// 				var id = JSON.parse(xhr.response).uuid;
-// 				$('#file_' + id).remove();
-// 			}
-// 		}
-// 	});
-
-
 $(document).ready(function () { // вся мaгия пoсле зaгрузки стрaницы
     $(document).on('click', '.send', function (e) {
         e.preventDefault();
@@ -59,17 +11,13 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         $('.fileUp').each(function () {
             file.push($(this).val());
         });
-        // var service_mob = $("input[name='ckeckbox_mob']:checked");
-        // var service_supp = $("input[name='ckeckbox_supp']:checked");
-        // var service_site = $("input[name='ckeckbox_site']:checked");
-        // var service_seo = $("input[name='ckeckbox_seo']:checked");
+
         var skype = $("input[name='skype']").val();
         var email = $("input[name='email']").val();
         var text = $("#message").val();
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
         var valid_email = pattern.test(email);
-        //var re = /^\d[\d\(\)\ -]{4,14}\d$/;
-        //var valid_phone = re.test(phone);
+
         var service = [];
         $('input[name=radio]:checked').each(function () {
             service.push($(this).val());
@@ -109,18 +57,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             form_data.append('text', text);
             form_data.append('file', file);
 
-            // if(service_mob.length != 0){
-            // 	form_data.append('service_mob', service_mob.val());
-            // }
-            // if(service_supp.length != 0) {
-            // 	form_data.append('service_supp', service_supp.val());
-            // }
-            // if(service_site.length != 0) {
-            // 	form_data.append('service_site', service_site.val());
-            // }
-            // if(service_seo.length != 0) {
-            // 	form_data.append('service_seo', service_seo.val());
-            // }
+
             form_data.append('service', service);
 
 
@@ -171,8 +108,6 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         var text = $("#message_vacancy").val();
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
         var valid_email = pattern.test(email);
-        //var re = /^\d[\d\(\)\ -]{4,14}\d$/;
-        //var valid_phone = re.test(phone);
 
         if (name == '') {
             alert('Введите Ваше имя!');
@@ -216,7 +151,6 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             if (service_seo.length != 0) {
                 form_data.append('service_seo', service_seo.val());
             }
-            // form_data.append('file', file_data);
 
 
             $.ajax({
@@ -249,7 +183,6 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         //создаем экземпляр класс FormData, тут будем хранить всю информацию для отправки
         // var form_data = new FormData();
 
-        // var form = $('#form_feedback');
         var name = $("#name_feedback").val();
         var category = $("#feedback-category").val();
         var site = $("#site_feedback").val();
@@ -262,10 +195,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         var text = $("#message_feedback").val();
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
         var valid_email = pattern.test(email);
-        //var re = /^\d[\d\(\)\ -]{4,14}\d$/;
-        //var valid_phone = re.test(phone);
-        console.log($('#feedback-file'));
-        return false;
+
         if (name == '') {
             alert('Введите Ваше имя!');
             return false;
@@ -289,18 +219,6 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 
 
         if (name != '') {
-            // form_data.append('action', 'sendForm');
-            // form_data.append('name', name);
-            // form_data.append('site', site);
-            // form_data.append('category', category);
-            // form_data.append('email', email);
-            // form_data.append('city', city);
-            // form_data.append('text', text);
-            // form_data.append('file', file);
-
-            // form_data.append('file', file_data);
-
-
             $.ajax({
                 url: '/feedback/feedback/create',
                 type: 'post',
@@ -331,9 +249,6 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         e.preventDefault();
         var data = $(this).serialize(),
             image = new FormData($(this)[0]);
-        // var data = new FormData();
-        // data.append('image', new FormData($(this)[0]));
-        // data.append('form', $(this).serialize());
         $.ajax({
             url: '/site/send-form',
             type: 'post',
