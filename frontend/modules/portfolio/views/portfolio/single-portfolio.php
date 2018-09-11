@@ -7,8 +7,6 @@
  */
 /**
 * @var $portfolio array
- * @var $b_cur object
- * @var $blog array
  */
 
 
