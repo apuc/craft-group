@@ -99,7 +99,7 @@ class BlogController extends Controller
 				->all();
 		});
 		$all = Yii::$app->cache->getOrSet('all' . $slug, function () {
-			BlogSlider::find()->where(['h1' => 'current'])->one();
+			return BlogSlider::find()->where(['h1' => 'current'])->one();
 		});
 		Yii::$app->opengraph->title = $blog->title;
 		Yii::$app->opengraph->description = $blog->description;
