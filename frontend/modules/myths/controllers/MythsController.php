@@ -2,13 +2,13 @@
 
 namespace frontend\modules\myths\controllers;
 
+use backend\modules\blog_slider\models\BlogSlider;
 use frontend\modules\myths\models\Myths;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\models\BlogSlider;
 
 /**
  * MythsController implements the CRUD actions for Myths model.
