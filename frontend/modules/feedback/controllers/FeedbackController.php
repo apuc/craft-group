@@ -47,9 +47,6 @@ class FeedbackController extends Controller
         $feedback = Yii::$app->cache->getOrSet("feedback_main", function () {
             return Feedback::find()->where(['status' => 1])->limit(6)->all();
         });
-        $service = Yii::$app->cache->getOrSet("service_in_feedback", function () {
-            return Service::find()->where(['options' => 2])->asArray()->all();
-        });
         $title = Yii::$app->cache->getOrSet("feedback_page_meta_title", function () {
             return KeyValue::getValue('feedback_page_meta_title');
         });
@@ -87,7 +84,6 @@ class FeedbackController extends Controller
         });
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-            'service' => $service, 
             'model' => $model, 
             'title' => $title, 
             'feedback' => $feedback,
