@@ -2,11 +2,11 @@
 
 namespace frontend\modules\service\controllers;
 
+use backend\modules\service\models\Service;
 use common\models\Feedback;
 use common\models\KeyValue;
 use common\models\Portfolio;
 use Yii;
-use common\models\Service;
 use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
