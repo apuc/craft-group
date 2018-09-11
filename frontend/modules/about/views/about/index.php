@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				<span class="broadcrumbs__divider"> / </span>
 				<span class="broadcrumbs__curr">О нас</span>
 			</nav>
-
 			<div class="wrap about-wrap">
 				<div class="about">
 					<div class="tittle">

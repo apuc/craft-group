@@ -7,10 +7,8 @@ use common\models\KeyValue;
 use frontend\modules\blog\models\Blog;
 use Yii;
 use yii\helpers\Url;
-use backend\modules\blog_slider\models\BlogSlider;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Expression;
 

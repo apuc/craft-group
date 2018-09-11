@@ -52,7 +52,7 @@ class AboutController extends Controller
 		$dataProvider = new ActiveDataProvider([
 			'query' => About::find(),
 		]);
-		$about = Yii::$app->cache->getOrSet('about', function () {
+		$about = Yii::$app->cache->getOrSet('about-index', function () {
 			return About::find()->all();
 		});
 		$title = Yii::$app->cache->getOrSet("about_meta_title", function () {
