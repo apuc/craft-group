@@ -250,11 +250,9 @@ if(explode('/',$active)) {
 <!-- end header-service.html-->
 <?= $content?>
 <!-- start blog.html-->
-<?php
-$rand = $this->params['rand_blog'] ?? '';
-$curr_blog = $this->params['curr_blog'] ?? '';
+<?php $curr_blog = $this->params['curr_blog'] ?? '';
 ;?>
-<?= \frontend\components\BlogWidget::widget(['rand' => $rand, 'curr_blog' => $curr_blog]);?>
+<?= \frontend\components\BlogWidget::widget(['curr_blog' => $curr_blog]);?>
 <!-- end blog.html-->
 
 <section class="footer-section">

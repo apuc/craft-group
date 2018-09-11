@@ -5,6 +5,11 @@
  * Date: 22.08.18
  * Time: 16:25
  */
+/**
+* @var $blog object
+ * @var $b_cur object
+ */
+
 use common\models\BlogSlider;
 use yii\helpers\Url;
 ?>
@@ -39,17 +44,17 @@ use yii\helpers\Url;
                 <?php endif; ?>
                 <div class="blog__slider--wrap">
                     <?php foreach ($blog as $key => $value): ?>
-                        <?php if ($value['options']): ?>
+                        <?php if ($value->options): ?>
                             <div class="blog__slider--slide">
-                                <img src="<?= $value['file'] ?>">
+                                <img src="<?= $value->file ?>">
                                 <div class="slide__title">
-                                    <h3 class="slide__post-title"><?= $value['title'] ?></h3>
+                                    <h3 class="slide__post-title"><?= $value->title ?></h3>
                                     <time
-                                        class="slide__post-time"><?= $value['date'] = BlogSlider::getTime(strtotime($value['date'])); ?></time>
+                                        class="slide__post-time"><?= $value->date = BlogSlider::getTime(strtotime($value->date)); ?></time>
                                 </div>
                                 <div class="slide__hover">
-                                    <span class="dotdot"><?= $value['description'] ?></span>
-                                    <a href="<?= Url::to(['/blog', 'slug' => $value['slug']]) ?>">Читать далее</a>
+                                    <span class="dotdot"><?= $value->description ?></span>
+                                    <a href="<?= Url::to(['/blog', 'slug' => $value->slug]) ?>">Читать далее</a>
                                 </div>
                             </div>
                         <?php endif; ?>

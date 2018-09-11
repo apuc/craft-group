@@ -80,7 +80,13 @@ class BlogController extends Controller
 	public function actionSingleBlog($slug)
 	{
 		$blog = BlogSlider::find()->where(['slug'=>$slug])->one();
-		$slider = BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->andWhere(['!=', 'slug', $slug])->orderBy(new Expression('rand()'), ['date'=> SORT_DESC])->all();
+		$last_blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->andWhere(['!=', 'slug', $this->curr_blog])->orderBy(['date' => SORT_DESC])->limit(5)->orderBy('date desc')->all();
+		
+		$id_arr =[];
+		foreach ($last_blog as $slide){
+			$id_arr[]= $slide->id;
+		}
+		$slider = BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->andWhere(['!=', 'slug', $slug])->andWhere(['!=', 'id', $id_arr])->orderBy(new Expression('rand()'), ['date'=> SORT_DESC])->all();
 		$all = BlogSlider::find()->where(['h1' => 'current'])->one();
 		Yii::$app->opengraph->title = $blog['title'];
 		Yii::$app->opengraph->description = $blog['description'];
@@ -88,11 +94,6 @@ class BlogController extends Controller
 		Yii::$app->opengraph->url = Url::home('https').'blog/'.$slug;
 		Yii::$app->opengraph->siteName =  Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
-		$id_arr =[];
-		foreach ($slider as $slide){
-			$id_arr[]= $slide->id;
-		}
-		$this->view->params['rand_blog'] = $id_arr;
 		$this->view->params['curr_blog'] = $slug;
 		if($blog) {
 			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
