@@ -49,7 +49,7 @@ class ServiceController extends Controller
         $service = Yii::$app->cache->getOrSet("service_main", function (){
 	        return Service::find()->where(['options' => 1])->asArray()->limit(7)->all();});
         $services = Yii::$app->cache->getOrSet("services_main", function (){
-	        return Service::find()->where(['options' => 2])->orderBy(['position' => SORT_ASC])->asArray()->limit(7)->all();});
+	        return Service::find()->where(['options' => 2])->orderBy(['position' => SORT_ASC])->limit(7)->all();});
 	    $title = Yii::$app->cache->getOrSet("service_page_meta_title", function (){
 		    return KeyValue::getValue('service_page_meta_title');});
 	    $key = Yii::$app->cache->getOrSet("service_page_meta_key", function (){
