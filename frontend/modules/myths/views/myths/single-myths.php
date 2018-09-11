@@ -6,7 +6,7 @@
  * Time: 11:40
  */
 /**
- * @var \common\models\Myths $myths
+ * @var \common\models\Myths $myth
  * @var $slider array
  * @var $all object
  */
@@ -16,7 +16,7 @@ use yii\helpers\Url;
 use common\models\BlogSlider;
 
 
-$this->title = $myths->title;
+$this->title = $myth->title;
 $img = Url::to('@web/img/');
 ?>
 
@@ -32,9 +32,9 @@ $img = Url::to('@web/img/');
 				<nav class="broadcrumbs">
 					<a class="broadcrumbs__link" href="<?= Url::to(['/']) ?>">Главная</a>
 					<span class="broadcrumbs__divider"> / </span>
-					<a class="broadcrumbs__link" href="<?= Url::to(['/myths']) ?>">Развеивание мифов</a>
+					<a class="broadcrumbs__link" href="<?= Url::to(['/myth']) ?>">Развеивание мифов</a>
 					<span class="broadcrumbs__divider"> / </span>
-					<span class="broadcrumbs__curr"><?= $myths->title ?></span>
+					<span class="broadcrumbs__curr"><?= $myth->title ?></span>
 				</nav>
 
 
@@ -42,9 +42,9 @@ $img = Url::to('@web/img/');
 
 					<div class="blog-single__content main">
 						<div class="blog-single__main">
-							<h1 class="blog-single-title"><?= $myths->title ?></h1>
+							<h1 class="blog-single-title"><?= $myth->title ?></h1>
 							<div class="blog-single__text">
-								<?= $myths->content; ?>
+								<?= $myth->content; ?>
 							</div>
 						</div>
 						<div id="sidebar" class="blog-single__aside sidebar">
