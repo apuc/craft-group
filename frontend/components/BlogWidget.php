@@ -30,7 +30,8 @@ class BlogWidget extends Widget
 	    $blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->andWhere(['!=', 'slug', $this->curr_blog])->orderBy(new Expression('rand()'), ['date' => SORT_DESC])->limit(5)->orderBy('date desc')->all();
         return $this->render('blog/blog', [
             'b_cur' => $b_cur,
-            'blog' => $blog
+            'blog' => $blog,
+	        'rand' => $this->rand
         ]);
     }
 
