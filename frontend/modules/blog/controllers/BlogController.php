@@ -79,8 +79,8 @@ class BlogController extends Controller
     
 	public function actionSingleBlog($slug)
 	{
-		$blog = BlogSlider::find()->where(['slug'=>$slug])->asArray()->one();
-		$slider = BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->andWhere(['!=', 'slug', $slug])->orderBy(new Expression('rand()'), ['date'=> SORT_DESC])->asArray()->all();
+		$blog = BlogSlider::find()->where(['slug'=>$slug])->one();
+		$slider = BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=','h1', 'current'])->andWhere(['!=', 'slug', $slug])->orderBy(new Expression('rand()'), ['date'=> SORT_DESC])->all();
 		$all = BlogSlider::find()->where(['h1' => 'current'])->one();
 		Yii::$app->opengraph->title = $blog['title'];
 		Yii::$app->opengraph->description = $blog['description'];
