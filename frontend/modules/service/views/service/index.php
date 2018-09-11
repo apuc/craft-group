@@ -1,6 +1,12 @@
 <?php
-use  yii\helpers\Url;
 
+use yii\helpers\Html;
+use yii\grid\GridView;
+use  yii\helpers\Url;
+use common\models\BlogSlider;
+
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 /**
  * @var \common\models\Service[] $service
  * @var $all array
@@ -102,7 +108,9 @@ $img = Url::to('@web/img/');
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
     </section>
 

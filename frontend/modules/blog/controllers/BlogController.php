@@ -7,8 +7,10 @@ use common\models\KeyValue;
 use frontend\modules\blog\models\Blog;
 use Yii;
 use yii\helpers\Url;
+use backend\modules\blog_slider\models\BlogSlider;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Expression;
 
@@ -107,11 +109,11 @@ class BlogController extends Controller
 		Yii::$app->opengraph->url = Url::home('https') . 'blog/' . $slug;
 		Yii::$app->opengraph->siteName = Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
-		if ($blog) {
-			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all]);
+		if($blog) {
+			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
 		} else {
-			return $this->redirect(['/' . $slug]);
+			return $this->redirect(['/'.$slug]);
 		}
 	}
-
+	
 }

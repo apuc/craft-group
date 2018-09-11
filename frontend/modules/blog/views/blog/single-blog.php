@@ -76,7 +76,7 @@ $img = Url::to('@web/img/');
 												</div>
 											</div>
 										<?php endif; ?>
-										<?php $i++; endforeach; ?>
+										<?php endforeach; ?>
 								</div>
 							</div>
 						</div>

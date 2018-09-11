@@ -40,7 +40,6 @@ class AppAsset extends AssetBundle
 	    'js/main.js',
 	    'js/jquery.sticky-sidebar.js',
 //	    'js/jquery.fancybox.js',
-	    'js/sticky-script.js',
 	    'js/slick-feedback.js',
 	    'js/allservices.js',
 	    'js/Uploader.js',
