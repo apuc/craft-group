@@ -1,8 +1,7 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
-use common\models\BlogSlider;
+
+use frontend\modules\myths\models\Myths;
 use yii\helpers\Url;
 
 /**
@@ -55,10 +54,23 @@ $img = Url::to('@web/img/');
 						<?php foreach ($myths as $myth): ?>
 							<div id="<?= $myth->slug ?>" class="services_item tittle">
 								<p class="services_item-p"><?= $myth->getText() ?></p>
-								<a href="<?= Url::to(['single-myths', 'slug'=>$myth->slug])?>" class="services_item-more vacancies_item-more">Подробнее</a>
+								<a href="<?= Url::to(['single-myths', 'slug' => $myth->slug]) ?>"
+								   class="services_item-more vacancies_item-more">Подробнее</a>
 							</div>
 						<?php endforeach; ?>
 					</div>
+				</div>
+				<div class="services-mobile">
+					<?php foreach ($myths as $myth): ?>
+						<div class="btn_services-mob">
+							<h2><?= $myth->title ?></h2>
+						</div>
+						<div class="services_item-mob flipIn">
+							<p class="services_item-p"> <?= $myth->description; ?></p>
+							<a href="<?= Url::to(['single-myths', 'slug' => $myth->slug]) ?>"
+							   class="services_item-more vacancies_item-more">Подробнее</a>
+						</div>
+					<?php endforeach; ?>
 				</div>
 			</div>
 		</div>
