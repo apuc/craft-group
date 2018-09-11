@@ -18,7 +18,7 @@ function openService(evt, buttonName) {
 }
 
 $(function () {
-  if (document.getElementsByClassName('defaultOpen')) {
+  if (document.getElementById('defaultOpen')) {
     document.getElementById("defaultOpen").click();
   }
 });
