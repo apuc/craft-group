@@ -253,4 +253,6 @@ $this->registerJsFile('/js/fine-uploader.min.js');
 </main>
 <!-- end brief.html-->
 <!-- start blog.html-->
-<?= \frontend\components\BlogWidget::widget()?>
+<?php $curr_blog = $this->params['curr_blog'] ?? '';
+;?>
+<?= \frontend\components\BlogWidget::widget(['curr_blog' => $curr_blog]);?>
