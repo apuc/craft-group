@@ -7,7 +7,7 @@
  */
 use common\models\BlogSlider;
 use yii\helpers\Url;
-var_dump($rand);
+var_dump($rand[0]);
 ?>
 
 <section class="brief brief_footer blog" id="blog">
