@@ -6,16 +6,17 @@
  * Time: 11:40
  */
 /**
-* @var $blog object
- * @var $slider object
+ * @var Blog $blog
+ * @var BlogSlider[] $slider
  * @var $all object
  */
 
 
+use frontend\modules\blog\models\Blog;
 use yii\helpers\Url;
 use common\models\BlogSlider;
 
-$this->title =  $blog['title'];
+$this->title = $blog->title;
 $img = Url::to('@web/img/');
 ?>
 
@@ -29,59 +30,53 @@ $img = Url::to('@web/img/');
 				<p class="paragraph">наш блог</p>
 
 				<nav class="broadcrumbs">
-					<a class="broadcrumbs__link" href="<?=Url::to(['/'])?>">Главная</a>
+					<a class="broadcrumbs__link" href="<?= Url::to(['/']) ?>">Главная</a>
 					<span class="broadcrumbs__divider"> / </span>
-					<a class="broadcrumbs__link" href="<?=Url::to(['/blog'])?>">Блог</a>
+					<a class="broadcrumbs__link" href="<?= Url::to(['/blog']) ?>">Блог</a>
 					<span class="broadcrumbs__divider"> / </span>
-					<span class="broadcrumbs__curr"><?=$blog['title']?></span>
+					<span class="broadcrumbs__curr"><?= $blog->title ?></span>
 				</nav>
 
 				<div class="wrap wrap-services">
-					
+
 					<div class="blog-single__content main">
 						<div class="blog-single__main">
-							<h1 class="blog-single-title"><?=$blog->h1?></h1>
-							<img class="blog-single__main-img" src="<?=$blog->file?>" alt="">
+							<h1 class="blog-single-title"><?= $blog->h1 ?></h1>
+							<img class="blog-single__main-img" src="<?= $blog->file ?>" alt="">
 							<div class="blog-single__text">
-								<?=$blog->description?>
+								<?= $blog->description ?>
 							</div>
 						</div>
 						<div id="sidebar" class="blog-single__aside sidebar">
 							<div class="sidebar__inner sidebarBlog">
-								<?php if($all):?>
+								<?php if ($all): ?>
 									<div class="blog-single__gallery">
-										<img class="blog-item-img" src="<?=$all->file?>" height="210"?>
-										<a class="blog__link" href="<?=Url::to(['/blog']);?>">
-											<span class="blog-link-pc">
-												<?=$all->title?>
-											</span>
-											<span class="blog-link-mob">
-												Все новости
-											</span>
-										</a>
+										<img class="blog-item-img" src="<?= $all->file ?>" height="210" />
+										<a class="blog__link" href="<?= Url::to(['/blog']); ?>"><span
+												class="blog-link-pc"><?= $all->title ?></span><span
+												class="blog-link-mob">Все новости</span></a>
 									</div>
-								<?php endif;?>
+								<?php endif; ?>
 								<div class="blog-single__other">
 									<h3 class="blog-single__other-title">Другие новости</h3>
-									<?php $i=0; foreach ($slider as $key => $value):?>
-										<?php if( $value->options && $i < 4):?>
+									<?php $i = 0;
+									foreach ($slider as $key => $value): ?>
+										<?php if ($value->options && $i < 4): ?>
 											<div class="blog__item blog__item_design blog__slider--slide">
-												<img src="<?=$value->file?>">
+												<img src="<?= $value->file ?>">
 												<div class="slide__title">
-													<h3 class="slide__post-title"><?=$value->title?></h3>
-													<time class="slide__post-time"><?=$value->date = BlogSlider::getTime(strtotime($value->date));?></time>
+													<h3 class="slide__post-title"><?= $value->title ?></h3>
+													<time
+														class="slide__post-time"><?= BlogSlider::getTime(strtotime($value->date)); ?></time>
 												</div>
 												<div class="slide__hover">
-													<span class="dotdot">
-														<?=$value->description?>
-													</span>
-													<a href="<?=Url::to(['/blog', 'slug' => $value->slug])?>">
-														Читать далее
-													</a>
+													<span class="dotdot"><?= $value->description ?></span>
+													<a href="<?= Url::to(['/blog', 'slug' => $value->slug]) ?>">Читать
+														далее</a>
 												</div>
 											</div>
-										<?php endif;?>
-									<?php $i++; endforeach;?>
+										<?php endif; ?>
+										<?php endforeach; ?>
 								</div>
 							</div>
 						</div>
@@ -112,7 +107,7 @@ $img = Url::to('@web/img/');
 				<?= \frontend\components\SendFormWidget::widget([
 					'subject' => \frontend\models\SendForm::USULUGI,
 					'isLabels' => true,
-					'messageLabel'=>'Сообщение'
+					'messageLabel' => 'Сообщение'
 				]) ?>
 				<div class="brief-massage">
 					<button class="brief-massage-close">

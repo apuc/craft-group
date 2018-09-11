@@ -26,81 +26,88 @@ use yii\helpers\Url;
  */
 class Portfolio extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+	/**
+	 * @inheritdoc
+	 */
 	public function behaviors()
 	{
 		return [
 			'sitemap' => [
 				'class' => SitemapBehavior::className(),
-				'scope' => function ($model) {
-					/** @var \yii\db\ActiveQuery $model */
-					$model->select(['slug', 'dt_add']);
-					$model->andWhere(['options' => 1]);
-				},
-				'dataClosure' => function ($model) {
-					/** @var self $model */
-					return [
-						'loc' => Url::to(['/portfolio/portfolio/single-portfolio', 'slug'=> $model->slug], true),
-						'lastmod' => date('Y-m-d H:i:s', $model->dt_add),
-						'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
-						'priority' => 1
-					];
-				}
+				'scope' => $this->getScope(),
+				'dataClosure' => $this->getDataClosure()
 			],
 		];
 	}
-    
-    public static function tableName()
-    {
-        return 'portfolio';
-    }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['title', 'options'], 'required'],
-            [['description', 'stock', 'href'], 'string'],
-	        [['h1', 'meta_key', 'meta_desc', 'stock', 'href', 'file', 'slug', 'description', 'dt_add'], 'safe'],
-            [['title'], 'string', 'max' => 80],
-            [['h1', 'meta_key', 'file', 'slug'], 'string', 'max' => 255],
-            [['meta_desc'], 'string', 'max' => 200],
-            [['options'], 'string', 'max' => 4],
-        ];
-    }
+	public static function tableName()
+	{
+		return 'portfolio';
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('portfolio', 'ID'),
-            'title' => Yii::t('portfolio', 'Title'),
-            'h1' => Yii::t('portfolio', 'H1'),
-            'meta_key' => Yii::t('portfolio', 'Meta Key'),
-            'meta_desc' => Yii::t('portfolio', 'Meta Desc'),
-            'description' => Yii::t('portfolio', 'Description'),
-            'stock' => Yii::t('portfolio', 'Stock'),
-            'href' => Yii::t('portfolio', 'Href'),
-            'options' => Yii::t('portfolio', 'Options'),
-            'file' => Yii::t('portfolio', 'File'),
-            'slug' => Yii::t('portfolio', 'Slug'),
-            'dt_add' => Yii::t('portfolio', 'Date'),
-        ];
-    }
-	
-	public function afterSave($insert, $changedAttributes){
+	/**
+	 * @inheritdoc
+	 */
+	public function rules()
+	{
+		return [
+			[['title', 'options'], 'required'],
+			[['description', 'stock', 'href'], 'string'],
+			[['h1', 'meta_key', 'meta_desc', 'stock', 'href', 'file', 'slug', 'description', 'dt_add'], 'safe'],
+			[['title'], 'string', 'max' => 80],
+			[['h1', 'meta_key', 'file', 'slug'], 'string', 'max' => 255],
+			[['meta_desc'], 'string', 'max' => 200],
+			[['options'], 'string', 'max' => 4],
+		];
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels()
+	{
+		return [
+			'id' => Yii::t('portfolio', 'ID'),
+			'title' => Yii::t('portfolio', 'Title'),
+			'h1' => Yii::t('portfolio', 'H1'),
+			'meta_key' => Yii::t('portfolio', 'Meta Key'),
+			'meta_desc' => Yii::t('portfolio', 'Meta Desc'),
+			'description' => Yii::t('portfolio', 'Description'),
+			'stock' => Yii::t('portfolio', 'Stock'),
+			'href' => Yii::t('portfolio', 'Href'),
+			'options' => Yii::t('portfolio', 'Options'),
+			'file' => Yii::t('portfolio', 'File'),
+			'slug' => Yii::t('portfolio', 'Slug'),
+			'dt_add' => Yii::t('portfolio', 'Date'),
+		];
+	}
+
+	public function afterSave($insert, $changedAttributes)
+	{
 		parent::afterSave($insert, $changedAttributes);
-		if(Yii::$app->cache->flush()){
+		if (Yii::$app->cache->flush()) {
 			Yii::$app->session->setFlash('success', 'Кэш очищен');
 		} else {
 			Yii::$app->session->setFlash('error', 'Ошибка');
 		}
 		return false;
 	}
+
+
+	private function getScope()
+	{
+		/** @var \yii\db\ActiveQuery $model */
+		self::find()->select(['slug', 'dt_add'])->andWhere(['options' => 1]);
+	}
+
+	private function getDataClosure() {
+		/** @var self $model */
+		return [
+			'loc' => Url::to(['/portfolio/portfolio/single-portfolio', 'slug' => $this->slug], true),
+			'lastmod' => date('Y-m-d H:i:s', $this->dt_add),
+			'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
+			'priority' => 1
+		];
+	}
+
 }

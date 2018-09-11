@@ -8,13 +8,15 @@ use common\models\BlogSlider;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /**
- * @var $service object
- * @var $all object
+ * @var \common\models\Service[] $service
+ * @var $all array
  * @var $title string
  */
 
+
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
+
 
 $img = Url::to('@web/img/');
 ?>
@@ -106,20 +108,6 @@ $img = Url::to('@web/img/');
                         </div>
                     </div>
                 </div>
-	            
-<!--                <div class="technologies">-->
-<!--                    <div class="tittle">-->
-<!--                        <span>Используем</span>-->
-<!--                        <h2>новые технологии</h2>-->
-<!--                        <p>-->
-<!--                            --><?php//= $service[1]['description'] ?>
-<!--                        </p>-->
-<!--                    </div>-->
-<!---->
-<!--                    <div class="technologies__cards">-->
-<!--                        --><?php//= $service[1]['file'] ?>
-<!--                    </div>-->
-<!--                </div>-->
 
             </div>
 

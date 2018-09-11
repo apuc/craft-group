@@ -29,20 +29,8 @@ class Myths extends \yii\db\ActiveRecord
 		return [
 			'sitemap' => [
 				'class' => SitemapBehavior::className(),
-				'scope' => function ($model) {
-					/** @var \yii\db\ActiveQuery $model */
-					$model->select(['slug', 'dt_add']);
-					$model->andWhere(['options' => 1]);
-				},
-				'dataClosure' => function ($model) {
-					/** @var self $model */
-					return [
-						'loc' => Url::to(['/myths/myths/single-myths', 'slug' => $model->slug], true),
-						'lastmod' => $model->date,
-						'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
-						'priority' => 1
-					];
-				}
+				'scope' => $this->getScope(),
+				'dataClosure' => $this->getDataClosure()
 			],
 			'slug' => [
 				'class' => 'common\behaviors\Slug',
@@ -103,5 +91,19 @@ class Myths extends \yii\db\ActiveRecord
 			Yii::$app->session->setFlash('error', 'Ошибка');
 		}
 		return false;
+	}
+
+	private function getScope()
+	{
+		return self::find()->select(['slug', 'dt_add'])->andWhere(['options' => 1]);
+	}
+
+	private function getDataClosure()
+	{
+		return [
+			'loc' => Url::to(['/myths/myths/single-myths', 'slug' => $this->slug], true),
+			'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
+			'priority' => 1
+		];
 	}
 }

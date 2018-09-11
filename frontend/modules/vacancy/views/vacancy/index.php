@@ -1,15 +1,13 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
+use common\models\Vacancy;
 use yii\helpers\Url;
-use common\models\BlogSlider;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /**
- * @var $vacancy array
- * @var $all array
+ * @var Vacancy[] $vacancy
+ * @var Vacancy[] $all
  * @var $title string
  * @var $b_cur object
  * @var $blog array
@@ -36,9 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="wrap wrap-services">
                 <div class="tittle">
                     <span>мы растем</span>
-                    <?= $vacancy[0]['h1'] ?>
+                    <?= $vacancy[0]->h1 ?>
                     <p class="vacancies-title-p">
-                        <?= $vacancy[0]['description'] ?>
+                        <?= $vacancy[0]->description ?>
                     </p>
                 </div>
 
@@ -61,13 +59,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="services-text">
 	                    <?php foreach ($all as $key => $value):?>
-		                    <div id="<?=$value['slug']?>" class="services_item title-element">
+		                    <div id="<?=$value->slug?>" class="services_item tittle">
 			                    <p class="services_item-p">
-				                    <?php if(explode('*' , $value['description'])):?>
-					                    <?php $serv = explode('*' , $value['description']);?>
+				                    <?php if(explode('*' , $value->description)):?>
+					                    <?php $serv = explode('*' , $value->description);?>
 					                    <?= $serv[0]?>
 				                    <?php else:?>
-					                    <?=$value['description'];?>
+					                    <?=$value->description;?>
 				                    <?php endif;?>
 			                    </p>
 			                    <ul class="services_item-ul vacancies_item-ul">
@@ -75,11 +73,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				                    <li class="services_item-li vacancies-item-li">Полная занятость,<span class="vacancies-ul-span"> <?=$serv[2] ?? '';?></span></li>
 				                    <li class="services_item-li vacancies-item-li">Уровень зарплаты - <span class="vacancies-ul-span"> <?=$serv[3] ?? '';?></span></li>
 			                    </ul>
-			                    <a href="<?=Url::to(['single-vacancy', 'slug' => $value['slug']])?>" class="services_item-more vacancies_item-more">Подробнее</a>
+			                    <a href="<?=Url::to(['single-vacancy', 'slug' => $value->slug])?>" class="services_item-more vacancies_item-more">Подробнее</a>
 		                    </div>
 	                    <?php endforeach;?>
 
-                        <?php preg_match('|<div class="conditions">(.*?)</div>|isU', $vacancy[0]['file'], $match);
+                        <?php preg_match('|<div class="conditions">(.*?)</div>|isU', $vacancy[0]->file, $match);
                         ?>
 	                    
                     </div>
@@ -88,15 +86,15 @@ $this->params['breadcrumbs'][] = $this->title;
 	            <div class="services-mobile">
 		            <?php foreach ($all as $key => $value):?>
 			            <div class="btn_services-mob">
-				            <h2><?=$value['title']?></h2>
+				            <h2><?=$value->title?></h2>
 			            </div>
 			            <div class="services_item-mob flipIn">
 				            <p class="services_item-p">
-					            <?php if(explode('*' , $value['description'])):?>
-						            <?php $serv = explode('*' , $value['description']);?>
+					            <?php if(explode('*' , $value->description)):?>
+						            <?php $serv = explode('*' , $value->description);?>
 						            <?= $serv[0]?>
 					            <?php else:?>
-						            <?=$value['description'];?>
+						            <?=$value->description;?>
 					            <?php endif;?>
 				            </p>
 				            <div class="services_item-mob mt-1">
@@ -111,7 +109,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					            <p>Уровень зарплаты - </p>
 					            <p><?=$serv[3] ?? '';?></p>
 				            </div>
-				            <a href="<?=Url::to(['single-vacancy', 'slug' => $value['slug']])?>" class="services_more-mob">Подробнее</a>
+				            <a href="<?=Url::to(['single-vacancy', 'slug' => $value->slug])?>" class="services_more-mob">Подробнее</a>
 			            </div>
 		            <?php endforeach;?>
 	            </div>
