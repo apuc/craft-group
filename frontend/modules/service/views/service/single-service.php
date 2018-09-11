@@ -8,8 +8,6 @@
 /**
  * @var $services object
 * @var $service array
- * @var $portfolio array
- * @var $feedback array
  * @var $match array
  */
 
