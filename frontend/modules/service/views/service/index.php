@@ -8,15 +8,13 @@ use common\models\BlogSlider;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /**
- * @var $service array
- * @var $all array
+ * @var $service object
+ * @var $all object
  * @var $title string
  */
 
-
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
-
 
 $img = Url::to('@web/img/');
 ?>
@@ -37,7 +35,7 @@ $img = Url::to('@web/img/');
                 <div class="tittle">
                     <span>что мы можем</span>
                     <h2>услуги компании</h2>
-                    <?= $service[0]['description'] ?>
+                    <?= $service[0]->description ?>
                 </div>
 
                 <div class="all-services">
@@ -89,27 +87,26 @@ $img = Url::to('@web/img/');
 	            </div>
 
                 <div class="novelty novelty-position vacancies-novelty">
-                    <?= $service[2]['file'] ?>
+                    <?= $service[2]->file ?>
 
                     <div class="novelty__desc">
                         <div class="novelty__head">
-                            <h2 class="novelty__big-title novelty-red-title vacancies-novelty-title"><?= $service[2]['h1'] ?></h2>
+                            <h2 class="novelty__big-title novelty-red-title vacancies-novelty-title"><?= $service[2]->h1 ?></h2>
                         </div>
                         <div class="novelty__body vacancies-body">
                             <h3 class="novelty__title">
-                                <?= $service[2]['meta_key'] ?>
+                                <?= $service[2]->meta_key ?>
                             </h3>
                             <h3 class="novelty__title novelty__title_margin">
-                                <?= $service[2]['meta_desc'] ?>
+                                <?= $service[2]->meta_desc ?>
                             </h3>
-                            <p class="novelty__text vacancies-text"><?= $service[2]['description'] ?></p>
-                            <a href="<?= $service[2]['href'] ?>"
+                            <p class="novelty__text vacancies-text"><?= $service[2]->description ?></p>
+                            <a href="<?= $service[2]->href ?>"
                                class="vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty">Подробнее</a>
                         </div>
                     </div>
                 </div>
-
-
+	            
 <!--                <div class="technologies">-->
 <!--                    <div class="tittle">-->
 <!--                        <span>Используем</span>-->

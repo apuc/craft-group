@@ -44,7 +44,7 @@ class ServiceController extends Controller
             'query' => Service::find(),
         ]);
         $service = Yii::$app->cache->getOrSet("service_main", function (){
-	        return Service::find()->where(['options' => 1])->asArray()->limit(7)->all();});
+	        return Service::find()->where(['options' => 1])->limit(7)->all();});
         $services = Yii::$app->cache->getOrSet("services_main", function (){
 	        return Service::find()->where(['options' => 2])->orderBy(['position' => SORT_ASC])->limit(7)->all();});
 	    $title = Yii::$app->cache->getOrSet("service_page_meta_title", function (){
