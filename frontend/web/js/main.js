@@ -296,24 +296,6 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 	    e.preventDefault();
 	    $('.brief-massage').hide();
     });
-    /*Masonry*/
-    $('.grid').imagesLoaded(function () {
-        $('.grid').masonry({
-            itemSelector: '.feedback-item',
-            percentPosition: true
-        });
-    });
-
-    $('.grid_p').imagesLoaded(function () {
-        $('.grid-preloader').css('display', 'none');
-        $('.grid_p, .more_btn').css('display', 'block');
-
-        $('.grid_p').masonry({
-            itemSelector: '.grid-item',
-            // columnWidth: '.grid-sizer',
-            percentPosition: true
-        });
-    });
 
     $(document).on('click', '.more_btn', function (e) {
         e.preventDefault();

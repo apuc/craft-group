@@ -17,6 +17,7 @@ use yii\helpers\Url;
 $this->title = Yii::t('myths', 'Myths');
 $this->params['breadcrumbs'][] = $this->title;
 $img = Url::to('@web/img/');
+\frontend\assets\ServiceAsset::register($this);
 ?>
 <main class="main-service	">
 	<!-- start content-myths.html-->

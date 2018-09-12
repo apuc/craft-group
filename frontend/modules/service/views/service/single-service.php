@@ -12,7 +12,7 @@
  */
 
 use  yii\helpers\Url;
-
+\frontend\assets\SidebarAsset::register($this);
 $this->title =  $service['title'];
 $img = Url::to('@web/img/');
 ?>

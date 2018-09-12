@@ -6,6 +6,7 @@ use backend\modules\service\models\Service;
 use common\models\Feedback;
 use common\models\KeyValue;
 use common\models\Portfolio;
+use frontend\assets\AppAsset;
 use Yii;
 use yii\helpers\Url;
 use yii\data\ActiveDataProvider;

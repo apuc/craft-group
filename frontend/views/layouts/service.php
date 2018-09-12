@@ -17,177 +17,92 @@ use yii\helpers\Url;
 use backend\modules\contacts\models\Contacts;
 
 
-$contacts = Yii::$app->cache->getOrSet("contacts", function (){
-return Contacts::find()->asArray()->limit(100)->all();});
+$contacts = Yii::$app->cache->getOrSet("contacts", function () {
+	return Contacts::find()->asArray()->limit(100)->all();
+});
 $logo = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'logo'])->one();
 $phone = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'phone'])->one();
 $email = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'email'])->one();
-$about = Yii::$app->cache->getOrSet("about", function (){
-return \common\models\Menu::find()->where(['page'=>'about'])->limit(7)->all();});
-$menu = Yii::$app->cache->getOrSet("menu", function (){
-return \common\models\Menu::find()->where(['page'=> 'other'])->orderBy(['position'=> SORT_ASC])->limit(7)->all();});
-if(Url::to() == '/portfolio') {
-	PortfolioAsset::register($this);
-} else {
-	AppAsset::register($this);
-}
+$about = Yii::$app->cache->getOrSet("about", function () {
+	return \common\models\Menu::find()->where(['page' => 'about'])->limit(7)->all();
+});
+$menu = Yii::$app->cache->getOrSet("menu", function () {
+	return \common\models\Menu::find()->where(['page' => 'other'])->orderBy(['position' => SORT_ASC])->limit(7)->all();
+});
+AppAsset::register($this);
+\frontend\assets\CommonAsset::register($this);
 
 
 $active = Url::to();
-if(explode('/',$active)) {
-	$active = explode('/',$active); $active = "/".$active[1];
+if (explode('/', $active)) {
+	$active = explode('/', $active);
+	$active = "/" . $active[1];
 }
 
 ?>
 <?php $this->beginPage() ?>
-<!-- start html_open-index.html-->
-<!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
-<head lang="<?= Yii::$app->language ?>">
-	<meta charset="<?= Yii::$app->charset ?>">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-	<?= Html::csrfMetaTags() ?>
-	<title><?= Html::encode($this->title) ?></title>
-	<script type="text/template" id="qq-template">
-		<div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Положить файлы сюда">
-			<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
-				<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
-			</div>
-			<div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
-				<span class="qq-upload-drop-area-text-selector"></span>
-			</div>
-			<div class="qq-upload-button-selector qq-upload-button">
-				<div>Загрузить файл</div>
-			</div>
-			<span class="qq-drop-processing-selector qq-drop-processing">
-                <span>Processing dropped files...</span>
-                <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
-            </span>
-			<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">
-				<li>
-					<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
-					<div class="qq-progress-bar-container-selector qq-progress-bar-container">
-						<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
-					</div>
-					<span class="qq-upload-spinner-selector qq-upload-spinner"></span>
-					<div class="qq-thumbnail-wrapper">
-						<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>
-					</div>
-					<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>
-					<button type="button" class="qq-upload-retry-selector qq-upload-retry">
-						<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>
-						Retry
-					</button>
+	<!-- start html_open-index.html-->
+	<!DOCTYPE html>
+	<html prefix="og: http://ogp.me/ns#">
+	<head lang="<?= Yii::$app->language ?>">
+		<meta charset="<?= Yii::$app->charset ?>">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<?= Html::csrfMetaTags() ?>
+		<title><?= Html::encode($this->title) ?></title>
+		<?php $this->head() ?>
+		<?= GATracking::widget([
+			'trackingId' => 'UA-67894795-1',
+		]) ?>
+	</head>
+	<body>
+	<?php $this->beginBody() ?>
 
-					<div class="qq-file-info">
-						<div class="qq-file-name">
-							<span class="qq-upload-file-selector qq-upload-file"></span>
-							<span class="qq-edit-filename-icon-selector qq-btn qq-edit-filename-icon" aria-label="Edit filename"></span>
-						</div>
-						<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
-						<span class="qq-upload-size-selector qq-upload-size"></span>
-						<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">
-							<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>
-						</button>
-						<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">
-							<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>
-						</button>
-						<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">
-							<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>
-						</button>
-					</div>
-				</li>
-			</ul>
-
-			<dialog class="qq-alert-dialog-selector">
-				<div class="qq-dialog-message-selector"></div>
-				<div class="qq-dialog-buttons">
-					<button type="button" class="qq-cancel-button-selector">Close</button>
-				</div>
-			</dialog>
-
-			<dialog class="qq-confirm-dialog-selector">
-				<div class="qq-dialog-message-selector"></div>
-				<div class="qq-dialog-buttons">
-					<button type="button" class="qq-cancel-button-selector">No</button>
-					<button type="button" class="qq-ok-button-selector">Yes</button>
-				</div>
-			</dialog>
-
-			<dialog class="qq-prompt-dialog-selector">
-				<div class="qq-dialog-message-selector"></div>
-				<input type="text">
-				<div class="qq-dialog-buttons">
-					<button type="button" class="qq-cancel-button-selector">Отмена</button>
-					<button type="button" class="qq-ok-button-selector">Ok</button>
-				</div>
-			</dialog>
+	<!-- start header-service.html-->
+	<header class="header">
+		<div class="header__logo logo">
+			<a href="/">
+				<?= $logo->file; ?>
+			</a>
 		</div>
-	</script>
-	<?php $this->head() ?>
-	<?= GATracking::widget([
-		'trackingId' => 'UA-67894795-1',
-	]) ?>
-</head>
-<body>
-<?php $this->beginBody() ?>
+		<div class="container">
+			<div class="header__mobile-btn"><span></span></div>
 
-<!-- open .header -->
-<div class="page-preloader">
-	<svg viewBox="0 0 1000 200">
-		<!-- Symbol-->
-		<symbol id="s-text">
-			<text text-anchor="middle" x="50%" y="50%" dy=".35em">Craft Group</text>
-		</symbol>
-		<!-- Duplicate symbols-->
-		<use class="text" xlink:href="#s-text"></use>
-		<use class="text" xlink:href="#s-text"></use>
-		<use class="text" xlink:href="#s-text"></use>
-	</svg>
-</div>
-<!-- end html_open.html-->
-
-<!-- start header-service.html-->
-<header class="header">
-	<div class="header__logo logo">
-		<a href="/">
-			<?=$logo->file;?>
-		</a>
-	</div>
-	<div class="container">
-		<div class="header__mobile-btn"><span></span></div>
-
-		<ul class="header__nav">
-			<li class="header__logo header__logo_mobile logo">
-				<a href="/">
-					<?=$logo->file;?>
-				</a>
-			</li>
-
-			<ul class="header__nav-container">
-				<?php foreach ($menu as $value):?>
-					<li class="<?= ($active == $value->href) ? 'active-page': ''?> header__nav-li"><a href="<?=Url::to($value->href);?>"><?=$value->title?></a></li>
-				<?php endforeach;?>
-				<li class="header__nav-li dropdown <?= ($active=='/about') ? 'active-page': ''?>">
-					<a href="<?=Url::to('/about');?>">О нас</a>
-					<button class="dropdown_mob"></button>
-					<ul class="header__submenu header__submenu_mob">
-						<?php foreach ($about as $val):?>
-							<li><a href="<?=Url::to($val->href);?>"><?=$val->title?></a></li>
-						<?php endforeach;?>
-					</ul>
+			<ul class="header__nav">
+				<li class="header__logo header__logo_mobile logo">
+					<a href="/">
+						<?= $logo->file; ?>
+					</a>
 				</li>
-				<li class="header__nav-li"><a class="portfolio-scroll" href="#brief">Контакты</a></li>
-			</ul>
-			<li class="header__callback header__callback_mobile">
-				<!--					<img class="header__callback_img" src="--><?//=Url::to('img/phone-ico.png')?><!--" alt="">-->
-				<svg class="header-phone" version="1.1" id="phone" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-					 viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
+
+				<ul class="header__nav-container">
+					<?php foreach ($menu as $value): ?>
+						<li class="<?= ($active == $value->href) ? 'active-page' : '' ?> header__nav-li"><a
+								href="<?= Url::to($value->href); ?>"><?= $value->title ?></a></li>
+					<?php endforeach; ?>
+					<li class="header__nav-li dropdown <?= ($active == '/about') ? 'active-page' : '' ?>">
+						<a href="<?= Url::to('/about'); ?>">О нас</a>
+						<button class="dropdown_mob"></button>
+						<ul class="header__submenu header__submenu_mob">
+							<?php foreach ($about as $val): ?>
+								<li><a href="<?= Url::to($val->href); ?>"><?= $val->title ?></a></li>
+							<?php endforeach; ?>
+						</ul>
+					</li>
+					<li class="header__nav-li"><a class="portfolio-scroll" href="#brief">Контакты</a></li>
+				</ul>
+				<li class="header__callback header__callback_mobile">
+					<!--					<img class="header__callback_img" src="-->
+					<? //=Url::to('img/phone-ico.png')?><!--" alt="">-->
+					<svg class="header-phone" version="1.1" id="phone" xmlns="http://www.w3.org/2000/svg"
+						 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
                 <style type="text/css">
-					.st0{fill:#FF4834;}
+					.st0 {
+						fill: #FF4834;
+					}
 				</style>
-					<path class="st0" d="M20,0C9,0,0,8.9,0,20c0,11,9,20,20,20s20-9,20-20C40,8.9,31,0,20,0z M29.6,26.5l-2.8,2.8
+						<path class="st0" d="M20,0C9,0,0,8.9,0,20c0,11,9,20,20,20s20-9,20-20C40,8.9,31,0,20,0z M29.6,26.5l-2.8,2.8
                   c-0.1,0.1-0.3,0.3-0.5,0.4c-0.2,0.1-0.4,0.2-0.6,0.2c0,0-0.1,0-0.1,0c-0.1,0-0.2,0-0.3,0c-0.3,0-0.7,0-1.3-0.1
                   c-0.6-0.1-1.3-0.3-2.2-0.7c-0.9-0.4-1.8-0.9-2.9-1.6c-1.1-0.7-2.3-1.7-3.5-2.9c-1-1-1.8-1.9-2.4-2.8c-0.6-0.9-1.2-1.7-1.6-2.4
                   c-0.4-0.7-0.7-1.4-0.9-2c-0.2-0.6-0.3-1.1-0.4-1.6c-0.1-0.4-0.1-0.8-0.1-1c0-0.3,0-0.4,0-0.4c0-0.2,0.1-0.4,0.2-0.6
@@ -197,21 +112,26 @@ if(explode('/',$active)) {
                   c0,0,0.1,0,0.1,0s0.1,0,0.1-0.1l1.2-1.2c0.3-0.2,0.5-0.3,0.9-0.3c0.2,0,0.4,0,0.6,0.1h0l4.1,2.4c0.3,0.2,0.5,0.4,0.5,0.7
                   C29.9,26,29.9,26.3,29.6,26.5z"/>
                 </svg>
-				<div class="header__callback_text">
-					<span class="header__callback_top"><?=$phone->description ?? ''?></span>
-					<a href="#phoneMassage" rel="nofollow" class="header__callback_bottom">Заказать обратный звонок</a>
-				</div>
-			</li>
-		</ul>
-	</div>
-	<div class="header__callback">
-		<!--			<img class="header__callback_img" src="--><?//=Url::to('img/phone-ico2.png')?><!--" width="50px" height="50px" alt="">-->
-		<svg class="header-phone" version="1.1" id="phone" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-			 viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
+					<div class="header__callback_text">
+						<span class="header__callback_top"><?= $phone->description ?? '' ?></span>
+						<a href="#phoneMassage" rel="nofollow" class="header__callback_bottom">Заказать обратный
+							звонок</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="header__callback">
+			<!--			<img class="header__callback_img" src="-->
+			<? //=Url::to('img/phone-ico2.png')?><!--" width="50px" height="50px" alt="">-->
+			<svg class="header-phone" version="1.1" id="phone" xmlns="http://www.w3.org/2000/svg"
+				 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
 	        <style type="text/css">
-				.st0{fill:#FF4834;}
+				.st0 {
+					fill: #FF4834;
+				}
 			</style>
-			<path class="st0" d="M20,0C9,0,0,8.9,0,20c0,11,9,20,20,20s20-9,20-20C40,8.9,31,0,20,0z M29.6,26.5l-2.8,2.8
+				<path class="st0" d="M20,0C9,0,0,8.9,0,20c0,11,9,20,20,20s20-9,20-20C40,8.9,31,0,20,0z M29.6,26.5l-2.8,2.8
 		          c-0.1,0.1-0.3,0.3-0.5,0.4c-0.2,0.1-0.4,0.2-0.6,0.2c0,0-0.1,0-0.1,0c-0.1,0-0.2,0-0.3,0c-0.3,0-0.7,0-1.3-0.1
 		          c-0.6-0.1-1.3-0.3-2.2-0.7c-0.9-0.4-1.8-0.9-2.9-1.6c-1.1-0.7-2.3-1.7-3.5-2.9c-1-1-1.8-1.9-2.4-2.8c-0.6-0.9-1.2-1.7-1.6-2.4
 		          c-0.4-0.7-0.7-1.4-0.9-2c-0.2-0.6-0.3-1.1-0.4-1.6c-0.1-0.4-0.1-0.8-0.1-1c0-0.3,0-0.4,0-0.4c0-0.2,0.1-0.4,0.2-0.6
@@ -221,59 +141,58 @@ if(explode('/',$active)) {
 		          c0,0,0.1,0,0.1,0s0.1,0,0.1-0.1l1.2-1.2c0.3-0.2,0.5-0.3,0.9-0.3c0.2,0,0.4,0,0.6,0.1h0l4.1,2.4c0.3,0.2,0.5,0.4,0.5,0.7
 		          C29.9,26,29.9,26.3,29.6,26.5z"/>
             </svg>
-		<div class="header__callback_text">
-			<span class="header__callback_top"><?=$phone->description ?? ''?></span>
-			<a href="#phoneMassage" rel="nofollow" class="header__callback_bottom">Заказать обратный звонок</a>
-		</div>
-	</div>
-	
-	<?= \frontend\components\SendCallBackWidget::widget([
-		'subject' => \frontend\models\SendCallBack::CALLBACK,
-		'isLabels' => true,
-		'messageLabel'=>'Сообщение'
-	]) ?>
-	
-	<div class="phone-brief-overlay">
-		<div class="phone-brief-massage">
-			<div class="phone-massage-close">
-				<span></span>
-				<span></span>
+			<div class="header__callback_text">
+				<span class="header__callback_top"><?= $phone->description ?? '' ?></span>
+				<a href="#phoneMassage" rel="nofollow" class="header__callback_bottom">Заказать обратный звонок</a>
 			</div>
-			<img src="/img/massage_success.png">
-			<h2>Ваш номер отправлен!</h2>
-			<p>Ожидайте, скоро мы с вами свяжемся.</p>
-			<p>А пока вы можете посмотреть <a href="<?=Url::to(['/portfolio'])?>">наши работы</a></p>
 		</div>
-	</div>
-</header>
 
-<!-- end header-service.html-->
-<?= $content?>
-<!-- start blog.html-->
-<?php $curr_blog = $this->params['curr_blog'] ?? '';
-;?>
-<?= \frontend\components\BlogWidget::widget(['curr_blog' => $curr_blog]);?>
-<!-- end blog.html-->
+		<?= \frontend\components\SendCallBackWidget::widget([
+			'subject' => \frontend\models\SendCallBack::CALLBACK,
+			'isLabels' => true,
+			'messageLabel' => 'Сообщение'
+		]) ?>
 
-<section class="footer-section">
-
-	<div class="footer-copyri">
-		<div class="footer-copyright">
-			<div class="footer-copyright-left">
-				<?php foreach ($contacts as $key => $value){?>
-					<?php if($value['name'] == 'footer'){?>
-						<?=$value['file']?>
-					<?php }?>
-				<?php }?>
-			</div>
-			<div class="footer-copyright-right">
-				<div class="footer-phone">
-					<p><?=$phone->description ?? '';?></p>
-					<p><?=$email->description ?? ''?></p>
+		<div class="phone-brief-overlay">
+			<div class="phone-brief-massage">
+				<div class="phone-massage-close">
+					<span></span>
+					<span></span>
 				</div>
+				<img src="/img/massage_success.png">
+				<h2>Ваш номер отправлен!</h2>
+				<p>Ожидайте, скоро мы с вами свяжемся.</p>
+				<p>А пока вы можете посмотреть <a href="<?= Url::to(['/portfolio']) ?>">наши работы</a></p>
 			</div>
-			<div class="footer-socmenu">
-				<?php $vk = '<svg class="fab" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		</div>
+	</header>
+
+	<!-- end header-service.html-->
+	<?= $content ?>
+	<!-- start blog.html-->
+	<?php $curr_blog = $this->params['curr_blog'] ?? '';; ?>
+	<?= \frontend\components\BlogWidget::widget(['curr_blog' => $curr_blog]); ?>
+	<!-- end blog.html-->
+
+	<section class="footer-section">
+
+		<div class="footer-copyri">
+			<div class="footer-copyright">
+				<div class="footer-copyright-left">
+					<?php foreach ($contacts as $key => $value) { ?>
+						<?php if ($value['name'] == 'footer') { ?>
+							<?= $value['file'] ?>
+						<?php } ?>
+					<?php } ?>
+				</div>
+				<div class="footer-copyright-right">
+					<div class="footer-phone">
+						<p><?= $phone->description ?? ''; ?></p>
+						<p><?= $email->description ?? '' ?></p>
+					</div>
+				</div>
+				<div class="footer-socmenu">
+					<?php $vk = '<svg class="fab" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <path class="path-fab" d="M256,512c-68.38,0-132.667-26.629-181.019-74.981S0,324.38,0,256S26.629,123.333,74.981,74.981
           S187.62,0,256,0s132.667,26.629,181.019,74.981S512,187.62,512,256s-26.629,132.667-74.981,181.019S324.38,512,256,512z M256,9.827
@@ -309,7 +228,7 @@ if(explode('/',$active)) {
           c2.325-1.381,3.699-2.903,4.144-4.551c0.448-1.661,0.468-3.538,0.089-5.645C409.308,340.538,408.922,339.067,408.543,338.24
           L408.543,338.24z"/>
       </svg>';
-				$fb = '<svg class="fab" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					$fb = '<svg class="fab" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="-49 141 512 512" style="enable-background:new -49 141 512 512;" xml:space="preserve">
         <path class="path-fab" d="M207,653c-68.38,0-132.667-26.629-181.019-74.981C-22.371,529.667-49,465.38-49,397
           s26.629-132.667,74.981-181.019C74.333,167.629,138.62,141,207,141s132.667,26.629,181.019,74.981
@@ -321,7 +240,7 @@ if(explode('/',$active)) {
           c-1.116-1.116-2.633-1.741-4.226-1.741h-44.683v-28.188c0-13.545,3.231-20.423,20.869-20.423l25.601-0.015
           c3.304,0,5.967-2.678,5.967-5.967v-44.725C286.204,253.235,283.541,250.572,280.252,250.556L280.252,250.556z M280.252,250.556"/>
       </svg>';
-				$inst = '<svg class="fab" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					$inst = '<svg class="fab" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
       <g>
         <path class="path-fab" d="M256,512c-68.38,0-132.667-26.629-181.019-74.981S0,324.38,0,256S26.629,123.333,74.981,74.981
@@ -340,7 +259,7 @@ if(explode('/',$active)) {
         </g>
       </g>
       </svg>';
-				$inst = '<svg class="fab" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					$inst = '<svg class="fab" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
       <g>
         <path class="path-fab" d="M256,512c-68.38,0-132.667-26.629-181.019-74.981S0,324.38,0,256S26.629,123.333,74.981,74.981
@@ -359,85 +278,85 @@ if(explode('/',$active)) {
         </g>
       </g>
       </svg>';
-				?>
-				<?php foreach ($contacts as $key => $value){?>
-					<?php if($value['name'] == 'social'){?>
-						<?php
-							switch($value['file']){
+					?>
+					<?php foreach ($contacts as $key => $value) { ?>
+						<?php if ($value['name'] == 'social') { ?>
+							<?php
+							switch ($value['file']) {
 								case 'vk':
-									echo '<a href="'.$value['description'].'" target="_blank" class="fab">'.$vk.'</a>';
+									echo '<a href="' . $value['description'] . '" target="_blank" class="fab">' . $vk . '</a>';
 									break;
 								case 'facebook':
-									echo '<a href="'.$value['description'].'" target="_blank" class="fab">'.$fb.'</a>';
+									echo '<a href="' . $value['description'] . '" target="_blank" class="fab">' . $fb . '</a>';
 									break;
 								case 'instagram':
-									echo '<a href="'.$value['description'].'" target="_blank" class="fab">'.$inst.'</a>';
+									echo '<a href="' . $value['description'] . '" target="_blank" class="fab">' . $inst . '</a>';
 									break;
 							}
-						?>
-					<?php }?>
-				<?php }?>
-				<!--							<a href="#" class="fab fa-vk"></a>-->
-				<!--							<a href="#" class="fab fa-facebook-f"></a>-->
-				<!--							<a href="#" class="fab fa-instagram"></a>-->
+							?>
+						<?php } ?>
+					<?php } ?>
+					<!--							<a href="#" class="fab fa-vk"></a>-->
+					<!--							<a href="#" class="fab fa-facebook-f"></a>-->
+					<!--							<a href="#" class="fab fa-instagram"></a>-->
+				</div>
 			</div>
 		</div>
-	</div>
 
-</section>
-<!-- end footer-copyright.html-->
+	</section>
+	<!-- end footer-copyright.html-->
 
-<?php $this->endBody() ?>
-<a href="#" class="scrollup"></a>
-<?= \frontend\components\YandexWidget::widget()?>
+	<?php $this->endBody() ?>
+	<a href="#" class="scrollup"></a>
+	<?= \frontend\components\YandexWidget::widget() ?>
 
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-	<!-- Background of PhotoSwipe.
-		 It's a separate element, as animating opacity is faster than rgba(). -->
-	<div class="pswp__bg"></div>
-	<!-- Slides wrapper with overflow:hidden. -->
-	<div class="pswp__scroll-wrap">
-		<!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
-		<!-- don't modify these 3 pswp__item elements, data is added later on. -->
-		<div class="pswp__container">
-			<div class="pswp__item"></div>
-			<div class="pswp__item"></div>
-			<div class="pswp__item"></div>
-		</div>
-		<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-		<div class="pswp__ui pswp__ui--hidden">
-			<div class="pswp__top-bar">
-				<!--  Controls are self-explanatory. Order can be changed. -->
-				<div class="pswp__counter"></div>
-				<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-				<button class="pswp__button pswp__button--share" title="Share"></button>
-				<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-				<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-				<!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
-				<!-- element will get class pswp__preloader--active when preloader is running -->
-				<div class="pswp__preloader">
-					<div class="pswp__preloader__icn">
-						<div class="pswp__preloader__cut">
-							<div class="pswp__preloader__donut"></div>
+	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+		<!-- Background of PhotoSwipe.
+			 It's a separate element, as animating opacity is faster than rgba(). -->
+		<div class="pswp__bg"></div>
+		<!-- Slides wrapper with overflow:hidden. -->
+		<div class="pswp__scroll-wrap">
+			<!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+			<!-- don't modify these 3 pswp__item elements, data is added later on. -->
+			<div class="pswp__container">
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+			</div>
+			<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+			<div class="pswp__ui pswp__ui--hidden">
+				<div class="pswp__top-bar">
+					<!--  Controls are self-explanatory. Order can be changed. -->
+					<div class="pswp__counter"></div>
+					<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+					<button class="pswp__button pswp__button--share" title="Share"></button>
+					<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+					<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+					<!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+					<!-- element will get class pswp__preloader--active when preloader is running -->
+					<div class="pswp__preloader">
+						<div class="pswp__preloader__icn">
+							<div class="pswp__preloader__cut">
+								<div class="pswp__preloader__donut"></div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-				<div class="pswp__share-tooltip"></div>
-			</div>
-			<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-			</button>
-			<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-			</button>
-			<div class="pswp__caption">
-				<div class="pswp__caption__center"></div>
+				<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+					<div class="pswp__share-tooltip"></div>
+				</div>
+				<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+				</button>
+				<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+				</button>
+				<div class="pswp__caption">
+					<div class="pswp__caption__center"></div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-</body>
-</html>
-<!-- end html_close-index.html-->
+	</body>
+	</html>
+	<!-- end html_close-index.html-->
 <?php $this->endPage() ?>

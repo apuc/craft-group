@@ -18,6 +18,7 @@ use common\models\BlogSlider;
 
 $this->title = $blog->title;
 $img = Url::to('@web/img/');
+\frontend\assets\SidebarAsset::register($this);
 ?>
 
 <!-- start content-blog.html-->
