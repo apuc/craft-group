@@ -6,6 +6,7 @@ use backend\modules\service\models\Service;
 use common\models\Feedback;
 use common\models\KeyValue;
 use common\models\Portfolio;
+use frontend\assets\AppAsset;
 use Yii;
 use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
@@ -81,6 +82,7 @@ class ServiceController extends Controller
 		Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("service_og_type", function () {
 			return KeyValue::getValue('service_og_type');
 		});
+		$this->view->registerJsFile(Yii::getAlias('@web' . '/js/allservices.js'), ['depends' => [AppAsset::className()]]);
 		return $this->render('index', [
 			'service' => $service, 'all' => $services, 'title' => $title
 		]);
