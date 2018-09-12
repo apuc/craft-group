@@ -19,8 +19,10 @@ class PortfolioAsset extends FrontAsset
 		'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js',
 		'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js',
 		'js/PhotoSw.js',
-		'js/masonry.pkgd.min.js',
 		'js/imagesloaded.pkgd.min.js',
+		'js/portfolio_masonry.js',
+		'js/masonry.pkgd.min.js',
+
 	];
 	public $depends = [
 		'frontend\assets\CommonAsset',
