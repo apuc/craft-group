@@ -9,6 +9,7 @@ use  yii\helpers\Url;
 
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
+\frontend\assets\PortfolioAsset::register($this);
 ?>
 <!-- start content-portfolio.html-->
 <main class="main-portfolio">

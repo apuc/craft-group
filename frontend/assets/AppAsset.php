@@ -2,12 +2,10 @@
 
 namespace frontend\assets;
 
-use yii\web\AssetBundle;
-
 /**
  * Main frontend application asset bundle.
  */
-class AppAsset extends AssetBundle
+class AppAsset extends FrontAsset
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
@@ -43,7 +41,7 @@ class AppAsset extends AssetBundle
 //	    'js/slick-feedback.js',
 //	    'js/allservices.js',
 	    'js/Uploader.js',
-	    'js/script.min.js',
+//	    'js/script.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

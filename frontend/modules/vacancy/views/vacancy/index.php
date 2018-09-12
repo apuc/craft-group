@@ -12,7 +12,7 @@ use yii\helpers\Url;
  * @var $b_cur object
  * @var $blog array
  */
-
+\frontend\assets\ServiceAsset::register($this);
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>

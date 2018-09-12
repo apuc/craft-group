@@ -82,7 +82,6 @@ class ServiceController extends Controller
 		Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("service_og_type", function () {
 			return KeyValue::getValue('service_og_type');
 		});
-		$this->view->registerJsFile(Yii::getAlias('@web' . '/js/allservices.js'), ['depends' => [AppAsset::className()]]);
 		return $this->render('index', [
 			'service' => $service, 'all' => $services, 'title' => $title
 		]);

@@ -15,7 +15,7 @@
 use yii\helpers\Url;
 use common\models\BlogSlider;
 
-
+\frontend\assets\SidebarAsset::register($this);
 $this->title = $myth->title;
 $img = Url::to('@web/img/');
 ?>
