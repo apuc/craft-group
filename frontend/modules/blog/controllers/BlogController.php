@@ -93,7 +93,7 @@ class BlogController extends Controller
 		$last_arr =[];
 		$last_blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->andWhere(['!=', 'slug', $slug])->orderBy(['date' => SORT_DESC])->limit(5)->orderBy('date desc')->all();
 		foreach ($last_blog as $last){
-			$last_arr[] = $last->id;
+			$last_arr[] = $last->slug;
 		}
 		
 		$slider = Yii::$app->cache->getOrSet('slider-' . $slug, function () use ($slug, $last_arr) {
@@ -101,7 +101,7 @@ class BlogController extends Controller
 				->where(['!=', 'options', 0])
 				->andWhere(['!=','h1', 'current'])
 				->andWhere(['!=', 'slug', $slug])
-				->andWhere(['!=', 'id', $last_arr])
+				->andWhere(['not in', 'slug', $last_arr])
 				->orderBy(new Expression('rand()'), ['date'=> SORT_DESC])
 				->all();
 		});
