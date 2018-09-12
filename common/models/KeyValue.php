@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $key
  * @property string $value
+ * @property string $label
  * @property int $dt_add
  */
 class KeyValue extends \yii\db\ActiveRecord
@@ -28,10 +29,10 @@ class KeyValue extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['key', 'value'], 'required'],
+			[['key', 'value', 'label'], 'required'],
 			[['value'], 'string'],
 			[['dt_add'], 'integer'],
-			[['key'], 'string', 'max' => 255],
+			[['key', 'label'], 'string', 'max' => 255],
 		];
 	}
 
@@ -43,8 +44,9 @@ class KeyValue extends \yii\db\ActiveRecord
 		return [
 			'id' => Yii::t('seo', 'ID'),
 			'key' => Yii::t('seo', 'Key'),
-			'value' => Yii::t('seo', 'Value'),
+			'value' => 'Значение',
 			'dt_add' => Yii::t('seo', 'Dt Add'),
+			'label'=>'Описание'
 		];
 	}
 

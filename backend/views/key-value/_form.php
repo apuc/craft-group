@@ -15,14 +15,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'key')->textInput(['maxlength' => true]) ?>
 
-    <!--    <? //= $form->field($model, 'value')->widget(CKEditor::className(),[
-    //        'editorOptions' => [
-    //            'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-    //            'inline' => false, //по умолчанию false
-    //        ],
-    //    ]);?>-->
-
     <?= $form->field($model, 'value')->textarea(['rows' => "10", 'cols' => "45"]) ?>
+    <?= $form->field($model, 'label')->textarea(['rows' => "10", 'cols' => "45"]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
