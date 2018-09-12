@@ -68,7 +68,7 @@ $this->title = $title;
                             <?php if ($value->h1 == 'brief'): ?>
                                 <div class="gallery__block portfolio__brief portfolio-link">
                                     <h2>
-                                        <a class="scroll" href="#brief">
+                                        <a class="portfolio-scroll" href="#brief">
                                             <?= $value->title ?><span></span>
                                         </a>
                                     </h2>
