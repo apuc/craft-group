@@ -8,14 +8,8 @@
 
 namespace frontend\assets;
 
-
-use yii\web\AssetBundle;
-
-class SidebarAsset extends AssetBundle
+class SidebarAsset extends FrontAsset
 {
-	public $basePath = '@webroot';
-	public $baseUrl = '@web';
-
 	public $js = [
 		'js/jquery.sticky-sidebar.js',
 	];
