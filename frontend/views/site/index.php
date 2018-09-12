@@ -15,6 +15,7 @@ use himiklab\thumbnail\EasyThumbnailImage;
 
 $home = (Url::home(true));
 $this->title = $title;
+\frontend\assets\CommonAsset::register($this);
 ?>
 
 <!-- start content-main.html-->
