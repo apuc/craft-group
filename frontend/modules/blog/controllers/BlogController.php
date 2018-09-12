@@ -95,14 +95,18 @@ class BlogController extends Controller
 		foreach ($last_blog as $last){
 			$last_arr[] = $last->slug;
 		}
-		
-		$slider = Yii::$app->cache->getOrSet('slider-' . $slug, function () use ($slug, $last_arr) {
+		$count_sidebar = KeyValue::getValue('blog_sidebar_count') ?? '';
+		if(!$count_sidebar) {
+			$count_sidebar = BlogSlider::find()->where(['!=', 'h1', 'current'])->count();
+		}
+		$slider = Yii::$app->cache->getOrSet('slider-' . $slug, function () use ($slug, $last_arr, $count_sidebar) {
 			return BlogSlider::find()
 				->where(['!=', 'options', 0])
 				->andWhere(['!=','h1', 'current'])
 				->andWhere(['!=', 'slug', $slug])
 				->andWhere(['not in', 'slug', $last_arr])
 				->orderBy(new Expression('rand()'), ['date'=> SORT_DESC])
+				->limit($count_sidebar)
 				->all();
 		});
 		$all = Yii::$app->cache->getOrSet('all' . $slug, function () {
