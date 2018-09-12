@@ -135,7 +135,7 @@ return [
 //	        'class'        => 'yii\rbac\DbManager',
 	        'class' => 'dektrium\rbac\components\DbManager',
         ],
-	    
+
         'i18n' => [
 	        'translations' => [
 		        '*' => [
@@ -148,6 +148,9 @@ return [
 		        ],
 	        ],
         ],
+		'resizeImage'=>[
+			'class'=>'common\components\ResizeImageComponent'
+		]
 	    /*AdminLte2*/
 //        'view' => [
 //	        'theme' => [
@@ -156,8 +159,8 @@ return [
 //		        ],
 //	        ],
 //        ],
-       
-	    
+
+
     ],
 	'controllerMap' => [
 		'elfinder' => [

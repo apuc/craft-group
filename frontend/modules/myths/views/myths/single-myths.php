@@ -63,7 +63,7 @@ $img = Url::to('@web/img/');
 									foreach ($slider as $key => $value): ?>
 										<?php if ($value['options'] && $i < 4): ?>
 											<div class="blog__item blog__item_design blog__slider--slide">
-												<img src="<?= $value['file'] ?>">
+												<img src="<?= Yii::$app->resizeImage->resizeImage($value['file']) ?>">
 												<div class="slide__title">
 													<h3 class="slide__post-title"><?= $value['title'] ?></h3>
 													<time

@@ -49,17 +49,13 @@ $this->title = $title;
                             <div class="gallery__block portfolio-link">
                                 <img src="<?= $value['file'] ?>">
                                 <a class="gallery__block-link"
-                                   href="<?= Url::toRoute(['/portfolio']); ?>"><?= $value['title'] ?></a>
+                                   href="<?= Url::toRoute(['/portfolio']); ?>"><?= $value->title ?></a>
                                 <span></span>
                             </div>
                         <?php elseif ($value->h1 != 'brief'): ?>
                             <div class="gallery__block portfolio-<?= $class[$i] ?> portfolio-link">
                                 <a href="<?= Url::toRoute(['/portfolio/' . $value->slug]); ?>">
-                                    <?= EasyThumbnailImage::thumbnailImg(
-                                        $home . $value->file,
-	                                    getimagesize ($home.$value->file)[0],
-	                                    getimagesize ($home.$value->file)[1],
-                                        EasyThumbnailImage::THUMBNAIL_OUTBOUND); ?>
+                                    <?= $this->render('_thumbnail', ['value'=>$value])?>
                                 </a>
                                 <span></span>
                             </div>
