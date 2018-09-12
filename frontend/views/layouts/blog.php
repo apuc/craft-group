@@ -29,6 +29,7 @@ $about = Yii::$app->cache->getOrSet("about", function (){
 return \common\models\Menu::find()->where(['page' => 'about'])->limit(7)->all();});
 
 AppAsset::register($this);
+\frontend\assets\CommonAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!-- start html_open-index.html-->
