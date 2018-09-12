@@ -90,11 +90,18 @@ class BlogController extends Controller
 		$blog = Yii::$app->cache->getOrSet('blog-' . $slug, function () use ($slug) {
 			return BlogSlider::find()->where(['slug' => $slug])->one();
 		});
-		$slider = Yii::$app->cache->getOrSet('slider-' . $slug, function () use ($slug) {
+		$last_arr =[];
+		$last_blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->andWhere(['!=', 'slug', $slug])->orderBy(['date' => SORT_DESC])->limit(5)->orderBy('date desc')->all();
+		foreach ($last_blog as $last){
+			$last_arr[] = $last->id;
+		}
+		
+		$slider = Yii::$app->cache->getOrSet('slider-' . $slug, function () use ($slug, $last_arr) {
 			return BlogSlider::find()
 				->where(['!=', 'options', 0])
 				->andWhere(['!=','h1', 'current'])
 				->andWhere(['!=', 'slug', $slug])
+				->andWhere(['!=', 'id', $last_arr])
 				->orderBy(new Expression('rand()'), ['date'=> SORT_DESC])
 				->all();
 		});
