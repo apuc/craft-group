@@ -91,7 +91,7 @@ class BlogController extends Controller
 			return BlogSlider::find()->where(['slug' => $slug])->one();
 		});
 		$last_arr =[];
-		$last_blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->andWhere(['!=', 'slug', $this->curr_blog])->orderBy(['date' => SORT_DESC])->limit(5)->orderBy('date desc')->all();
+		$last_blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->andWhere(['!=', 'slug', $slug])->orderBy(['date' => SORT_DESC])->limit(5)->orderBy('date desc')->all();
 		foreach ($last_blog as $last){
 			$last_arr[] = $last_blog->id;
 		}
