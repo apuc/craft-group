@@ -64,20 +64,6 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<!-- open .header -->
-<div class="page-preloader">
-    <svg viewBox="0 0 1000 200">
-        <!-- Symbol-->
-        <symbol id="s-text">
-            <text text-anchor="middle" x="50%" y="50%" dy=".35em">Craft Group</text>
-        </symbol>
-        <!-- Duplicate symbols-->
-        <use class="text" xlink:href="#s-text"></use>
-        <use class="text" xlink:href="#s-text"></use>
-        <use class="text" xlink:href="#s-text"></use>
-    </svg>
-</div>
-<!-- end html_open-index.html-->
 
 <!-- start header-index.html-->
 <header class="header header-index js_headerIndex">
