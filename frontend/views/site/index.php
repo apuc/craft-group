@@ -15,7 +15,6 @@ use himiklab\thumbnail\EasyThumbnailImage;
 
 $home = (Url::home(true));
 $this->title = $title;
-$this->registerJsFile('/js/fine-uploader.min.js');
 ?>
 
 <!-- start content-main.html-->
