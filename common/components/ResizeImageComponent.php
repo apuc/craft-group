@@ -17,13 +17,20 @@ class ResizeImageComponent extends Component
 {
 	private $name;
 
-	public function resizeImage($file)
+	/**
+	 * нарезка картинок
+	 * @param $file
+	 * @param int $width
+	 * @return string
+	 * @throws \yii\base\Exception
+	 */
+	public function resizeImage(string $file, int $width = 500)
 	{
 		$pathToImage = $this->getPathToImage($file);
 
 		$this->setName($pathToImage);
 
-		$pathToDirThumbnail = \Yii::getAlias('@frontend/web/uploads/thumbnail/component');
+		$pathToDirThumbnail = \Yii::getAlias('@frontend/web/uploads/thumbnail/component/'.$width);
 		FileHelper::createDirectory($pathToDirThumbnail);
 
 		$pathToThumbnail = $pathToDirThumbnail . '/' . $this->decode($this->name);
@@ -32,11 +39,11 @@ class ResizeImageComponent extends Component
 
 		$image = Imagick::open($pathToImage);
 
-		if ($image->getWidth() > 500) {
+		if ($image->getWidth() > $width) {
 			if (!$this->issetImage($pathToThumbnail)) {
-				$image->resize(500, false)->saveTo($pathToThumbnail);
+				$image->resize($width, false)->saveTo($pathToThumbnail);
 			}
-			return \Yii::getAlias('@web') . '/uploads/thumbnail/component/' . $this->name;
+			return \Yii::getAlias('@web') . '/uploads/thumbnail/component/'.$width.'/' . $this->name;
 		} else {
 			return $file;
 		}
