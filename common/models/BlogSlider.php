@@ -126,15 +126,17 @@ class BlogSlider extends \yii\db\ActiveRecord
 		return false;
 	}
 
-	public function strCrop(){
-		return iconv_substr ($this->description, 0 , 80 , 'UTF-8' );
+	public function strCrop()
+	{
+		$str = strip_tags($this->description);
+		return iconv_substr($str, 0, 80, 'UTF-8');
 	}
 
 	private function getScope()
 	{
 		return self::find()->select(['slug', 'date'])->andWhere(['options' => 1]);
 	}
-	
+
 	private function getDataClosure()
 	{
 		return [
