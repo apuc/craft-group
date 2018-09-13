@@ -35,7 +35,7 @@ PreviewAsset::register($this);
 	],   [
 		'prompt' => 'Выберите отображение'
 	]);?>
-	
+
 	<?= $form->field($model, 'description')->widget(CKEditor::className(), [
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder',['enterMode' => 2, 'forceEnterMode'=>false, 'shiftEnterMode'=>1  ]),
 	]);?>
@@ -43,7 +43,7 @@ PreviewAsset::register($this);
 	<?= $form->field($model, 'preview_text')->widget(CKEditor::className(), [
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder',['enterMode' => 2, 'forceEnterMode'=>false, 'shiftEnterMode'=>1  ]),
 	]);?>
-	
+
 	<?=$form->field($model, 'file')->widget(InputFile::className(), [
 		'language'      => 'ru',
 		'controller'    => 'elfinder', // вставляем название контроллера, по умолчанию равен elfinder
@@ -53,7 +53,9 @@ PreviewAsset::register($this);
 		'buttonOptions' => ['class' => 'btn btn-default'],
 		'multiple'      => false       // возможность выбора нескольких файлов
 	])->label('Картинка блога');?>
-	
+
+	<?= $form->field($model, 'compressing_image')->checkbox();?>
+
 
     <?= $form->field($model, 'slug')->hiddenInput(['maxlength' => true, 'hidden' => true])->label(false)?>
 
