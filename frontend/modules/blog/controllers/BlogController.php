@@ -79,6 +79,12 @@ class BlogController extends Controller
 		Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("blog_og_type", function () {
 			return KeyValue::getValue('blog_og_type');
 		});
+		$count = Yii::$app->cache->getOrSet("blog_count", function () {
+			return KeyValue::getValue('blog_count');
+		});
+		if (!$count) {
+			$count = 5;
+		};
 
 		return $this->render('index', [
 			'dataProvider' => $dataProvider, 'blog' => $blog, 'title' => $title
