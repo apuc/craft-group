@@ -16,6 +16,7 @@ use yii\helpers\Url;
  * @property string $meta_desc
  * @property string $href
  * @property string $description
+ * @property string $preview_text
  * @property string $file
  * @property int $options 0 - off, 1 - main, 2 - all
  * @property string $slug
@@ -52,6 +53,7 @@ class BlogSlider extends \yii\db\ActiveRecord
 			[['href', 'description'], 'string'],
 			[['date', 'h1', 'meta_key', 'meta_desc', 'href', 'description', 'file', 'options', 'slug'], 'safe'],
 			[['title', 'h1', 'meta_key', 'meta_desc', 'file', 'slug'], 'string', 'max' => 255],
+			[['preview_text'], 'string', 'max' => 220],
 			[['options'], 'string', 'max' => 4],
 		];
 	}
@@ -73,6 +75,7 @@ class BlogSlider extends \yii\db\ActiveRecord
 			'options' => Yii::t('blog', 'Options'),
 			'slug' => Yii::t('blog', 'Slug'),
 			'date' => Yii::t('blog', 'Date'),
+			'preview_text' => 'Превью текста'
 		];
 	}
 
@@ -126,10 +129,16 @@ class BlogSlider extends \yii\db\ActiveRecord
 		return false;
 	}
 
-	public function strCrop()
+	/**
+	 * обрезание строки
+	 * @param int $length
+	 * @return string
+	 */
+	public function strCrop($length = 80)
 	{
-		$str = strip_tags($this->description);
-		return iconv_substr($str, 0, 80, 'UTF-8');
+		$str = ($this->preview_text) ? $this->preview_text : $this->description;
+		$str = strip_tags($str);
+		return iconv_substr($str, 0, $length, 'UTF-8');
 	}
 
 	private function getScope()

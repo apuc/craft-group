@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'meta_desc',
             'href:ntext',
             'description:ntext',
+            'preview_text:ntext',
             'file',
             'options',
             'slug',

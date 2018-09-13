@@ -4,7 +4,7 @@
  * User: Neo
  * Date: 13.09.2018
  * Time: 11:38
- * @var $blog object
+ * @var \frontend\modules\blog\models\Blog[] $blog
  * @var $count integer
  *
  */
@@ -32,7 +32,7 @@ $img = Url::to('@web/img/');
 								<a class="blog__block-link dotdot"
 								   href="<?= Url::to(['single-blog', 'slug' => $value->slug]) ?>"><?= $value->title ?></a>
 							</h2>
-							<p class="blog__block-text"><?= $value->meta_desc ?></p>
+							<p class="blog__block-text"><?= $value->strCrop(220) ?></p>
 						</div>
 						<footer class="blog__block-footer">
 							<time
