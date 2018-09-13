@@ -38,6 +38,9 @@ return [
         'session' => [ // for use session in console application
             'class' => 'yii\web\Session'
         ],
+        'urlManager' => [
+            'baseUrl' => 'http://craft.loc'
+        ]
     ],
     'params' => $params,
 ];

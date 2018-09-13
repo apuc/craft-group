@@ -34,10 +34,34 @@ $this->params['breadcrumbs'][] = $this->title;
             'meta_key',
             'meta_desc',
             'href:ntext',
-            'description:ntext',
-            'preview_text:ntext',
-            'file',
+			[
+				'attribute' => 'description',
+				'format' => 'html',
+				'value' => function ($model) {
+					return $model->description;
+				}
+			],
+			[
+				'attribute' => 'preview_text',
+				'format' => 'html',
+				'value' => function ($model) {
+					return $model->preview_text;
+				}
+			],
+			[
+				'attribute' => 'file',
+				'format' => 'html',
+				'value' => function ($model) {
+					return Html::img(\yii\helpers\Url::to(Yii::getAlias($model->file, true)));
+				}
+			],
             'options',
+			[
+				'attribute' => 'compressing_image',
+				'value' => function ($model) {
+					return ($model->compressing_image) ? 'Да' : 'Нет';
+				}
+			],
             'slug',
             'date',
         ],

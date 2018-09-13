@@ -19,11 +19,14 @@ use yii\helpers\Url;
  * @property string $preview_text
  * @property string $file
  * @property int $options 0 - off, 1 - main, 2 - all
+ * @property int $compressing_image
  * @property string $slug
  * @property string $date
  */
 class BlogSlider extends \yii\db\ActiveRecord
 {
+	const COMPRESSING_ON = 1;
+	const COMPRESSING_OFF = 0;
 	/**
 	 * @inheritdoc
 	 */
@@ -55,6 +58,7 @@ class BlogSlider extends \yii\db\ActiveRecord
 			[['title', 'h1', 'meta_key', 'meta_desc', 'file', 'slug'], 'string', 'max' => 255],
 			[['preview_text'], 'string', 'max' => 220],
 			[['options'], 'string', 'max' => 4],
+			[['compressing_image'], 'integer']
 		];
 	}
 
@@ -75,7 +79,8 @@ class BlogSlider extends \yii\db\ActiveRecord
 			'options' => Yii::t('blog', 'Options'),
 			'slug' => Yii::t('blog', 'Slug'),
 			'date' => Yii::t('blog', 'Date'),
-			'preview_text' => 'Превью текста'
+			'preview_text' => 'Превью текста',
+			'compressing_image' => 'Сжать все изображения в посте'
 		];
 	}
 
