@@ -87,7 +87,7 @@ class BlogController extends Controller
 		};
 
 		return $this->render('index', [
-			'dataProvider' => $dataProvider, 'blog' => $blog, 'title' => $title
+			'dataProvider' => $dataProvider, 'blog' => $blog, 'title' => $title, 'count' => $count,
 		]);
 	}
 
