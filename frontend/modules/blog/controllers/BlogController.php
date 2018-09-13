@@ -139,8 +139,8 @@ class BlogController extends Controller
 			});
 			$offset = ($_POST['inpage'] * $_POST['page']) - $_POST['inpage'];
 			$more = BlogSlider::find()
-			                  ->where(['!=', 'h1', 'all'])
-			                  ->andWhere(['!=', 'h1', 'brief'])
+			                  ->Where(['!=', 'options', 0])
+			                  ->andWhere(['!=', 'h1', 'current'])
 			                  ->offset($offset)
 			                  ->limit(($get_more) ? $get_more : $_POST['inpage'])
 			                  ->all();
