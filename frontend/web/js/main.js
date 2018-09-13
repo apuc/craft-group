@@ -329,4 +329,33 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         });
     });
 
+	$(document).on('click', '.more_blog', function (e) {
+		e.preventDefault();
+		$('#countItems').remove();
+		//создаем экземпляр класс FormData, тут будем хранить всю информацию для отправки
+		var form_data = new FormData();
+		var inpage = $('.more_blog').data('inpage');
+		var count = parseInt($('.more_blog').attr('data-page')) + 1;
+		$('.more_blog').attr('data-page', count);
+		form_data.append('inpage', inpage);
+		form_data.append('page', count);
+
+		$.ajax({
+			url: '/blog/blog/more',
+			type: 'post',
+			data: form_data,
+			contentType: false,
+			processData: false,
+			success: function (response) {
+				var $response = $(response);
+				$('.more_blog').attr('data-page', count);
+				$('.blog__blocks').append($response)
+				$('div.sk-fading-circle').removeClass('sk-fading-circle-active');
+				if ($('#countItems').val() == 0) {
+					$('.more_btn').hide();
+				}
+			}
+		});
+	});
+
 });

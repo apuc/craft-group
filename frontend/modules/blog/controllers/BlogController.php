@@ -131,4 +131,22 @@ class BlogController extends Controller
 		}
 	}
 	
+	public function actionMore()
+	{
+		if (isset($_POST)) {
+			$get_more = Yii::$app->cache->getOrSet("blog_more", function () {
+				return KeyValue::getValue('blog_more');
+			});
+			$offset = ($_POST['inpage'] * $_POST['page']) - $_POST['inpage'];
+			$more = BlogSlider::find()
+			                  ->where(['!=', 'h1', 'all'])
+			                  ->andWhere(['!=', 'h1', 'brief'])
+			                  ->offset($offset)
+			                  ->limit(($get_more) ? $get_more : $_POST['inpage'])
+			                  ->all();
+		}
+		
+		return $this->render('more-blog', ['more' => $more]);
+	}
+	
 }
