@@ -71,7 +71,7 @@ $img = Url::to('@web/img/');
 														class="slide__post-time"><?= BlogSlider::getTime(strtotime($value->date)); ?></time>
 												</div>
 												<div class="slide__hover">
-													<span class="dotdot"><?= $value->description ?></span>
+													<span class="dotdot"><?= $value->strCrop() ?></span>
 													<a href="<?= Url::to(['/blog', 'slug' => $value->slug]) ?>">Читать
 														далее</a>
 												</div>

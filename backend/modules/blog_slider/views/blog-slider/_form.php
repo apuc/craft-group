@@ -39,6 +39,10 @@ PreviewAsset::register($this);
 	<?= $form->field($model, 'description')->widget(CKEditor::className(), [
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder',['enterMode' => 2, 'forceEnterMode'=>false, 'shiftEnterMode'=>1  ]),
 	]);?>
+
+	<?= $form->field($model, 'preview_text')->widget(CKEditor::className(), [
+		'editorOptions' => ElFinder::ckeditorOptions('elfinder',['enterMode' => 2, 'forceEnterMode'=>false, 'shiftEnterMode'=>1  ]),
+	]);?>
 	
 	<?=$form->field($model, 'file')->widget(InputFile::className(), [
 		'language'      => 'ru',

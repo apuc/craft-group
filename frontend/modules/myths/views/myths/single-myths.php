@@ -7,7 +7,7 @@
  */
 /**
  * @var \common\models\Myths $myth
- * @var $slider array
+ * @var BlogSlider[] $slider
  * @var $all object
  */
 
@@ -63,15 +63,15 @@ $img = Url::to('@web/img/');
 									foreach ($slider as $key => $value): ?>
 										<?php if ($value['options'] && $i < 4): ?>
 											<div class="blog__item blog__item_design blog__slider--slide">
-												<img src="<?= Yii::$app->resizeImage->resizeImage($value['file']) ?>">
+												<img src="<?= Yii::$app->resizeImage->resizeImage($value->file) ?>">
 												<div class="slide__title">
-													<h3 class="slide__post-title"><?= $value['title'] ?></h3>
+													<h3 class="slide__post-title"><?= $value->title ?></h3>
 													<time
-														class="slide__post-time"><?= $value['date'] = BlogSlider::getTime(strtotime($value['date'])); ?></time>
+														class="slide__post-time"><?= BlogSlider::getTime(strtotime($value->date)); ?></time>
 												</div>
 												<div class="slide__hover">
-													<span class="dotdot"><?= $value['description'] ?></span>
-													<a href="<?= Url::to(['/blog', 'slug' => $value['slug']]) ?>">Читать
+													<span class="dotdot"><?= $value->strCrop() ?></span>
+													<a href="<?= Url::to(['/blog', 'slug' => $value->slug]) ?>">Читать
 														далее</a>
 												</div>
 											</div>
