@@ -6,7 +6,7 @@
  * Time: 16:25
  */
 /**
-* @var $blog object
+* @var BlogSlider[] $blog
  * @var $b_cur object
  */
 
@@ -50,10 +50,10 @@ use yii\helpers\Url;
                                 <div class="slide__title">
                                     <h3 class="slide__post-title"><?= $value->title ?></h3>
                                     <time
-                                        class="slide__post-time"><?= $value->date = BlogSlider::getTime(strtotime($value->date)); ?></time>
+                                        class="slide__post-time"><?= BlogSlider::getTime(strtotime($value->date)); ?></time>
                                 </div>
                                 <div class="slide__hover">
-                                    <span class="dotdot"><?= $value->description ?></span>
+                                    <span class="dotdot"><?= $value->strCrop() ?></span>
                                     <a href="<?= Url::to(['/blog', 'slug' => $value->slug]) ?>">Читать далее</a>
                                 </div>
                             </div>
