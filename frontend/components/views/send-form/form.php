@@ -84,7 +84,6 @@ use yii\widgets\ActiveForm;
 				<?php elseif ($widget->fileOrFiles == SendFormWidget::FILE): ?>
 					<?= $form->field($model, $widget->fileOrFiles)->fileInput(['class' => 'input-file'])->label(false) ?>
 				<?php endif; ?>
-				<!--                <input type="file" class="input-file">-->
 				<div class="btn-input-file">
 					<img src="img/clip-black.png" alt="" width="25" height="25">
 					<span>Прикрепить файл</span>
