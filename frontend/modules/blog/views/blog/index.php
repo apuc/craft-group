@@ -46,10 +46,12 @@ $img = Url::to('@web/img/');
 						Вы можете быть уверены в том, что специалисты позаботятся о вашем ресурсе.
 					</p>
 				</div>
-				
-				<?= $this->render('_blog', [
-					'blog' => $blog,
-				]) ?>
+				<div class="blog__blocks">
+					<?= $this->render('_blog', [
+						'blog' => $blog,
+						'img'=>'_img'
+					]) ?>
+				</div>
 
 				<button type="button" class="more_btn more_blog" id="curButton" data-page="0">
 					Загрузить ещё

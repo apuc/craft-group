@@ -137,7 +137,8 @@ class BlogController extends Controller
 				->offset($offset)
 				->limit(Blog::COUNT_UPLOAD_POST)
 				->all();
-			return $this->render('more-blog', ['more' => $more]);
+			$img = '_img-ajax';
+			return $this->renderAjax('_blog', ['blog' => $more, 'img' => $img]);
 		}
 	}
 }
