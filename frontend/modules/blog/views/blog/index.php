@@ -49,10 +49,9 @@ $img = Url::to('@web/img/');
 				
 				<?= $this->render('_blog', [
 					'blog' => $blog,
-					'count' => $count
 				]) ?>
 
-				<button type="button" class="more_btn more_blog" id="curButton" data-inpage="<?= $count ?>" data-page="1">
+				<button type="button" class="more_btn more_blog" id="curButton" data-page="0">
 					Загрузить ещё
 					<div class='sk-fading-circle sk-fading-circle-position'>
 						<div class='sk-circle sk-circle-1'></div>

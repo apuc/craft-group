@@ -39,11 +39,8 @@ class BlogController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider = new ActiveDataProvider([
-			'query' => BlogSlider::find(),
-		]);
 		$blog = Yii::$app->cache->getOrSet("blog", function () {
-			return Blog::find()->where(['!=', 'options', 0])->andWhere(['!=', 'h1', 'current'])->orderBy(['date' => SORT_DESC])->all();
+			return Blog::find()->where(['!=', 'options', 0])->andWhere(['!=', 'h1', 'current'])->orderBy(['date' => SORT_DESC])->limit(Blog::COUNT_SHOW_POST)->all();
 		});
 		$title = Yii::$app->cache->getOrSet("blog_page_meta_tilte", function () {
 			return KeyValue::getValue('blog_page_meta_title');
@@ -80,15 +77,8 @@ class BlogController extends Controller
 		Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("blog_og_type", function () {
 			return KeyValue::getValue('blog_og_type');
 		});
-		$count = Yii::$app->cache->getOrSet("blog_count", function () {
-			return KeyValue::getValue('blog_count');
-		});
-		if (!$count) {
-			$count = 5;
-		};
-
 		return $this->render('index', [
-			'dataProvider' => $dataProvider, 'blog' => $blog, 'title' => $title, 'count' => $count,
+			'blog' => $blog, 'title' => $title
 		]);
 	}
 
@@ -137,20 +127,17 @@ class BlogController extends Controller
 
 	public function actionMore()
 	{
-		if (isset($_POST)) {
-			$get_more = Yii::$app->cache->getOrSet("blog_more", function () {
-				return KeyValue::getValue('blog_more');
-			});
-			$offset = ($_POST['inpage'] * $_POST['page']) - $_POST['inpage'];
-			$more = BlogSlider::find()
-				->Where(['!=', 'options', 0])
+		if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+			$page = Yii::$app->request->post('page');
+			$offset = Blog::COUNT_SHOW_POST + (Blog::COUNT_UPLOAD_POST * $page);
+			$more = Blog::find()
+				->where(['!=', 'options', 0])
 				->andWhere(['!=', 'h1', 'current'])
+				->orderBy(['date' => SORT_DESC])
 				->offset($offset)
-				->limit(($get_more) ? $get_more : $_POST['inpage'])
+				->limit(Blog::COUNT_UPLOAD_POST)
 				->all();
+			return $this->render('more-blog', ['more' => $more]);
 		}
-
-		return $this->render('more-blog', ['more' => $more]);
 	}
-
 }
