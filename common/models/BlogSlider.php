@@ -57,7 +57,7 @@ class BlogSlider extends \yii\db\ActiveRecord
 			[['date', 'h1', 'meta_key', 'meta_desc', 'href', 'description', 'file', 'options', 'slug'], 'safe'],
 			[['title', 'h1', 'meta_key', 'meta_desc', 'file', 'slug'], 'string', 'max' => 255],
 			[['preview_text'], 'string', 'max' => 220],
-			[['options'], 'string', 'max' => 4],
+			[['options'], 'integer'],
 			[['compressing_image'], 'integer']
 		];
 	}

@@ -23,9 +23,9 @@ class CompressingImageController extends Controller
 			 * @var BlogSlider $article
 			 */
 			$images = $this->getImage($article);
-			echo 'Соединяюсь' . PHP_EOL;
+			echo 'Соединяюсь с апи' . PHP_EOL;
 			\Tinify\setKey("BBHX7sqDKEUF67Ty4WhQsliTRlXsvGAh");
-			echo 'Нарезаю картинки' . PHP_EOL;
+			echo 'Сжатие картинок началось' . PHP_EOL;
 			foreach ($images as $image) {
 				if (file_exists($this->getPath($image))) {
 					$source = \Tinify\fromFile($this->getPath($image));
@@ -34,7 +34,12 @@ class CompressingImageController extends Controller
 				}
 			}
 			$article->compressing_image = BlogSlider::COMPRESSING_OFF;
-			$article->update();
+			echo 'Картинки в посте ' . $article->id . ' обновлены' . PHP_EOL;
+			$save = $article->save();
+			if (!$save) {
+				var_dump($article->errors);
+			}
+			echo 'Обновление картинок в посте отключено' . PHP_EOL;
 		}
 	}
 
@@ -52,6 +57,10 @@ class CompressingImageController extends Controller
 		return $images;
 	}
 
+	/**
+	 * @param string $image
+	 * @return bool|string
+	 */
 	private function getPath(string $image)
 	{
 		return Yii::getAlias('@frontend/web' . $image);
