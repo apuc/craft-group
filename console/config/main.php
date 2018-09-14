@@ -39,7 +39,7 @@ return [
             'class' => 'yii\web\Session'
         ],
         'urlManager' => [
-            'baseUrl' => 'http://craft.loc'
+            'baseUrl' => 'https://web-artcraft.com'
         ]
     ],
     'params' => $params,
