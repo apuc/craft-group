@@ -27,8 +27,6 @@ use yii\helpers\Url;
  */
 class Portfolio extends \yii\db\ActiveRecord
 {
-	const COMPRESSING_ON = 1;
-	const COMPRESSING_OFF = 0;
 	/**
 	 * @inheritdoc
 	 */
@@ -85,17 +83,6 @@ class Portfolio extends \yii\db\ActiveRecord
 			'dt_add' => Yii::t('portfolio', 'Date'),
 			'compressing_image' => 'Сжать все изображения в посте'
 		];
-	}
-
-	public function afterSave($insert, $changedAttributes)
-	{
-		parent::afterSave($insert, $changedAttributes);
-		if (Yii::$app->cache->flush()) {
-			Yii::$app->session->setFlash('success', 'Кэш очищен');
-		} else {
-			Yii::$app->session->setFlash('error', 'Ошибка');
-		}
-		return false;
 	}
 
 

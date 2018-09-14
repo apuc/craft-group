@@ -25,8 +25,6 @@ use yii\helpers\Url;
  */
 class BlogSlider extends \yii\db\ActiveRecord
 {
-	const COMPRESSING_ON = 1;
-	const COMPRESSING_OFF = 0;
 	/**
 	 * @inheritdoc
 	 */

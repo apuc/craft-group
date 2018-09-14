@@ -40,6 +40,9 @@ return [
         ],
         'urlManager' => [
             'baseUrl' => 'https://web-artcraft.com'
+        ],
+        'compressing'=>[
+            'class'=>'console\components\CompressingImageComponent'
         ]
     ],
     'params' => $params,
