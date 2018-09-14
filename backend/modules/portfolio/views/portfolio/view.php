@@ -33,11 +33,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'h1',
             'meta_key',
             'meta_desc',
-            'description:ntext',
+            [
+                'attribute' => 'description',
+                'format' => 'html',
+                'value' => function ($model) {
+                    return $model->description;
+                }
+            ],
             'stock:ntext',
             'href:ntext',
             'options',
-            'file',
+            [
+                'attribute' => 'compressing_image',
+                'value' => function ($model) {
+                    return ($model->compressing_image) ? 'Да' : 'Нет';
+                }
+            ],
+            [
+                'attribute' => 'compressing_image',
+                'value' => function ($model) {
+                    return ($model->compressing_image) ? 'Да' : 'Нет';
+                }
+            ],
             'slug',
         ],
     ]) ?>

@@ -56,7 +56,7 @@ PreviewAsset::register($this);
 		'buttonOptions' => ['class' => 'btn btn-default'],
 		'multiple'      => false       // возможность выбора нескольких файлов
 	]);?>
-
+	<?= $form->field($model, 'compressing_image')->checkbox();?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('portfolio', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
