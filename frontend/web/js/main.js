@@ -343,7 +343,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 				$('.more_blog').attr('data-page', page + 1);
 				$('.blog__blocks').append($response)
 				$('div.sk-fading-circle').removeClass('sk-fading-circle-active');
-				if ($('#countItems').val() == 0) {
+				if ($('#countItems').val() < 6 ) {
 					$('.more_blog').hide();
 				}
 			}
