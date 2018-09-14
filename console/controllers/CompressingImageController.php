@@ -25,11 +25,9 @@ class CompressingImageController extends Controller
 
 	public function actionCompressing()
 	{
-		$pathImages = \yii\helpers\FileHelper::findFiles(Yii::getAlias('@frontend/web/images/'), ['only' => ['*.jpg', '*.png']]);
-		$pathImg = \yii\helpers\FileHelper::findFiles(Yii::getAlias('@frontend/web/img/'), ['only' => ['*.jpg', '*.png']]);
-		$images = array_merge($pathImages, $pathImg);
+		$images = \yii\helpers\FileHelper::findFiles(Yii::getAlias('@frontend/web/uploads/'), ['only' => ['*.jpg', '*.png']]);;
 		echo 'Соединяюсь с апи' . PHP_EOL;
-		\Tinify\setKey("nAu7aCKR7ByqlsloUkpLbAxWZZr6yuyp");
+		\Tinify\setKey("5icSKC3n65cOfj8HuORjro017kGUi7Y3");
 		echo 'Сжатие картинок началось' . PHP_EOL;
 		foreach ($images as $image) {
 			$source = \Tinify\fromFile($image);
