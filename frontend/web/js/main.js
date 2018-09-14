@@ -346,6 +346,9 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 				if ($response.length < 6) {
 					$('.more_blog').hide();
 				}
+				if ($('#countItems').val() == 0) {
+					$('.more_blog').hide();
+				}
 			}
 		});
 	});
