@@ -11,6 +11,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\db\Expression;
+use yii\web\NotFoundHttpException;
 
 /**
  * BlogController implements the CRUD actions for BlogSlider model.
@@ -96,22 +97,25 @@ class BlogController extends Controller
 		$blog = Yii::$app->cache->getOrSet('blog-' . $slug, function () use ($slug) {
 			return BlogSlider::find()->where(['slug' => $slug])->one();
 		});
-		$last_arr =[];
+		if (is_null($blog)) {
+			throw  new NotFoundHttpException('Страница не найдена', 404);
+		}
+		$last_arr = [];
 		$last_blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->andWhere(['!=', 'slug', $slug])->orderBy(['date' => SORT_DESC])->limit(5)->orderBy('date desc')->all();
-		foreach ($last_blog as $last){
+		foreach ($last_blog as $last) {
 			$last_arr[] = $last->slug;
 		}
 		$count_sidebar = KeyValue::getValue('blog_sidebar_count') ?? '';
-		if(!$count_sidebar) {
+		if (!$count_sidebar) {
 			$count_sidebar = BlogSlider::find()->where(['!=', 'h1', 'current'])->count();
 		}
 		$slider = Yii::$app->cache->getOrSet('slider-' . $slug, function () use ($slug, $last_arr, $count_sidebar) {
 			return BlogSlider::find()
 				->where(['!=', 'options', 0])
-				->andWhere(['!=','h1', 'current'])
+				->andWhere(['!=', 'h1', 'current'])
 				->andWhere(['!=', 'slug', $slug])
 				->andWhere(['not in', 'slug', $last_arr])
-				->orderBy(new Expression('rand()'), ['date'=> SORT_DESC])
+				->orderBy(new Expression('rand()'), ['date' => SORT_DESC])
 				->limit($count_sidebar)
 				->all();
 		});
@@ -124,13 +128,13 @@ class BlogController extends Controller
 		Yii::$app->opengraph->url = Url::home('https') . 'blog/' . $slug;
 		Yii::$app->opengraph->siteName = Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
-		if($blog) {
-			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all ]);
+		if ($blog) {
+			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all]);
 		} else {
-			return $this->redirect(['/'.$slug]);
+			return $this->redirect(['/' . $slug]);
 		}
 	}
-	
+
 	public function actionMore()
 	{
 		if (isset($_POST)) {
@@ -139,14 +143,14 @@ class BlogController extends Controller
 			});
 			$offset = ($_POST['inpage'] * $_POST['page']) - $_POST['inpage'];
 			$more = BlogSlider::find()
-			                  ->Where(['!=', 'options', 0])
-			                  ->andWhere(['!=', 'h1', 'current'])
-			                  ->offset($offset)
-			                  ->limit(($get_more) ? $get_more : $_POST['inpage'])
-			                  ->all();
+				->Where(['!=', 'options', 0])
+				->andWhere(['!=', 'h1', 'current'])
+				->offset($offset)
+				->limit(($get_more) ? $get_more : $_POST['inpage'])
+				->all();
 		}
-		
+
 		return $this->render('more-blog', ['more' => $more]);
 	}
-	
+
 }
