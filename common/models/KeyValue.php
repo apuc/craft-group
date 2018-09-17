@@ -79,7 +79,7 @@ class KeyValue extends \yii\db\ActiveRecord
 	static public function getValue($key, $val = null)
 	{
 		$result = Yii::$app->cache->getOrSet($key . '-value', function () use ($key) {
-			self::find()->where(['like', 'key', $key])->one();
+			return self::find()->where(['like', 'key', $key])->one();
 		});
 		if (!$result) {
 			if ($val !== null) {

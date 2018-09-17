@@ -99,18 +99,10 @@ class SiteController extends Controller
 		$portfolio = Yii::$app->cache->getOrSet("portfolio", function () {
 			return Portfolio::find()->where(['options' => 1])->limit(7)->all();
 		});
-		$title = Yii::$app->cache->getOrSet("title", function () {
-			return KeyValue::getValue('main_page_meta_title');
-		});
-		$key = Yii::$app->cache->getOrSet("key", function () {
-			return KeyValue::getValue('main_page_meta_key');
-		});
-		$desc = Yii::$app->cache->getOrSet("desc", function () {
-			return KeyValue::getValue('main_page_meta_desc');
-		});
-		$domain_verify = Yii::$app->cache->getOrSet("dom_verify", function () {
-			return KeyValue::getValue('main_page_meta_p:domain_verify');
-		});
+		$title = KeyValue::getValue('main_page_meta_title');
+		$key = KeyValue::getValue('main_page_meta_key');
+		$desc = KeyValue::getValue('main_page_meta_desc');
+		$domain_verify = KeyValue::getValue('main_page_meta_p:domain_verify');
 		$main = Yii::$app->cache->getOrSet("main", function () {
 			return Main::find()->all();
 		});
