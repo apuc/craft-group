@@ -26,7 +26,8 @@ class SendFormWidget extends \yii\base\Widget
     public $textButton = 'Отправить бриф';
     public $isLabels = false;
     public $idForm = 'send_vacancy';
-    public $fileExtension = "jpg, jpeg, png, gif, zip, rar, pdf, doc, xls";
+//    public $fileExtension = "jpg, jpeg, png, gif, zip, rar, pdf, doc, xls";
+    public $fileExtension = "Максимальный размер - 2 мб";
     public $skypeOrSite = self::SKYPE;
     public $fileOrFiles = self::FILES;
     public $field;
