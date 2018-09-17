@@ -63,8 +63,6 @@ $this->params['breadcrumbs'][] = $this->title;
 								</li>
 							</ul>
 						</div>
-<?php//= $about[0]->file ?>
-
 
 					</div>
 				</div>
