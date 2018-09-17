@@ -13,6 +13,7 @@ use cybercog\yii\googleanalytics\widgets\GATracking;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use frontend\assets\PortfolioAsset;
+use frontend\assets\AboutAsset;
 use yii\helpers\Url;
 use backend\modules\contacts\models\Contacts;
 
