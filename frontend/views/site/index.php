@@ -6,12 +6,10 @@
  * @var $title string
  * @var $desc string
  * @var Main[] $main
- * @var $b_cur object
  */
 use common\models\Main;
 use common\models\Portfolio;
 use yii\helpers\Url;
-use himiklab\thumbnail\EasyThumbnailImage;
 
 $home = (Url::home(true));
 $this->title = $title;

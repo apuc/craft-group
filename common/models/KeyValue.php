@@ -46,7 +46,7 @@ class KeyValue extends \yii\db\ActiveRecord
 			'key' => Yii::t('seo', 'Key'),
 			'value' => 'Значение',
 			'dt_add' => Yii::t('seo', 'Dt Add'),
-			'label'=>'Описание'
+			'label' => 'Описание'
 		];
 	}
 
@@ -78,7 +78,9 @@ class KeyValue extends \yii\db\ActiveRecord
 
 	static public function getValue($key, $val = null)
 	{
-		$result = self::find()->where(['like', 'key', $key])->one();
+		$result = Yii::$app->cache->getOrSet($key . '-value', function () use ($key) {
+			self::find()->where(['like', 'key', $key])->one();
+		});
 		if (!$result) {
 			if ($val !== null) {
 				return $val;

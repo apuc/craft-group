@@ -13,20 +13,29 @@
  *
  */
 
-use cybercog\yii\googleanalytics\widgets\GATracking;
+use common\models\Contacts;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use yii\helpers\Url;
 
-$contacts = Yii::$app->cache->getOrSet("contacts", function (){
-return \backend\modules\contacts\models\Contacts::find()->asArray()->all();});
-$phone = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'phone'])->one();
-$email = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'email'])->one();
-$logo = \backend\modules\contacts\models\Contacts::find()->where(['name' => 'logo'])->one();
-$menu = Yii::$app->cache->getOrSet("main_menu", function (){
-return \common\models\Menu::find()->where(['page' => 'main'])->limit(7)->all();});
-$about = Yii::$app->cache->getOrSet("about", function (){
-return \common\models\Menu::find()->where(['page' => 'about'])->limit(7)->all();});
+$contacts = Yii::$app->cache->getOrSet("contacts", function () {
+	return Contacts::find()->asArray()->all();
+});
+$phone = Yii::$app->cache->getOrSet('phone-main', function () {
+	return Contacts::find()->where(['name' => 'phone'])->one();
+});
+$email = Yii::$app->cache->getOrSet('email-main', function () {
+	return Contacts::find()->where(['name' => 'email'])->one();
+});
+$logo = Yii::$app->cache->getOrSet('logo-main', function () {
+	return Contacts::find()->where(['name' => 'logo'])->one();
+});
+$menu = Yii::$app->cache->getOrSet("main_menu", function () {
+	return \common\models\Menu::find()->where(['page' => 'main'])->limit(7)->all();
+});
+$about = Yii::$app->cache->getOrSet("about", function () {
+	return \common\models\Menu::find()->where(['page' => 'about'])->limit(7)->all();
+});
 
 AppAsset::register($this);
 \frontend\assets\CommonAsset::register($this);
@@ -156,13 +165,13 @@ AppAsset::register($this);
 	            <a href="#phoneMassage" rel="nofollow" class="header__callback_bottom">Заказать обратный звонок</a>
             </div>
         </div>
-	
+
 	    <?= \frontend\components\SendCallBackWidget::widget([
 		    'subject' => \frontend\models\SendCallBack::CALLBACK,
 		    'isLabels' => true,
 		    'messageLabel'=>'Сообщение'
 	    ]) ?>
-	    
+
         <!-- <button class="header__open-btn" type="button">Узнать больше</button> -->
     </div>
     <div class="header__overlay"></div>

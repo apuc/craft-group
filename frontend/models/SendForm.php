@@ -88,7 +88,9 @@ class SendForm extends Model
             /**
              * @var $serviceList [] ServiceList
              */
-            $serviceList = ServiceList::find()->all();
+            $serviceList = Yii::$app->cache->getOrSet('service-list-send-form', function (){
+                return ServiceList::find()->all();
+            });
 
             foreach ($serviceList as $item) {
                 $this->radioList[$item->id] = $item->name;

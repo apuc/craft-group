@@ -2,8 +2,6 @@
 
 namespace backend\modules\contacts\models;
 
-use Yii;
-
 /**
  * This is the model class for table "contacts".
  *
@@ -12,48 +10,7 @@ use Yii;
  * @property string $description
  * @property string $file
  */
-class Contacts extends \yii\db\ActiveRecord
+class Contacts extends \common\models\Contacts
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'contacts';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['name', 'description'], 'required'],
-            [['file'], 'safe'],
-            [['name', 'description', 'file'], 'string', 'max' => 255],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('contacts', 'ID'),
-            'name' => Yii::t('contacts', 'Name'),
-            'description' => Yii::t('contacts', 'Description'),
-            'file' => Yii::t('contacts', 'File'),
-        ];
-    }
-	
-	public function afterSave($insert, $changedAttributes){
-		parent::afterSave($insert, $changedAttributes);
-		if(Yii::$app->cache->flush()){
-			Yii::$app->session->setFlash('success', 'Кэш очищен');
-		} else {
-			Yii::$app->session->setFlash('error', 'Ошибка');
-		}
-		return false;
-	}
+   
 }

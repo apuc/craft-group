@@ -96,7 +96,6 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
 		$portfolio = Yii::$app->cache->getOrSet("portfolio", function () {
 			return Portfolio::find()->where(['options' => 1])->limit(7)->all();
 		});
@@ -152,7 +151,7 @@ class SiteController extends Controller
 		});
 
 		return $this->render('index', ['portfolio' => $portfolio,
-			'title' => $title, 'main' => $main, 'b_cur' => $b_cur]);
+			'title' => $title, 'main' => $main]);
 	}
 
 	/**
