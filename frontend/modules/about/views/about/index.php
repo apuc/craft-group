@@ -152,6 +152,34 @@ $this->params['breadcrumbs'][] = $this->title;
 		</div>
 	</section>
 
+	<section class="blog blog__single partners-block">
+		<div class="container">
+
+			<p class="paragraph">партнеры</p>
+			
+			<div class="wrap about-wrap">
+				<div class="partners">
+					<div class="tittle">
+						<span>Серьёзные</span>
+						<h2>партнёры</h2>
+						<p>
+							<?= $about[2]->description ?>
+						</p>
+					</div>
+
+					<div class="partners__blocks">
+						<?php
+						$img = explode('%', $about[2]->file);
+						foreach ($img as $key => $value):?>
+							<div class="partners__block"><?= $value ?></div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
 	<!-- start brief.html-->
 	<section class="service-brief" id="brief">
 
