@@ -49,9 +49,6 @@ class AboutController extends Controller
 	public function actionIndex()
 	{
 		$b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
-		$dataProvider = new ActiveDataProvider([
-			'query' => About::find(),
-		]);
 		$about = Yii::$app->cache->getOrSet('about-index', function () {
 			return About::find()->all();
 		});
@@ -66,6 +63,9 @@ class AboutController extends Controller
 		});
 		$service = Yii::$app->cache->getOrSet('serviceAbout', function () {
 			return Service::find()->where(['!=', 'position', ''])->all();
+		});
+		$feedback = Yii::$app->cache->getOrSet("feedback_main", function () {
+			return Feedback::find()->where(['status' => 1])->limit(6)->all();
 		});
 		\Yii::$app->view->registerMetaTag([
 			'name' => 'description',
@@ -95,7 +95,7 @@ class AboutController extends Controller
 		});
 
 		return $this->render('index', [
-			'dataProvider' => $dataProvider, 'about' => $about, 'title' => $title, 'service' => $service, 'b_cur' => $b_cur,
+			'about' => $about, 'title' => $title, 'service' => $service, 'b_cur' => $b_cur, 'feedback' => $feedback
 		]);
 	}
 
