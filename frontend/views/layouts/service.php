@@ -32,6 +32,7 @@ $menu = Yii::$app->cache->getOrSet("menu", function () {
 });
 AppAsset::register($this);
 \frontend\assets\CommonAsset::register($this);
+\frontend\assets\AboutAsset::register($this);
 
 
 $active = Url::to();
