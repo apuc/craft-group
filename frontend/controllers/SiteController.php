@@ -343,12 +343,13 @@ class SiteController extends Controller
 				$mail3 = Yii::$app->mailer->compose()
 				                          ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
 				                          ->setTo(
-					                          'neo-the-one@ya.ru'
+					                          'shlykovn@mail.ru'
 				                          )
 //                    ->setSubject($model->subject)
 //                    ->setTextBody($message)
                                           ->setHtmlBody('<b>' . $model->thankMessage . '</b>')
 				                          ->send();
+				var_dump($mail3);
 			}
 		}
 //        return SendForm::sendMail();
