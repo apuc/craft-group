@@ -3,6 +3,7 @@
 namespace frontend\modules\myths\controllers;
 
 use common\models\BlogSlider;
+use common\models\KeyValue;
 use frontend\modules\myths\models\Myths;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -64,7 +65,12 @@ class MythsController extends Controller
 			new NotFoundHttpException();
 		}
 		$slider = Yii::$app->cache->getOrSet("slider-single-myths-" . $slug, function () {
-			return BlogSlider::find()->where(['!=', 'options', 0])->andWhere(['!=', 'h1', 'current'])->orderBy(['date' => SORT_DESC])->all();
+			return BlogSlider::find()
+				->where(['!=', 'options', 0])
+				->andWhere(['!=', 'h1', 'current'])
+				->orderBy(['date' => SORT_DESC])
+				->limit(KeyValue::getValue('myths-blog-post-count', 5))
+				->all();
 		});
 		$all = Yii::$app->cache->getOrSet('all-single-myth-' . $slug, function () {
 			return BlogSlider::find()->where(['h1' => 'current'])->one();

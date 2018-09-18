@@ -52,7 +52,7 @@ $img = Url::to('@web/img/');
 							<div class="sidebar__inner sidebarBlog">
 								<?php if ($all): ?>
 									<div class="blog-single__gallery">
-										<img class="blog-item-img" src="<?= $all->file ?>" height="210" />
+										<img class="blog-item-img" src="<?= $all->file ?>" height="210"/>
 										<a class="blog__link" href="<?= Url::to(['/blog']); ?>"><span
 												class="blog-link-pc"><?= $all->title ?></span><span
 												class="blog-link-mob">Все новости</span></a>
@@ -60,9 +60,8 @@ $img = Url::to('@web/img/');
 								<?php endif; ?>
 								<div class="blog-single__other">
 									<h3 class="blog-single__other-title">Другие новости</h3>
-									<?php $i = 0;
-									foreach ($slider as $key => $value): ?>
-										<?php if ($value->options && $i < 4): ?>
+									<?php foreach ($slider as $key => $value): ?>
+										<?php if ($value->options): ?>
 											<div class="blog__item blog__item_design blog__slider--slide">
 												<img src="<?= Yii::$app->resizeImage->resizeImage($value->file) ?>">
 												<div class="slide__title">
@@ -77,7 +76,7 @@ $img = Url::to('@web/img/');
 												</div>
 											</div>
 										<?php endif; ?>
-										<?php endforeach; ?>
+									<?php endforeach; ?>
 								</div>
 							</div>
 						</div>
