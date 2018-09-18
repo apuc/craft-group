@@ -256,8 +256,12 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response);
-	            $('div.brief-massage').toggleClass('brief-massage-active');
+                // console.log(response);
+                if(!$('.brief-massage-active')) {
+	                $('div.brief-massage').toggleClass('brief-massage-active');
+                } else {
+	                $('.brief-massage').show();
+                }
 	            $('#send_vacancy').trigger('reset');
             }
         });
