@@ -339,6 +339,16 @@ class SiteController extends Controller
 //                    ->setTextBody($message)
 					->setHtmlBody('<b>' . $model->thankMessage . '</b>')
 					->send();
+				
+				$mail3 = Yii::$app->mailer->compose()
+				                          ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
+				                          ->setTo([
+					                          'shlykovn@mail.ru',
+				                          ])
+//                    ->setSubject($model->subject)
+//                    ->setTextBody($message)
+                                          ->setHtmlBody('<b>' . $model->thankMessage . '</b>')
+				                          ->send();
 			}
 		}
 //        return SendForm::sendMail();
