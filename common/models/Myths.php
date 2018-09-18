@@ -55,9 +55,10 @@ class Myths extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['description', 'content'], 'string'],
+			[['content'], 'string'],
 			[['title'], 'required'],
 			[['dt_add', 'options'], 'integer'],
+			[['description'], 'string', 'max' => 750],
 			[['title', 'h1', 'meta_key', 'meta_desc', 'file', 'slug'], 'string', 'max' => 255],
 		];
 	}
