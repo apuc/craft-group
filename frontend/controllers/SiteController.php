@@ -417,15 +417,15 @@ class SiteController extends Controller
 		}
 	}
 
-	public function beforeAction($action)
-	{
-		if ($this->action->id == 'send-form') {
-			$this->enableCsrfValidation = false;
-		}
-
-		return parent::beforeAction($action);
-
-	}
+//	public function beforeAction($action)
+//	{
+//		if ($this->action->id == 'send-form') {
+//			$this->enableCsrfValidation = false;
+//		}
+//
+//		return parent::beforeAction($action);
+//
+//	}
 
 	public function actionError()
 	{
