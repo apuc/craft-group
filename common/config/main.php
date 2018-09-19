@@ -172,6 +172,24 @@ return [
 				'path' => 'uploads/global',
 				'name' => 'Global'
 			],
+			'connectOptions' => [
+				'bind' => array(
+					'upload.presave' => array(
+						'Plugin.AutoResize.onUpLoadPreSave'
+					)
+				),
+
+				'plugin' => array(
+					'AutoResize' => array(
+						'enable'         => true,       // For control by volume driver
+						'maxWidth'       => 1024,       // Path to Water mark image
+						'maxHeight'      => 1024,       // Margin right pixel
+						'quality'        => 95,         // JPEG image save quality
+						'preserveExif'   => false,      // Preserve EXIF data (Imagick only)
+						'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP // Target image formats ( bit-field )
+					)
+				),
+			],
 //		    'watermark' => [
 //			    'source'         => __DIR__.'/logo.png', // Path to Water mark image
 //			    'marginRight'    => 5,          // Margin right pixel
