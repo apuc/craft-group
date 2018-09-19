@@ -175,7 +175,6 @@ return [
 			'connectOptions' => [
 				'bind' => array(
 					'upload.presave' => array(
-//						'Plugin.AutoResize.onUpLoadPreSave',
 						'Plugin.CompressingImage.onUpLoadPreSave'
 					)
 				),
