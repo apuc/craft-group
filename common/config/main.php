@@ -1,73 +1,73 @@
 <?php
 return [
 	'name' => 'web-artcraft',
-    'aliases' => [
-        '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
-    ],
-    'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'modules' => [
-	    'user' => [
-		    'class' => 'dektrium\user\Module',
-		    'enableUnconfirmedLogin' => true,
-		    'confirmWithin' => 21600,
-		    'cost' => 12,
-		    'admins' => ['admin'],
-	    ],
-	    'rbac' => 'dektrium\rbac\RbacWebModule',
-	    'robotsTxt' => [
-		    'class' => 'execut\robotsTxt\Module',
-		    'components'    => [
-			    'generator' => [
-				    'class' => \execut\robotsTxt\Generator::class,
-				    'host' => 'localhost',
-				    'sitemap' => 'sitemap.xml',
-				    //or generate link through the url rules
-				    'sitemap' => [
-					    'sitemapModule/sitemapController/sitemapAction',
-				    ],
-				    'userAgent' => [
-					    '*' => [
-						    'Disallow' => [
-							    'noIndexedHtmlFile.html',
-							    [
-								    'notIndexedModule/noIndexedController/noIndexedAction',
-								    'noIndexedActionParam' => 'noIndexedActionParamValue',
-							    ]
-						    ],
-						    'Allow' => [
-							    //..
-						    ],
-					    ],
-					    'BingBot' => [
-						    'Sitemap' => '/sitemapSpecialForBing.xml',
-						    'Disallow' => [
-							    //..
-						    ],
-						    'Allow' => [
-							    //..
-						    ],
-					    ],
-				    ],
-			    ],
-		    ],
-	    ],
-	    'sitemap' => [
-		    'class' => 'himiklab\sitemap\Sitemap',
-		    'models' => [
-			    // your models
-			    'common\models\Portfolio',
-			    'common\models\BlogSlider',
-			    'common\models\Service',
-			    'common\models\Vacancy',
-		    ],
-		    'urls'=> [
-			    // your additional urls
-			    [
-				    'loc' => '/',
-				    'changefreq' => \himiklab\sitemap\behaviors\SitemapBehavior::CHANGEFREQ_DAILY,
-				    'priority' => 1,
-				    'lastmod' => date("Y-m-d H:i:s", filemtime('/')),
+	'aliases' => [
+		'@bower' => '@vendor/bower-asset',
+		'@npm' => '@vendor/npm-asset',
+	],
+	'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+	'modules' => [
+		'user' => [
+			'class' => 'dektrium\user\Module',
+			'enableUnconfirmedLogin' => true,
+			'confirmWithin' => 21600,
+			'cost' => 12,
+			'admins' => ['admin'],
+		],
+		'rbac' => 'dektrium\rbac\RbacWebModule',
+		'robotsTxt' => [
+			'class' => 'execut\robotsTxt\Module',
+			'components' => [
+				'generator' => [
+					'class' => \execut\robotsTxt\Generator::class,
+					'host' => 'localhost',
+					'sitemap' => 'sitemap.xml',
+					//or generate link through the url rules
+					'sitemap' => [
+						'sitemapModule/sitemapController/sitemapAction',
+					],
+					'userAgent' => [
+						'*' => [
+							'Disallow' => [
+								'noIndexedHtmlFile.html',
+								[
+									'notIndexedModule/noIndexedController/noIndexedAction',
+									'noIndexedActionParam' => 'noIndexedActionParamValue',
+								]
+							],
+							'Allow' => [
+								//..
+							],
+						],
+						'BingBot' => [
+							'Sitemap' => '/sitemapSpecialForBing.xml',
+							'Disallow' => [
+								//..
+							],
+							'Allow' => [
+								//..
+							],
+						],
+					],
+				],
+			],
+		],
+		'sitemap' => [
+			'class' => 'himiklab\sitemap\Sitemap',
+			'models' => [
+				// your models
+				'common\models\Portfolio',
+				'common\models\BlogSlider',
+				'common\models\Service',
+				'common\models\Vacancy',
+			],
+			'urls' => [
+				// your additional urls
+				[
+					'loc' => '/',
+					'changefreq' => \himiklab\sitemap\behaviors\SitemapBehavior::CHANGEFREQ_DAILY,
+					'priority' => 1,
+					'lastmod' => date("Y-m-d H:i:s", filemtime('/')),
 //				    'news' => [
 //					    'publication'   => [
 //						    'name'          => 'Example Blog',
@@ -89,69 +89,69 @@ return [
 //						    'license'       => 'http://example.com/license',
 //					    ],
 //				    ],
-			    ],
-		    ],
-		    'enableGzip' => true, // default is false
-		    'cacheExpire' => 1, // 1 second. Default is 24 hours
-	    ],
-    ],
-    'language' => 'ru-RU',
-    'sourceLanguage' => 'ru-RU',
-    'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
+				],
+			],
+			'enableGzip' => true, // default is false
+			'cacheExpire' => 1, // 1 second. Default is 24 hours
+		],
+	],
+	'language' => 'ru-RU',
+	'sourceLanguage' => 'ru-RU',
+	'components' => [
+		'cache' => [
+			'class' => 'yii\caching\FileCache',
 			'cachePath' => Yii::getAlias('@frontend') . '/runtime/cache'
-        ],
-        'opengraph' => [
-	        'class' => 'fgh151\opengraph\OpenGraph',
-        ],
-        'mailer' => [
-	        'class' => 'yii\swiftmailer\Mailer',
-	        'useFileTransport' => false,
-	        'transport' => [
-		        'class' => 'Swift_SmtpTransport',
-		        'host' => 'mail.adm.tools',
-		        'username' => 'info@web-artcraft.com',
-		        'password' => '123edsaqw',
-		        'port' => '465',
-		        'encryption' => 'ssl',
-	        ],
-        ],
-        'urlManager' => [
-	        'enablePrettyUrl' => true,
-	        'showScriptName' => false,
+		],
+		'opengraph' => [
+			'class' => 'fgh151\opengraph\OpenGraph',
+		],
+		'mailer' => [
+			'class' => 'yii\swiftmailer\Mailer',
+			'useFileTransport' => false,
+			'transport' => [
+				'class' => 'Swift_SmtpTransport',
+				'host' => 'mail.adm.tools',
+				'username' => 'info@web-artcraft.com',
+				'password' => '123edsaqw',
+				'port' => '465',
+				'encryption' => 'ssl',
+			],
+		],
+		'urlManager' => [
+			'enablePrettyUrl' => true,
+			'showScriptName' => false,
 //	        'class'=>'backend\components\LangUrlManager',
 //	        'languages' => ['en', 'ru'],
-	        'rules' => [
-		        '' => 'site/index',
-		        ['pattern' => 'robots', 'route' => 'robotsTxt/web/index', 'suffix' => '.txt'],
-		        ['pattern' => 'sitemap', 'route' => 'sitemap/default/index', 'suffix' => '.xml'],
+			'rules' => [
+				'' => 'site/index',
+				['pattern' => 'robots', 'route' => 'robotsTxt/web/index', 'suffix' => '.txt'],
+				['pattern' => 'sitemap', 'route' => 'sitemap/default/index', 'suffix' => '.xml'],
 //		        '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
 //		        'page/<view:[a-zA-Z0-9-]+>' => 'site/page',
-	        ],
+			],
 
-        ],
-        'authManager'  => [
+		],
+		'authManager' => [
 //	        'class'        => 'yii\rbac\DbManager',
-	        'class' => 'dektrium\rbac\components\DbManager',
-        ],
+			'class' => 'dektrium\rbac\components\DbManager',
+		],
 
-        'i18n' => [
-	        'translations' => [
-		        '*' => [
-			        'class' => 'yii\i18n\PhpMessageSource',
-			        'basePath' => '@common/messages',
-			        'sourceLanguage' => 'ru',
-			        'fileMap' => [
-				        'main' => 'main.php',
-			        ],
-		        ],
-	        ],
-        ],
-		'resizeImage'=>[
-			'class'=>'common\components\ResizeImageComponent'
+		'i18n' => [
+			'translations' => [
+				'*' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@common/messages',
+					'sourceLanguage' => 'ru',
+					'fileMap' => [
+						'main' => 'main.php',
+					],
+				],
+			],
+		],
+		'resizeImage' => [
+			'class' => 'common\components\ResizeImageComponent'
 		]
-	    /*AdminLte2*/
+		/*AdminLte2*/
 //        'view' => [
 //	        'theme' => [
 //		        'pathMap' => [
@@ -161,34 +161,30 @@ return [
 //        ],
 
 
-    ],
+	],
 	'controllerMap' => [
 		'elfinder' => [
 			'class' => 'mihaildev\elfinder\PathController',
 			'access' => ['@'],
 			'root' => [
-				'baseUrl'=>'',
-				'basePath'=>'@frontend/web',
+				'baseUrl' => '',
+				'basePath' => '@frontend/web',
 				'path' => 'uploads/global',
 				'name' => 'Global'
 			],
 			'connectOptions' => [
 				'bind' => array(
 					'upload.presave' => array(
-						'Plugin.AutoResize.onUpLoadPreSave'
+//						'Plugin.AutoResize.onUpLoadPreSave',
+						'Plugin.CompressingImage.onUpLoadPreSave'
 					)
 				),
+				'plugin' => [
+					'CompressingImage' => [
+						'quality' => 85
+					]
 
-				'plugin' => array(
-					'AutoResize' => array(
-						'enable'         => true,       // For control by volume driver
-						'maxWidth'       => 1024,       // Path to Water mark image
-						'maxHeight'      => 1024,       // Margin right pixel
-						'quality'        => 80,         // JPEG image save quality
-						'preserveExif'   => false,      // Preserve EXIF data (Imagick only)
-						'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP // Target image formats ( bit-field )
-					)
-				),
+				],
 			],
 //		    'watermark' => [
 //			    'source'         => __DIR__.'/logo.png', // Path to Water mark image
