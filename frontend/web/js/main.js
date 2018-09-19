@@ -253,7 +253,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             url: '/site/send-form',
             type: 'post',
             data: image,
-            contentType: false,
+            // contentType: false,
             processData: false,
             success: function (response) {
                 // console.log(response);
