@@ -40,21 +40,11 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 					'fileExtension' => 'jpg, jpeg, png',
 					'skypeOrSite' => \frontend\components\SendFormWidget::SITE,
 					'fileOrFiles' => \frontend\components\SendFormWidget::FILE,
-					'idForm' => 'send_feedback'
+					'idForm' => 'send_feedback',
+					'id_answer' => 'feedback__mess',
+					'answer' => 'Отзыв отправлен!',
 				]) ?>
 			</div>
-			<div class="brief-massage feedback-massage">
-				<button class="brief-massage-close">
-					<span></span>
-					<span></span>
-				</button>
-				<img src="/img/massage_success.png">
-				<h2>Отзыв отправлен!</h2>
-				<p>Ожидайте, скоро мы с вами свяжемся.</p>
-				<p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
-			</div>
-			
-
 		</div>
 
 	</section>
@@ -84,16 +74,6 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 					'messageLabel' => 'Сообщение',
 					'idForm' => 'send_vacancy'
 				]) ?>
-				<div class="brief-massage">
-					<button class="brief-massage-close">
-						<span></span>
-						<span></span>
-					</button>
-					<img src="/img/massage_success.png">
-					<h2>Бриф отправлен!</h2>
-					<p>Ожидайте, скоро мы с вами свяжемся.</p>
-					<p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
-				</div>
 			</div>
 
 		</div>

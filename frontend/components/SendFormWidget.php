@@ -31,6 +31,8 @@ class SendFormWidget extends \yii\base\Widget
     public $skypeOrSite = self::SKYPE;
     public $fileOrFiles = self::FILES;
     public $field;
+    public $answer = 'Бриф отправлен!';
+    public $id_answer = 'brief__mess';
 
     public function run()
     {

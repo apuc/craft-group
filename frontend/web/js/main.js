@@ -259,7 +259,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
                 // console.log(response);
                 if($('#send_feedback')) {
 	                if(!$('.brief-massage-active')) {
-		                $('div.feedback-massage').toggleClass('brief-massage-active');
+		                $("#feedback__mes").toggleClass('brief-massage-active');
 	                }
                 } else {
 	                if(!$('.brief-massage-active')) {
