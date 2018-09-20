@@ -36,9 +36,6 @@ class AboutController extends Controller
 		$desc = Yii::$app->cache->getOrSet("about_meta_desc", function () {
 			return KeyValue::getValue('about_page_meta_desc');
 		});
-		$feedback = Yii::$app->cache->getOrSet("feedback_main", function () {
-			return Feedback::find()->where(['status' => 1])->limit(6)->all();
-		});
 		\Yii::$app->view->registerMetaTag([
 			'name' => 'description',
 			'content' => $desc,
@@ -67,7 +64,7 @@ class AboutController extends Controller
 		});
 
 		return $this->render('index', [
-			'about' => $about, 'title' => $title,  'feedback' => $feedback
+			'about' => $about, 'title' => $title
 		]);
 	}
 }
