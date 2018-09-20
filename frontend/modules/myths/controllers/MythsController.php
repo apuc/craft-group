@@ -20,41 +20,36 @@ use yii\filters\VerbFilter;
 class MythsController extends Controller
 {
 	/**
-	 * {@inheritdoc}
-	 */
-	public function behaviors()
-	{
-		return [
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
-		];
-	}
-
-	/**
 	 * Lists all Myths models.
 	 * @return mixed
 	 */
 	public function actionIndex()
 	{
-		$blog = Yii::$app->cache->getOrSet("myth_blog", function () {
-			return BlogSlider::find()->where(['!=', 'h1', 'current'])->orderBy(['date' => SORT_DESC])->asArray()->all();
-		});
-		$b_cur = Yii::$app->cache->getOrSet('b_cur', function () {
-			return BlogSlider::find()->where(['h1' => 'current'])->one();
-		});
 		$myths = Yii::$app->cache->getOrSet('myths', function () {
 			return Myths::find()->where(['options' => 2])->all();
 		});
-		$dataProvider = new ActiveDataProvider([
-			'query' => Myths::find(),
-		]);
+
+		$titleOG = Yii::$app->cache->getOrSet("about_og_title", function () {
+			return KeyValue::getValue('about_og_title');
+		});
+		$descriptionOG = Yii::$app->cache->getOrSet("about_og_desc", function () {
+			return KeyValue::getValue('about_og_description');
+		});
+		$image = Yii::$app->cache->getOrSet("about_og_image", function () {
+			return KeyValue::getValue('about_og_image');
+		});
+		$url = Yii::$app->cache->getOrSet("about_og_url", function () {
+			return KeyValue::getValue('about_og_url');
+		});
+		$siteName = Yii::$app->cache->getOrSet("about_og_site_name", function () {
+			return KeyValue::getValue('about_og_site_name');
+		});
+		$type = Yii::$app->cache->getOrSet("about_og_type", function () {
+			return KeyValue::getValue('about_og_type');
+		});
 
 		return $this->render('index', [
-			'dataProvider' => $dataProvider, 'blog' => $blog, 'b_cur' => $b_cur, 'myths' => $myths,
+			'myths' => $myths,
 		]);
 	}
 
@@ -77,86 +72,5 @@ class MythsController extends Controller
 		Yii::$app->opengraph->siteName = Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
 		return $this->render('single-myths', ['myth' => $myth, 'slider' => $slider]);
-	}
-
-	/**
-	 * Displays a single Myths model.
-	 * @param integer $id
-	 * @return mixed
-	 * @throws NotFoundHttpException if the model cannot be found
-	 */
-	public function actionView($id)
-	{
-		return $this->render('view', [
-			'model' => $this->findModel($id),
-		]);
-	}
-
-	/**
-	 * Creates a new Myths model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 * @return mixed
-	 */
-	public function actionCreate()
-	{
-		$model = new Myths();
-
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
-		}
-
-		return $this->render('create', [
-			'model' => $model,
-		]);
-	}
-
-	/**
-	 * Updates an existing Myths model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id
-	 * @return mixed
-	 * @throws NotFoundHttpException if the model cannot be found
-	 */
-	public function actionUpdate($id)
-	{
-		$model = $this->findModel($id);
-
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
-		}
-
-		return $this->render('update', [
-			'model' => $model,
-		]);
-	}
-
-	/**
-	 * Deletes an existing Myths model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 * @param integer $id
-	 * @return mixed
-	 * @throws NotFoundHttpException if the model cannot be found
-	 */
-	public function actionDelete($id)
-	{
-		$this->findModel($id)->delete();
-
-		return $this->redirect(['index']);
-	}
-
-	/**
-	 * Finds the Myths model based on its primary key value.
-	 * If the model is not found, a 404 HTTP exception will be thrown.
-	 * @param integer $id
-	 * @return Myths the loaded model
-	 * @throws NotFoundHttpException if the model cannot be found
-	 */
-	protected function findModel($id)
-	{
-		if (($model = Myths::findOne($id)) !== null) {
-			return $model;
-		}
-
-		throw new NotFoundHttpException(Yii::t('myths', 'The requested page does not exist.'));
 	}
 }

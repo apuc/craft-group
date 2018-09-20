@@ -47,24 +47,27 @@ class FeedbackController extends Controller
             'name' => 'keywords',
             'content' => $key,
         ]);
-        Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("feedback_og_title", function () {
+        $titleOG = Yii::$app->cache->getOrSet("feedback_og_title", function () {
             return KeyValue::getValue('feedback_og_title');
         });
-        Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("feedback_og_description", function () {
+        $descriptionOG = Yii::$app->cache->getOrSet("feedback_og_description", function () {
             return KeyValue::getValue('feedback_og_description');
         });
-        Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("feedback_og_image", function () {
+        $image = Yii::$app->cache->getOrSet("feedback_og_image", function () {
             return KeyValue::getValue('feedback_og_image');
         });
-        Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("feedback_og_url", function () {
+        $url = Yii::$app->cache->getOrSet("feedback_og_url", function () {
             return KeyValue::getValue('feedback_og_url');
         });
-        Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("feedback_og_site_name", function () {
+        $siteName = Yii::$app->cache->getOrSet("feedback_og_site_name", function () {
             return KeyValue::getValue('feedback_og_site_name');
         });
-        Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("feedback_og_type", function () {
+        $type = Yii::$app->cache->getOrSet("feedback_og_type", function () {
             return KeyValue::getValue('feedback_og_type');
         });
+
+        Yii::$app->og->registerTags($titleOG, $descriptionOG, $image, $url, $siteName, $type);
+        
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'model' => $model, 

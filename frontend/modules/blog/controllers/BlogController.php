@@ -122,9 +122,4 @@ class BlogController extends Controller
 			return $this->renderAjax('_blog', ['blog' => $more, 'img' => $img]);
 		}
 	}
-
-	private function setOpengraph($title, $description, $image, $url, $siteName, $type)
-	{
-
-	}
 }
