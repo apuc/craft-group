@@ -127,7 +127,7 @@ class BlogSlider extends \yii\db\ActiveRecord
 	{
 		$str = ($this->preview_text) ? $this->preview_text : $this->description;
 		$str = strip_tags($str);
-		return iconv_substr($str, 0, $length, 'UTF-8');
+		return iconv_substr($str, 0, $length, 'UTF-8').'...';
 	}
 
 	private function getScope()

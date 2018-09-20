@@ -131,6 +131,10 @@ return [
 	        'class' => 'himiklab\thumbnail\EasyThumbnail',
 	        'cacheAlias' => 'uploads/thumbnail',
         ],
+	
+		'og' => [
+			'class' => 'frontend\components\OpengraphComponent'
+		]
     ],
     'params' => $params,
 ];

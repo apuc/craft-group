@@ -18,37 +18,12 @@ use common\models\BlogSlider;
  */
 class AboutController extends Controller
 {
-	public function actions()
-	{
-		return [
-			'error' => [
-				'class' => 'yii\web\ErrorAction',
-			],
-		];
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-		return [
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
-		];
-	}
-
 	/**
 	 * Lists all About models.
 	 * @return mixed
 	 */
 	public function actionIndex()
 	{
-		$b_cur = BlogSlider::find()->where(['h1' => 'current'])->one();
 		$about = Yii::$app->cache->getOrSet('about-index', function () {
 			return About::find()->all();
 		});
@@ -60,9 +35,6 @@ class AboutController extends Controller
 		});
 		$desc = Yii::$app->cache->getOrSet("about_meta_desc", function () {
 			return KeyValue::getValue('about_page_meta_desc');
-		});
-		$service = Yii::$app->cache->getOrSet('serviceAbout', function () {
-			return Service::find()->where(['!=', 'position', ''])->all();
 		});
 		$feedback = Yii::$app->cache->getOrSet("feedback_main", function () {
 			return Feedback::find()->where(['status' => 1])->limit(6)->all();
@@ -95,88 +67,7 @@ class AboutController extends Controller
 		});
 
 		return $this->render('index', [
-			'about' => $about, 'title' => $title, 'service' => $service, 'b_cur' => $b_cur, 'feedback' => $feedback
+			'about' => $about, 'title' => $title,  'feedback' => $feedback
 		]);
-	}
-
-	/**
-	 * Displays a single About model.
-	 * @param integer $id
-	 * @return mixed
-	 * @throws NotFoundHttpException if the model cannot be found
-	 */
-	public function actionView($id)
-	{
-		return $this->render('view', [
-			'model' => $this->findModel($id),
-		]);
-	}
-
-	/**
-	 * Creates a new About model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 * @return mixed
-	 */
-	public function actionCreate()
-	{
-		$model = new About();
-
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
-		}
-
-		return $this->render('create', [
-			'model' => $model,
-		]);
-	}
-
-	/**
-	 * Updates an existing About model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id
-	 * @return mixed
-	 * @throws NotFoundHttpException if the model cannot be found
-	 */
-	public function actionUpdate($id)
-	{
-		$model = $this->findModel($id);
-
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
-		}
-
-		return $this->render('update', [
-			'model' => $model,
-		]);
-	}
-
-	/**
-	 * Deletes an existing About model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 * @param integer $id
-	 * @return mixed
-	 * @throws NotFoundHttpException if the model cannot be found
-	 */
-	public function actionDelete($id)
-	{
-		$this->findModel($id)->delete();
-
-		return $this->redirect(['index']);
-	}
-
-	/**
-	 * Finds the About model based on its primary key value.
-	 * If the model is not found, a 404 HTTP exception will be thrown.
-	 * @param integer $id
-	 * @return About the loaded model
-	 * @throws NotFoundHttpException if the model cannot be found
-	 */
-	protected function findModel($id)
-	{
-		if (($model = About::findOne($id)) !== null) {
-			return $model;
-		}
-
-		throw new NotFoundHttpException(Yii::t('about', 'The requested page does not exist.'));
 	}
 }

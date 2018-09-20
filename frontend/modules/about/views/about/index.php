@@ -8,8 +8,6 @@ use yii\helpers\Url;
 /**
  * @var About[] $about
  * @var $title string
- * @var $service object
- * @var $b_cur object
  * @var $feedback object
  */
 $this->title = $title;
