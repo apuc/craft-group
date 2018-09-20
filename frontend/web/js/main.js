@@ -257,12 +257,15 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             processData: false,
             success: function (response) {
                 // console.log(response);
-                if(!$('.brief-massage-active')) {
-	                $('div.brief-massage').toggleClass('brief-massage-active');
-                } else {
-	                $('.brief-massage').show();
+	            if($('#send_vacancy')) {
+		            if(!$('.brief-massage-active')) {
+			            $('#brief__mess').toggleClass('brief-massage-active');
+		            } else {
+			            $('.brief-massage').show();
+		            }
+		            $('#send_vacancy').trigger('reset');
                 }
-	            $('#send_vacancy').trigger('reset');
+
             }
         });
     });
