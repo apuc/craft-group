@@ -257,12 +257,19 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             processData: false,
             success: function (response) {
                 // console.log(response);
-                if(!$('.brief-massage-active')) {
-	                $('div.brief-massage').toggleClass('brief-massage-active');
+                if($('#send_feedback')) {
+	                if(!$('.brief-massage-active')) {
+		                $('div.feedback-massage').toggleClass('brief-massage-active');
+	                }
                 } else {
-	                $('.brief-massage').show();
+	                if(!$('.brief-massage-active')) {
+		                $('div.brief-massage').toggleClass('brief-massage-active');
+	                } else {
+		                $('.brief-massage').show();
+	                }
+	                $('#send_vacancy').trigger('reset');
                 }
-	            $('#send_vacancy').trigger('reset');
+
             }
         });
     });

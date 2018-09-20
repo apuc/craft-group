@@ -43,6 +43,17 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 					'idForm' => 'send_feedback'
 				]) ?>
 			</div>
+			<div class="brief-massage feedback-massage">
+				<button class="brief-massage-close">
+					<span></span>
+					<span></span>
+				</button>
+				<img src="/img/massage_success.png">
+				<h2>Отзыв отправлен!</h2>
+				<p>Ожидайте, скоро мы с вами свяжемся.</p>
+				<p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
+			</div>
+			
 
 		</div>
 
