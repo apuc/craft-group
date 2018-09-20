@@ -259,15 +259,14 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
                 // console.log(response);
                 if($('#send_feedback')) {
 	                if(!$('.brief-massage-active')) {
-		                $("#feedback__mes").toggleClass('brief-massage-active');
+		                $("#feedback__mess").toggleClass('brief-massage-active');
+		                $('#send_feedback').trigger('reset');
 	                }
                 } else {
 	                if(!$('.brief-massage-active')) {
-		                $('div.brief-massage').toggleClass('brief-massage-active');
-	                } else {
-		                $('.brief-massage').show();
+		                $("#brief__mess").toggleClass('brief-massage-active');
+		                $('#send_vacancy').trigger('reset');
 	                }
-	                $('#send_vacancy').trigger('reset');
                 }
 
             }
