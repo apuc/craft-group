@@ -263,6 +263,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 			            $('#brief__mess').addClass('brief-massage-active');
 		            } else {
 			            $('#brief__mess').show();
+			            $('#brief__mess').addClass('brief-massage-active');
 		            }
 		            $('#send_vacancy').trigger('reset');
                 }
@@ -271,6 +272,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 			            $('#feedback__mess').addClass('brief-massage-active');
 		            } else {
 			            $('#feedback__mess').show();
+			            $('#feedback__mess').addClass('brief-massage-active');
 		            }
 		            $('#send_feedback').trigger('reset');
 	            }
