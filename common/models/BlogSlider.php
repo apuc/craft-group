@@ -81,7 +81,7 @@ class BlogSlider extends \yii\db\ActiveRecord
 
 	public function getTime()
 	{
-
+		$time = strtotime($this->date);
 		$month_name = [
 			1 => 'января',
 			2 => 'февраля',
@@ -96,16 +96,16 @@ class BlogSlider extends \yii\db\ActiveRecord
 			11 => 'ноября',
 			12 => 'декабря'
 		];
-		$month = $month_name[date('n', $this->date)];
+		$month = $month_name[date('n', $time)];
 
-		$day = date('j', $this->date);
-		$year = date('Y', $this->date);
-		$hour = date('G', $this->date);
-		$min = date('i', $this->date);
+		$day = date('j', $time);
+		$year = date('Y',$time);
+		$hour = date('G', $time);
+		$min = date('i', $time);
 
 		$date = $day . ' ' . $month . ' ' . $year . ' г. в ' . $hour . ':' . $min;
 
-		$dif = time() - $this->date;
+		$dif = time() - $time;
 
 		if ($dif < 59) {
 			return $dif . " сек. назад";
