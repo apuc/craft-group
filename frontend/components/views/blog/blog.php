@@ -49,7 +49,6 @@ use yii\helpers\Url;
                                 <img src="<?= Yii::$app->resizeImage->resizeImage($value->file) ?>">
                                 <div class="slide__title">
                                     <h3 class="slide__post-title"><?= $value->title ?></h3>
-                                    <?php var_dump($value->getTime())?>
                                     <time
                                         class="slide__post-time"><?= $value->getTime(); ?></time>
                                 </div>
