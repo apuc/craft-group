@@ -262,7 +262,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 		            if(!$('.brief-massage-active')) {
 			            $('#brief__mess').addClass('brief-massage-active');
 		            } else {
-			            $('.brief-massage').show();
+			            $('#brief__mess').show();
 		            }
 		            $('#send_vacancy').trigger('reset');
                 }
