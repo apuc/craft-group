@@ -4,8 +4,10 @@ namespace frontend\modules\blog\controllers;
 
 use common\models\BlogSlider;
 use common\models\KeyValue;
+use frontend\components\SidebarWidget;
 use frontend\modules\blog\models\Blog;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -90,26 +92,14 @@ class BlogController extends Controller
 		if (is_null($blog)) {
 			throw  new NotFoundHttpException('Страница не найдена', 404);
 		}
-		$last_arr = [];
 		$last_blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->andWhere(['!=', 'slug', $slug])->orderBy(['date' => SORT_DESC])->limit(5)->orderBy('date desc')->all();
-		foreach ($last_blog as $last) {
-			$last_arr[] = $last->slug;
-		}
-		$count_sidebar = KeyValue::getValue('blog_sidebar_count', 5);
 
-		$slider = Yii::$app->cache->getOrSet('slider-' . $slug, function () use ($slug, $last_arr, $count_sidebar) {
-			return BlogSlider::find()
-				->where(['!=', 'options', 0])
-				->andWhere(['!=', 'h1', 'current'])
-				->andWhere(['!=', 'slug', $slug])
-				->andWhere(['not in', 'slug', $last_arr])
-				->orderBy(new Expression('rand()'), ['date' => SORT_DESC])
-				->limit($count_sidebar)
-				->all();
-		});
-		$all = Yii::$app->cache->getOrSet('all' . $slug, function () {
-			return BlogSlider::find()->where(['h1' => 'current'])->one();
-		});
+		$slider = SidebarWidget::widget([
+			'slug' => $slug,
+			'lastArr' => ArrayHelper::getColumn($last_blog, 'slug'),
+			'countSidebar' => KeyValue::getValue('blog_sidebar_count', 5),
+			'orderBy' => SidebarWidget::ORDER_BY_BLOG
+		]);
 		Yii::$app->opengraph->title = $blog->title;
 		Yii::$app->opengraph->description = $blog->description;
 		Yii::$app->opengraph->image = $blog->file;

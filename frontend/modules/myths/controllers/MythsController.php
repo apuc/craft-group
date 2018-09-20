@@ -4,9 +4,11 @@ namespace frontend\modules\myths\controllers;
 
 use common\models\BlogSlider;
 use common\models\KeyValue;
+use frontend\components\SidebarWidget;
 use frontend\modules\myths\models\Myths;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -64,17 +66,10 @@ class MythsController extends Controller
 		if ($myth) {
 			new NotFoundHttpException();
 		}
-		$slider = Yii::$app->cache->getOrSet("slider-single-myths-" . $slug, function () {
-			return BlogSlider::find()
-				->where(['!=', 'options', 0])
-				->andWhere(['!=', 'h1', 'current'])
-				->orderBy(['date' => SORT_DESC])
-				->limit(KeyValue::getValue('myths-blog-post-count', 5))
-				->all();
-		});
-		$all = Yii::$app->cache->getOrSet('all-single-myth-' . $slug, function () {
-			return BlogSlider::find()->where(['h1' => 'current'])->one();
-		});
+		$slider = SidebarWidget::widget([
+			'countSidebar' => KeyValue::getValue('myths-blog-post-count', 5),
+			'orderBy' => SidebarWidget::ORDER_BY_MYTHS
+		]);
 		Yii::$app->opengraph->title = $myth->title;
 		Yii::$app->opengraph->description = $myth->description;
 		Yii::$app->opengraph->image = $myth->file;
