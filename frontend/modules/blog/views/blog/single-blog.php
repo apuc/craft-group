@@ -8,7 +8,6 @@
 /**
  * @var Blog $blog
  * @var string $slider
- * @var $all object
  */
 
 

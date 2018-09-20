@@ -76,7 +76,7 @@ class MythsController extends Controller
 		Yii::$app->opengraph->url = Url::home('https') . 'blog/' . $slug;
 		Yii::$app->opengraph->siteName = Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
-		return $this->render('single-myths', ['myth' => $myth, 'slider' => $slider, 'all' => $all]);
+		return $this->render('single-myths', ['myth' => $myth, 'slider' => $slider]);
 	}
 
 	/**

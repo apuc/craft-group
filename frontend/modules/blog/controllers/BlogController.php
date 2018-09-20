@@ -107,7 +107,7 @@ class BlogController extends Controller
 		Yii::$app->opengraph->siteName = Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
 		if ($blog) {
-			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all]);
+			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider]);
 		} else {
 			return $this->redirect(['/' . $slug]);
 		}

@@ -8,7 +8,6 @@
 /**
  * @var \common\models\Myths $myth
  * @var string $slider
- * @var $all object
  */
 
 
