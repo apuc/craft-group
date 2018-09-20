@@ -39,7 +39,8 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 					'textButton' => 'Отправить',
 					'fileExtension' => 'jpg, jpeg, png',
 					'skypeOrSite' => \frontend\components\SendFormWidget::SITE,
-					'fileOrFiles' => \frontend\components\SendFormWidget::FILE
+					'fileOrFiles' => \frontend\components\SendFormWidget::FILE,
+					'idForm' => 'send_feedback'
 				]) ?>
 			</div>
 
