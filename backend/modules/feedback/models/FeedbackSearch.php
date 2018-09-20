@@ -67,7 +67,8 @@ class FeedbackSearch extends Feedback
             ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'site', $this->site])
-            ->andFilterWhere(['like', 'message', $this->message]);
+            ->andFilterWhere(['like', 'message', $this->message])
+            ->orderBy('id desc');
 
         return $dataProvider;
     }
