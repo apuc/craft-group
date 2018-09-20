@@ -69,7 +69,7 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 					'subject' => \frontend\models\SendForm::USULUGI,
 					'isLabels' => true,
 					'messageLabel' => 'Сообщение',
-					'idForm' => 'send_feedback'
+					'idForm' => 'send_vacancy'
 				]) ?>
 				<div class="brief-massage">
 					<button class="brief-massage-close">
