@@ -276,7 +276,6 @@ class SiteController extends Controller
 
 			$model->files = UploadedFile::getInstances($model, 'files');
 			$model->file = UploadedFile::getInstance($model, 'file');
-
 			if ($model->validate()) {
 
 				$model->save($post);
