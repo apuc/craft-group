@@ -54,8 +54,6 @@ PreviewAsset::register($this);
 		'multiple'      => false       // возможность выбора нескольких файлов
 	])->label('Картинка блога');?>
 
-	<?= $form->field($model, 'compressing_image')->checkbox();?>
-
 
     <?= $form->field($model, 'slug')->hiddenInput(['maxlength' => true, 'hidden' => true])->label(false)?>
 

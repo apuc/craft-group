@@ -19,7 +19,6 @@ use yii\helpers\Url;
  * @property string $preview_text
  * @property string $file
  * @property int $options 0 - off, 1 - main, 2 - all
- * @property int $compressing_image
  * @property string $slug
  * @property string $date
  */
@@ -56,7 +55,6 @@ class BlogSlider extends \yii\db\ActiveRecord
 			[['title', 'h1', 'meta_key', 'meta_desc', 'file', 'slug'], 'string', 'max' => 255],
 			[['preview_text'], 'string', 'max' => 220],
 			[['options'], 'integer'],
-			[['compressing_image'], 'integer']
 		];
 	}
 
@@ -78,31 +76,30 @@ class BlogSlider extends \yii\db\ActiveRecord
 			'slug' => Yii::t('blog', 'Slug'),
 			'date' => Yii::t('blog', 'Date'),
 			'preview_text' => 'Превью текста',
-			'compressing_image' => 'Сжать все изображения в посте'
 		];
 	}
 
-	static function getTime($time)
+	public function getTime()
 	{
-		$month_name =
-			array(1 => 'января',
-				2 => 'февраля',
-				3 => 'марта',
-				4 => 'апреля',
-				5 => 'мая',
-				6 => 'июня',
-				7 => 'июля',
-				8 => 'августа',
-				9 => 'сентября',
-				10 => 'октября',
-				11 => 'ноября',
-				12 => 'декабря'
-			);
-
+		$time = strtotime($this->date);
+		$month_name = [
+			1 => 'января',
+			2 => 'февраля',
+			3 => 'марта',
+			4 => 'апреля',
+			5 => 'мая',
+			6 => 'июня',
+			7 => 'июля',
+			8 => 'августа',
+			9 => 'сентября',
+			10 => 'октября',
+			11 => 'ноября',
+			12 => 'декабря'
+		];
 		$month = $month_name[date('n', $time)];
 
 		$day = date('j', $time);
-		$year = date('Y', $time);
+		$year = date('Y',$time);
 		$hour = date('G', $time);
 		$min = date('i', $time);
 
@@ -130,7 +127,7 @@ class BlogSlider extends \yii\db\ActiveRecord
 	{
 		$str = ($this->preview_text) ? $this->preview_text : $this->description;
 		$str = strip_tags($str);
-		return iconv_substr($str, 0, $length, 'UTF-8');
+		return iconv_substr($str, 0, $length, 'UTF-8').'...';
 	}
 
 	private function getScope()

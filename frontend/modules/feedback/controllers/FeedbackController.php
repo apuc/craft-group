@@ -19,21 +19,6 @@ use common\models\UploadForm;
 class FeedbackController extends Controller
 {
     /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
-    /**
      * Lists all Feedback models.
      * @return mixed
      */
@@ -44,9 +29,7 @@ class FeedbackController extends Controller
             'query' => Feedback::find(),
         ]);
         $model = new Feedback();
-        $feedback = Yii::$app->cache->getOrSet("feedback_main", function () {
-            return Feedback::find()->where(['status' => 1])->limit(6)->all();
-        });
+      
         $title = Yii::$app->cache->getOrSet("feedback_page_meta_title", function () {
             return KeyValue::getValue('feedback_page_meta_title');
         });
@@ -85,8 +68,7 @@ class FeedbackController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'model' => $model, 
-            'title' => $title, 
-            'feedback' => $feedback,
+            'title' => $title,
         ]);
     }
 

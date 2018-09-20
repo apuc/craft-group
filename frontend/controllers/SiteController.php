@@ -118,24 +118,8 @@ class SiteController extends Controller
 			'name' => 'p:domain_verify',
 			'content' => $domain_verify,
 		]);
-		Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("og_title", function () {
-			return KeyValue::getValue('main_og_title');
-		});
-		Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("og_desc", function () {
-			return KeyValue::getValue('main_og_description');
-		});
-		Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("og_img", function () {
-			return KeyValue::getValue('main_og_image');
-		});
-		Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("og_url", function () {
-			return KeyValue::getValue('main_og_url');
-		});
-		Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("og_site_name", function () {
-			return KeyValue::getValue('main_og_site_name');
-		});
-		Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("og_type", function () {
-			return KeyValue::getValue('main_og_type');
-		});
+
+		$this->setOpengraph();
 
 
 		$this->view->params['contacts'] = Yii::$app->cache->getOrSet("contacts_cache", function () {
@@ -292,7 +276,6 @@ class SiteController extends Controller
 
 			$model->files = UploadedFile::getInstances($model, 'files');
 			$model->file = UploadedFile::getInstance($model, 'file');
-
 			if ($model->validate()) {
 
 				$model->save($post);
@@ -339,7 +322,7 @@ class SiteController extends Controller
 //                    ->setTextBody($message)
 					->setHtmlBody('<b>' . $model->thankMessage . '</b>')
 					->send();
-				
+
 				$mail3 = Yii::$app->mailer->compose()
 				                          ->setFrom([Yii::$app->params['supportEmail'] => 'Письмо с сайта web-artcraft.com'])
 				                          ->setTo(
@@ -431,6 +414,30 @@ class SiteController extends Controller
 	{
 		$this->layout = 'error';
 		return $this->render('error');
+	}
+
+	private function setOpengraph()
+	{
+		$title = Yii::$app->cache->getOrSet("og_title", function () {
+			return KeyValue::getValue('main_og_title');
+		});
+		$description = Yii::$app->cache->getOrSet("og_desc", function () {
+			return KeyValue::getValue('main_og_description');
+		});
+		$image = Yii::$app->cache->getOrSet("og_img", function () {
+			return KeyValue::getValue('main_og_image');
+		});
+		$url = Yii::$app->cache->getOrSet("og_url", function () {
+			return KeyValue::getValue('main_og_url');
+		});
+		$siteName = Yii::$app->cache->getOrSet("og_site_name", function () {
+			return KeyValue::getValue('main_og_site_name');
+		});
+		$type = Yii::$app->cache->getOrSet("og_type", function () {
+			return KeyValue::getValue('main_og_type');
+		});
+
+		Yii::$app->og->registerTags($title, $description, $image, $url, $siteName, $type);
 	}
 
 }

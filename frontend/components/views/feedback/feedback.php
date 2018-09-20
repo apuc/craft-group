@@ -2,6 +2,7 @@
 /**
  * @var $feedback [] \common\models\Feedback
  */
+Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 ?>
 <?php if (!empty($feedback)): ?>
 	<section class="blog blog__single blog_feedback feedback-section">

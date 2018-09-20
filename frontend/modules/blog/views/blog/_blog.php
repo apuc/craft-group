@@ -29,7 +29,7 @@ use common\models\BlogSlider;
 			</div>
 			<footer class="blog__block-footer">
 				<time
-					class="blog__block-time"><?= BlogSlider::getTime(strtotime($value->date)); ?></time>
+					class="blog__block-time"><?= $value->getTime(); ?></time>
 				<a class="blog__block-more"
 				   href="<?= Url::to(['single-blog', 'slug' => $value->slug]) ?>">
 					<span>Читать далее</span>

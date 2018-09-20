@@ -4,8 +4,10 @@ namespace frontend\modules\blog\controllers;
 
 use common\models\BlogSlider;
 use common\models\KeyValue;
+use frontend\components\SidebarWidget;
 use frontend\modules\blog\models\Blog;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -18,21 +20,6 @@ use yii\web\NotFoundHttpException;
  */
 class BlogController extends Controller
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-		return [
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
-		];
-	}
-
 	/**
 	 * Lists all BlogSlider models.
 	 * @return mixed
@@ -59,24 +46,26 @@ class BlogController extends Controller
 			'name' => 'keywords',
 			'content' => $key,
 		]);
-		Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("blog_og_title", function () {
+		$titleOG = Yii::$app->cache->getOrSet("blog_og_title", function () {
 			return KeyValue::getValue('blog_og_title');
 		});
-		Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("blog_og_desc", function () {
+		$descriptionOG = Yii::$app->cache->getOrSet("blog_og_desc", function () {
 			return KeyValue::getValue('blog_og_description');
 		});
-		Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("blog_og_image", function () {
+		$image = Yii::$app->cache->getOrSet("blog_og_image", function () {
 			return KeyValue::getValue('blog_og_image');
 		});
-		Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("blog_og_url", function () {
+		$url = Yii::$app->cache->getOrSet("blog_og_url", function () {
 			return KeyValue::getValue('blog_og_url');
 		});
-		Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("blog_og_site_name", function () {
+		$siteName = Yii::$app->cache->getOrSet("blog_og_site_name", function () {
 			return KeyValue::getValue('blog_og_site_name');
 		});
-		Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("blog_og_type", function () {
+		$type = Yii::$app->cache->getOrSet("blog_og_type", function () {
 			return KeyValue::getValue('blog_og_type');
 		});
+		Yii::$app->og->registerTags($titleOG, $descriptionOG, $image, $url, $siteName, $type);
+
 		return $this->render('index', [
 			'blog' => $blog, 'title' => $title
 		]);
@@ -84,40 +73,34 @@ class BlogController extends Controller
 
 	public function actionSingleBlog($slug)
 	{
+		/**
+		 * @var BlogSlider $blog
+		 */
 		$blog = Yii::$app->cache->getOrSet('blog-' . $slug, function () use ($slug) {
 			return BlogSlider::find()->where(['slug' => $slug])->one();
 		});
 		if (is_null($blog)) {
 			throw  new NotFoundHttpException('Страница не найдена', 404);
 		}
-		$last_arr = [];
 		$last_blog = BlogSlider::find()->where(['!=', 'h1', 'current'])->andWhere(['!=', 'slug', $slug])->orderBy(['date' => SORT_DESC])->limit(5)->orderBy('date desc')->all();
-		foreach ($last_blog as $last) {
-			$last_arr[] = $last->slug;
-		}
-		$count_sidebar = KeyValue::getValue('blog_sidebar_count', 5);
 
-		$slider = Yii::$app->cache->getOrSet('slider-' . $slug, function () use ($slug, $last_arr, $count_sidebar) {
-			return BlogSlider::find()
-				->where(['!=', 'options', 0])
-				->andWhere(['!=', 'h1', 'current'])
-				->andWhere(['!=', 'slug', $slug])
-				->andWhere(['not in', 'slug', $last_arr])
-				->orderBy(new Expression('rand()'), ['date' => SORT_DESC])
-				->limit($count_sidebar)
-				->all();
-		});
-		$all = Yii::$app->cache->getOrSet('all' . $slug, function () {
-			return BlogSlider::find()->where(['h1' => 'current'])->one();
-		});
-		Yii::$app->opengraph->title = $blog->title;
-		Yii::$app->opengraph->description = $blog->description;
-		Yii::$app->opengraph->image = $blog->file;
-		Yii::$app->opengraph->url = Url::home('https') . 'blog/' . $slug;
-		Yii::$app->opengraph->siteName = Yii::$app->name;
-		Yii::$app->opengraph->type = 'article';
+		$slider = SidebarWidget::widget([
+			'slug' => $slug,
+			'lastArr' => ArrayHelper::getColumn($last_blog, 'slug'),
+			'countSidebar' => KeyValue::getValue('blog_sidebar_count', 5),
+			'orderBy' => SidebarWidget::ORDER_BY_BLOG
+		]);
+
+		$title = $blog->title;
+		$description = $blog->strCrop(220);
+		$image = Url::to($blog->file, true);
+		$url = Url::home('https') . 'blog/' . $slug;
+		$siteName = Yii::$app->name;
+		$type = 'article';
+		Yii::$app->og->registerTags($title, $description, $image, $url, $siteName, $type);
+
 		if ($blog) {
-			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider, 'all' => $all]);
+			return $this->render('single-blog', ['blog' => $blog, 'slider' => $slider]);
 		} else {
 			return $this->redirect(['/' . $slug]);
 		}
@@ -138,5 +121,10 @@ class BlogController extends Controller
 			$img = '_img-ajax';
 			return $this->renderAjax('_blog', ['blog' => $more, 'img' => $img]);
 		}
+	}
+
+	private function setOpengraph($title, $description, $image, $url, $siteName, $type)
+	{
+
 	}
 }
