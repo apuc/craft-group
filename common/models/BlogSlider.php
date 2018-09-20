@@ -79,33 +79,33 @@ class BlogSlider extends \yii\db\ActiveRecord
 		];
 	}
 
-	static function getTime($time)
+	public function getTime()
 	{
-		$month_name =
-			array(1 => 'января',
-				2 => 'февраля',
-				3 => 'марта',
-				4 => 'апреля',
-				5 => 'мая',
-				6 => 'июня',
-				7 => 'июля',
-				8 => 'августа',
-				9 => 'сентября',
-				10 => 'октября',
-				11 => 'ноября',
-				12 => 'декабря'
-			);
 
-		$month = $month_name[date('n', $time)];
+		$month_name = [
+			1 => 'января',
+			2 => 'февраля',
+			3 => 'марта',
+			4 => 'апреля',
+			5 => 'мая',
+			6 => 'июня',
+			7 => 'июля',
+			8 => 'августа',
+			9 => 'сентября',
+			10 => 'октября',
+			11 => 'ноября',
+			12 => 'декабря'
+		];
+		$month = $month_name[date('n', $this->date)];
 
-		$day = date('j', $time);
-		$year = date('Y', $time);
-		$hour = date('G', $time);
-		$min = date('i', $time);
+		$day = date('j', $this->date);
+		$year = date('Y', $this->date);
+		$hour = date('G', $this->date);
+		$min = date('i', $this->date);
 
 		$date = $day . ' ' . $month . ' ' . $year . ' г. в ' . $hour . ':' . $min;
 
-		$dif = time() - $time;
+		$dif = time() - $this->date;
 
 		if ($dif < 59) {
 			return $dif . " сек. назад";

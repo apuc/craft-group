@@ -27,7 +27,7 @@ use yii\helpers\Url;
 						<div class="slide__title">
 							<h3 class="slide__post-title"><?= $value->title ?></h3>
 							<time
-								class="slide__post-time"><?= BlogSlider::getTime(strtotime($value->date)); ?></time>
+								class="slide__post-time"><?= $value->getTime(); ?></time>
 						</div>
 						<div class="slide__hover">
 							<span class="dotdot"><?= $value->strCrop() ?></span>
