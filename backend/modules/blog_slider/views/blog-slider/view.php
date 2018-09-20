@@ -56,12 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				}
 			],
             'options',
-			[
-				'attribute' => 'compressing_image',
-				'value' => function ($model) {
-					return ($model->compressing_image) ? 'Да' : 'Нет';
-				}
-			],
             'slug',
             'date',
         ],

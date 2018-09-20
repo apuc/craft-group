@@ -32,7 +32,9 @@
         "hiqdev/yii2-yandex-metrika": "^0.2.0",
         "cybercog/yii2-google-analytics": "^0.3.2",
         "xtarantulz/yii2-input-img-preview": "dev-master",
-        "himiklab/yii2-easy-thumbnail-image-helper": "*"
+        "himiklab/yii2-easy-thumbnail-image-helper": "*",
+        "tpmanc/yii2-imagick": "*",
+        "tinify/tinify": "^1.5"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -21,7 +21,6 @@ use yii\helpers\Url;
  * @property string $href
  * @property int $options 0 - off, 1 - main, 2 - service, 3 - all
  * @property string $file
- * @property int $compressing_image
  * @property string $slug
  * @property int $dt_add
  */
@@ -59,7 +58,6 @@ class Portfolio extends \yii\db\ActiveRecord
 			[['h1', 'meta_key', 'file', 'slug'], 'string', 'max' => 255],
 			[['meta_desc'], 'string', 'max' => 200],
 			[['options'], 'integer'],
-			[['compressing_image'], 'integer']
 		];
 	}
 
@@ -81,7 +79,6 @@ class Portfolio extends \yii\db\ActiveRecord
 			'file' => Yii::t('portfolio', 'File'),
 			'slug' => Yii::t('portfolio', 'Slug'),
 			'dt_add' => Yii::t('portfolio', 'Date'),
-			'compressing_image' => 'Сжать все изображения в посте'
 		];
 	}
 

@@ -16,13 +16,6 @@ use yii\console\Controller;
 
 class CompressingImageController extends Controller
 {
-	public function actionIndex()
-	{
-		$blogSlider = BlogSlider::findAll(['compressing_image' => Yii::$app->compressing->getCompressingOn()]);
-		$portfolio = Portfolio::findAll(['compressing_image' => Yii::$app->compressing->getCompressingOn()]);
-		Yii::$app->compressing->compressing(array_merge($blogSlider, $portfolio));
-	}
-
 	public function actionCompressing()
 	{
 		$images = \yii\helpers\FileHelper::findFiles(Yii::getAlias('@frontend/web/uploads/'), ['only' => ['*.jpg', '*.png']]);;
