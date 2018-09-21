@@ -57,7 +57,6 @@ function Uploader() {
         this.fileInput = this.getElement(this.options.fileInput);
         this.itemContainer = this.getElement(this.options.itemContainer);
         this.itemWrapper = this.getElement(this.options.itemWrapper);
-        console.log(this.itemWrapper);
         this.itemWrapperDisplay = getComputedStyle(this.itemWrapper).display;
         this.itemWrapper.style.display = 'none';
         this.btnSelect.onclick = function () {

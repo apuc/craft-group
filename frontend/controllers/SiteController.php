@@ -9,6 +9,7 @@ use common\models\Main;
 use common\models\Portfolio;
 use frontend\models\SendForm;
 use frontend\models\SendCallBack;
+use frontend\models\TagsOpengraph;
 use Yii;
 use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
@@ -119,7 +120,7 @@ class SiteController extends Controller
 			'content' => $domain_verify,
 		]);
 
-		$this->setOpengraph();
+		TagsOpengraph::findOne(['key' => 'main'])->registerOGTags(Url::home(true));
 
 
 		$this->view->params['contacts'] = Yii::$app->cache->getOrSet("contacts_cache", function () {
@@ -413,30 +414,6 @@ class SiteController extends Controller
 	{
 		$this->layout = 'error';
 		return $this->render('error');
-	}
-
-	private function setOpengraph()
-	{
-		$title = Yii::$app->cache->getOrSet("og_title", function () {
-			return KeyValue::getValue('main_og_title');
-		});
-		$description = Yii::$app->cache->getOrSet("og_desc", function () {
-			return KeyValue::getValue('main_og_description');
-		});
-		$image = Yii::$app->cache->getOrSet("og_img", function () {
-			return KeyValue::getValue('main_og_image');
-		});
-		$url = Yii::$app->cache->getOrSet("og_url", function () {
-			return KeyValue::getValue('main_og_url');
-		});
-		$siteName = Yii::$app->cache->getOrSet("og_site_name", function () {
-			return KeyValue::getValue('main_og_site_name');
-		});
-		$type = Yii::$app->cache->getOrSet("og_type", function () {
-			return KeyValue::getValue('main_og_type');
-		});
-
-		Yii::$app->og->registerTags($title, $description, $image, $url, $siteName, $type);
 	}
 
 }
