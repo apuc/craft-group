@@ -8,16 +8,16 @@
 
 namespace frontend\components;
 
-
 use Yii;
 use yii\base\Component;
+use yii\helpers\Url;
 
 class OpengraphComponent extends Component
 {
-	public function registerTags($title, $description, $image, $url, $siteName, $type){
+	public function registerTags($title, $description, $image = '', $url, $siteName = 'Craft Group', $type = 'website'){
 		Yii::$app->opengraph->title = $title;
 		Yii::$app->opengraph->description = $description;
-		Yii::$app->opengraph->image = $image;
+		Yii::$app->opengraph->image = ($image) ? Url::to($image, true) : '';
 		Yii::$app->opengraph->url = $url;
 		Yii::$app->opengraph->siteName = $siteName;
 		Yii::$app->opengraph->type = $type;

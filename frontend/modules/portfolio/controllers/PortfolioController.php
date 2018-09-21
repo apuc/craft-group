@@ -3,6 +3,7 @@
 namespace frontend\modules\portfolio\controllers;
 
 use common\models\KeyValue;
+use frontend\models\TagsOpengraph;
 use frontend\modules\portfolio\models\Portfolio;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -17,26 +18,6 @@ use common\models\BlogSlider;
  */
 class PortfolioController extends Controller
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-		return [
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
-		];
-	}
-
-	public function beforeAction($action)
-	{
-		$this->enableCsrfValidation = false;
-		return parent::beforeAction($action);
-	}
 
 	/**
 	 * Lists all Portfolio models.
@@ -76,24 +57,9 @@ class PortfolioController extends Controller
 			'name' => 'keywords',
 			'content' => $key,
 		]);
-		Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("portfolio_og_title", function () {
-			return KeyValue::getValue('portfolio_og_title');
-		});
-		Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("portfolio_og_description", function () {
-			return KeyValue::getValue('portfolio_og_description');
-		});
-		Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("portfolio_og_image", function () {
-			return KeyValue::getValue('portfolio_og_image');
-		});
-		Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("portfolio_og_url", function () {
-			return KeyValue::getValue('portfolio_og_url');
-		});
-		Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("portfolio_og_site_name", function () {
-			return KeyValue::getValue('portfolio_og_site_name');
-		});
-		Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("portfolio_og_type", function () {
-			return KeyValue::getValue('portfolio_og_type');
-		});
+
+		TagsOpengraph::findOne(['key'=>'portfolio'])->registerOGTags(Url::to(['/portfolio']));
+
 		return $this->render('index', [
 			'portfolio' => $portfolio, 'title' => $title, 'count' => $count,
 		]);
@@ -113,6 +79,14 @@ class PortfolioController extends Controller
 		Yii::$app->opengraph->url = Url::home('https') . 'portfolio/' . $slug;
 		Yii::$app->opengraph->siteName = Yii::$app->name;
 		Yii::$app->opengraph->type = 'article';
+
+		Yii::$app->og->registerTags(
+			$portfolio['title'],
+			strip_tags($portfolio['description']),
+			$portfolio['file'],
+			Url::to(['single-portfolio', 'slug'=>$slug], true)
+		);
+
 		if ($portfolio) {
 			return $this->render('single-portfolio', ['portfolio' => $portfolio]);
 		} else {

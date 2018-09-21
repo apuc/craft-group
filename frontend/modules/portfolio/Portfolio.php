@@ -5,7 +5,7 @@ namespace frontend\modules\portfolio;
 /**
  * portfolio module definition class
  */
-class portfolio extends \yii\base\Module
+class Portfolio extends \yii\base\Module
 {
     /**
      * @inheritdoc
