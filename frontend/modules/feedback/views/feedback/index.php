@@ -38,10 +38,12 @@ use yii\helpers\Url;
 					'textButton' => 'Отправить',
 					'fileExtension' => 'jpg, jpeg, png',
 					'skypeOrSite' => \frontend\components\SendFormWidget::SITE,
-					'fileOrFiles' => \frontend\components\SendFormWidget::FILE
+					'fileOrFiles' => \frontend\components\SendFormWidget::FILE,
+					'idForm' => 'send_feedback',
+					'id_answer' => 'feedback__mess',
+					'answer' => 'Отзыв отправлен!',
 				]) ?>
 			</div>
-
 		</div>
 
 	</section>
@@ -69,18 +71,8 @@ use yii\helpers\Url;
 					'subject' => \frontend\models\SendForm::USULUGI,
 					'isLabels' => true,
 					'messageLabel' => 'Сообщение',
-					'idForm' => 'send_feedback'
+					'idForm' => 'send_vacancy'
 				]) ?>
-				<div class="brief-massage">
-					<button class="brief-massage-close">
-						<span></span>
-						<span></span>
-					</button>
-					<img src="/img/massage_success.png">
-					<h2>Бриф отправлен!</h2>
-					<p>Ожидайте, скоро мы с вами свяжемся.</p>
-					<p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
-				</div>
 			</div>
 
 		</div>

@@ -249,6 +249,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
         e.preventDefault();
         var data = $(this).serialize(),
             image = new FormData($(this)[0]);
+	    var mess = $(this).attr('id');
         $.ajax({
             url: '/site/send-form',
             type: 'post',
@@ -257,12 +258,25 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             processData: false,
             success: function (response) {
                 // console.log(response);
-                if(!$('.brief-massage-active')) {
-	                $('div.brief-massage').toggleClass('brief-massage-active');
-                } else {
-	                $('.brief-massage').show();
+	            if(mess == 'send_vacancy') {
+		            if(!$('.brief-massage-active')) {
+			            $('#brief__mess').addClass('brief-massage-active');
+		            } else {
+			            $('#brief__mess').show();
+			            $('#brief__mess').addClass('brief-massage-active');
+		            }
+		            $('#send_vacancy').trigger('reset');
                 }
-	            $('#send_vacancy').trigger('reset');
+	            if(mess == 'send_feedback') {
+		            if(!$('.brief-massage-active')) {
+			            $('#feedback__mess').addClass('brief-massage-active');
+		            } else {
+			            $('#feedback__mess').show();
+			            $('#feedback__mess').addClass('brief-massage-active');
+		            }
+		            $('#send_feedback').trigger('reset');
+	            }
+
             }
         });
     });

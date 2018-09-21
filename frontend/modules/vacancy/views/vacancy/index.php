@@ -164,18 +164,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= \frontend\components\SendFormWidget::widget([
                     'subject' => \frontend\models\SendForm::VACANCY,
                     'messageLabel' => 'Напишите немного о себе',
-                    'textButton' => 'Хочу в команду'
+                    'textButton' => 'Хочу в команду',
+	                'answer' => 'Резюме отправлено!',
                 ]) ?>
-	            <div class="brief-massage">
-		            <button class="brief-massage-close">
-			            <span></span>
-			            <span></span>
-		            </button>
-		            <img src="/img/massage_success.png">
-		            <h2>Резюме отправлено!</h2>
-		            <p>Ожидайте, скоро мы с вами свяжемся.</p>
-		            <p>А пока вы можете посмотреть <a href="<?= Url::toRoute(['/portfolio']); ?>">наши работы</a></p>
-	            </div>
             </div>
 
         </div>
