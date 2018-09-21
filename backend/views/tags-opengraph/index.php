@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'image',
 				'format' => 'html',
 				'value' => function ($model) {
-					return Html::img(\yii\helpers\Url::to($model->image));
+					return Html::img(\yii\helpers\Url::to($model->image), ['style'=>'width:300px']);
 				}
 			],
 			//'created_at',

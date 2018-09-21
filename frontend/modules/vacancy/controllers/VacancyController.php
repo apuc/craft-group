@@ -3,6 +3,7 @@
 namespace frontend\modules\vacancy\controllers;
 
 use common\models\KeyValue;
+use frontend\models\TagsOpengraph;
 use Yii;
 use common\models\Vacancy;
 use yii\data\ActiveDataProvider;
@@ -17,21 +18,6 @@ use common\models\BlogSlider;
  */
 class VacancyController extends Controller
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-		return [
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
-		];
-	}
-
 	/**
 	 * Lists all Vacancy models.
 	 * @return mixed
@@ -61,24 +47,9 @@ class VacancyController extends Controller
 			'name' => 'keywords',
 			'content' => $key,
 		]);
-		Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("vacancy_og_title", function () {
-			return KeyValue::getValue('vacancy_og_title');
-		});
-		Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("vacancy_og_description", function () {
-			return KeyValue::getValue('vacancy_og_description');
-		});
-		Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("vacancy_og_image", function () {
-			return KeyValue::getValue('vacancy_og_image');
-		});
-		Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("vacancy_og_url", function () {
-			return KeyValue::getValue('vacancy_og_url');
-		});
-		Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("vacancy_og_site_nmae", function () {
-			return KeyValue::getValue('vacancy_og_site_name');
-		});
-		Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("vacancy_og_type", function () {
-			return KeyValue::getValue('vacancy_og_type');
-		});
+
+		TagsOpengraph::findOne(['key' => 'vacancy'])->registerOGTags(Url::to(['/vacancy']));
+
 		return $this->render('index', [
 			'vacancy' => $vacancy, 'all' => $all_vacancy, 'title' => $title
 		]);
@@ -93,12 +64,14 @@ class VacancyController extends Controller
 			return Vacancy::find()->where(['options' => 2])->limit(3)->offset($vacancy['id'])->all();
 		});
 		$vacancy->updateCounters(['views' => 1]);
-		Yii::$app->opengraph->title = $vacancy->title;
-		Yii::$app->opengraph->description = $vacancy->description;
-		Yii::$app->opengraph->image = $vacancy->img;
-		Yii::$app->opengraph->url = Url::home('https') . 'vacancy/' . $slug;
-		Yii::$app->opengraph->siteName = Yii::$app->name;
-		Yii::$app->opengraph->type = 'article';
+
+		Yii::$app->og->registerTags(
+			$vacancy->title,
+			$vacancy->meta_desc,
+			$vacancy->img,
+			Url::to(['/single-vacancy', 'slug' => $slug])
+		);
+
 		return $this->render('single-vacancy', ['vacancy' => $vacancy, 'all' => $all_vacancy]);
 	}
 }

@@ -73,16 +73,10 @@ class PortfolioController extends Controller
 				->asArray()
 				->one();
 		});
-		Yii::$app->opengraph->title = $portfolio['title'];
-		Yii::$app->opengraph->description = $portfolio['description'];
-		Yii::$app->opengraph->image = $portfolio['file'];
-		Yii::$app->opengraph->url = Url::home('https') . 'portfolio/' . $slug;
-		Yii::$app->opengraph->siteName = Yii::$app->name;
-		Yii::$app->opengraph->type = 'article';
 
 		Yii::$app->og->registerTags(
 			$portfolio['title'],
-			strip_tags($portfolio['description']),
+			strip_tags($portfolio['meta_desc']),
 			$portfolio['file'],
 			Url::to(['single-portfolio', 'slug'=>$slug], true)
 		);
