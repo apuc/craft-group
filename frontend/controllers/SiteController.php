@@ -332,7 +332,6 @@ class SiteController extends Controller
 //                    ->setTextBody($message)
                                           ->setHtmlBody('<b>' . $model->thankMessage . '</b>')
 				                          ->send();
-				var_dump($mail3);
 			}
 		}
 //        return SendForm::sendMail();

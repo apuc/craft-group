@@ -257,12 +257,13 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
             contentType: false,
             processData: false,
             success: function (response) {
-                // console.log(response);
 	            if(mess == 'send_vacancy') {
 		            if(!$('.brief-massage-active')) {
 			            $('#brief__mess').addClass('brief-massage-active');
 		            } else {
-			            $('#brief__mess').show();
+			            $('#brief__mess').fadeIn(400, function () {
+							$(this).css('display','flex');
+						});
 			            $('#brief__mess').addClass('brief-massage-active');
 		            }
 		            $('#send_vacancy').trigger('reset');
@@ -271,11 +272,16 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 		            if(!$('.brief-massage-active')) {
 			            $('#feedback__mess').addClass('brief-massage-active');
 		            } else {
-			            $('#feedback__mess').show();
+			            $('#feedback__mess').fadeIn(400, function () {
+							$(this).css('display','flex');
+						});
 			            $('#feedback__mess').addClass('brief-massage-active');
 		            }
 		            $('#send_feedback').trigger('reset');
 	            }
+
+				$('.itemTitle2').html('');
+				$('.itemWrapper[data-id]').remove();
 
             }
         });
@@ -312,7 +318,7 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 
     $(document).on('click', '.brief-massage-close', function (e) {
 	    e.preventDefault();
-	    $('.brief-massage').hide();
+	    $('.brief-massage').fadeOut();
     });
 
     $(document).on('click', '.more_portfolio', function (e) {
@@ -370,5 +376,34 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 			}
 		});
 	});
+
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function(){
+	var up = new Uploader();
+	up.init({
+		btnSelect: '.btn-input-file',
+		itemContainer: '#wrapperCont',
+		fileInput: '.input-file',
+		itemWrapper: '.itemWrapper',
+		itemTitle: '.itemTitle',
+		btnLoad: '#submit',
+		delItem: '.delItem',
+		maxCount: 10,
+		filesExt: ['psd', 'jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'pdf', 'doc', 'xls'],
+		maxSize: 5,
+		itemsCount: 0,
+		maxSizeError: function (name, size) {
+			document.querySelector('.service__form-files').style.color = 'red';
+			console.log('Файл слишком большой', name, Math.round((size / 1024 / 1024)*100)/100 + ' мб.' );
+		},
+		fileAdded: function (e) {
+			document.querySelector('.service__form-files').style.color = 'black';
+		}
+	});
+	up.indexItems();
+
 
 });

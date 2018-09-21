@@ -48,7 +48,6 @@ function Uploader() {
         };
 
         this.allItems = [];
-
         this.options = setOptions(defaultOptions, options);
         this.itemsCount = this.options.itemsCount;
         this.checkOptions();
@@ -58,6 +57,7 @@ function Uploader() {
         this.fileInput = this.getElement(this.options.fileInput);
         this.itemContainer = this.getElement(this.options.itemContainer);
         this.itemWrapper = this.getElement(this.options.itemWrapper);
+        console.log(this.itemWrapper);
         this.itemWrapperDisplay = getComputedStyle(this.itemWrapper).display;
         this.itemWrapper.style.display = 'none';
         this.btnSelect.onclick = function () {
