@@ -118,6 +118,10 @@ class SiteController extends Controller
 			'name' => 'p:domain_verify',
 			'content' => $domain_verify,
 		]);
+		\Yii::$app->view->registerMetaTag([
+			'name' => 'google-site-verification',
+			'content' => '5ddh80ZkvC_F2CIrFbnIYYlbGnKAG-bk7njGOxY9Qa0',
+		]);
 
 		$this->setOpengraph();
 
