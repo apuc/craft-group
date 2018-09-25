@@ -48,7 +48,6 @@ function Uploader() {
         };
 
         this.allItems = [];
-
         this.options = setOptions(defaultOptions, options);
         this.itemsCount = this.options.itemsCount;
         this.checkOptions();

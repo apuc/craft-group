@@ -5,14 +5,9 @@ use frontend\modules\myths\models\Myths;
 use yii\helpers\Url;
 
 /**
- * @var $b_cur object
- * @var $blog array
  * @var Myths[] $myths
+ * @var $this yii\web\View
  */
-
-
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('myths', 'Myths');
 $this->params['breadcrumbs'][] = $this->title;

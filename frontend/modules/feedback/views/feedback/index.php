@@ -5,7 +5,6 @@
 use frontend\components\FeedbackWidget;
 use yii\helpers\Url;
 
-Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 ?>
 
 <main class="main-service	">
@@ -49,7 +48,7 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 
 	</section>
 
-	<?php echo FeedbackWidget::widget()?>
+	<?php echo FeedbackWidget::widget() ?>
 
 	<!-- start brief.html-->
 	<section class="service-brief" id="brief">

@@ -5,7 +5,7 @@ namespace frontend\modules\myths;
 /**
  * myths module definition class
  */
-class myths extends \yii\base\Module
+class Myths extends \yii\base\Module
 {
     /**
      * {@inheritdoc}

@@ -4,9 +4,11 @@ namespace frontend\modules\feedback\controllers;
 
 use common\models\KeyValue;
 use common\models\Service;
+use frontend\models\TagsOpengraph;
 use Yii;
 use common\models\Feedback;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -47,24 +49,9 @@ class FeedbackController extends Controller
             'name' => 'keywords',
             'content' => $key,
         ]);
-        Yii::$app->opengraph->title = Yii::$app->cache->getOrSet("feedback_og_title", function () {
-            return KeyValue::getValue('feedback_og_title');
-        });
-        Yii::$app->opengraph->description = Yii::$app->cache->getOrSet("feedback_og_description", function () {
-            return KeyValue::getValue('feedback_og_description');
-        });
-        Yii::$app->opengraph->image = Yii::$app->cache->getOrSet("feedback_og_image", function () {
-            return KeyValue::getValue('feedback_og_image');
-        });
-        Yii::$app->opengraph->url = Yii::$app->cache->getOrSet("feedback_og_url", function () {
-            return KeyValue::getValue('feedback_og_url');
-        });
-        Yii::$app->opengraph->siteName = Yii::$app->cache->getOrSet("feedback_og_site_name", function () {
-            return KeyValue::getValue('feedback_og_site_name');
-        });
-        Yii::$app->opengraph->type = Yii::$app->cache->getOrSet("feedback_og_type", function () {
-            return KeyValue::getValue('feedback_og_type');
-        });
+        
+        TagsOpengraph::findOne(['key'=>'feedback'])->registerOGTags(Url::to(['/feedback'], true));
+        
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'model' => $model, 

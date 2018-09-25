@@ -24,9 +24,6 @@ class AboutAsset extends FrontAsset
 		'js/sticky-script.js',
 		'js/slick-feedback.js',
 		'js/Uploader.js',
-		'js/script.min.js',
-		
-		
 	];
 	public $depends = [
 		'frontend\assets\CommonAsset',

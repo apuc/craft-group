@@ -5,14 +5,12 @@ namespace frontend\modules\blog\controllers;
 use common\models\BlogSlider;
 use common\models\KeyValue;
 use frontend\components\SidebarWidget;
+use frontend\models\TagsOpengraph;
 use frontend\modules\blog\models\Blog;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\db\Expression;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -46,25 +44,8 @@ class BlogController extends Controller
 			'name' => 'keywords',
 			'content' => $key,
 		]);
-		$titleOG = Yii::$app->cache->getOrSet("blog_og_title", function () {
-			return KeyValue::getValue('blog_og_title');
-		});
-		$descriptionOG = Yii::$app->cache->getOrSet("blog_og_desc", function () {
-			return KeyValue::getValue('blog_og_description');
-		});
-		$image = Yii::$app->cache->getOrSet("blog_og_image", function () {
-			return KeyValue::getValue('blog_og_image');
-		});
-		$url = Yii::$app->cache->getOrSet("blog_og_url", function () {
-			return KeyValue::getValue('blog_og_url');
-		});
-		$siteName = Yii::$app->cache->getOrSet("blog_og_site_name", function () {
-			return KeyValue::getValue('blog_og_site_name');
-		});
-		$type = Yii::$app->cache->getOrSet("blog_og_type", function () {
-			return KeyValue::getValue('blog_og_type');
-		});
-		Yii::$app->og->registerTags($titleOG, $descriptionOG, $image, $url, $siteName, $type);
+		
+		TagsOpengraph::findOne(['key' => 'blog'])->registerOGTags(Url::to(['/blog'], true));
 
 		return $this->render('index', [
 			'blog' => $blog, 'title' => $title
@@ -121,10 +102,5 @@ class BlogController extends Controller
 			$img = '_img-ajax';
 			return $this->renderAjax('_blog', ['blog' => $more, 'img' => $img]);
 		}
-	}
-
-	private function setOpengraph($title, $description, $image, $url, $siteName, $type)
-	{
-
 	}
 }

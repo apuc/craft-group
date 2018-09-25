@@ -5,7 +5,7 @@ namespace frontend\modules\vacancy;
 /**
  * vacancy module definition class
  */
-class vacancy extends \yii\base\Module
+class Vacancy extends \yii\base\Module
 {
     /**
      * @inheritdoc

@@ -59,7 +59,7 @@ return [
 			'layout' => 'service',
 		],
 		'myths' => [
-			'class' => 'frontend\modules\myths\myths',
+			'class' => 'frontend\modules\myths\Myths',
 			'layout' => 'service',
 		],
 	],
