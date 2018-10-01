@@ -68,6 +68,7 @@ class BehanceController extends Controller
             curl_setopt($curl,  CURLOPT_PROXY, $proxy);
             curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_exec($curl);
             $error = curl_error($curl)." ".curl_errno($curl);
 
             curl_setopt($curl, CURLOPT_URL, $work_url);
@@ -77,6 +78,7 @@ class BehanceController extends Controller
             curl_setopt($curl, CURLOPT_REFERER, $account_url);
             curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_exec($curl);
             $error = curl_error($curl)." ".curl_errno($curl);
 
             curl_setopt($curl, CURLOPT_POST, 1);
