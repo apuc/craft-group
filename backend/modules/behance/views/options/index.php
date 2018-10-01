@@ -1,0 +1,32 @@
+<?php
+/* @var $this yii\web\View */
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+$this->title = 'Опции';
+
+
+?>
+
+<h3>Добавить адресса proxy серверов</h3>
+
+<div class="behance-work-form">
+
+    <?php $form = ActiveForm::begin(["action"=>"fill",'options' => array(
+        'enctype' => 'multipart/form-data',
+    ),]); ?>
+
+    <div class="form-group">
+        <?= Html::label("Укажите файл с адресами") ?>
+        <?php echo Html::fileInput("ipfile")?>
+    </div>
+
+
+    <div class="form-group">
+        <?= Html::submitButton('Добавить', ['class' => 'btn btn-success']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>

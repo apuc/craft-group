@@ -70,6 +70,16 @@
 			                
 		                ]
 	                ],
+                    [
+                        'label' => 'Behance',
+                        'icon' => 'fas fa-wrench',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Аккаунты', 'icon' => 'fas fa-cogs', 'url' => ['/behance/account/index', 'slug' => 'main'],],
+                            ['label' => 'Работы', 'icon' => 'fas fa-cogs', 'url' => ['/behance/works/index', 'slug' => 'blog'],],
+                            ['label' => 'Опции', 'icon' => 'fas fa-cogs', 'url' => ['/behance/options/index', 'slug' => 'portfolio'],],
+                        ]
+                    ],
 	                ['label' => Yii::t('menu', 'Menu'), 'icon' => 'fas fa-info',
 	                 'url' => ['/menu/menu']],
 					['label' => 'Опции', 'icon' => 'service',

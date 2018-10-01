@@ -12,6 +12,9 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'behance' => [
+            'class' => 'backend\modules\behance\Behance',
+        ],
 	    'blog_slider' => [
 		    'class' => 'backend\modules\blog_slider\BlogSlider',
 	    ],
