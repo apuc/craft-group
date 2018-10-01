@@ -7,6 +7,7 @@
  */
 
 namespace console\controllers;
+use backend\modules\behance\models\BehanceOption;
 use Yii;
 use yii\console\Controller;
 use backend\modules\behance\models\BehanceWork;
@@ -25,7 +26,8 @@ class BehanceController extends Controller
 
     public function actionLike()
     {
-        $likes = 3;
+        $likes = BehanceOption::find()->where('name="max_likes"')->one();
+        $likes = $likes->value;
 
         $work_ids = BehanceWork::find()->asArray()->select("id")->column();
         $proxy_ids = Proxy::find()->asArray()->select("id")->column();
