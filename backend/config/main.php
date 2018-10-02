@@ -15,6 +15,9 @@ return [
         'behance' => [
             'class' => 'backend\modules\behance\Behance',
         ],
+        'landing' => [
+            'class' => 'backend\modules\landing\LandingPage',
+        ],
 	    'blog_slider' => [
 		    'class' => 'backend\modules\blog_slider\BlogSlider',
 	    ],
