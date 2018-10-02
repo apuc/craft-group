@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\behance\models\BehanceWork */
+/* @var $model common\models\LpOption */
 
-$this->title = 'Update Behance Work: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Behance Works', 'url' => ['index']];
+$this->title = 'Update Lp Option: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Lp Options', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="behance-work-update">
+<div class="lp-option-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

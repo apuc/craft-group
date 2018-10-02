@@ -34,7 +34,7 @@ class LangingPage extends \yii\db\ActiveRecord
             [['content'],'required'],
             [['status'], 'integer'],
             [['title'], 'required'],
-            [['title', 'slug', 'dt_add', 'dt_update'], 'string', 'max' => 255],
+            [['title', 'slug', 'dt_add', 'dt_update'], 'safe'],
         ];
     }
 

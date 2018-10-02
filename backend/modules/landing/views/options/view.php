@@ -4,15 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\LangingPage */
+/* @var $model common\models\LpOption */
 
-$this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Langing Pages', 'url' => ['index']];
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Lp Options', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="langing-page-view">
+<div class="lp-option-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <p>
         <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -29,12 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'title',
-            'slug',
-            'content:ntext',
-            'dt_add',
-            'dt_update',
-            'status',
+            [
+                'attribute'=>'lp_id',
+                'value'=>function($model){
+                    return $model->landing['title'];
+                },
+                'format'=>'raw'
+            ],
+            'metka',
+            'key',
+            'value',
         ],
     ]) ?>
 

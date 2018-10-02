@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\modules\behance\models;
+namespace backend\modules\landing\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\behance\models\BehanceWork;
+use common\models\LpOption;
 
 /**
- * BehanceWorkSearch represents the model behind the search form of `backend\modules\behance\models\BehanceWork`.
+ * LpOptionSearch represents the model behind the search form of `common\models\LpOption`.
  */
-class BehanceWorkSearch extends BehanceWork
+class LpOptionSearch extends LpOption
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class BehanceWorkSearch extends BehanceWork
     public function rules()
     {
         return [
-            [['id', 'account_id'], 'integer'],
-            [['url'], 'safe'],
+            [['id', 'lp_id'], 'integer'],
+            [['metka', 'key', 'value'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class BehanceWorkSearch extends BehanceWork
      */
     public function search($params)
     {
-        $query = BehanceWork::find();
+        $query = LpOption::find();
 
         // add conditions that should always apply here
 
@@ -60,10 +60,12 @@ class BehanceWorkSearch extends BehanceWork
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'account_id' => $this->account_id,
+            'lp_id' => $this->lp_id,
         ]);
 
-        $query->andFilterWhere(['like', 'url', $this->url]);
+        $query->andFilterWhere(['like', 'metka', $this->metka])
+            ->andFilterWhere(['like', 'key', $this->key])
+            ->andFilterWhere(['like', 'value', $this->value]);
 
         return $dataProvider;
     }

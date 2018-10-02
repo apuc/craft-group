@@ -83,12 +83,11 @@
                     [
                         'label' => 'LP',
                         'icon' => 'fas fa-atlas',
-                        'url' => '/secureadminpage/landing/landing/index',
-//                        'items' => [
-//                            ['label' => 'Аккаунты', 'icon' => 'fas fa-cogs', 'url' => ['/behance/account/index', 'slug' => 'main'],],
-//                            ['label' => 'Работы', 'icon' => 'fas fa-cogs', 'url' => ['/behance/works/index', 'slug' => 'blog'],],
-//                            ['label' => 'Опции', 'icon' => 'fas fa-cogs', 'url' => ['/behance/options/index', 'slug' => 'portfolio'],],
-//                        ]
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Landing Pages', 'icon' => 'fas fa-cogs', 'url' => ['/landing/landing/index', 'slug' => 'main'],],
+                            ['label' => 'Настройки', 'icon' => 'fas fa-cogs', 'url' => ['/landing/options/index', 'slug' => 'blog'],],
+                         ]
                     ],
 	                ['label' => Yii::t('menu', 'Menu'), 'icon' => 'fas fa-info',
 	                 'url' => ['/menu/menu']],
