@@ -118,7 +118,7 @@ return [
 	            '/vacancy/<slug>' => '/vacancy/vacancy/single-vacancy/',
 	            'myths' => '/myths/myths',
 	            '/myths/<slug>' => '/myths/myths/single-myths',
-                '/landing/<slug>' => '/landing/default/index',
+                '/lp/<slug>' => '/landing/default/index',
             ],
         ],
 //        'view' => [

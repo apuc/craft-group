@@ -35,14 +35,12 @@ class OptionsController extends \yii\web\Controller
 
     public function actionSave()
     {
-
-
-
         $val = Yii::$app->request->post('max_likes');
         Yii::$app->db->createCommand()->update('behance_options', ['value' => $val], 'name="max_likes"')->execute();
 
         Yii::$app->session->setFlash("success","Опции сохранены!");
         return $this->redirect(['index']);
     }
+
 
 }

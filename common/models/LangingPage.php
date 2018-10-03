@@ -15,6 +15,10 @@ use Yii;
  * @property string $dt_update
  * @property int $status
  */
+
+//Status 0 - не выводить
+//Status 1 - выводить
+
 class LangingPage extends \yii\db\ActiveRecord
 {
 

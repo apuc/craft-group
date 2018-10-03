@@ -13,14 +13,14 @@ use frontend\modules\landing\models\LangingPage;
 class DefaultController extends Controller
 {
 
-    public function actionIndex($slug,$metka)
+    public function actionIndex($slug,$utm_term)
     {
 
        $page = LangingPage::findOne(['slug'=>$slug]);
 
        $html = $this->addCss($page->content);
        $html = $this->addJS($html);
-       $html = $this->replaceVariables($page->id,$metka,$html);
+       $html = $this->replaceVariables($page->id,$utm_term,$html);
 
        return $this->render('index',['content'=>$html]);
     }

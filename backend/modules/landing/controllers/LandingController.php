@@ -72,7 +72,6 @@ class LandingController extends Controller
                 $model->load(Yii::$app->request->post());
                 $model->dt_add = time();
                 $model->dt_update = time();
-                $model->status = 0;
 
                 $model->save();
 
@@ -84,18 +83,14 @@ class LandingController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing LangingPage model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->dt_update = time();
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -104,13 +99,7 @@ class LandingController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing LangingPage model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -118,13 +107,7 @@ class LandingController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the LangingPage model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return LangingPage the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = LangingPage::findOne($id)) !== null) {

@@ -32,9 +32,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'slug',
             'content:ntext',
-            'dt_add',
-            'dt_update',
-            'status',
+            [
+                'attribute'=>'dt_add',
+                'value'=>function($val){
+                    return date("d:m:Y",$val->dt_add);
+                }
+
+            ],
+            [
+                'attribute'=>'dt_update',
+                'value'=>function($val){
+                    return date("d:m:Y",$val->dt_add);
+                }
+
+            ],
+            [
+                'attribute'=>'status',
+                'value'=>function($val){
+                    return ($val->status == 0) ? "не отображать" : "отображать";
+                }
+
+            ],
         ],
     ]) ?>
 

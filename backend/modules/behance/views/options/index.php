@@ -19,7 +19,7 @@ $this->title = 'Опции';
 
     <div class="form-group">
         <?= Html::label("Укажите файл с адресами") ?>
-        <?php echo Html::fileInput("ipfile")?>
+        <?php echo Html::fileInput("ipfile",'',['required'=>'true'])?>
     </div>
 
 
