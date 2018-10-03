@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\LpOption */
+/* @var $model common\models\LandingAsset */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Lp Options', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Landing Assets', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="lp-option-view">
+<div class="landing-asset-view">
 
 
 
@@ -28,17 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             [
                 'attribute'=>'lp_id',
-                'value'=>function($model){
-                    return $model->landing['title'];
-                },
-                'format'=>'raw'
+                'value'=>function($data){
+                    return $data->landing["title"];
+                }
             ],
-            'metka',
-            'key',
-            'value',
+            [
+                'attribute'=>'type',
+                'value'=>function($data){
+                    return ($data->type == 0) ? "js" : "css";
+                }
+            ],
+            'path',
         ],
     ]) ?>
 

@@ -87,6 +87,7 @@
                         'items' => [
                             ['label' => 'Landing Pages', 'icon' => 'fas fa-cogs', 'url' => ['/landing/landing/index', 'slug' => 'main'],],
                             ['label' => 'Настройки', 'icon' => 'fas fa-cogs', 'url' => ['/landing/options/index', 'slug' => 'blog'],],
+                            ['label' => 'CSS/JS', 'icon' => 'fas fa-cogs', 'url' => ['/landing/assets/index', 'slug' => 'blog'],],
                          ]
                     ],
 	                ['label' => Yii::t('menu', 'Menu'), 'icon' => 'fas fa-info',

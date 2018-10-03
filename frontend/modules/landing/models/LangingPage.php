@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace frontend\modules\landing\models;
 
 use Yii;
 
@@ -17,18 +17,6 @@ use Yii;
  */
 class LangingPage extends \yii\db\ActiveRecord
 {
-
-    public function behaviors() {
-        return [
-            'slug' => [
-                'class'         => 'common\behaviors\Slug',
-                'in_attribute'  => 'title',
-                'out_attribute' => 'slug',
-                'translit'      => true
-            ],
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -43,10 +31,9 @@ class LangingPage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content'],'required'],
+            [['content'], 'string'],
             [['status'], 'integer'],
-            [['title'], 'required'],
-            [['title', 'slug', 'dt_add', 'dt_update'], 'safe'],
+            [['title', 'slug', 'dt_add', 'dt_update'], 'string', 'max' => 255],
         ];
     }
 
@@ -57,12 +44,12 @@ class LangingPage extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Заголовок',
+            'title' => 'Title',
             'slug' => 'Slug',
-            'content' => 'Контент',
-            'dt_add' => 'Дата добавления',
-            'dt_update' => 'Дата обновления',
-            'status' => 'Статус',
+            'content' => 'Content',
+            'dt_add' => 'Dt Add',
+            'dt_update' => 'Dt Update',
+            'status' => 'Status',
         ];
     }
 }

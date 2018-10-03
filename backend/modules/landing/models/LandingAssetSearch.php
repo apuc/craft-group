@@ -5,12 +5,12 @@ namespace backend\modules\landing\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\LpOption;
+use common\models\LandingAsset;
 
 /**
- * LpOptionSearch represents the model behind the search form of `common\models\LpOption`.
+ * LandingAssetSearch represents the model behind the search form of `common\models\LandingAsset`.
  */
-class LpOptionSearch extends LpOption
+class LandingAssetSearch extends LandingAsset
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class LpOptionSearch extends LpOption
     public function rules()
     {
         return [
-            [['id', 'lp_id'], 'integer'],
-            [['metka', 'key', 'value'], 'safe'],
+            [['id', 'lp_id', 'type'], 'integer'],
+            [['path'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class LpOptionSearch extends LpOption
      */
     public function search($params)
     {
-        $query = LpOption::find();
+        $query = LandingAsset::find();
 
         // add conditions that should always apply here
 
@@ -61,11 +61,10 @@ class LpOptionSearch extends LpOption
         $query->andFilterWhere([
             'id' => $this->id,
             'lp_id' => $this->lp_id,
+            'type' => $this->type,
         ]);
 
-        $query->andFilterWhere(['like', 'metka', $this->metka])
-            ->andFilterWhere(['like', 'key', $this->key])
-            ->andFilterWhere(['like', 'value', $this->value]);
+        $query->andFilterWhere(['like', 'path', $this->path]);
 
         return $dataProvider;
     }

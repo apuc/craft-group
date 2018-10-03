@@ -6,6 +6,8 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\LpOption */
 /* @var $form yii\widgets\ActiveForm */
+
+
 ?>
 
 <div class="lp-option-form">
@@ -21,7 +23,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'value')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Добавить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

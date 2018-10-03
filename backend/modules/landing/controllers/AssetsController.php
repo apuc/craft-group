@@ -2,19 +2,20 @@
 
 namespace backend\modules\landing\controllers;
 
-use backend\modules\landing\models\LangingPage;
 use Yii;
-use common\models\LpOption;
-use backend\modules\landing\models\LpOptionSearch;
+use common\models\LandingAsset;
+use backend\modules\landing\models\LandingAssetSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use backend\modules\landing\models\LangingPage;
+use yii\web\UploadedFile;
 
 /**
- * OptionsController implements the CRUD actions for LpOption model.
+ * AssetsController implements the CRUD actions for LandingAsset model.
  */
-class OptionsController extends Controller
+class AssetsController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,13 +32,10 @@ class OptionsController extends Controller
         ];
     }
 
-    /**
-     * Lists all LpOption models.
-     * @return mixed
-     */
+
     public function actionIndex()
     {
-        $searchModel = new LpOptionSearch();
+        $searchModel = new LandingAssetSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,13 +44,7 @@ class OptionsController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single LpOption model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
+     public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -62,10 +54,20 @@ class OptionsController extends Controller
 
     public function actionCreate()
     {
-        $model = new LpOption();
+        $model = new LandingAsset();
         $pages = ArrayHelper::map(LangingPage::find()->all(), 'id', 'title');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if (Yii::$app->request->post()) {
+
+            $model->load(Yii::$app->request->post());
+
+            $file = UploadedFile::getInstanceByName('file');
+            $path = Yii::getAlias('@frontend/web/uploads/lp_assets/'). $file->baseName . '.' . $file->extension;
+            $file->saveAs($path);
+
+            $model->path = "/uploads/lp_assets/". $file->baseName . '.' . $file->extension;
+
+            $model->save();
             return $this->redirect('index');
         }
 
@@ -81,23 +83,25 @@ class OptionsController extends Controller
         $model = $this->findModel($id);
         $pages = ArrayHelper::map(LangingPage::find()->all(), 'id', 'title');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect("index");
+        if ($model->load(Yii::$app->request->post())) {
+
+            $file = UploadedFile::getInstanceByName('file');
+            $path = Yii::getAlias('@frontend/web/uploads/lp_assets/'). $file->baseName . '.' . $file->extension;
+            $file->saveAs($path);
+
+            $model->path = "/uploads/lp_assets/". $file->baseName . '.' . $file->extension;
+            $model->save();
+
+            return $this->redirect('index');
         }
 
         return $this->render('update', [
             'model' => $model,
-            'pages'=>$pages
+            'pages' => $pages,
         ]);
     }
 
-    /**
-     * Deletes an existing LpOption model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -105,16 +109,10 @@ class OptionsController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the LpOption model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return LpOption the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
-        if (($model = LpOption::findOne($id)) !== null) {
+        if (($model = LandingAsset::findOne($id)) !== null) {
             return $model;
         }
 

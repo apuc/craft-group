@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\landing\models\LpOptionSearch */
+/* @var $model backend\modules\landing\models\LandingAssetSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="lp-option-search">
+<div class="landing-asset-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -19,11 +19,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'lp_id') ?>
 
-    <?= $form->field($model, 'metka') ?>
+    <?= $form->field($model, 'type') ?>
 
-    <?= $form->field($model, 'key') ?>
-
-    <?= $form->field($model, 'value') ?>
+    <?= $form->field($model, 'path') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

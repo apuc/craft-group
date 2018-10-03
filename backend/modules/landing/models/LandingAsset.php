@@ -5,7 +5,7 @@ namespace backend\modules\landing\models;
 use Yii;
 
 
-class LpOption extends \common\models\LpOption
+class LandingAsset extends \common\models\LandingAsset
 {
 
 }
