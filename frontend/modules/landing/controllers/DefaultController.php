@@ -29,6 +29,14 @@ class DefaultController extends Controller
     {
         $vars = LpOption::find()->where('lp_id='.$id)->andWhere('metka="'.$metka.'"')->all();
 
+        if(empty($vars))
+        {
+           $html = preg_replace("/{{([a-z])*\|/","",$html);
+           return preg_replace("/}}/","",$html);
+        }
+
+       $html = preg_replace("/\|(.)*}}/","}}",$html);
+
        foreach ($vars as $var)
        {
           $html = str_replace("{{".$var->key."}}",$var->value,$html);
