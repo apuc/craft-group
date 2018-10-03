@@ -68,17 +68,15 @@ class LandingController extends Controller
 
         if (Yii::$app->request->post()) {
 
-            if($model->validate())
-            {
+
                 $model->load(Yii::$app->request->post());
                 $model->dt_add = time();
                 $model->dt_update = time();
                 $model->status = 0;
 
                 $model->save();
-            }
 
-            return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [

@@ -38,6 +38,10 @@ return [
 			'class' => 'frontend\modules\portfolio\Portfolio',
 			'layout' => 'service',
 		],
+        'landing' => [
+            'class' => 'frontend\modules\landing\LandingPage',
+            'layout' => 'landing'
+        ],
 		'blog' => [
 			'class' => 'frontend\modules\blog\Blog',
 			'layout' => 'service',
@@ -114,6 +118,7 @@ return [
 	            '/vacancy/<slug>' => '/vacancy/vacancy/single-vacancy/',
 	            'myths' => '/myths/myths',
 	            '/myths/<slug>' => '/myths/myths/single-myths',
+                '/landing/<slug>' => '/landing/default/index',
             ],
         ],
 //        'view' => [

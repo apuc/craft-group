@@ -17,6 +17,18 @@ use Yii;
  */
 class LangingPage extends \yii\db\ActiveRecord
 {
+
+    public function behaviors() {
+        return [
+            'slug' => [
+                'class'         => 'common\behaviors\Slug',
+                'in_attribute'  => 'title',
+                'out_attribute' => 'slug',
+                'translit'      => true
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -34,7 +46,7 @@ class LangingPage extends \yii\db\ActiveRecord
             [['content'],'required'],
             [['status'], 'integer'],
             [['title'], 'required'],
-            [['title', 'slug', 'dt_add', 'dt_update'], 'string', 'max' => 255],
+            [['title', 'slug', 'dt_add', 'dt_update'], 'safe'],
         ];
     }
 
