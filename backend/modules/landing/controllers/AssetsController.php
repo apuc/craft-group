@@ -59,13 +59,19 @@ class AssetsController extends Controller
 
         if (Yii::$app->request->post()) {
 
+            $model->save();
             $model->load(Yii::$app->request->post());
 
+            if(!is_dir(Yii::getAlias('@frontend/web/uploads/lp_assets/').$model->id))
+            {
+                mkdir(Yii::getAlias('@frontend/web/uploads/lp_assets/').$model->id);
+            }
+
             $file = UploadedFile::getInstanceByName('file');
-            $path = Yii::getAlias('@frontend/web/uploads/lp_assets/'). $file->baseName . '.' . $file->extension;
+            $path = Yii::getAlias('@frontend/web/uploads/lp_assets/'.$model->id.'/'). $file->baseName . '.' . $file->extension;
             $file->saveAs($path);
 
-            $model->path = "/uploads/lp_assets/". $file->baseName . '.' . $file->extension;
+            $model->path = "/uploads/lp_assets/".$model->id."/". $file->baseName . '.' . $file->extension;
 
             $model->save();
             return $this->redirect('index');
@@ -86,10 +92,10 @@ class AssetsController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 
             $file = UploadedFile::getInstanceByName('file');
-            $path = Yii::getAlias('@frontend/web/uploads/lp_assets/'). $file->baseName . '.' . $file->extension;
+            $path = Yii::getAlias('@frontend/web/uploads/lp_assets/'.$model->id.'/'). $file->baseName . '.' . $file->extension;
             $file->saveAs($path);
 
-            $model->path = "/uploads/lp_assets/". $file->baseName . '.' . $file->extension;
+            $model->path = "/uploads/lp_assets/".$model->id."/". $file->baseName . '.' . $file->extension;
             $model->save();
 
             return $this->redirect('index');
@@ -104,7 +110,10 @@ class AssetsController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        unlink(Yii::getAlias('@frontend/web/').$model->path);
+        $model->delete();
 
         return $this->redirect(['index']);
     }

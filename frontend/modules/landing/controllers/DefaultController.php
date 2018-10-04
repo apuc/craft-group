@@ -13,14 +13,14 @@ use frontend\modules\landing\models\LangingPage;
 class DefaultController extends Controller
 {
 
-    public function actionIndex($slug,$metka)
+    public function actionIndex($slug,$utm_term)
     {
 
        $page = LangingPage::findOne(['slug'=>$slug]);
 
        $html = $this->addCss($page->content);
        $html = $this->addJS($html);
-       $html = $this->replaceVariables($page->id,$metka,$html);
+       $html = $this->replaceVariables($page->id,$utm_term,$html);
 
        return $this->render('index',['content'=>$html]);
     }
@@ -28,6 +28,14 @@ class DefaultController extends Controller
     private function replaceVariables($id,$metka,$html)
     {
         $vars = LpOption::find()->where('lp_id='.$id)->andWhere('metka="'.$metka.'"')->all();
+
+        if(empty($vars))
+        {
+           $html = preg_replace("/{{([a-z])*\|/","",$html);
+           return preg_replace("/}}/","",$html);
+        }
+
+       $html = preg_replace("/\|(.)*}}/","}}",$html);
 
        foreach ($vars as $var)
        {

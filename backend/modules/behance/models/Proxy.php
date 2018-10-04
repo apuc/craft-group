@@ -10,6 +10,7 @@ class Proxy extends \common\models\Proxy
 {
   public function FillProxyTable($data)
   {
+      Yii::$app->db->createCommand()->setRawSql("TRUNCATE TABLE proxy_ip")->execute();
       Yii::$app->db->createCommand()->batchInsert('proxy_ip', ['ip'], $data)->execute();
   }
 }

@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::label("Файл") ?>
-        <?= Html::fileInput('file') ?>
+        <?= Html::fileInput('file','',['required'=>'true']) ?>
     </div>
 
     <div class="form-group">

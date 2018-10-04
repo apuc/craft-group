@@ -78,23 +78,24 @@
                             ['label' => 'Аккаунты', 'icon' => 'fas fa-cogs', 'url' => ['/behance/account/index', 'slug' => 'main'],],
                             ['label' => 'Работы', 'icon' => 'fas fa-cogs', 'url' => ['/behance/works/index', 'slug' => 'blog'],],
                             ['label' => 'Опции', 'icon' => 'fas fa-cogs', 'url' => ['/behance/options/index', 'slug' => 'portfolio'],],
+                            ['label' => 'Очередь', 'icon' => 'fas fa-cogs', 'url' => ['/behance/queue/index', 'slug' => 'portfolio'],]
                         ]
                     ],
                     [
                         'label' => 'LP',
-                        'icon' => 'fas fa-atlas',
+                        'icon' => 'far fa-paper-plane',
                         'url' => '#',
                         'items' => [
                             ['label' => 'Landing Pages', 'icon' => 'fas fa-cogs', 'url' => ['/landing/landing/index', 'slug' => 'main'],],
-                            ['label' => 'Настройки', 'icon' => 'fas fa-cogs', 'url' => ['/landing/options/index', 'slug' => 'blog'],],
+                            ['label' => 'Опции', 'icon' => 'fas fa-cogs', 'url' => ['/landing/options/index', 'slug' => 'blog'],],
                             ['label' => 'CSS/JS', 'icon' => 'fas fa-cogs', 'url' => ['/landing/assets/index', 'slug' => 'blog'],],
                          ]
                     ],
 	                ['label' => Yii::t('menu', 'Menu'), 'icon' => 'fas fa-info',
 	                 'url' => ['/menu/menu']],
-					['label' => 'Опции', 'icon' => 'service',
+					['label' => 'Опции', 'icon' => 'fas fa-cogs',
 						'url' => ['/key-value']],
-	                ['label' => 'Очистить кэш', 'icon' => 'fas fa-service',
+	                ['label' => 'Очистить кэш', 'icon' => 'fas fa-trash',
 	                 'url' => ['/cache']],
 					['label' => 'Заказы', 'icon' => 'first-order',
 						'url' => ['/order']],

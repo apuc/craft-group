@@ -8,6 +8,7 @@
 
 namespace console\controllers;
 use backend\modules\behance\models\BehanceOption;
+use backend\modules\behance\models\BehanceQueue;
 use Yii;
 use yii\console\Controller;
 use backend\modules\behance\models\BehanceWork;
@@ -29,33 +30,30 @@ class BehanceController extends Controller
         $likes = BehanceOption::find()->where('name="max_likes"')->one();
         $likes = $likes->value;
 
-        $work_ids = BehanceWork::find()->asArray()->select("id")->column();
+        $queue = BehanceQueue::find()->orderBy("id desc")->limit($likes)->all();
         $proxy_ids = Proxy::find()->asArray()->select("id")->column();
 
-        for($i=0; $i<$likes; $i++)
+        foreach ($queue as $q)
         {
-           $work_id = $work_ids[rand(0,count($work_ids)-1)];//случайный id  работы
-           $work = BehanceWork::find()->where("id=".$work_id)->one();//получаем работу
+            $work = $q->work;
 
-           $this->stdout("Лайкаем работу: ".$work->url."\n", Console::FG_GREEN);
+            $this->stdout("Лайкаем работу: ".$work->url."\n", Console::FG_GREEN);
 
-           $work_url = $work->url;
-           $account_url = $work->account['url'];
+            $work_url = $work->url;
+            $account_url = $work->account['url'];
 
-           //берем случайный proxy ip из таблицы
-           $proxy_id = $proxy_ids[rand(0,count($proxy_ids))];
-           $proxy = Proxy::find()->where("id=".$proxy_id)->one();
+            //берем случайный proxy ip из таблицы
+            $proxy_id = $proxy_ids[rand(0,count($proxy_ids)-1)];
+            $proxy = Proxy::find()->where("id=".$proxy_id)->one();
 
-           //выбираем случайный юзерагент
-           $user_agent = $this->user_agents[rand(0,3)];
+            //выбираем случайный юзерагент
+            $user_agent = $this->user_agents[rand(0,3)];
 
-           $behance_id = explode("/",$work->url)[4];
-           $like_url =  "https://www.behance.net/v2/projects/".$behance_id."/appreciate?client_id=BehanceWebSusi1";
+            $behance_id = explode("/",$work->url)[4];
+            $like_url =  "https://www.behance.net/v2/projects/".$behance_id."/appreciate?client_id=BehanceWebSusi1";
 
-           $this->LikeWork($work_url,$account_url,$proxy->ip,$user_agent,$like_url);
-
+            $this->LikeWork($work_url,$account_url,$proxy->ip,$user_agent,$like_url);
         }
-
 
     }
 
@@ -70,6 +68,8 @@ class BehanceController extends Controller
             curl_setopt($curl,  CURLOPT_PROXY, $proxy);
             curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
             curl_exec($curl);
             $error = curl_error($curl)." ".curl_errno($curl);
 
@@ -80,6 +80,8 @@ class BehanceController extends Controller
             curl_setopt($curl, CURLOPT_REFERER, $account_url);
             curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
             curl_exec($curl);
             $error = curl_error($curl)." ".curl_errno($curl);
 
@@ -90,6 +92,8 @@ class BehanceController extends Controller
             curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_HEADER, 1);
+            curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
             $res = curl_exec($curl);
 
             $error = curl_error($curl)." ".curl_errno($curl);
