@@ -4,7 +4,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
-
+use kartik\select2\Select2;
 $this->title = 'Опции';
 
 
@@ -19,7 +19,20 @@ $this->title = 'Опции';
 
     <?php $form = ActiveForm::begin(["action"=>"add-work"]); ?>
 
-    <?= $form->field($model, 'work_id')->dropDownList($works); ?>
+
+
+    <?= $form->field($model, 'work_id')->widget(Select2::className(),
+        [
+            'data' => $works,
+            'options' => [
+                'multiple' => false,
+                'placeholder' => 'Выбери категорию',
+                'class' => ['form-control','jsHint'],
+                'size' => '1'
+            ],
+
+
+        ]) ?>
 
     <?= $form->field($model, 'likes_count')->textInput() ?>
 
@@ -60,8 +73,11 @@ $this->title = 'Опции';
                 return Html::a($data->work["url"],$data->work["url"]);
             }
         ],
-        'likes_count'
+        'likes_count',
 
-      //  ['class' => 'yii\grid\ActionColumn'],
+        ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{delete}'
+
+        ],
     ],
 ]); ?>
