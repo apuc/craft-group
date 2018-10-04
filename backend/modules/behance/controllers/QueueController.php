@@ -22,7 +22,7 @@ class QueueController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        $work = ArrayHelper::map(BehanceWork::find()->all(), 'id', 'url');
+        $work = ArrayHelper::map(BehanceWork::find()->all(), 'id', 'name');
         $works_in_queue = ArrayHelper::map(BehanceQueue::find()->all(), 'work_id', 'id');
         $work = array_diff_key($work,$works_in_queue);
 

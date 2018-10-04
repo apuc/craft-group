@@ -2,6 +2,7 @@
 
 namespace backend\modules\behance\controllers;
 
+use backend\modules\behance\models\BehanceWork;
 use Yii;
 use backend\modules\behance\models\BehanceAccount;
 use backend\modules\behance\models\BehanceAccountSearch;
@@ -14,9 +15,7 @@ use yii\filters\VerbFilter;
  */
 class AccountController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public function behaviors()
     {
         return [
@@ -29,10 +28,53 @@ class AccountController extends Controller
         ];
     }
 
-    /**
-     * Lists all BehanceAccount models.
-     * @return mixed
-     */
+    public function actionParse($user)
+    {
+       $token = "H4Va0PDSnn8UhDxdqtkYNOkFJC8lbcYU";
+       $i=1;
+
+       while($i>0)
+       {
+
+           $url = "https://api.behance.net//v2/users/".$user."/projects?client_id=".$token."&page=".$i;
+           $res = $this->ApiRequest($url);
+           $i++;
+
+
+           if(empty($res->projects))
+               break;
+
+          foreach ($res->projects as $p)
+          {
+
+              $model = new BehanceWork();
+              $model->name = $p->name;
+              $model->behance_id = $p->id;
+              $model->url = $p->url;
+              $model->preview = end($p->covers);
+              $model->save();
+          }
+
+
+       }
+
+       Yii::$app->session->setFlash("success","Работы получены");
+       return $this->redirect("index");
+    }
+
+    private function ApiRequest($url)
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL,$url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $res = curl_exec($curl);
+
+        curl_close($curl);
+
+        return json_decode($res);
+    }
+
+
     public function actionIndex()
     {
         $searchModel = new BehanceAccountSearch();
@@ -44,12 +86,7 @@ class AccountController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single BehanceAccount model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionView($id)
     {
         return $this->render('view', [
@@ -57,11 +94,7 @@ class AccountController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new BehanceAccount model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+
     public function actionCreate()
     {
         $model = new BehanceAccount();
@@ -75,13 +108,7 @@ class AccountController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing BehanceAccount model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -95,13 +122,7 @@ class AccountController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing BehanceAccount model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -109,13 +130,7 @@ class AccountController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the BehanceAccount model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return BehanceAccount the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = BehanceAccount::findOne($id)) !== null) {
