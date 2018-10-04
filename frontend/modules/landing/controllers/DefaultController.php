@@ -7,9 +7,7 @@ use backend\modules\landing\models\LpOption;
 use yii\web\Controller;
 use frontend\modules\landing\models\LangingPage;
 
-/**
- * Default controller for the `landing` module
- */
+
 class DefaultController extends Controller
 {
 
@@ -31,18 +29,18 @@ class DefaultController extends Controller
 
         if(empty($vars))
         {
-           $html = preg_replace("/{{([a-z])*\|/","",$html);
+           $html = preg_replace("/{{(.)*\|/","",$html);
            return preg_replace("/}}/","",$html);
         }
 
-       $html = preg_replace("/\|(.)*}}/","}}",$html);
+        $html = preg_replace("/\|(.)*}}/","}}",$html);
 
-       foreach ($vars as $var)
-       {
+        foreach ($vars as $var)
+        {
           $html = str_replace("{{".$var->key."}}",$var->value,$html);
-       }
+        }
 
-       return $html;
+        return $html;
     }
 
     private function addCss($html)

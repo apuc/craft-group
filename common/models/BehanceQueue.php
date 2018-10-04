@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int $work_id
+ * @property int $likes_count
  */
 class BehanceQueue extends \yii\db\ActiveRecord
 {
@@ -26,7 +27,7 @@ class BehanceQueue extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['work_id'], 'integer'],
+            [['work_id','likes_count'], 'required'],
         ];
     }
 
@@ -38,6 +39,7 @@ class BehanceQueue extends \yii\db\ActiveRecord
         return [
             'id' => 'Номер в очереди',
             'work_id' => 'Работа',
+            'likes_count'=>'Количество лайков'
         ];
     }
 }

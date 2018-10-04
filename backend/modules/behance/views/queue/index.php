@@ -4,7 +4,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
+
 $this->title = 'Опции';
+
 
 
 ?>
@@ -13,13 +15,13 @@ $this->title = 'Опции';
 
 <div class="behance-work-form">
 
+
+
     <?php $form = ActiveForm::begin(["action"=>"add-work"]); ?>
 
-    <div class="form-group">
-        <?= Html::label("Выберите работу") ?>
-        <?php echo Html::dropDownList("work",[],$works)?>
-    </div>
+    <?= $form->field($model, 'work_id')->dropDownList($works); ?>
 
+    <?= $form->field($model, 'likes_count')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Добавить', ['class' => 'btn btn-success']) ?>
@@ -45,6 +47,7 @@ $this->title = 'Опции';
                     return $data->work["url"];
                 }
         ],
+        'likes_count'
 
       //  ['class' => 'yii\grid\ActionColumn'],
     ],
