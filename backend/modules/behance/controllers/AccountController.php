@@ -9,6 +9,7 @@ use backend\modules\behance\models\BehanceAccountSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Command;
 
 /**
  * AccountController implements the CRUD actions for BehanceAccount model.
@@ -30,6 +31,8 @@ class AccountController extends Controller
 
     public function actionParse($user)
     {
+        Yii::$app->db->createCommand()->setRawSql("TRUNCATE TABLE behance_works")->execute();
+
        $token = "H4Va0PDSnn8UhDxdqtkYNOkFJC8lbcYU";
        $i=1;
 
