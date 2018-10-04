@@ -37,4 +37,12 @@ class QueueController extends \yii\web\Controller
             'model'=>$model]);
     }
 
+    public function actionDelete($id)
+    {
+        $model = BehanceQueue::findOne($id);
+        $model->delete();
+
+        return $this->redirect("index");
+    }
+
 }
