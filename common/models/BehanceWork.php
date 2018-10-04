@@ -10,6 +10,9 @@ use Yii;
  * @property int $id
  * @property int $account_id
  * @property string $url
+ * @property string $behance_id
+ * @property string $name
+ * @property string $preview
  */
 class BehanceWork extends \yii\db\ActiveRecord
 {
@@ -27,8 +30,8 @@ class BehanceWork extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['account_id'],'required'],
-            [['url'], 'required'],
+            [['account_id'],'safe'],
+            [['url','behance_id','preview','name'], 'required'],
         ];
     }
 
@@ -41,6 +44,10 @@ class BehanceWork extends \yii\db\ActiveRecord
             'id' => 'ID',
             'account_id' => 'Aккаунт рабты',
             'url' => 'URL работы',
+            'url' => 'URL работы',
+            'behance_id' => 'behance id',
+            'name' => 'Название работы',
+            'preview' => 'Картинка',
         ];
     }
 

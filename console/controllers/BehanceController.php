@@ -54,7 +54,7 @@ class BehanceController extends Controller
             //выбираем случайный юзерагент
             $user_agent = $this->user_agents[rand(0,3)];
 
-            $behance_id = explode("/",$work->url)[4];
+            $behance_id = $work->behance_id;
             $like_url =  "https://www.behance.net/v2/projects/".$behance_id."/appreciate?client_id=BehanceWebSusi1";
 
             $res = $this->LikeWork($work_url,$account_url,$proxy->ip,$user_agent,$like_url);

@@ -28,6 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'url:url',
             'title',
+            [
+                    'value'=>function($data){
+                        $arr = explode("/",$data->url);
+                        $user = end($arr);
+                       return Html::a("Получить работы","/secureadminpage/behance/account/parse?user=".$user,["class"=>"btn btn-success"]);
+                    },
+                'format'=>'raw'
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

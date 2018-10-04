@@ -40,12 +40,25 @@ $this->title = 'Опции';
             'header'=>'Номер в очереди'
 
         ],
-
+        [
+            'label'=>'Картинка',
+            'format'=>'raw',
+            'value'=>function($data){
+                return Html::img($data->work["preview"],["width"=>100]);
+            }
+        ],
         [
                 'attribute'=>'work_id',
                 'value'=>function($data){
-                    return $data->work["url"];
+                    return $data->work["name"];
                 }
+        ],
+        [
+            'attribute'=>'work_id',
+            'format'=>'raw',
+            'value'=>function($data){
+                return Html::a($data->work["url"],$data->work["url"]);
+            }
         ],
         'likes_count'
 

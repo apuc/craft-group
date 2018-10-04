@@ -23,17 +23,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+           // ['class' => 'yii\grid\SerialColumn'],
 
 
-            'url:url',
             [
-              "format"=>"raw",
-              'attribute'=>'account_id',
-              'value'=>function($data){
-                 return $data->account['title'];
-              }
+                    'attribute'=>'preview',
+                'format'=>'raw',
+                'value'=>function($data){
+                  return Html::img($data->preview,["width"=>100]);
+                }
             ],
+            'name',
+            'url:url',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
