@@ -9,6 +9,36 @@ use Yii;
 
 class OptionsController extends \yii\web\Controller
 {
+
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+
+
+    }
+
     public function actionIndex()
     {
         $max_likes = BehanceOption::find()->where("name='max_likes'")->one();

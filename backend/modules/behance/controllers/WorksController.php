@@ -25,9 +25,25 @@ class WorksController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'actions' => ['login', 'error'],
+                            'allow' => true,
+                        ],
+                        [
+                            'actions' => [],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
             ],
         ];
     }
+
+
 
     public function actionIndex()
     {

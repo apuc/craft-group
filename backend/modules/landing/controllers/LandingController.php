@@ -26,13 +26,24 @@ class LandingController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ];
     }
 
-    /**
-     * Lists all LangingPage models.
-     * @return mixed
-     */
+
     public function actionIndex()
     {
         $searchModel = new LandingPageSearch();
@@ -44,12 +55,7 @@ class LandingController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single LangingPage model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionView($id)
     {
         return $this->render('view', [
@@ -57,11 +63,7 @@ class LandingController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new LangingPage model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+
     public function actionCreate()
     {
         $model = new LangingPage();
