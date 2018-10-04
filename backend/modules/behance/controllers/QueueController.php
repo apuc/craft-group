@@ -14,7 +14,7 @@ class QueueController extends \yii\web\Controller
     public function actionAddWork()
     {
         $model = new BehanceQueue();
-        $model->work_id = Yii::$app->request->post("work");
+        $model->load(Yii::$app->request->post());
         $model->save();
 
         return $this->redirect("index");
@@ -26,11 +26,15 @@ class QueueController extends \yii\web\Controller
         $works_in_queue = ArrayHelper::map(BehanceQueue::find()->all(), 'work_id', 'id');
         $work = array_diff_key($work,$works_in_queue);
 
+        $model = new BehanceQueue();
+
         $dataProvider = new ActiveDataProvider([
             'query' => BehanceQueue::find()->orderBy("id desc"),
         ]);
 
-        return $this->render('index',['works'=>$work,'provider'=>$dataProvider]);
+        return $this->render('index',['works'=>$work,
+            'provider'=>$dataProvider,
+            'model'=>$model]);
     }
 
 }

@@ -9,6 +9,7 @@
 namespace console\controllers;
 use backend\modules\behance\models\BehanceOption;
 use backend\modules\behance\models\BehanceQueue;
+
 use Yii;
 use yii\console\Controller;
 use backend\modules\behance\models\BehanceWork;
@@ -31,13 +32,17 @@ class BehanceController extends Controller
         $likes = $likes->value;
 
         $queue = BehanceQueue::find()->orderBy("id desc")->limit($likes)->all();
+
+        if(empty($queue))
+            return $this->stdout("В очереди нет работ!\n", Console::FG_RED);
+
         $proxy_ids = Proxy::find()->asArray()->select("id")->column();
 
         foreach ($queue as $q)
         {
             $work = $q->work;
 
-            $this->stdout("Лайкаем работу: ".$work->url."\n", Console::FG_GREEN);
+            $this->stdout("Лайкаем работу: ".$work->url."\n", Console::FG_YELLOW);
 
             $work_url = $work->url;
             $account_url = $work->account['url'];
@@ -52,7 +57,32 @@ class BehanceController extends Controller
             $behance_id = explode("/",$work->url)[4];
             $like_url =  "https://www.behance.net/v2/projects/".$behance_id."/appreciate?client_id=BehanceWebSusi1";
 
-            $this->LikeWork($work_url,$account_url,$proxy->ip,$user_agent,$like_url);
+            $res = $this->LikeWork($work_url,$account_url,$proxy->ip,$user_agent,$like_url);
+
+
+            //var_dump(trim($res));
+            if(trim($res) == '0')
+            {
+                $this->stdout("Лайк поставлен! \n", Console::FG_GREEN);
+
+                 $que = BehanceQueue::findOne(['work_id'=>$work->id]);
+                 $que->likes_count = $que->likes_count-1;
+
+                 if($que->likes_count == 0)
+                 {
+                     $que->delete();
+                     $this->stdout("Работа вышла из очереди!\n", Console::FG_GREEN);
+                 }
+                 else
+                 {
+                     $this->stdout("Осталось лайков: ".$que->likes_count."\n", Console::FG_GREEN);
+                     $que->save();
+                 }
+            }
+            else
+            {
+                $this->stdout($res."\n", Console::FG_RED);
+            }
         }
 
     }
@@ -99,11 +129,7 @@ class BehanceController extends Controller
             $error = curl_error($curl)." ".curl_errno($curl);
 
             curl_close($curl);
-
-            if(empty($error))
-                $this->stdout($res."\n", Console::FG_GREEN);
-            else
-                $this->stdout($error."\n", Console::FG_RED);
+            return $error;
 
     }
 }
