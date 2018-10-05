@@ -2,6 +2,7 @@
 
 namespace backend\modules\portfolio\controllers;
 
+use backend\modules\behance\models\BehanceWork;
 use Yii;
 use backend\modules\portfolio\models\Portfolio;
 use backend\modules\portfolio\models\PortfolioSearch;
@@ -74,12 +75,7 @@ class PortfolioController extends Controller
 	    ]);
     }
 
-    /**
-     * Displays a single Portfolio model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionView($id)
     {
         return $this->render('view', [
@@ -87,14 +83,13 @@ class PortfolioController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Portfolio model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+
     public function actionCreate()
     {
         $model = new Portfolio();
+
+       
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -105,13 +100,23 @@ class PortfolioController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Portfolio model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    public function actionCreateFromBehance($id)
+    {
+        $work = BehanceWork::findOne($id);
+
+        $model = new Portfolio();
+        $model->title = $work->name;
+        $model->href = $work->url;
+        $model->h1 = $work->name;
+        $model->options = 1;
+        $model->file = $work->preview;
+
+        return $this->render('create', [
+                'model' => $model,
+        ]);
+    }
+
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
