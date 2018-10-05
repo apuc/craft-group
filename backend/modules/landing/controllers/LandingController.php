@@ -8,6 +8,7 @@ use backend\modules\landing\models\LandingPageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * LandingController implements the CRUD actions for LangingPage model.

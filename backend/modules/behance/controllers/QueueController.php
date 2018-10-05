@@ -8,6 +8,8 @@ use yii\debug\models\search\Debug;
 use yii\helpers\ArrayHelper;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 class QueueController extends \yii\web\Controller
 {

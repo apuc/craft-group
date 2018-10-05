@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 
 /**
  * OptionsController implements the CRUD actions for LpOption model.
@@ -48,12 +49,16 @@ class OptionsController extends Controller
 
     public function actionIndex()
     {
+        $keys = ArrayHelper::map(LpOption::find()->all(), 'key', 'key');
+        $pages = ArrayHelper::map(LangingPage::find()->all(), 'id', 'title');
         $searchModel = new LpOptionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pages' => $pages,
+            'keys'=>$keys
         ]);
     }
 

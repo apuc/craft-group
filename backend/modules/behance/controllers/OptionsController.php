@@ -6,6 +6,8 @@ use backend\modules\behance\models\BehanceOption;
 use yii\web\UploadedFile;
 use backend\modules\behance\models\Proxy;
 use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 class OptionsController extends \yii\web\Controller
 {

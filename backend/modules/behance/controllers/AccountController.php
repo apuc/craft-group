@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Command;
+use yii\filters\AccessControl;
 
 /**
  * AccountController implements the CRUD actions for BehanceAccount model.
