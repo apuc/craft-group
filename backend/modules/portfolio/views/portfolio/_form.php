@@ -15,7 +15,7 @@ PreviewAsset::register($this);
 
 <div class="portfolio-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['action'=>'/secureadminpage/portfolio/portfolio/create']); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 

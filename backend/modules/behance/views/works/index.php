@@ -35,7 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'name',
             'url:url',
+            [
 
+                'format'=>'raw',
+                'value'=>function($data){
+                    return Html::a("Добавить в портфолио","/secureadminpage/portfolio/portfolio/create-from-behance?id=".$data->id,["class"=>"btn btn-success"]);
+                }
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
