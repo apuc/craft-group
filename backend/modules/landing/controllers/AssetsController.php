@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use backend\modules\landing\models\LangingPage;
 use yii\web\UploadedFile;
-
+use yii\filters\AccessControl;
 /**
  * AssetsController implements the CRUD actions for LandingAsset model.
  */
@@ -29,22 +29,39 @@ class AssetsController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ];
+
     }
 
 
     public function actionIndex()
     {
+        $pages = ArrayHelper::map(LangingPage::find()->all(), 'id', 'title');
         $searchModel = new LandingAssetSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pages' => $pages,
         ]);
     }
 
-     public function actionView($id)
+    public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),

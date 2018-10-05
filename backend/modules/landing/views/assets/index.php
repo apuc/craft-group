@@ -27,9 +27,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute'=>'lp_id',
-                'value'=>function($data){
-                    return $data->landing["title"];
-                }
+                'value'=>function($model){
+                    return $model->landing['title'];
+                },
+                'filter'    => kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'lp_id',
+                    'data' => $pages,
+                    'options' => ['placeholder' => 'Начните вводить...','class' => 'form-control'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]),
             ],
             [
                     'attribute'=>'type',

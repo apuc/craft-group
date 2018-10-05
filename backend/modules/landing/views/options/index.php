@@ -24,17 +24,36 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute'=>'lp_id',
+                'value'=>function($model){
+                    return $model->landing['title'];
+                },
+                'filter'    => kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+               'attribute' => 'lp_id',
+                    'data' => $pages,
+                    'options' => ['placeholder' => 'Начните вводить...','class' => 'form-control'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]),
+            ],
 
-
-              [
-                      'attribute'=>'lp_id',
-                     'value'=>function($model){
-                        return $model->landing['title'];
-                     },
-                  'format'=>'raw'
-              ],
             'metka',
-            'key',
+            [
+                'attribute'=>'key',
+
+                'filter'    => kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'key',
+                    'data' =>$keys,
+                    'options' => ['placeholder' => 'Начните вводить...','class' => 'form-control'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]),
+            ],
             'value',
 
             ['class' => 'yii\grid\ActionColumn'],

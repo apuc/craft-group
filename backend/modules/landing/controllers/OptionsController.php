@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 
 /**
  * OptionsController implements the CRUD actions for LpOption model.
@@ -28,30 +29,40 @@ class OptionsController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ];
     }
 
-    /**
-     * Lists all LpOption models.
-     * @return mixed
-     */
+
     public function actionIndex()
     {
+        $keys = ArrayHelper::map(LpOption::find()->all(), 'key', 'key');
+        $pages = ArrayHelper::map(LangingPage::find()->all(), 'id', 'title');
         $searchModel = new LpOptionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pages' => $pages,
+            'keys'=>$keys
         ]);
     }
 
-    /**
-     * Displays a single LpOption model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionView($id)
     {
         return $this->render('view', [
@@ -91,13 +102,7 @@ class OptionsController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing LpOption model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -105,13 +110,7 @@ class OptionsController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the LpOption model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return LpOption the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = LpOption::findOne($id)) !== null) {

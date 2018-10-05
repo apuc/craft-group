@@ -10,6 +10,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
+
 
 /**
  * WorksController implements the CRUD actions for BehanceWork model.
@@ -25,9 +27,26 @@ class WorksController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
             ],
         ];
     }
+
+
 
     public function actionIndex()
     {
