@@ -36,7 +36,7 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 						<?php foreach ($feedback as $value): ?>
 							<div class="feedback-down-item">
 								<img class="feedback-down-img"
-									 src="<?= Yii::getAlias('@files/') . $value->files->name ?>"
+									 src="<?= (isset($value->files)) ? Yii::getAlias('@files/') . $value->files->name : "" ?>"
 									 style="width: 103px; height: 105px"
 								>
 								<div class="feedback-down-wrap">
