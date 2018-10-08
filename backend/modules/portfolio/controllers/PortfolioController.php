@@ -16,9 +16,6 @@ use yii\filters\AccessControl;
  */
 class PortfolioController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [
@@ -46,10 +43,7 @@ class PortfolioController extends Controller
         ];
     }
 
-    /**
-     * Lists all Portfolio models.
-     * @return mixed
-     */
+
     public function actionIndex()
     {
     	$searchModel = new PortfolioSearch();
@@ -62,6 +56,7 @@ class PortfolioController extends Controller
     }
     
     public function actionMain($slug=NULL){
+
 	    $searchModel = new PortfolioSearch();
     	if($slug){
 		    $searchModel->options = $slug;
@@ -88,9 +83,6 @@ class PortfolioController extends Controller
     {
         $model = new Portfolio();
 
-       
-
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -104,12 +96,28 @@ class PortfolioController extends Controller
     {
         $work = BehanceWork::findOne($id);
 
+        if(!empty(Portfolio::findOne(["title"=>$work->name])))
+        {
+            Yii::$app->session->setFlash("error","Работа уже есть в портфолио!");
+            return $this->redirect("/secureadminpage/behance/works/index");
+        }
+
         $model = new Portfolio();
         $model->title = $work->name;
         $model->href = $work->url;
         $model->h1 = $work->name;
         $model->options = 1;
-        $model->file = $work->preview;
+
+        if(!is_dir(Yii::getAlias("@frontend/web/uploads/global/Portfolio")))
+        {
+            mkdir(Yii::getAlias("@frontend/web/uploads/global/Portfolio"));
+        }
+
+        $extension = pathinfo($work->preview, PATHINFO_EXTENSION);
+        $img = file_get_contents($work->preview);
+        file_put_contents(Yii::getAlias("@frontend/web/uploads/global/Portfolio/").$work->name.".".$extension,$img);
+
+        $model->file = "/uploads/global/Portfolio/".$work->name.".".$extension;
 
         return $this->render('create', [
                 'model' => $model,
@@ -130,13 +138,7 @@ class PortfolioController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Portfolio model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -144,13 +146,7 @@ class PortfolioController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Portfolio model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Portfolio the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = Portfolio::findOne($id)) !== null) {
