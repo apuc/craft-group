@@ -46,5 +46,7 @@ class AboutController extends Controller
 		return $this->render('index', [
 			'about' => $about, 'title' => $title
 		]);
+
+		
 	}
 }

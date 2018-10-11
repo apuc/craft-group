@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 /**
  * PortfolioController implements the CRUD actions for Portfolio model.
@@ -48,10 +49,14 @@ class PortfolioController extends Controller
     {
     	$searchModel = new PortfolioSearch();
     	$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $titles = ArrayHelper::map(Portfolio::find()->all(), 'title', 'title');
+        $h1 = ArrayHelper::map(Portfolio::find()->all(), 'h1', 'h1');
     	
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'titles'=>$titles,
+            'h1'=>$h1
         ]);
     }
     

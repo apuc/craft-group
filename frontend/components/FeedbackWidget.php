@@ -21,7 +21,6 @@ class FeedbackWidget extends Widget
 			return Feedback::find()->where(['status' => 1])->limit(6)->all();
 		});
 
-		//var_dump($feedback); die();
 
 		return $this->render('feedback/feedback', ['feedback'=>$feedback]);
 	}
