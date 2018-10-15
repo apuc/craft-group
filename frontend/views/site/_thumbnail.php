@@ -9,6 +9,6 @@ $image = Yii::$app->resizeImage->getImageSize($value->file);
 
 echo EasyThumbnailImage::thumbnailImg(
 	$home.$pathFile,
-    50,
-    50,
+    500,
+    500,
 	EasyThumbnailImage::THUMBNAIL_OUTBOUND);
