@@ -15,6 +15,8 @@ use common\models\BlogSlider;
 
 $this->title =  $portfolio['title'];
 $img = Url::to('@web/img/');
+
+
 ?>
 <main class="main__single-p">
 	<section class="blog blog__single" id="blog">
@@ -46,10 +48,13 @@ $img = Url::to('@web/img/');
 					<div class=" sidebar__inner">
 						<h2 class="single-p__title"><?=$portfolio['h1']?></h2>
 						<p class="single-p__text"><?=$portfolio['description']?></p>
-						<?php $href = explode(',' , $portfolio['href']);?>
+						<?php $href = explode(',' , $portfolio['href']);
+
+						?>
 						<?php if(!empty($href)):?>
-							<div class="single-p__soc">
+
 								<?php if(!empty($href[0])):?>
+                                <div class="single-p__soc">
 									<div class="soc__block soc__be">
 										<div class="soc__icon">
 											<a href="<?=$href[0]?>">
@@ -62,23 +67,45 @@ $img = Url::to('@web/img/');
 												<?=\yii\helpers\Html::a('www.behance.net', $href[0],['target'=>'_blank'])?>
 										</div>
 									</div>
+                                </div>
 								<?php endif;?>
 								<?php if(!empty($href[1])):?>
-									<div class="soc__block soc__pin">
-										<div class="soc__icon">
-											<a href="<?=$href[1]?>">
-												<img src="<?=$img?>pinterest.png" alt="">
-											</a>
-										</div>
-										
-										<div class="soc__desc">
-											<p>Наша работа на</p>
-												<?=\yii\helpers\Html::a('www.pinterest.com', $href[1],['target'=>'_blank'])?>
-										</div>
-									</div>
+                                    <div class="single-p__soc">
+                                        <div class="soc__block soc__be">
+                                            <div class="soc__icon">
+                                                <a href="<?=$href[1]?>">
+                                                    <img src="<?=$img?>pinterest.png" alt="">
+                                                </a>
+                                            </div>
+
+                                            <div class="soc__desc">
+                                                <p>Наша работа на</p>
+                                                <?=\yii\helpers\Html::a('www.pinterest.com', $href[1],['target'=>'_blank'])?>
+                                            </div>
+                                        </div>
+                                    </div>
 								<?php endif;?>
-							</div>
-						<?php endif;?>
+                                <?php if(!empty($href[2])):?>
+                                    <div class="single-p__soc">
+                                        <div class="soc__block soc__be">
+                                            <div class="soc__icon">
+                                                <a href="<?=$href[2]?>">
+                                                    <img src="<?=$img?>be-p.png" alt="">
+                                                </a>
+                                            </div>
+
+                                            <div class="soc__desc" style="width: initial;">
+                                                <?=\yii\helpers\Html::a('Посмотреть работу в браузере', $href[2],['target'=>'_blank'])?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif;?>
+
+
+
+
+
+                        <?php endif;?>
 						
 						<div class="single__order">
 							<?= \common\models\KeyValue::getValue('single_portfolio')?>

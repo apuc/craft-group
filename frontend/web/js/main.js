@@ -1,4 +1,9 @@
 $(document).ready(function () { // вся мaгия пoсле зaгрузки стрaницы
+
+
+    // let modal = new NoActivityModal();
+    // modal.showModal(3000,$(".c"));
+
     $(document).on('click', '.send', function (e) {
         e.preventDefault();
 

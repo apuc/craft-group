@@ -48,10 +48,13 @@ class AccountController extends Controller
 
     public function actionParse($user)
     {
-        Yii::$app->db->createCommand()->setRawSql("TRUNCATE TABLE behance_works")->execute();
 
        $token = "H4Va0PDSnn8UhDxdqtkYNOkFJC8lbcYU";
        $i=1;
+       $account_id = BehanceAccount::find()->where(['like', 'url', '%'.$user, false])->select("id")->one();
+       $account_id = $account_id->id;
+
+       Yii::$app->db->createCommand()->setRawSql("DELETE FROM behance_works WHERE account_id =".$account_id)->execute();
 
        while($i>0)
        {
@@ -72,6 +75,8 @@ class AccountController extends Controller
               $model->behance_id = $p->id;
               $model->url = $p->url;
               $model->preview = end($p->covers);
+              $model->account_id = $account_id;
+
               $model->save();
           }
 

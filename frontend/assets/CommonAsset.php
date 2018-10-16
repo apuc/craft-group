@@ -12,6 +12,7 @@ class CommonAsset extends FrontAsset
 {
 	public $js = [
 		'js/script.min.js',
+        'js/noactivitymodal.js',
 		'js/main.js',
 	];
 	public $depends = [
