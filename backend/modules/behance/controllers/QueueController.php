@@ -54,7 +54,16 @@ class QueueController extends \yii\web\Controller
 
     public function actionIndex()
     {
+
         $work = ArrayHelper::map(BehanceWork::find()->all(), 'id', 'name');
+
+        foreach ($work as $key=>&$w)
+        {
+             $title = BehanceWork::findOne($key);
+             $w.=" | ".$title->account['title'];
+        }
+
+
         $works_in_queue = ArrayHelper::map(BehanceQueue::find()->all(), 'work_id', 'id');
         $work = array_diff_key($work,$works_in_queue);
 
