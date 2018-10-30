@@ -63,7 +63,7 @@ $this->title = 'Опции';
         [
                 'attribute'=>'work_id',
                 'value'=>function($data){
-                    return $data->work["name"];
+                    return $data->work["name"]." | ". $data->work->account["title"];
                 }
         ],
         [

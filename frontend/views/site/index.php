@@ -115,13 +115,6 @@ $this->title = $title;
         </div>
     </section>
 
-    <div class="c" id="с">
-        <p>tirlwew</p>
-        <div>
-            <p>fslflsdjflsdfjlsfsd</p>
-        </div>
-    </div>
-
 </main>
 <!-- end brief.html-->
 <!-- start blog.html-->
