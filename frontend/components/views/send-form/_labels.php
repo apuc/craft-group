@@ -13,7 +13,7 @@
 
 <div class="service__form-radio">
     <div class="service__form-radio_text">
-        <p>Какие услуги Вас интересуют?</p>
+        <p>Какие услуги интересуют?</p>
     </div>
     <div class="service__form-radio-button">
 <!--        <div class="service__form-radio-itemL">-->

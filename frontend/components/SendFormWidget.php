@@ -22,7 +22,7 @@ class SendFormWidget extends \yii\base\Widget
 
     public $subject;
     public $messageLabel;
-    public $messagePlaceholder = 'Ваше сообщение';
+    public $messagePlaceholder = 'Введи сопроводительный текст...';
     public $textButton = 'Отправить бриф';
     public $isLabels = false;
     public $idForm = 'send_vacancy';
