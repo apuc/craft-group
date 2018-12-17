@@ -102,7 +102,7 @@ use yii\widgets\ActiveForm;
 </div>
 <div class="service__form-desc">
                         <span class="service__form-desc_span">Нажимая кнопку «Отправить», я даю  <span
-								class="service__form-desc_red">согласие на обработку персональной игформации</span></span>
+								class="service__form-desc_red">согласие на обработку персональной информации</span></span>
 	<div class="service__submit-block">
 
 		<?php if ($widget->subject === \frontend\models\SendForm::FEEDBACK): ?>
