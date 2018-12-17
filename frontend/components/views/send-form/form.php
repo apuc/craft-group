@@ -43,25 +43,25 @@ use yii\widgets\ActiveForm;
 		'options' => [
 			'class' => 'service__form-head_item'
 		]
-	])->textInput(['class' => 'service__form_input', 'placeholder' => 'Ваше имя'])->label() ?>
+	])->textInput(['class' => 'service__form_input', 'placeholder' => 'Имя'])->label(false) ?>
 
 	<?= $form->field($model, 'phone', [
 		'options' => [
 			'class' => 'service__form-head_item',
 		]
-	])->textInput(['class' => 'service__form_input js_phone-mask', 'placeholder' => 'Номер телефона'])->label() ?>
+	])->textInput(['class' => 'service__form_input js_phone-mask', 'placeholder' => 'Номер телефона'])->label(false) ?>
 
 	<?= $form->field($model, 'email', [
 		'options' => [
 			'class' => 'service__form-head_item'
 		]
-	])->textInput(['class' => 'service__form_input', 'placeholder' => 'Ваш e-mail'])->label() ?>
+	])->textInput(['class' => 'service__form_input', 'placeholder' => 'E-mail'])->label(false) ?>
 
 	<?= $form->field($model, $widget->field, [
 		'options' => [
 			'class' => 'service__form-head_item'
 		]
-	])->textInput(['class' => 'service__form_input', 'placeholder' => $model->attributeLabels()[$widget->field]])->label() ?>
+	])->textInput(['class' => 'service__form_input', 'placeholder' => $model->attributeLabels()[$widget->field]])->label(false) ?>
 
 </div>
 
@@ -101,8 +101,8 @@ use yii\widgets\ActiveForm;
 	</div>
 </div>
 <div class="service__form-desc">
-                        <span class="service__form-desc_span">Нажимая кнопку «Отправить» я даю свое <span
-								class="service__form-desc_red">согласие на обработку персональных данных</span></span>
+                        <span class="service__form-desc_span">Нажимая кнопку «Отправить», я даю  <span
+								class="service__form-desc_red">согласие на обработку персональной игформации</span></span>
 	<div class="service__submit-block">
 
 		<?php if ($widget->subject === \frontend\models\SendForm::FEEDBACK): ?>
