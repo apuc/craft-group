@@ -14,6 +14,7 @@
 use frontend\modules\blog\models\Blog;
 use yii\helpers\Url;
 use common\models\BlogSlider;
+use yii\helpers\Html;
 
 $this->title = $blog->title;
 $img = Url::to('@web/img/');
@@ -45,12 +46,20 @@ $img = Url::to('@web/img/');
 							<img class="blog-single__main-img" src="<?= $blog->file ?>" alt="">
 							<div class="blog-single__text">
 								<?= $blog->description ?>
+
+                                <div style="display: flex; justify-content: space-around">
+                                    <?= Html::a('Назад в блог','/blog',['class'=>'vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty']) ?>
+                                    <?= Html::a('Узнать больше','https://vk.com/web_craft_group',['class'=>'vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty']) ?>
+                                </div>
 							</div>
 						</div>
+
+
 
 						<?= $slider ?>
 							
 					</div>
+
 				</div>
 
 			</div>

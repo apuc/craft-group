@@ -44,7 +44,7 @@ $img = Url::to('@web/img/');
                     <div class="services-bottom">
                         <?php foreach ($all as $key => $value): ?>
                             <button class="btn_services" onclick="openService(event, '<?= $value->slug ?>')"
-                                    id="defaultOpen"><?= $value->title ?></button>
+                                    id="defaultOpen" style="margin-bottom: 10px;"><?= $value->title ?></button>
                         <?php endforeach; ?>
                     </div>
                     <div class="services-text">
@@ -57,11 +57,8 @@ $img = Url::to('@web/img/');
 	                                <?php if(explode(',' , $v->file)):?>
 		                                <?php $serv = explode(',' , $v->file);?>
 	                                <?php endif;?>
-	                                <?php foreach ($serv as $key => $value): ?>
-	                                    <li class="services_item-li"><?= $value;?><a
-				                                    href="<?= Url::to(['single-service', 'slug' => $v->slug]) ?>"
-				                                    class="services_item-more">Подробнее</a></li>
-		                                <?php endforeach;?>
+                                   <?= Html::a('Связаться с менеджером','https://vk.com/write-73095981',['class'=>'vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty',
+                                        'style'=>'margin:0 auto'])?>
                                 </ul>
                             </div>
                         <?php endforeach; ?>
