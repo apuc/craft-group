@@ -26,7 +26,7 @@ foreach ( $portfolio as $key => $value ) {
 	$por[ $value['id'] ] = $value['title'];
 }
 foreach ( $feedback as $key => $value ) {
-	$feed[ $value['id'] ] = $value['title'];
+	$feed[ $value['id'] ] = $value['message'];
 }
 
 ?>
