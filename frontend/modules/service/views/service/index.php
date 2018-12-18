@@ -37,7 +37,7 @@ $img = Url::to('@web/img/');
                 <div class="tittle">
                     <span>что мы можем</span>
                     <h2>услуги компании</h2>
-                    <?= $service[0]->description ?>
+                   <p>Команда Craft Group реализует проекты с нуля, а также берется за редизайн и развитие сайтов, от которых ты бы хотел получить большего.</p>
                 </div>
 
                 <div class="all-services">
@@ -119,10 +119,10 @@ $img = Url::to('@web/img/');
                 <p class="paragraph">наш бриф</p>
                 <div class="wrap">
                     <div class="tittle">
-                        <span class="block_span_title">закажите</span>
+                        <span class="block_span_title">закажи</span>
                         <h2 class="block_title">услугу</h2>
                         <p>
-                            Перестаньте платить деньги за процесс. Получите гарантированный результат.
+                            Хватит выбрасывать деньги на ветер – плати за результат.
                         </p>
                     </div>
                 </div>
