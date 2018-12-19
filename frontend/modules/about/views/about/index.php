@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						<span>немного</span>
 						<h2><?= $about[0]->title ?></h2>
 						<p>
-							<?= $about[0]->description ?>
+                            <?= strip_tags($about[0]->description) ?>
 						</p>
 					</div>
 
@@ -47,19 +47,20 @@ $this->params['breadcrumbs'][] = $this->title;
 							<ul class="pros__desc">
 								<li class="pros__element">
 									<img src="img/about_new_item_1.png" alt="">
-									<span class="pros__text"><strong>Клиент наш партнёр.</strong> В каждом проекте схема работы над продуктом не изменна. Мы слаженно работаем вместе с клиентом, одной командой. Только так мы можем понять, что именно вы хотите и предложить лучшее решение.</span>
+									<span class="pros__text"><strong>Клиент наш партнёр.</strong> В каждом проекте схема работы над интернет-продуктом остается неизменной. Специалисты Craft Group слаженно работают в одной команде с клиентом, ведь только так можно понять, чего именно хочет заказчик и предложить наилучший вариант реализации его пожеланий.</span>
 								</li>
 
 								<li class="pros__element">
 									<img src="img/about_new_item_2.png" alt="">
-									<span class="pros__text"><strong>Высокая компетенция. </strong>Мы выполняем проекты различной степени сложности. Ведь чем сложнее проект, тем больше современных технологий мы используем, а значит, тем интереснее для нас задача.</span>
+									<span class="pros__text"><strong>Высокая компетенция. </strong> Компания Craft Group берется за проекты абсолютно любого уровня сложности. Чем интереснее задача, тем больше современных технологий можно применить для ее решения.</span>
 								</li>
 
 								<li class="pros__element">
 									<img src="img/about_new_item_3.png" alt="">
-									<span class="pros__text"><strong>Гарантия качества. </strong> Мы знаем, как важны для наших клиентов качество и сроки выполнения работ, поэтому всегда соблюдаем свои обязательства и делаем чуть больше, чем обещано в договоре.</span>
+									<span class="pros__text"><strong>Гарантия качества. </strong> Команда Craft Group знает, насколько важны для клиентов качество и сроки выполнения работ, поэтому всегда соблюдает обязательства и зачастую делает немного больше, чем обещано в договоре.</span>
 								</li>
 							</ul>
+
 						</div>
 
 					</div>
@@ -81,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						<span>Серьёзные</span>
 						<h2>партнёры</h2>
 						<p>
-							<?= $about[2]->description ?>
+							<?= strip_tags($about[2]->description) ?>
 						</p>
 					</div>
 
@@ -106,10 +107,10 @@ $this->params['breadcrumbs'][] = $this->title;
 				<p class="paragraph">наш бриф</p>
 				<div class="wrap">
 					<div class="tittle">
-						<span class="block_span_title">закажите</span>
+						<span class="block_span_title">закажи</span>
 						<h2 class="block_title">услугу</h2>
 						<p>
-							Перестаньте платить деньги за процесс. Получите гарантированный результат.
+                            Хватит выбрасывать деньги на ветер – плати за результат.
 						</p>
 					</div>
 				</div>
