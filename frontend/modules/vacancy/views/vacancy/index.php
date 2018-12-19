@@ -15,6 +15,7 @@ use yii\helpers\Url;
 \frontend\assets\ServiceAsset::register($this);
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
+//var_dump($vacancy);
 ?>
 <!-- start content-vacancy.html-->
 <main class="main-service	">
@@ -46,11 +47,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         foreach ($all as $k => $v): ?>
                             <?php if ($i < 1): ?>
                                 <button class="btn_services" onclick="openService(event, '<?= $v['slug'] ?>')"
-                                        id="defaultOpen">
+                                        id="defaultOpen" style="margin-bottom: 10px;">
                                     <?= $v['title'] ?>
                                 </button>
                             <?php else: ?>
-                                <button class="btn_services" onclick="openService(event, '<?= $v['slug'] ?>')">
+                                <button style="margin-bottom: 10px"; class="btn_services" onclick="openService(event, '<?= $v['slug'] ?>')" >
                                     <?= $v['title'] ?>
                                 </button>
                             <?php endif; ?>
@@ -65,13 +66,13 @@ $this->params['breadcrumbs'][] = $this->title;
 					                    <?php $serv = explode('*' , $value->description);?>
 					                    <?= $serv[0]?>
 				                    <?php else:?>
-					                    <?=$value->description;?>
+					                    <?= strip_tags($value->description);?>
 				                    <?php endif;?>
 			                    </p>
 			                    <ul class="services_item-ul vacancies_item-ul">
-				                    <li class="services_item-li vacancies-item-li">Требуемый опыт работы - <span class="vacancies-ul-span"> <?=$serv[1] ?? '';?></span></li>
-				                    <li class="services_item-li vacancies-item-li">Полная занятость,<span class="vacancies-ul-span"> <?=$serv[2] ?? '';?></span></li>
-				                    <li class="services_item-li vacancies-item-li">Уровень зарплаты - <span class="vacancies-ul-span"> <?=$serv[3] ?? '';?></span></li>
+				                    <li class="services_item-li vacancies-item-li">Опыт работы: - <span class="vacancies-ul-span"> <?=$serv[1] ?? '';?></span></li>
+				                    <li class="services_item-li vacancies-item-li">Ззанятость:,<span class="vacancies-ul-span"> <?=$serv[2] ?? '';?></span></li>
+				                    <li class="services_item-li vacancies-item-li">Зарплата: - <span class="vacancies-ul-span"> <?=$serv[3] ?? '';?></span></li>
 			                    </ul>
 			                    <a href="<?=Url::to(['single-vacancy', 'slug' => $value->slug])?>" class="services_item-more vacancies_item-more">Подробнее</a>
 		                    </div>
@@ -128,11 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     class="novelty__title_red novelty-black-title">Командная работа, опытный ментор</span>
                             </h3>
                             <h3 class="novelty__title vacancies-title novelty__title_margin">Прокачиваем</h3>
-                            <p class="novelty__text vacancies-text">В офисе вам дадут индивидуальную программу развития,
-                                стол, стул и наставника (свой компьютер приветствуется).
-                                Взамен, заберут ваше время и ваши руки. ВАЖНО это не курсы программирования. Технические
-                                аспекты вы учите самостоятельно. Мы курируем,
-                                даем реальные задачи и обратную связь.</p>
+                            <p class="novelty__text vacancies-text">В офисе тебе дадут индивидуальную программу развития, стол, стул и наставника. Взамен придется пораскинуть мозгами и потратить время. Важно: это не курсы программирования. Технические аспекты ты должен выучить самостоятельно. Мы курируем, даем реальные задачи и обратную связь. Стажировка – это идеальный способ начать работу бок о бок с опытными специалистами Craft Group, прежде чем стать полноправным членом нашей команды.</p>
                             <p class="novelty__text vacancies-text">Стажировка это способ примерить вас к команде, к
                                 принципам работы,
                                 прежде чем брать в команду.</p>
