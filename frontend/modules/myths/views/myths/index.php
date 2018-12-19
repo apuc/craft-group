@@ -31,8 +31,7 @@ $img = Url::to('@web/img/');
 					<span>вся правда о нас</span>
 					<h2>и немного больше</h2>
 					<p>
-						Мы разрабатываем проекты с нуля, а также берем на редизайн
-						и развитие сайты, от которых вы хотели бы большего.
+                        Команда Craft Group реализует проекты с нуля, а также берется за редизайн и развитие сайтов, от которых ты бы хотел получить большего.
 					</p>
 				</div>
 
@@ -41,7 +40,7 @@ $img = Url::to('@web/img/');
 						<?php $i = 0;
 						foreach ($myths as $myth): ?>
 							<button class="btn_services" onclick="openService(event, '<?= $myth->slug ?>')"
-									id="<?= ($i == 0) ? 'defaultOpen' : ''; ?>">
+									id="<?= ($i == 0) ? 'defaultOpen' : ''; ?>" style="margin-bottom: 10px">
 								<?= $myth->title ?>
 							</button>
 							<?php $i++; endforeach; ?>
@@ -49,9 +48,13 @@ $img = Url::to('@web/img/');
 					<div class="services-text">
 						<?php foreach ($myths as $myth): ?>
 							<div id="<?= $myth->slug ?>" class="services_item title-element">
-								<p class="services_item-p"><?= $myth->getText() ?></p>
-								<a href="<?= Url::to(['single-myths', 'slug' => $myth->slug]) ?>"
-								   class="services_item-more vacancies_item-more">Подробнее</a>
+								<p class="services_item-p">
+                                    <?= $myth->getText() ?>
+
+                                </p>
+                                <a href="<?= Url::to(['single-myths', 'slug' => $myth->slug]) ?>"
+                                   class="vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty" style="margin: 0 auto">Подробнее</a>
+
 							</div>
 						<?php endforeach; ?>
 					</div>
@@ -81,10 +84,10 @@ $img = Url::to('@web/img/');
 				<p class="paragraph">наш бриф</p>
 				<div class="wrap">
 					<div class="tittle">
-						<span class="block_span_title">закажите</span>
+						<span class="block_span_title">закажи</span>
 						<h2 class="block_title">услугу</h2>
 						<p>
-							Перестаньте платить деньги за процесс. Получите гарантированный результат.
+                            Хватит выбрасывать деньги на ветер – плати за результат.
 						</p>
 					</div>
 				</div>
