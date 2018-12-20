@@ -23,7 +23,7 @@ $img = Url::to('@web/img/');
 			<nav class="broadcrumbs">
 				<a class="broadcrumbs__link" href="<?= Url::to(['/']) ?>">Главная</a>
 				<span class="broadcrumbs__divider"> / </span>
-				<span class="broadcrumbs__curr">Развеивание мифов</span>
+				<span class="broadcrumbs__curr">Общие вопросы</span>
 			</nav>
 
 			<div class="wrap wrap-services">
