@@ -75,7 +75,7 @@ class SendForm extends Model
             "phone" => "Ваш номер телефона *",
             "email" => "Ваш e-mail *",
             "skype" => "Skype",
-            "site" => "Ваш сайт"
+            "site" => "Сайт"
         ];
     }
 
