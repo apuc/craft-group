@@ -70,11 +70,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				                    <?php endif;?>
 			                    </p>
 			                    <ul class="services_item-ul vacancies_item-ul">
-				                    <li class="services_item-li vacancies-item-li">Опыт работы: - <span class="vacancies-ul-span"> <?=$serv[1] ?? '';?></span></li>
-				                    <li class="services_item-li vacancies-item-li">Ззанятость:,<span class="vacancies-ul-span"> <?=$serv[2] ?? '';?></span></li>
-				                    <li class="services_item-li vacancies-item-li">Зарплата: - <span class="vacancies-ul-span"> <?=$serv[3] ?? '';?></span></li>
+				                    <li class="services_item-li vacancies-item-li">Опыт работы:  <span class="vacancies-ul-span"> <?=$serv[1] ?? '';?></span></li>
+				                    <li class="services_item-li vacancies-item-li">Ззанятость:<span class="vacancies-ul-span"> <?=$serv[2] ?? '';?></span></li>
+				                    <li class="services_item-li vacancies-item-li">Зарплата:  <span class="vacancies-ul-span"> <?=$serv[3] ?? '';?></span></li>
 			                    </ul>
-			                    <a href="<?=Url::to(['single-vacancy', 'slug' => $value->slug])?>" class="services_item-more vacancies_item-more">Подробнее</a>
+			                    <a href="<?=Url::to(['single-vacancy', 'slug' => $value->slug])?>" class="services_item-more vacancies_item-more" style="margin: 0 auto;">Подробнее</a>
 		                    </div>
 	                    <?php endforeach;?>
 
@@ -99,15 +99,15 @@ $this->params['breadcrumbs'][] = $this->title;
 					            <?php endif;?>
 				            </p>
 				            <div class="services_item-mob mt-1">
-					            <p>Требыемый опыт работы - </p>
+					            <p>Опыт работы:</p>
 					            <p><?=$serv[1] ?? '';?></p>
 				            </div>
 				            <div class="services_item-mob">
-					            <p>Полная занятость,</p>
+					            <p>Занятость:</p>
 					            <p><?=$serv[2] ?? '';?></p>
 				            </div>
 				            <div class="services_item-mob mb-1">
-					            <p>Уровень зарплаты - </p>
+					            <p>Зарплата:</p>
 					            <p><?=$serv[3] ?? '';?></p>
 				            </div>
 				            <a href="<?=Url::to(['single-vacancy', 'slug' => $value->slug])?>" class="services_more-mob">Подробнее</a>
@@ -130,9 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </h3>
                             <h3 class="novelty__title vacancies-title novelty__title_margin">Прокачиваем</h3>
                             <p class="novelty__text vacancies-text">В офисе тебе дадут индивидуальную программу развития, стол, стул и наставника. Взамен придется пораскинуть мозгами и потратить время. Важно: это не курсы программирования. Технические аспекты ты должен выучить самостоятельно. Мы курируем, даем реальные задачи и обратную связь. Стажировка – это идеальный способ начать работу бок о бок с опытными специалистами Craft Group, прежде чем стать полноправным членом нашей команды.</p>
-                            <p class="novelty__text vacancies-text">Стажировка это способ примерить вас к команде, к
-                                принципам работы,
-                                прежде чем брать в команду.</p>
+
                             <a href="#brief"
                                class="vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty vacancies-novelty-more portfolio-scroll">Записаться</a>
                         </div>
@@ -149,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p class="paragraph">резюме</p>
                 <div class="wrap">
                     <div class="tittle">
-                        <span>отправьте</span>
+                        <span>отправь</span>
                         <h2>свое резюме</h2>
                         <!--<p>-->
                         <!--Перестаньте платить деньги за процесс. Получите гарантированный результат.-->
