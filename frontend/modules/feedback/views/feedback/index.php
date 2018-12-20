@@ -13,7 +13,7 @@ use yii\helpers\Url;
 
 		<div class="container">
 			<div class="brief__head">
-				<p class="paragraph">резюме</p>
+				<p class="paragraph">оставить отзыв</p>
 
 				<nav class="broadcrumbs">
 					<a class="broadcrumbs__link" href="<?= \yii\helpers\Url::to(['/']) ?>">Главная</a>
@@ -25,7 +25,7 @@ use yii\helpers\Url;
 
 				<div class="wrap feedback-wrap">
 					<div class="tittle">
-						<span>оставьте</span>
+						<span>оставь</span>
 						<h2>свой отзыв</h2>
 					</div>
 				</div>
@@ -33,8 +33,8 @@ use yii\helpers\Url;
 			<div class="brief__content">
 				<?= \frontend\components\SendFormWidget::widget([
 					'subject' => \frontend\models\SendForm::FEEDBACK,
-					'messageLabel' => 'Текст вашего отзыва',
-					'messagePlaceholder' => 'Ваш отзыв',
+					'messageLabel' => 'Отзыв',
+					'messagePlaceholder' => 'Введи текст...',
 					'textButton' => 'Отправить',
 					'fileExtension' => 'jpg, jpeg, png',
 					'skypeOrSite' => \frontend\components\SendFormWidget::SITE,
