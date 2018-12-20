@@ -23,7 +23,7 @@ $img = Url::to('@web/img/');
 			<nav class="broadcrumbs">
 				<a class="broadcrumbs__link" href="<?= Url::to(['/']) ?>">Главная</a>
 				<span class="broadcrumbs__divider"> / </span>
-				<span class="broadcrumbs__curr">Развеивание мифов</span>
+				<span class="broadcrumbs__curr">Общие вопросы</span>
 			</nav>
 
 			<div class="wrap wrap-services">
@@ -31,7 +31,7 @@ $img = Url::to('@web/img/');
 					<span>вся правда о нас</span>
 					<h2>и немного больше</h2>
 					<p>
-                        Команда Craft Group реализует проекты с нуля, а также берется за редизайн и развитие сайтов, от которых ты бы хотел получить большего.
+                        Команда Craft Group реализует проекты с нуля, а также берется за редизайн и развитие сайтов, от которых ты хотел бы получить большего.
 					</p>
 				</div>
 

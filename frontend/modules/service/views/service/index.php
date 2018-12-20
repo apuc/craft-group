@@ -37,7 +37,7 @@ $img = Url::to('@web/img/');
                 <div class="tittle">
                     <span>что мы можем</span>
                     <h2>услуги компании</h2>
-                   <p>Команда Craft Group реализует проекты с нуля, а также берется за редизайн и развитие сайтов, от которых ты бы хотел получить большего.</p>
+                   <p>Команда Craft Group реализует проекты с нуля, а также берется за редизайн и развитие сайтов, от которых ты хотел бы получить большего.</p>
                 </div>
 
                 <div class="all-services">
@@ -100,8 +100,8 @@ $img = Url::to('@web/img/');
                                 <?= $service[2]->meta_desc ?>
                             </h3>
                             <p class="novelty__text vacancies-text"><?= $service[2]->description ?></p>
-                            <a href="<?= $service[2]->href ?>"
-                               class="vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty">Подробнее</a>
+                            <a href="#brief__content"
+                               class="vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty">Заполнить бриф</a>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@ $img = Url::to('@web/img/');
                     </div>
                 </div>
             </div>
-            <div class="brief__content">
+            <div class="brief__content" id="brief__content">
                 <?= \frontend\components\SendFormWidget::widget([
                     'subject' => \frontend\models\SendForm::USULUGI,
                     'isLabels' => true,

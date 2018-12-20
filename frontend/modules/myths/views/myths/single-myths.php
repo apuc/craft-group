@@ -31,7 +31,7 @@ $img = Url::to('@web/img/');
 				<nav class="broadcrumbs">
 					<a class="broadcrumbs__link" href="<?= Url::to(['/']) ?>">Главная</a>
 					<span class="broadcrumbs__divider"> / </span>
-					<a class="broadcrumbs__link" href="<?= Url::to(['/myths']) ?>">Развеивание мифов</a>
+					<a class="broadcrumbs__link" href="<?= Url::to(['/myths']) ?>">Общие вопросы</a>
 					<span class="broadcrumbs__divider"> / </span>
 					<span class="broadcrumbs__curr"><?= $myth->title ?></span>
 				</nav>
@@ -64,10 +64,10 @@ $img = Url::to('@web/img/');
 				<p class="paragraph">наш бриф</p>
 				<div class="wrap">
 					<div class="tittle">
-						<span class="block_span_title">закажите</span>
+						<span class="block_span_title">закажи</span>
 						<h2 class="block_title">услугу</h2>
 						<p>
-							Перестаньте платить деньги за процесс. Получите гарантированный результат.
+                            Хватит выбрасывать деньги на ветер – плати за результат.
 						</p>
 					</div>
 				</div>
