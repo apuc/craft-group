@@ -74,10 +74,10 @@ $img = Url::to('@web/img/');
 				<p class="paragraph">наш бриф</p>
 				<div class="wrap">
 					<div class="tittle">
-						<span class="block_span_title">закажите</span>
+						<span class="block_span_title">закажи</span>
 						<h2 class="block_title">услугу</h2>
 						<p>
-							Перестаньте платить деньги за процесс. Получите гарантированный результат.
+                            Хватит выбрасывать деньги на ветер – плати за результат.
 						</p>
 					</div>
 				</div>
