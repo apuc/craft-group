@@ -164,6 +164,8 @@ AppAsset::register($this);
                 <span class="header__callback_top"><?= $phone->description ?? '' ?></span>
 	            <a href="#phoneMassage" rel="nofollow" class="header__callback_bottom">Заказать обратный звонок</a>
             </div>
+
+
         </div>
 
 	    <?= \frontend\components\SendCallBackWidget::widget([
@@ -171,6 +173,45 @@ AppAsset::register($this);
 		    'isLabels' => true,
 		    'messageLabel'=>'Сообщение'
 	    ]) ?>
+
+        <div style="padding-top: 15px; padding-right: 15px;">
+            <div id="myZadarmaCallmeWidget1034"></div>
+            <script>
+                var myZadarmaCallmeWidget1034;
+                var myZadarmaCallmeWidgetFn1034 = function() {
+                    myZadarmaCallmeWidget1034 = new ZadarmaCallmeWidget("myZadarmaCallmeWidget1034");
+                    myZadarmaCallmeWidget1034.create({
+                        "widgetId": "egrG8sbTradMsu6Em4z5YfupxEjE95mycJ4365px4pV698CjKLbg4zD8XNbZnvT4RxjJf5fs12TdRGytfdu9y6pa4s2apHvZ0f6b4cea57514e89ee12d373a2ff166a",
+                        "sipId":"112588_456",
+                        "domElement":"myZadarmaCallmeWidget1034"
+                    }, {
+                        "shape":"square",
+                        "width":"0",
+                        "dtmf":false,
+                        "font": "'Trebuchet MS','Helvetica CY',sans-serif",
+                        "color_call": "rgb(255, 255, 255)",
+                        "color_bg_call": "rgb(210, 32, 41)",
+                        "color_border_call": "rgba(255, 255, 255, 0.00000001)",
+                        "color_connection": "rgb(255, 255, 255)",
+                        "color_bg_connection": "rgb(33, 211, 166)",
+                        "color_border_connection": "rgba(255, 255, 255, 0.00000001)",
+                        "color_calling": "rgb(255, 255, 255)",
+                        "color_border_calling": "rgba(255, 255, 255, 0.00000001)",
+                        "color_bg_calling": "rgb(255, 181, 0)",
+                        "color_ended": "rgb(255, 255, 255)",
+                        "color_bg_ended": "rgb(164,164,164)",
+                        "color_border_ended": "rgba(255, 255, 255, 0.00000001)"
+                    });
+                }
+
+                if (window.addEventListener) {
+                    window.addEventListener('load', myZadarmaCallmeWidgetFn1034, false);
+                } else if (window.attachEvent) {
+                    window.attachEvent('onload', myZadarmaCallmeWidgetFn1034);
+                }
+            </script>
+        </div>
+
 
         <!-- <button class="header__open-btn" type="button">Узнать больше</button> -->
     </div>
@@ -333,6 +374,14 @@ AppAsset::register($this);
 <a href="#" class="scrollup"></a>
 <?= \frontend\components\YandexWidget::widget() ?>
 <?php $this->endBody() ?>
+<div id="zadarmaScripts"></div>
+<script>
+    (function() {
+        var script = document.createElement('script');
+        script.src = 'https://my.zadarma.com/callmewidget/v2.0.6/loader.js';
+        document.getElementById('zadarmaScripts').appendChild(script);
+    }());
+</script>
 </body>
 </html>
 <!-- end html_close-index.html-->
