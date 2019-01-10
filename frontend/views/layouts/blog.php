@@ -76,7 +76,9 @@ AppAsset::register($this);
 
 <!-- start header-index.html-->
 <header class="header header-index js_headerIndex">
-    <div class="header__wrapper header-wrapper-down js_header">
+
+    <div class="header__wrapper header-wrapper-active header-wrapper-up js_header">
+        <div class="header-close js-header-close"></div>
         <div class="header__logo logo">
             <a href="/">
                 <?= $logo->file; ?>
