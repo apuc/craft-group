@@ -25,14 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'title',
-            'h1',
-            'meta_key',
-            'meta_desc',
+            //'h1',
+            //'meta_key',
+            //'meta_desc',
             //'href:ntext',
             //'description:ntext',
-            //'file',
+            [
+                'attribute' => 'file',
+                'format' => 'raw',
+                'value' => function($model){
+                    return $model->file ? Html::img($model->file, ['width'=>'100px']) : '';
+                }
+            ],
             //'options',
             //'slug',
             //'date',

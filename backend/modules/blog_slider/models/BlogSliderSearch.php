@@ -73,6 +73,8 @@ class BlogSliderSearch extends BlogSlider
             ->andFilterWhere(['like', 'options', $this->options]);
 //            ->andFilterWhere(['like', 'slug', $this->slug]);
 
+        $query->orderBy('id DESC');
+
         return $dataProvider;
     }
 }
