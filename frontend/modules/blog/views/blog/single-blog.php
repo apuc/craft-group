@@ -16,6 +16,8 @@ use yii\helpers\Url;
 use common\models\BlogSlider;
 use yii\helpers\Html;
 
+nezhelskoy\highlight\HighlightAsset::register($this);
+
 $this->title = $blog->title;
 $img = Url::to('@web/img/');
 \frontend\assets\SidebarAsset::register($this);

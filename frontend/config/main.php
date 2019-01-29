@@ -100,6 +100,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
+        'assetManager' => [
+            'bundles' => [
+                'nezhelskoy\highlight\HighlightAsset' => [
+                    'css' => ['dist/styles/ocean.css'],
+                ],
+            ]
+        ],
         
         'urlManager' => [
             'enablePrettyUrl' => true,
