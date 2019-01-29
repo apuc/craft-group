@@ -34,7 +34,7 @@ use yii\helpers\Url;
                 <?php if ($b_cur): ?>
                     <div class="blog__block-link_main">
                         <span class="blog-main__title">актуальное <br> в блоге</span>
-                        <a class="blog__link" href="blog.html">Все новости</a>
+                        <a class="blog__link" href="/blog">Все новости</a>
                     </div>
                 <?php endif; ?>
                 <div class="blog__slider--wrap">
