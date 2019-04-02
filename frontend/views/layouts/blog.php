@@ -396,6 +396,28 @@ AppAsset::register($this);
 </script>
 <!— {/literal} END JIVOSITE CODE —>
 
+<script type='text/javascript'>
+    (function () {
+        window['yandexChatWidgetCallback'] = function() {
+            try {
+                window.yandexChatWidget = new Ya.ChatWidget({
+                    guid: '0161d9bb-6665-45ed-baf6-1707d6f7e141',
+                    buttonText: 'Напишите нам, мы в сети!',
+                    title: 'Чат',
+                    theme: 'light',
+                    collapsedDesktop: 'never',
+                    collapsedTouch: 'always'
+                });
+            } catch(e) { }
+        };
+        var n = document.getElementsByTagName('script')[0],
+            s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://chat.s3.yandex.net/widget.js';
+        n.parentNode.insertBefore(s, n);
+    })();
+</script>
+
 </body>
 </html>
 <!-- end html_close-index.html-->
