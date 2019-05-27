@@ -13,6 +13,7 @@
  * @var $idForm string
  * @var $widget frontend\components\SendFormWidget
  *
+ *
  */
 use frontend\components\SendFormWidget;
 use yii\helpers\Url;
@@ -80,23 +81,18 @@ use yii\widgets\ActiveForm;
 	<div class="service__form-file">
 		<div class="btn-file__wrap">
 			<?php if ($widget->fileOrFiles == SendFormWidget::FILES): ?>
-				<?= $form->field($model, $widget->fileOrFiles)->fileInput(['multiple' => true, 'class' => 'input-file'])->label(false) ?>
+				<?= $form->field($model, $widget->fileOrFiles)->fileInput(['multiple' => true, 'class' => $widget->upload_file_input_class])->label(false) ?>
 			<?php elseif ($widget->fileOrFiles == SendFormWidget::FILE): ?>
-				<?= $form->field($model, $widget->fileOrFiles)->fileInput(['class' => 'input-file2', 'style' => 'display:none'])->label(false) ?>
+				<?= $form->field($model, $widget->fileOrFiles)->fileInput(['class' => $widget->upload_file_input_class, 'style' => 'display:none'])->label(false) ?>
 			<?php endif; ?>
-			<?php if ($widget->subject === \frontend\models\SendForm::FEEDBACK): ?>
-				<?= $this->render('_btn-input-file', ['className' => 'btn-input-file2']) ?>
-			<?php else: ?>
-				<?= $this->render('_btn-input-file', ['className' => 'btn-input-file']) ?>
-			<?php endif; ?>
+
+            <?= $this->render('_btn-input-file', ['className' => $widget->upload_file_btn_class]) ?>
+            <?php echo $model->subject ?>
+
 		</div>
 		<span class="service__form-files"><?= $widget->fileExtension ?></span>
 
-		<?php if ($widget->subject === \frontend\models\SendForm::FEEDBACK): ?>
-			<?= $this->render('_wrapperCont', ['idName' => 'wrapperCont2', 'widget' => $widget]) ?>
-		<?php else: ?>
-			<?= $this->render('_wrapperCont', ['idName' => 'wrapperCont', 'widget' => $widget]) ?>
-		<?php endif; ?>
+			<?= $this->render('_wrapperCont', [ 'widget' => $widget]) ?>
 
 	</div>
 </div>
@@ -105,11 +101,8 @@ use yii\widgets\ActiveForm;
 								class="service__form-desc_red">согласие на обработку персональной информации</span></span>
 	<div class="service__submit-block">
 
-		<?php if ($widget->subject === \frontend\models\SendForm::FEEDBACK): ?>
-			<input class="service__form-submit" id="submit2" type="submit" value="<?= $widget->textButton ?>">
-		<?php else: ?>
-			<input class="service__form-submit" id="submit" type="submit" value="<?= $widget->textButton ?>">
-		<?php endif; ?>
+			<input class="service__form-submit" id=<?php echo $widget->upload_file_submit_id ?> type="submit" value="<?= $widget->textButton ?>">
+
 		<div class="sk-fading-circle">
 			<div class="sk-circle sk-circle-1"></div>
 			<div class="sk-circle sk-circle-2"></div>

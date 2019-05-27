@@ -39,6 +39,7 @@ class SendForm extends Model
     public $file;
     public $site;
 
+    public $btn_upload_class;
     public $thankMessage;
 
     public $radioList;

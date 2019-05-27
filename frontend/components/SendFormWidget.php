@@ -11,6 +11,11 @@ namespace frontend\components;
 
 use frontend\models\SendForm;
 
+/**
+ * Class SendFormWidget
+ * @package frontend\components
+ * @property $upload_file_btn_class
+ */
 class SendFormWidget extends \yii\base\Widget
 {
 
@@ -21,6 +26,14 @@ class SendFormWidget extends \yii\base\Widget
     const FILE = 'file';
 
     public $subject;
+    public $upload_file_btn_class = 'btn-input-file';
+    public $upload_file_container_id = 'wrapperCont';
+    public $upload_file_wrapper_title = 'itemWrapper';
+    public $upload_file_container_title = 'itemTitle';
+    public $upload_file_submit_id = 'submit';
+    public $upload_file_delete_title = 'delItem';
+    public $upload_file_input_class = 'input-file';
+
     public $messageLabel;
     public $messagePlaceholder = 'Введи сопроводительный текст...';
     public $textButton = 'Отправить бриф';
@@ -40,6 +53,7 @@ class SendFormWidget extends \yii\base\Widget
 
         $model = new SendForm();
         $model->subject = $this->subject;
+
 
         if ($this->isLabels) $model->setRadioList();
 

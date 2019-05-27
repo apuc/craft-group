@@ -412,3 +412,30 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 });
+
+document.addEventListener('DOMContentLoaded', function(){
+    var up2 = new Uploader();
+    up2.init({
+        btnSelect: '.btn-input-file2',
+        itemContainer: '#wrapperCont2',
+        fileInput: '.input-file2',
+        itemWrapper: '.itemWrapper2',
+        itemTitle: '.itemTitle2',
+        btnLoad: '#submit2',
+        delItem: '.delItem2',
+        maxCount: 10,
+        filesExt: ['psd', 'jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'pdf', 'doc', 'xls'],
+        maxSize: 5,
+        itemsCount: 0,
+        maxSizeError: function (name, size) {
+            document.querySelector('.service__form-files').style.color = 'red';
+            console.log('Файл слишком большой', name, Math.round((size / 1024 / 1024)*100)/100 + ' мб.' );
+        },
+        fileAdded: function (e) {
+            document.querySelector('.service__form-files').style.color = 'black';
+        }
+    });
+    up2.indexItems();
+
+
+});

@@ -36,6 +36,13 @@ use yii\helpers\Url;
 					'messageLabel' => 'Отзыв',
 					'messagePlaceholder' => 'Введи текст...',
 					'textButton' => 'Отправить',
+                    'upload_file_delete_title' => 'delItem',
+                    'upload_file_submit_id' => 'submit',
+                    'upload_file_btn_class' => 'btn-input-file',
+                    'upload_file_wrapper_title' => 'itemWrapper',
+                    'upload_file_container_title' => 'itemTitle',
+					'upload_file_container_id' => 'wrapperCont',
+                    'upload_file_input_class' => 'input-file',
 					'fileExtension' => 'jpg, jpeg, png',
 					'skypeOrSite' => \frontend\components\SendFormWidget::SITE,
 					'fileOrFiles' => \frontend\components\SendFormWidget::FILE,
@@ -70,6 +77,13 @@ use yii\helpers\Url;
 				<?= \frontend\components\SendFormWidget::widget([
 					'subject' => \frontend\models\SendForm::USULUGI,
 					'isLabels' => true,
+					'upload_file_delete_title' => 'delItem2',
+					'upload_file_btn_class' => 'btn-input-file2',
+                    'upload_file_wrapper_title' => 'itemWrapper2',
+					'upload_file_container_title' => 'itemTitle2',
+                    'upload_file_container_id' => 'wrapperCont2',
+                    'upload_file_submit_id' => 'submit2',
+					'upload_file_input_class' => 'input-file2',
 					'messageLabel' => 'Сообщение',
 					'idForm' => 'send_vacancy'
 				]) ?>
