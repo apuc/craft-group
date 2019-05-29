@@ -131,6 +131,7 @@ class SendForm extends Model
 
                 $this->thankMessage = "Спасибо за, то что выбрали нашу компанию, мы с Вами скоро свяжемся. </br>";
                 break;
+
             case self::FEEDBACK:
                 $feedback = new Feedback();
                 $feedbackData['Feedback'] = $post['SendForm'];

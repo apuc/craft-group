@@ -25,6 +25,7 @@ class PortfolioController extends Controller
 	 */
 	public function actionIndex()
 	{
+
 		$portfolio = Yii::$app->cache->getOrSet("portfolio_main", function () {
 			return Portfolio::find()
 				->where(['!=', 'h1', 'all'])

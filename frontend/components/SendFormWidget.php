@@ -34,6 +34,8 @@ class SendFormWidget extends \yii\base\Widget
     public $upload_file_delete_title = 'delItem';
     public $upload_file_input_class = 'input-file';
 
+
+
     public $messageLabel;
     public $messagePlaceholder = 'Введи сопроводительный текст...';
     public $textButton = 'Отправить бриф';

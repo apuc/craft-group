@@ -385,17 +385,16 @@ $(document).ready(function () { // вся мaгия пoсле зaгрузки с
 });
 
 
-
 document.addEventListener('DOMContentLoaded', function(){
 	var up = new Uploader();
 	up.init({
-		btnSelect: '.btn-input-file',
-		itemContainer: '#wrapperCont',
-		fileInput: '.input-file',
-		itemWrapper: '.itemWrapper',
-		itemTitle: '.itemTitle',
+        btnSelect: '.button_input1',
+        itemContainer: '.content_wrapper1',
+		fileInput: '.file_input1',
+        itemWrapper: '.wrapper_item1',
+        itemTitle: '.title_item1',
 		btnLoad: '#submit',
-		delItem: '.delItem',
+        delItem: '.delete_item1',
 		maxCount: 10,
 		filesExt: ['psd', 'jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'pdf', 'doc', 'xls'],
 		maxSize: 5,
@@ -416,13 +415,13 @@ document.addEventListener('DOMContentLoaded', function(){
 document.addEventListener('DOMContentLoaded', function(){
     var up2 = new Uploader();
     up2.init({
-        btnSelect: '.btn-input-file2',
-        itemContainer: '#wrapperCont2',
-        fileInput: '.input-file2',
-        itemWrapper: '.itemWrapper2',
-        itemTitle: '.itemTitle2',
+        btnSelect: '.button_input2',
+        itemContainer: '.content_wrapper2',
+        fileInput: '.file_input2',
+        itemWrapper: '.wrapper_item2',
+        itemTitle: '.title_item2',
         btnLoad: '#submit2',
-        delItem: '.delItem2',
+        delItem: '.delete_item2',
         maxCount: 10,
         filesExt: ['psd', 'jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'pdf', 'doc', 'xls'],
         maxSize: 5,

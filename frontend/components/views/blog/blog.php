@@ -41,7 +41,11 @@ use yii\helpers\Url;
                     <?php foreach ($blog as $key => $value): ?>
                         <?php if ($value->options): ?>
                             <div class="blog__slider--slide">
+                                <?php if(file_exists($value->file)): ?>
                                 <img src="<?= Yii::$app->resizeImage->resizeImage($value->file) ?>">
+                                <?php else: ?>
+                                <img src="<?= Yii::$app->resizeImage->resizeImage('/uploads/global/unknown2.png') ?>">
+                                <?php endif; ?>
                                 <div class="slide__title">
                                     <h3 class="slide__post-title"><?= $value->title ?></h3>
                                     <time

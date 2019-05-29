@@ -39,8 +39,11 @@ $img = Url::to('@web/img/');
                             <span><?=$portfolio['title']?> </span>
 <!--                            <a href='#'>Смотреть работу на <span class='gradient'>behance.ru</span></a>-->
                         </div">
-						
-						<img src="<?=$portfolio['file']?>" alt="">
+						<?php if(file_exists($portfolio['file'])):  ?>
+						   <img src="<?=$portfolio['file']?>" alt="">
+                        <?php else: ?>
+                             <img src="<?='/uploads/global/unknown2.png'?>" alt="">
+                        <?php endif; ?>
 					</a>
 				</div>
 

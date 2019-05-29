@@ -72,6 +72,8 @@ use yii\widgets\ActiveForm;
 		'model' => $model
 	]); ?>
 <?php endif ?>
+
+
 <div class="service__form-message" lang="ru">
 	<?= $form->field($model, 'message', [
 		'options' => [
@@ -81,13 +83,12 @@ use yii\widgets\ActiveForm;
 	<div class="service__form-file">
 		<div class="btn-file__wrap">
 			<?php if ($widget->fileOrFiles == SendFormWidget::FILES): ?>
-				<?= $form->field($model, $widget->fileOrFiles)->fileInput(['multiple' => true, 'class' => $widget->upload_file_input_class])->label(false) ?>
+				<?= $form->field($model, $widget->fileOrFiles)->fileInput(['multiple' => true, 'class' => $widget->upload_file_input_class, 'style' => 'display:none'])->label(false) ?>
 			<?php elseif ($widget->fileOrFiles == SendFormWidget::FILE): ?>
 				<?= $form->field($model, $widget->fileOrFiles)->fileInput(['class' => $widget->upload_file_input_class, 'style' => 'display:none'])->label(false) ?>
 			<?php endif; ?>
 
             <?= $this->render('_btn-input-file', ['className' => $widget->upload_file_btn_class]) ?>
-            <?php echo $model->subject ?>
 
 		</div>
 		<span class="service__form-files"><?= $widget->fileExtension ?></span>
@@ -96,6 +97,9 @@ use yii\widgets\ActiveForm;
 
 	</div>
 </div>
+
+
+
 <div class="service__form-desc">
                         <span class="service__form-desc_span">Нажимая кнопку «Отправить», я даю  <span
 								class="service__form-desc_red">согласие на обработку персональной информации</span></span>

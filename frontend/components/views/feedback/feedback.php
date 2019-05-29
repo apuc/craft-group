@@ -32,17 +32,19 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 						<?php endforeach; ?>
 					</div>
 					<div class="feedback-block-down slider-nav">
-                        <?php echo Yii::getAlias('@files/'); ?>
-                        <?php echo '<br>'; ?>
-
-
 						<?php foreach ($feedback as $value): ?>
-                            <?php  var_dump($value->files->name); ?>
-                            <?php echo '<br>' ?>
-							<div class="feedback-down-item">
+                            <div class="feedback-down-item">
 								<img class="feedback-down-img"
-
-									 src="<?= (isset($value->files)) ? Yii::getAlias('@files/') . $value->files->name : "" ?>"
+									 src="<?php if(isset($value->files)) {
+									     if(file_exists(Yii::getAlias('@files/') . $value->files->name))
+                                         {
+                                             echo Yii::getAlias('@files/') . $value->files->name;
+                                         }
+                                         else {
+                                             echo Yii::getAlias('@files/') . "unknown.png";
+                                         }
+									 }
+                                      ?>"
 									 style="width: 103px; height: 105px"
 								>
 								<div class="feedback-down-wrap">
