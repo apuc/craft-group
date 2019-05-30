@@ -9,6 +9,7 @@
 use yii\helpers\Url;
 Yii::setAlias('@site', \yii\helpers\Url::to(Yii::getAlias('@frontend/'), true) . 'views/site');
 $path = \yii\helpers\Url::to('/', true);
+$path = substr($path, 0, -1);
 ?>
 <?php if(!empty($portfolio)): ?>
     <section class="portfolio" id="portfolio">
@@ -32,10 +33,9 @@ $path = \yii\helpers\Url::to('/', true);
                 <div class="portfolio__gallery">
                     <?php $i = 0;
                     foreach ($portfolio as $key => $value): ?>
-                        <?php echo $value['file']; ?>
                         <?php if ($value->h1 == 'all'): ?>
                             <div class="gallery__block portfolio-link">
-                                <?php !file_exists($path .$value['file']) ? $value['file'] = '/uploads/global/unknown2.png': ""; ?>
+                                <?php !file_exists($path . $value['file']) ? $value['file'] = '/uploads/global/unknown2.png': ""; ?>
                                     <img src="<?= $value['file'] ?>">
                                 <a class="gallery__block-link"
                                    href="<?= Url::toRoute(['/portfolio']); ?>"><?= $value->title ?></a>
@@ -44,11 +44,12 @@ $path = \yii\helpers\Url::to('/', true);
                         <?php elseif ($value->h1 != 'brief'): ?>
                             <div class="gallery__block portfolio-<?= $class[$i] ?> portfolio-link">
                                 <a href="<?= Url::toRoute(['/portfolio/' . $value->slug]); ?>">
-                                    <?= $this->render('_thumbnail', ['value'=>$value])?>
+                                    <?= $this->render('_thumbnail', ['value'=>$value , 'path' => $path])?>
                                 </a>
                                 <span></span>
                             </div>
-                            <?php $i++; ?>
+                            <?php $i++;
+                            ?>
                         <?php else: ?>
                             <?php if ($value->h1 == 'brief'): ?>
                                 <div class="gallery__block portfolio__brief portfolio-link">
