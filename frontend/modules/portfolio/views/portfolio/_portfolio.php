@@ -13,7 +13,8 @@ $img = Url::to('@web/img/');
 				<?php if ($key <= $count - 1): ?>
 					<div class="grid-item">
 						<figure class="photoGrid">
-                        <?php if(file_exists($value->getFile())): ?>
+                            <?php echo Yii::getAlias('@frontend/web').$value->getFile();?>
+                        <?php if(file_exists(Yii::getAlias('@frontend/web').$value->getFile())): ?>
 							<a href="<?= $value->getFile() ?>"
 							   data-size="<?= $value->getImageOriginal()->getWidth() ?>x<?= $value->getImageOriginal()->getHeight() ?>"
 							   class="portfolio-open-image"></a>

@@ -7,8 +7,6 @@
  */
 
 namespace frontend\components;
-
-
 use common\models\Feedback;
 use Yii;
 use yii\base\Widget;
