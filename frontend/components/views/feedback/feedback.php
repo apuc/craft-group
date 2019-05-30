@@ -2,7 +2,7 @@
 /**
  * @var $feedback [] \common\models\Feedback
  */
-Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
+$path = \yii\helpers\Url::to('/', true) . 'uploads/feedback/';
 ?>
 <?php if (!empty($feedback)): ?>
 	<section class="blog blog__single blog_feedback feedback-section">
@@ -31,11 +31,11 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 						<?php foreach ($feedback as $value): ?>
                             <div class="feedback-down-item">
 								<img class="feedback-down-img"
-									 src="<?php if(isset($value->files)) :?>
-									          <?php if(file_exists(Yii::getAlias('@files/') . $value->files->name)): ?>
-                                                    <?php echo Yii::getAlias('@files/') . $value->files->name; ?>
+                                            src="<?php if(isset($value->files)) :?>
+									          <?php if(file_exists(Yii::getAlias('@frontend/web/uploads/feedback/') . $value->files->name)): ?>
+                                                    <?php echo $path . $value->files->name; ?>
                                                <?php else: ?>
-                                                   <?php echo Yii::getAlias('@files/') . "unknown.png"; ?>
+                                                   <?php echo $path . 'unknown.png'; ?>
                                                  <?php endif; ?>
 									     <?php endif; ?>"
 									 style="width: 103px; height: 105px">
