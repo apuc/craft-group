@@ -32,10 +32,10 @@ $path = \yii\helpers\Url::to('/', true) . 'uploads/feedback/';
                             <div class="feedback-down-item">
 								<img class="feedback-down-img"
                                             src="<?php if(isset($value->files)) :?>
-									          <?php if(file_exists($path . $value->files->name)): ?>
+									          <?php if(file_exists(Yii::getAlias('@frontend/web/uploads/feedback/') . $value->files->name)): ?>
                                                     <?php echo $path . $value->files->name; ?>
                                                <?php else: ?>
-                                                   <?php echo $path . "unknown.png"; ?>
+                                                   <?php echo $path . 'unknown.png'; ?>
                                                  <?php endif; ?>
 									     <?php endif; ?>"
 									 style="width: 103px; height: 105px">

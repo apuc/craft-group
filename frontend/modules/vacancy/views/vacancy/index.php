@@ -161,6 +161,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'messageLabel' => 'Напишите немного о себе',
                     'textButton' => 'Хочу в команду',
 	                'answer' => 'Резюме отправлено!',
+                    'upload_file_delete_title' => 'delItem delete_item2',
+                    'upload_file_btn_class' => 'btn-input-file button_input2',
+                    'upload_file_wrapper_title' => 'itemWrapper wrapper_item2',
+                    'upload_file_container_title' => 'itemTitle title_item2',
+                    'upload_file_container_id' => 'wrapperCont content_wrapper2',
+                    'upload_file_submit_id' => 'submit2',
+                    'upload_file_input_class' => 'input-file file_input2',
+                    'messageLabel' => 'Сообщение',
+                    'idForm' => 'send_vacancy'
                 ]) ?>
             </div>
 

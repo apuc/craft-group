@@ -96,7 +96,14 @@ $img = Url::to('@web/img/');
 				<?= \frontend\components\SendFormWidget::widget([
 					'subject' => \frontend\models\SendForm::USULUGI,
 					'isLabels' => true,
-					'messageLabel' => 'Сообщение'
+					'messageLabel' => 'Сообщение',
+                    'upload_file_delete_title' => 'delItem delete_item2',
+                    'upload_file_btn_class' => 'btn-input-file button_input2',
+                    'upload_file_wrapper_title' => 'itemWrapper wrapper_item2',
+                    'upload_file_container_title' => 'itemTitle title_item2',
+                    'upload_file_container_id' => 'wrapperCont content_wrapper2',
+                    'upload_file_submit_id' => 'submit2',
+                    'upload_file_input_class' => 'input-file file_input2'
 				]) ?>
 			</div>
 		</div>
