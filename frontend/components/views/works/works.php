@@ -8,7 +8,7 @@
 
 use yii\helpers\Url;
 Yii::setAlias('@site', \yii\helpers\Url::to(Yii::getAlias('@frontend/'), true) . 'views/site');
-
+$path = \yii\helpers\Url::to('/', true);
 ?>
 <?php if(!empty($portfolio)): ?>
     <section class="portfolio" id="portfolio">
@@ -32,9 +32,10 @@ Yii::setAlias('@site', \yii\helpers\Url::to(Yii::getAlias('@frontend/'), true) .
                 <div class="portfolio__gallery">
                     <?php $i = 0;
                     foreach ($portfolio as $key => $value): ?>
+                        <?php echo $value['file']; ?>
                         <?php if ($value->h1 == 'all'): ?>
                             <div class="gallery__block portfolio-link">
-                                <?php !file_exists(Yii::getAlias('@frontend/web').$value['file']) ? $value['file'] = '/uploads/global/unknown2.png': ""; ?>
+                                <?php !file_exists($path .$value['file']) ? $value['file'] = '/uploads/global/unknown2.png': ""; ?>
                                     <img src="<?= $value['file'] ?>">
                                 <a class="gallery__block-link"
                                    href="<?= Url::toRoute(['/portfolio']); ?>"><?= $value->title ?></a>
