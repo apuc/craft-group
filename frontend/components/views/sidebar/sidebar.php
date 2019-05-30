@@ -12,7 +12,8 @@ use yii\helpers\Url;
 	<div class="sidebar__inner sidebarBlog">
 		<?php if ($all): ?>
 			<div class="blog-single__gallery">
-				<img class="blog-item-img" src="<?= $all->file ?>" height="210"/>
+                <?php !file_exists($all->file) ? $all->file = '/uploads/global/unknown2.png' : ""; ?>
+				    <img class="blog-item-img" src="<?= $all->file ?>" height="210"/>
 				<a class="blog__link" href="<?= Url::to(['/blog']); ?>"><span
 						class="blog-link-pc"><?= $all->title ?></span><span
 						class="blog-link-mob">Все новости</span></a>
@@ -23,8 +24,12 @@ use yii\helpers\Url;
 			<?php foreach ($slider as $key => $value): ?>
 				<?php if ($value->options): ?>
 					<div class="blog__item blog__item_design blog__slider--slide">
-						<img src="<?= Yii::$app->resizeImage->resizeImage($value->file) ?>">
-						<div class="slide__title">
+                        <?php if(file_exists($value->file)): ?>
+						    <img src="<?= Yii::$app->resizeImage->resizeImage($value->file) ?>">
+                        <?php else: ?>
+                            <img src="<?= '/uploads/global/unknown2.png' ?>">
+                        <?php endif; ?>
+                    <div class="slide__title">
 							<h3 class="slide__post-title"><?= $value->title ?></h3>
 							<time
 								class="slide__post-time"><?= $value->getTime(); ?></time>

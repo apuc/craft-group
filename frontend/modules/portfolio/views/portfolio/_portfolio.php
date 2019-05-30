@@ -13,12 +13,16 @@ $img = Url::to('@web/img/');
 				<?php if ($key <= $count - 1): ?>
 					<div class="grid-item">
 						<figure class="photoGrid">
-
+                        <?php if(file_exists($value->getFile())): ?>
 							<a href="<?= $value->getFile() ?>"
 							   data-size="<?= $value->getImageOriginal()->getWidth() ?>x<?= $value->getImageOriginal()->getHeight() ?>"
 							   class="portfolio-open-image"></a>
-							<a href="<?= Url::to(['single-portfolio', 'slug' => $value->slug]) ?>">
-								<img src="<?= $home . $value->getThumbnailUrl() ?>">
+                            <a href="<?= Url::to(['single-portfolio', 'slug' => $value->slug]) ?>">
+                                <img src="<?= $home . $value->getThumbnailUrl() ?>">
+                        <?php else: ?>
+                            <a href="<?= Url::to(['single-portfolio', 'slug' => $value->slug]) ?>">
+                                <img src="<?= '/uploads/global/unknown2.png' ?>">
+                        <?php endif;?>
 							</a>
 						</figure>
 										<span class="full-size">

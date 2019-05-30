@@ -7,10 +7,7 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 <?php if (!empty($feedback)): ?>
 	<section class="blog blog__single blog_feedback feedback-section">
 		<div class="container">
-
 			<p class="paragraph paragraph-feedback">отзывы о нас</p>
-
-
 			<div class="wrap">
 				<div class="tittle">
 					<span>отзывы </span>
@@ -32,11 +29,16 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 					</div>
 					<div class="feedback-block-down slider-nav">
 						<?php foreach ($feedback as $value): ?>
-							<div class="feedback-down-item">
+                            <div class="feedback-down-item">
 								<img class="feedback-down-img"
-									 src="<?= (isset($value->files)) ? Yii::getAlias('@files/') . $value->files->name : "" ?>"
-									 style="width: 103px; height: 105px"
-								>
+									 src="<?php if(isset($value->files)) :?>
+									          <?php if(file_exists(Yii::getAlias('@files/') . $value->files->name)): ?>
+                                                    <?php echo Yii::getAlias('@files/') . $value->files->name; ?>
+                                               <?php else: ?>
+                                                   <?php echo Yii::getAlias('@files/') . "unknown.png"; ?>
+                                                 <?php endif; ?>
+									     <?php endif; ?>"
+									 style="width: 103px; height: 105px">
 								<div class="feedback-down-wrap">
 									<p class="feedback-down-name"><?= $value->name ?></p>
 									<p class="feedback-down-site"><?= $value->site ?></p>

@@ -36,6 +36,13 @@ use yii\helpers\Url;
 					'messageLabel' => 'Отзыв',
 					'messagePlaceholder' => 'Введи текст...',
 					'textButton' => 'Отправить',
+                    'upload_file_delete_title' => 'delItem delete_item1',
+                    'upload_file_submit_id' => 'submit',
+                    'upload_file_btn_class' => 'btn-input-file button_input1',
+                    'upload_file_wrapper_title' => 'itemWrapper wrapper_item1',
+                    'upload_file_container_title' => 'itemTitle title_item1',
+					'upload_file_container_id' => 'wrapperCont content_wrapper1',
+                    'upload_file_input_class' => 'input-file file_input1',
 					'fileExtension' => 'jpg, jpeg, png',
 					'skypeOrSite' => \frontend\components\SendFormWidget::SITE,
 					'fileOrFiles' => \frontend\components\SendFormWidget::FILE,
@@ -45,7 +52,6 @@ use yii\helpers\Url;
 				]) ?>
 			</div>
 		</div>
-
 	</section>
 
 	<?php echo FeedbackWidget::widget() ?>
@@ -70,11 +76,17 @@ use yii\helpers\Url;
 				<?= \frontend\components\SendFormWidget::widget([
 					'subject' => \frontend\models\SendForm::USULUGI,
 					'isLabels' => true,
+					'upload_file_delete_title' => 'delItem delete_item2',
+					'upload_file_btn_class' => 'btn-input-file button_input2',
+                    'upload_file_wrapper_title' => 'itemWrapper wrapper_item2',
+					'upload_file_container_title' => 'itemTitle title_item2',
+                    'upload_file_container_id' => 'wrapperCont content_wrapper2',
+                    'upload_file_submit_id' => 'submit2',
+					'upload_file_input_class' => 'input-file file_input2',
 					'messageLabel' => 'Сообщение',
 					'idForm' => 'send_vacancy'
 				]) ?>
 			</div>
-
 		</div>
 	</section>
 	<!-- end brief.html-->

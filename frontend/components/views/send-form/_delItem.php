@@ -2,9 +2,8 @@
 /**
  * @var string $className
  */
-
 ?>
-<div class="<?= $className?>">
+<div class="<?= $widget->upload_file_delete_title?>">
 	<span></span>
 	<span></span>
 </div>

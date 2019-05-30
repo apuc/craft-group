@@ -21,9 +21,7 @@ $img = Url::to('@web/img/');
 <main class="main__single-p">
 	<section class="blog blog__single" id="blog">
 		<div class="container">
-			
 			<p class="paragraph">наши работы</p>
-			
 			<nav class="broadcrumbs">
 				<a class="broadcrumbs__link" href="<?=Url::to('/')?>">Главная</a>
 				<span class="broadcrumbs__divider"> / </span>
@@ -39,20 +37,16 @@ $img = Url::to('@web/img/');
                             <span><?=$portfolio['title']?> </span>
 <!--                            <a href='#'>Смотреть работу на <span class='gradient'>behance.ru</span></a>-->
                         </div">
-						
-						<img src="<?=$portfolio['file']?>" alt="">
+						<?php !file_exists($portfolio['file']) ? $portfolio['file'] = '/uploads/global/unknown2.png' : "";  ?>
+						   <img src="<?=$portfolio['file']?>" alt="">
 					</a>
 				</div>
-
 				<div id="sidebar" class="single-p__desc sidebar">
 					<div class=" sidebar__inner">
 						<h2 class="single-p__title"><?=$portfolio['h1']?></h2>
 						<p class="single-p__text"><?=$portfolio['description']?></p>
-						<?php $href = explode(',' , $portfolio['href']);
-
-						?>
+						<?php $href = explode(',' , $portfolio['href']);?>
 						<?php if(!empty($href)):?>
-
 								<?php if(!empty($href[0])):?>
                                 <div class="single-p__soc">
 									<div class="soc__block soc__be">
@@ -61,7 +55,6 @@ $img = Url::to('@web/img/');
 												<img src="<?=$img?>be-p.png" alt="">
 											</a>
 										</div>
-										
 										<div class="soc__desc">
 											<p>Наша работа на</p>
 												<?=\yii\helpers\Html::a('www.behance.net', $href[0],['target'=>'_blank'])?>
@@ -77,7 +70,6 @@ $img = Url::to('@web/img/');
                                                     <img src="<?=$img?>pinterest.png" alt="">
                                                 </a>
                                             </div>
-
                                             <div class="soc__desc">
                                                 <p>Наша работа на</p>
                                                 <?=\yii\helpers\Html::a('www.pinterest.com', $href[1],['target'=>'_blank'])?>
@@ -101,13 +93,8 @@ $img = Url::to('@web/img/');
                                     </div>
                                 <?php endif;?>
 
-
-
-
-
                         <?php endif;?>
-						
-						<div class="single__order">
+                        <div class="single__order">
 							<?= \common\models\KeyValue::getValue('single_portfolio')?>
 							
 							<a href="#brief" class="order__btn portfolio-scroll">Заказать</a>
