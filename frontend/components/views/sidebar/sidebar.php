@@ -12,7 +12,7 @@ use yii\helpers\Url;
 	<div class="sidebar__inner sidebarBlog">
 		<?php if ($all): ?>
 			<div class="blog-single__gallery">
-                <?php !file_exists(Yii::getAlias('@frontend/web').$all->file) ? $all->file = '/uploads/global/unknown2.png' : ""; ?>
+                <?php !file_exists(Yii::getAlias('@frontend/web').urldecode($all->file)) ? $all->file = '/uploads/global/unknown2.png' : ""; ?>
 				    <img class="blog-item-img" src="<?= $all->file ?>" height="210"/>
 				<a class="blog__link" href="<?= Url::to(['/blog']); ?>"><span
 						class="blog-link-pc"><?= $all->title ?></span><span
@@ -24,7 +24,7 @@ use yii\helpers\Url;
 			<?php foreach ($slider as $key => $value): ?>
 				<?php if ($value->options): ?>
 					<div class="blog__item blog__item_design blog__slider--slide">
-                        <?php if(file_exists(Yii::getAlias('@frontend/web').$value->file)): ?>
+                        <?php if(file_exists(Yii::getAlias('@frontend/web').urldecode($value->file))): ?>
 						    <img src="<?= Yii::$app->resizeImage->resizeImage($value->file) ?>">
                         <?php else: ?>
                             <img src="<?= '/uploads/global/unknown2.png' ?>">

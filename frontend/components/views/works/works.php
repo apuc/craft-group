@@ -35,7 +35,7 @@ $path = substr($path, 0, -1);
                     foreach ($portfolio as $key => $value): ?>
                         <?php if ($value->h1 == 'all'): ?>
                             <div class="gallery__block portfolio-link">
-                                <?php !file_exists(Yii::getAlias('@frontend/web') . $value['file']) ? $value['file'] = '/uploads/global/unknown2.png': ""; ?>
+                                <?php !file_exists(Yii::getAlias('@frontend/web') . urldecode($value['file'])) ? $value['file'] = '/uploads/global/unknown2.png': ""; ?>
                                     <img src="<?= $value['file'] ?>">
                                 <a class="gallery__block-link"
                                    href="<?= Url::toRoute(['/portfolio']); ?>"><?= $value->title ?></a>

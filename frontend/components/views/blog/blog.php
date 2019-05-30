@@ -40,7 +40,7 @@ use yii\helpers\Url;
                     <?php foreach ($blog as $key => $value): ?>
                         <?php if ($value->options): ?>
                             <div class="blog__slider--slide">
-                                <?php !file_exists($value->file) ? $value->file = '/uploads/global/unknown2.png' : ""; ?>
+                                <?php !file_exists(urldecode($value->file)) ? $value->file = '/uploads/global/unknown2.png' : ""; ?>
                                 <img src="<?= Yii::$app->resizeImage->resizeImage($value->file) ?>">
                                 <div class="slide__title">
                                     <h3 class="slide__post-title"><?= $value->title ?></h3>
