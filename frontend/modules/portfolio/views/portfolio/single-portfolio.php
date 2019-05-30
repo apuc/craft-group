@@ -37,7 +37,7 @@ $img = Url::to('@web/img/');
                             <span><?=$portfolio['title']?> </span>
 <!--                            <a href='#'>Смотреть работу на <span class='gradient'>behance.ru</span></a>-->
                         </div">
-						<?php !file_exists(Yii::getAlias('@frontend/web').$portfolio['file']) ? $portfolio['file'] = '/uploads/global/unknown2.png' : "";  ?>
+						<?php !file_exists(Yii::getAlias('@frontend/web').urldecode($portfolio['file'])) ? $portfolio['file'] = '/uploads/global/unknown2.png' : "";  ?>
 						   <img src="<?=$portfolio['file']?>" alt="">
 					</a>
 				</div>
