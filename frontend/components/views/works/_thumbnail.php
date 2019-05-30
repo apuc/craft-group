@@ -4,7 +4,8 @@ use himiklab\thumbnail\EasyThumbnailImage;
 use yii\helpers\Url;
 
 $home = (Url::home(true));
-if(!file_exists(Yii::getAlias('@frontend/web').$value->file))
+$path = \yii\helpers\Url::to('/', true);
+if(!file_exists($path .$value->file))
 {
     $value->file = '/uploads/global/unknown2.png';
 }
