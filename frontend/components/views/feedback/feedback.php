@@ -32,7 +32,7 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
                             <div class="feedback-down-item">
 								<img class="feedback-down-img"
 									 src="<?php if(isset($value->files)) :?>
-									          <?php if(file_exists(Yii::getAlias('@frontend/web/uploads/feedback/S') . $value->files->name)): ?>
+									          <?php if(file_exists(Yii::getAlias('@frontend/web/uploads/feedback/') . $value->files->name)): ?>
                                                     <?php echo Yii::getAlias('@files/') . $value->files->name; ?>
                                                <?php else: ?>
                                                    <?php echo Yii::getAlias('@files/') . "unknown.png"; ?>
