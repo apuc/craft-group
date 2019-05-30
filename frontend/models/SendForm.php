@@ -23,7 +23,6 @@ use yii\web\UploadedFile;
 
 class SendForm extends Model
 {
-
     const VACANCY = 'Заявка на вакансию';
     const USULUGI = 'Заявка на услугу';
     const FEEDBACK = 'Отзыв';
@@ -38,10 +37,8 @@ class SendForm extends Model
     public $files;
     public $file;
     public $site;
-
     public $btn_upload_class;
     public $thankMessage;
-
     public $radioList;
 
     public function rules()
@@ -131,16 +128,13 @@ class SendForm extends Model
 
                 $this->thankMessage = "Спасибо за, то что выбрали нашу компанию, мы с Вами скоро свяжемся. </br>";
                 break;
-
             case self::FEEDBACK:
                 $feedback = new Feedback();
                 $feedbackData['Feedback'] = $post['SendForm'];
                 $feedback->load($feedbackData);
                 $feedback->status = Feedback::STATUS_DISABLED;
                 $feedback->save();
-
                 $this->saveFile(\frontend\models\Files::FEEDBACK, $feedback->id, 'feedback', $this->file);
-
                 $this->thankMessage = 'Спасибо за оставленный отзыв. </br>';
                 break;
             case self::VACANCY:
@@ -153,7 +147,6 @@ class SendForm extends Model
         }
     }
 
-
     /**
      * сохраняет файлы
      * @param Order|VacancyOrder $model
@@ -162,7 +155,6 @@ class SendForm extends Model
      */
     private function saveFiles($extension, $model, $path)
     {
-
         foreach ($this->files as $item) {
             /**
              * @var $item UploadedFile

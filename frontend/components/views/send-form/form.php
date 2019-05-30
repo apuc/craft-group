@@ -4,7 +4,6 @@
  * User: alex
  * Date: 21.08.18
  * Time: 11:23
- *
  * @var $model \frontend\models\SendForm
  * @var $isLabels bool
  * @var $messagePlaceholder string
@@ -18,11 +17,9 @@
 use frontend\components\SendFormWidget;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-
 ?>
 
 <?php $form = ActiveForm::begin([
-//    'action' => \yii\helpers\Url::to(['/site/send-form']),
 	'id' => $widget->idForm,
 	'options' => [
 		'class' => 'service__form',
@@ -30,10 +27,8 @@ use yii\widgets\ActiveForm;
 	],
 	'validationUrl' => Url::to(['/site/validate']),
 	'enableAjaxValidation' => true
-
 ]); ?>
 <div class="service__form-head">
-
 	<?= $form->field($model, 'subject', [
 		'options' => [
 			'class' => 'service__form-head_item hidden', 'style' => 'display:none'
@@ -87,19 +82,12 @@ use yii\widgets\ActiveForm;
 			<?php elseif ($widget->fileOrFiles == SendFormWidget::FILE): ?>
 				<?= $form->field($model, $widget->fileOrFiles)->fileInput(['class' => $widget->upload_file_input_class, 'style' => 'display:none'])->label(false) ?>
 			<?php endif; ?>
-
             <?= $this->render('_btn-input-file', ['className' => $widget->upload_file_btn_class]) ?>
-
 		</div>
 		<span class="service__form-files"><?= $widget->fileExtension ?></span>
-
 			<?= $this->render('_wrapperCont', [ 'widget' => $widget]) ?>
-
 	</div>
 </div>
-
-
-
 <div class="service__form-desc">
                         <span class="service__form-desc_span">Нажимая кнопку «Отправить», я даю  <span
 								class="service__form-desc_red">согласие на обработку персональной информации</span></span>

@@ -12,11 +12,8 @@ use yii\helpers\Url;
 	<div class="sidebar__inner sidebarBlog">
 		<?php if ($all): ?>
 			<div class="blog-single__gallery">
-                <?php if(file_exists($all->file)): ?>
+                <?php !file_exists($all->file) ? $all->file = '/uploads/global/unknown2.png' : ""; ?>
 				    <img class="blog-item-img" src="<?= $all->file ?>" height="210"/>
-                <?php else: ?>
-                    <img class="blog-item-img" src="<?= '/uploads/global/unknown2.png' ?>" height="210"/>
-                <?php endif; ?>
 				<a class="blog__link" href="<?= Url::to(['/blog']); ?>"><span
 						class="blog-link-pc"><?= $all->title ?></span><span
 						class="blog-link-mob">Все новости</span></a>

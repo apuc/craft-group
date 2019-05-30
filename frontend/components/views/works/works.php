@@ -9,20 +9,16 @@
 use yii\helpers\Url;
 Yii::setAlias('@site', \yii\helpers\Url::to(Yii::getAlias('@frontend/'), true) . 'views/site');
 ?>
-
 <?php if(!empty($portfolio)): ?>
     <section class="portfolio" id="portfolio">
-
         <div class="animate-circle">
             <p>
                 <a href="https://www.behance.net/CraftGroup" target="_blank"> <img src="img/be.png" alt=""></a>
                 <span>Больше уникального дизайна в нашем профиле. Только свежие и качественные работы.</span>
             </p>
         </div>
-
         <div class="container">
             <p class="paragraph">наши работы</p>
-
             <div class="wrap">
                 <div class="tittle">
                     <span class="block_span_title">портфолио</span>
@@ -37,13 +33,8 @@ Yii::setAlias('@site', \yii\helpers\Url::to(Yii::getAlias('@frontend/'), true) .
                     foreach ($portfolio as $key => $value): ?>
                         <?php if ($value->h1 == 'all'): ?>
                             <div class="gallery__block portfolio-link">
-                                <?php
-                                if(!file_exists($value['file'])): ?>
-                                    <img src="<?= '/uploads/global/unknown2.png'?>">
-                                <?php else: ?>
+                                <?php !file_exists($value['file']) ? $value['file'] = '/uploads/global/unknown2.png': ""; ?>
                                     <img src="<?= $value['file'] ?>">
-                                <?php endif; ?>
-
                                 <a class="gallery__block-link"
                                    href="<?= Url::toRoute(['/portfolio']); ?>"><?= $value->title ?></a>
                                 <span></span>

@@ -30,7 +30,6 @@ use yii\helpers\Url;
             </div>
 
             <div class="blog__slider-content">
-
                 <?php if ($b_cur): ?>
                     <div class="blog__block-link_main">
                         <span class="blog-main__title">актуальное <br> в блоге</span>
@@ -41,11 +40,8 @@ use yii\helpers\Url;
                     <?php foreach ($blog as $key => $value): ?>
                         <?php if ($value->options): ?>
                             <div class="blog__slider--slide">
-                                <?php if(file_exists($value->file)): ?>
+                                <?php !file_exists($value->file) ? $value->file = '/uploads/global/unknown2.png' : ""; ?>
                                 <img src="<?= Yii::$app->resizeImage->resizeImage($value->file) ?>">
-                                <?php else: ?>
-                                <img src="<?= Yii::$app->resizeImage->resizeImage('/uploads/global/unknown2.png') ?>">
-                                <?php endif; ?>
                                 <div class="slide__title">
                                     <h3 class="slide__post-title"><?= $value->title ?></h3>
                                     <time

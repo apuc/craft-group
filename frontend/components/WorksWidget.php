@@ -5,10 +5,7 @@
  * Date: 29.05.19
  * Time: 14:21
  */
-
 namespace frontend\components;
-
-
 use yii\jui\Widget;
 
 class WorksWidget extends Widget
@@ -18,7 +15,7 @@ class WorksWidget extends Widget
     public function run()
     {
         parent::run();
-        $portfolio = $this->portfolio;
-        return $this->render('works/works',['portfolio' => $portfolio]);
+        if(isset($this->portfolio))
+        return $this->render('works/works',['portfolio' => $this->portfolio]);
     }
 }

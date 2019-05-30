@@ -52,7 +52,6 @@ use yii\helpers\Url;
 				]) ?>
 			</div>
 		</div>
-
 	</section>
 
 	<?php echo FeedbackWidget::widget() ?>
@@ -88,7 +87,6 @@ use yii\helpers\Url;
 					'idForm' => 'send_vacancy'
 				]) ?>
 			</div>
-
 		</div>
 	</section>
 	<!-- end brief.html-->

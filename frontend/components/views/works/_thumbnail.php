@@ -4,15 +4,12 @@ use himiklab\thumbnail\EasyThumbnailImage;
 use yii\helpers\Url;
 
 $home = (Url::home(true));
-if(file_exists($value->file))
+if(!file_exists($value->file))
 {
-    $pathFile = Yii::$app->resizeImage->resizeImage($value->file);
-    $image = Yii::$app->resizeImage->getImageSize($value->file);
-} else {
-    $pathFile = Yii::$app->resizeImage->resizeImage('/uploads/global/unknown2.png');
-    $image = Yii::$app->resizeImage->getImageSize('/uploads/global/unknown2.png');
+    $value->file = '/uploads/global/unknown2.png';
 }
-
+$pathFile = Yii::$app->resizeImage->resizeImage($value->file);
+$image = Yii::$app->resizeImage->getImageSize($value->file);
 
 echo EasyThumbnailImage::thumbnailImg(
 	$home.$pathFile,
