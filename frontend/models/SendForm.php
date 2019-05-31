@@ -174,12 +174,13 @@ class SendForm extends Model
     private function saveFile($extension, $model_id, $path, $file)
     {
         if ($file instanceof UploadedFile) {
+            $name = Yii::$app->security->generateRandomString(16);
             $modelFile = new \frontend\models\Files();
-            $modelFile->name = Yii::$app->security->generateRandomString(16) . '.' . $file->extension;
+            $modelFile->name = "/uploads/{$path}/" . $name . '.' . $file->extension;
             $modelFile->setExtensionId($extension, $model_id);
             $modelFile->save();
             FileHelper::createDirectory(Yii::getAlias("uploads/{$path}/"));
-            $file->saveAs(Yii::getAlias("@frontend/web/uploads/{$path}/" . $modelFile->name));
+            $file->saveAs(Yii::getAlias("@frontend/web" . $modelFile->name));
         }
     }
 
