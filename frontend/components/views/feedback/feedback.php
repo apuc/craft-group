@@ -35,7 +35,7 @@ $path = \yii\helpers\Url::to('/', true) . 'uploads/feedback';
 									          <?php if(file_exists(Yii::getAlias('@frontend/web') . urldecode($value->files->name))): ?>
                                                     <?php echo $value->files->name; ?>
                                                <?php else: ?>
-                                                   <?php echo $path . 'unknown.png'; ?>
+                                                   <?php echo $path . '/unknown.png'; ?>
                                                  <?php endif; ?>
 									     <?php endif; ?>"
 									 style="width: 103px; height: 105px">

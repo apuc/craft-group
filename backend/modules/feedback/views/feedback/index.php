@@ -24,15 +24,32 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id',
             'name',
             'phone',
-            'email:email',
-            'site',
-            //'message:ntext',
             [
-                'attribute' => 'status',
-                'value' => function ($model) {
-                    return ($model->status) ? "Активен" : "Не активен";
-                }
+                'attribute'=>'email',
+                'filter'    => kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'email',
+                    'data' =>$emails,
+                    'options' => ['placeholder' => 'Начните вводить...','class' => 'form-control'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]),
             ],
+            'site',
+            //'message:ntext'
+            [
+                'attribute'=>'status',
+            'filter'    => kartik\select2\Select2::widget([
+                'model' => $searchModel,
+                'attribute' => 'status',
+                'data' =>\common\models\Feedback::getStatus(),
+                'options' => ['placeholder' => 'Начните вводить...','class' => 'form-control'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]),
+           ],
             [
                 'attribute' => 'fileName',
                 'label' => 'Прикрепленный файл',
