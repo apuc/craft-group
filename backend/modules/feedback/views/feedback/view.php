@@ -52,10 +52,8 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
 
                     if(isset($model->files))
                     {
-                        $txt .= Html::a(
-                            $model->files->name,
-                            Yii::getAlias('@files/' . $model->files->name),
-                            ['target' => '_blank']
+                        $txt .= Html::img(
+                            $model->files->name
                         );
 
                     }

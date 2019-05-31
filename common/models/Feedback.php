@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\classes\Debug;
 use Yii;
 
 /**
@@ -16,9 +17,12 @@ use Yii;
  * @property int $status
  *
  * @property Files[] $files
+ * @property string $fileName
  */
 class Feedback extends \yii\db\ActiveRecord
 {
+    public $fileName;
+
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
 
@@ -36,7 +40,7 @@ class Feedback extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['message'], 'string'],
+            [['message', 'fileName'], 'string'],
             [['status'], 'integer'],
             [['name', 'phone', 'email', 'site'], 'string', 'max' => 255],
         ];
@@ -65,14 +69,31 @@ class Feedback extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Files::className(), ['feedback_id' => 'id']);
     }
-	
-	public function afterSave($insert, $changedAttributes){
-		parent::afterSave($insert, $changedAttributes);
-		if(Yii::$app->cache->flush()){
-			Yii::$app->session->setFlash('success', 'Кэш очищен');
-		} else {
-			Yii::$app->session->setFlash('error', 'Ошибка');
-		}
-		return false;
-	}
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        if ($this->fileName){
+            Files::deleteAll(['feedback_id' => $this->id]);
+            $files = new Files();
+            $files->feedback_id = $this->id;
+            $files->name = $this->fileName;
+            $files->save();
+        }
+
+        if (Yii::$app->cache->flush()) {
+            Yii::$app->session->setFlash('success', 'Кэш очищен');
+        } else {
+            Yii::$app->session->setFlash('error', 'Ошибка');
+        }
+        return false;
+    }
+
+    public function afterFind(){
+
+        parent::afterFind();
+
+        $this->fileName = $this->files ? $this->files->name : '';
+    }
 }

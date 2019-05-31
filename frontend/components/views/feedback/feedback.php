@@ -2,7 +2,7 @@
 /**
  * @var $feedback [] \common\models\Feedback
  */
-$path = \yii\helpers\Url::to('/', true) . 'uploads/feedback/';
+$path = \yii\helpers\Url::to('/', true) . 'uploads/feedback';
 ?>
 <?php if (!empty($feedback)): ?>
 	<section class="blog blog__single blog_feedback feedback-section">
@@ -32,8 +32,8 @@ $path = \yii\helpers\Url::to('/', true) . 'uploads/feedback/';
                             <div class="feedback-down-item">
 								<img class="feedback-down-img"
                                             src="<?php if(isset($value->files)) :?>
-									          <?php if(file_exists(Yii::getAlias('@frontend/web/uploads/feedback/') . urldecode($value->files->name))): ?>
-                                                    <?php echo $path . $value->files->name; ?>
+									          <?php if(file_exists(Yii::getAlias('@frontend/web') . urldecode($value->files->name))): ?>
+                                                    <?php echo $value->files->name; ?>
                                                <?php else: ?>
                                                    <?php echo $path . 'unknown.png'; ?>
                                                  <?php endif; ?>
