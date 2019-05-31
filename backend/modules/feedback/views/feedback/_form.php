@@ -1,12 +1,15 @@
 <?php
 
 use mihaildev\elfinder\InputFile;
+use xtarantulz\preview\PreviewAsset;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\feedback\models\Feedback */
 /* @var $form yii\widgets\ActiveForm */
+
+PreviewAsset::register($this);
 ?>
 
 <div class="feedback-form">
@@ -27,12 +30,6 @@ use yii\widgets\ActiveForm;
         0 => 'Не активен',
         1 => 'Активен'
     ]) ?>
-    
-    <div class="form-group">
-        <?php if($model->files): ?>
-            <img src="<?= $model->files->name ?>" width="200px" alt="">
-        <?php endif; ?>
-    </div>
 
     <?= $form->field($model, 'fileName')->widget(InputFile::className(), [
         'language' => 'ru',
