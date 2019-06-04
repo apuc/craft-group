@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use common\classes\Debug;
 use Yii;
 
 /**
@@ -23,6 +22,9 @@ class Feedback extends \yii\db\ActiveRecord
 {
     public $fileName;
 
+    const STATUS_NAME_ACTIVE = "активный";
+    const STATUS_NAME_DISACTIVE = "не активный";
+
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
 
@@ -32,6 +34,15 @@ class Feedback extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'feedback';
+    }
+
+    public static function getStatus()
+    {
+        return [
+          self::STATUS_DISABLED => self::STATUS_NAME_DISACTIVE,
+          self::STATUS_ENABLED => self::STATUS_NAME_ACTIVE,
+        ];
+
     }
 
     /**

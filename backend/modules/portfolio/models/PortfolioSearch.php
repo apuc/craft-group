@@ -19,7 +19,7 @@ class PortfolioSearch extends Portfolio
     {
         return [
             [['id'], 'integer'],
-            [['title', 'h1', 'meta_key', 'meta_desc', 'description', 'stock', 'href', 'options', 'file', 'slug'], 'safe'],
+            [['title', 'h1', 'meta_key', 'meta_desc', 'description', 'stock', 'href', 'options', 'file', 'slug', 'dt_add'], 'safe'],
         ];
     }
 
@@ -60,6 +60,7 @@ class PortfolioSearch extends Portfolio
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'dt_add' => $this->dt_add
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

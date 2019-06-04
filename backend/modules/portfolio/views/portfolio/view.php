@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('Назад', ['/portfolio/portfolio'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= DetailView::widget([

@@ -5,6 +5,7 @@ namespace backend\modules\feedback\controllers;
 use Yii;
 use backend\modules\feedback\models\Feedback;
 use backend\modules\feedback\models\FeedbackSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -52,10 +53,12 @@ class FeedbackController extends Controller
     {
         $searchModel = new FeedbackSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $emails = ArrayHelper::map(Feedback::find()->all(), 'email', 'email');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'emails' => $emails,
         ]);
     }
 

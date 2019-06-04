@@ -24,13 +24,38 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id',
             'name',
             'phone',
-            'email:email',
+            [
+                'attribute' => 'email',
+                'filter' => kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'email',
+                    'data' => $emails,
+                    'options' => ['placeholder' => 'Начните вводить...', 'class' => 'form-control'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]),
+            ],
             'site',
-            //'message:ntext',
+            //'message:ntext'
             [
                 'attribute' => 'status',
+                'filter' => kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'status',
+                    'data' => \common\models\Feedback::getStatus(),
+                    'options' => ['placeholder' => 'Начните вводить...', 'class' => 'form-control'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]),
+            ],
+            [
+                'attribute' => 'fileName',
+                'label' => 'Прикрепленный файл',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return ($model->status) ? "Активен" : "Не активен";
+                    return $model->fileName ? Html::img($model->fileName, ['width' => '200']) : "";
                 }
             ],
             [

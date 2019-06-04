@@ -18,18 +18,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('main', 'Create'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'name',
-            'description:ntext',
+//            'description:ntext',
             'file',
-            'dt_add',
+            [
+                'attribute' => 'dt_add',
+                'format' => 'text',
+                'value' => function($data){
+                    return Yii::$app->formatter->asDate( $data->dt_add, 'd.MM.yyyy');
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
