@@ -41,12 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'value' => function($data){
-                    if($data->status == 1)
-                    {
-                        return "активен";
-                    } else {
-                        return "не активен";
-                    }
+                    return $data->status ==1 ? "активен" : "не активен";
                 },
                 'filter' => kartik\select2\Select2::widget([
                     'model' => $searchModel,
