@@ -22,7 +22,6 @@ class Feedback extends \yii\db\ActiveRecord
 {
     public $fileName;
 
-
     const STATUS_NAME_ACTIVE = "активный";
     const STATUS_NAME_DISACTIVE = "не активный";
 

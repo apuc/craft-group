@@ -18,7 +18,7 @@ class PortfolioSearch extends Portfolio
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id','dt_add'], 'integer'],
             [['title', 'h1', 'meta_key', 'meta_desc', 'description', 'stock', 'href', 'options', 'file', 'slug'], 'safe'],
         ];
     }
