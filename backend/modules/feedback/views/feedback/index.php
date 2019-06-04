@@ -40,6 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
             //'message:ntext'
             [
                 'attribute' => 'status',
+                'value' => function($data){
+                    if($data->status == 1)
+                    {
+                        return "активен";
+                    } else {
+                        return "не активен";
+                    }
+                },
                 'filter' => kartik\select2\Select2::widget([
                     'model' => $searchModel,
                     'attribute' => 'status',
