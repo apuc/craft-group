@@ -58,15 +58,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->fileName ? Html::img($model->fileName, ['width' => '200']) : "";
                 }
             ],
-            [
-                'attribute' => 'fileName',
-                'label' => 'Прикрепленный файл',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return $model->fileName ? Html::img( $model->fileName, ['width' => '200']) : "";
-                }
-            ],
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
