@@ -24,6 +24,7 @@ Yii::setAlias('@files', \yii\helpers\Url::to('/', true) . 'uploads/feedback');
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('Назад', ['/feedback/feedback'], ['class' => 'btn btn-success'])?>
     </p>
 
     <?= DetailView::widget([

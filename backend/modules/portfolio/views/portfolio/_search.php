@@ -25,6 +25,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'meta_desc') ?>
 
+    <?= $form->field($model, 'dt_add') ?>
+
     <?php // echo $form->field($model, 'description') ?>
 
     <?php // echo $form->field($model, 'stock') ?>

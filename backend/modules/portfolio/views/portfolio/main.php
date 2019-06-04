@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			'h1',
 			'meta_key',
 			'meta_desc',
+			'dt_add',
 			//'description:ntext',
 			//'stock:ntext',
 			//'href:ntext',

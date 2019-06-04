@@ -25,12 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'phone',
             [
-                'attribute'=>'email',
-                'filter'    => kartik\select2\Select2::widget([
+                'attribute' => 'email',
+                'filter' => kartik\select2\Select2::widget([
                     'model' => $searchModel,
                     'attribute' => 'email',
-                    'data' =>$emails,
-                    'options' => ['placeholder' => 'Начните вводить...','class' => 'form-control'],
+                    'data' => $emails,
+                    'options' => ['placeholder' => 'Начните вводить...', 'class' => 'form-control'],
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
@@ -39,23 +39,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'site',
             //'message:ntext'
             [
-                'attribute'=>'status',
-            'filter'    => kartik\select2\Select2::widget([
-                'model' => $searchModel,
                 'attribute' => 'status',
-                'data' =>\common\models\Feedback::getStatus(),
-                'options' => ['placeholder' => 'Начните вводить...','class' => 'form-control'],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]),
-           ],
+                'filter' => kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'status',
+                    'data' => \common\models\Feedback::getStatus(),
+                    'options' => ['placeholder' => 'Начните вводить...', 'class' => 'form-control'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]),
+            ],
             [
                 'attribute' => 'fileName',
                 'label' => 'Прикрепленный файл',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->fileName ? Html::img( $model->fileName, ['width' => '200']) : "";
+                    return $model->fileName ? Html::img($model->fileName, ['width' => '200']) : "";
                 }
             ],
 

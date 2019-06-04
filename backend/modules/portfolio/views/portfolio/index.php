@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'h1',
 
-                'filter'    => kartik\select2\Select2::widget([
+                'filter' => kartik\select2\Select2::widget([
                     'model' => $searchModel,
                     'attribute' => 'h1',
                     'data' =>$h1,
@@ -57,6 +57,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'meta_key',
             'meta_desc',
+            [
+                    'attribute' => 'dt_add',
+                    'format' => 'text',
+                    'value' => function($data){
+                        return $data->dt_add = Yii::$app->formatter->asDate( $data->dt_add, 'd.MM.yyyy');
+                    }
+            ],
+
             //'description:ntext',
             //'stock:ntext',
             //'href:ntext',

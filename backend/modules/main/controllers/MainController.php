@@ -53,7 +53,6 @@ class MainController extends Controller
     {
         $searchModel = new MainSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

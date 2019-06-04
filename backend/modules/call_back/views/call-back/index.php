@@ -27,7 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'phone',
-            'dt_add',
+            [
+                'attribute' => 'dt_add',
+                'format' => 'text',
+                'value' => function($data){
+                    return $data->dt_add = Yii::$app->formatter->asDate( $data->dt_add, 'd.MM.yyyy');
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

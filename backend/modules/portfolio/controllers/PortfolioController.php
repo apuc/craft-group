@@ -112,6 +112,7 @@ class PortfolioController extends Controller
         $model->href = $work->url;
         $model->h1 = $work->name;
         $model->options = 1;
+        $model->options = 1;
 
         if(!is_dir(Yii::getAlias("@frontend/web/uploads/global/Portfolio")))
         {

@@ -40,7 +40,7 @@ $userModel = Yii::$app->user->identity;
 	                ['label' => Yii::t('portfolio', 'Portfolio'), 'icon' => 'far fa-image',
 	                 'url' => ['/portfolio/portfolio'],
 	                  'items' => [
-		                  ['label' => 'Добавить портфолио', 'icon' => 'fas fa-cogs', 'url' => ['/portfolio/portfolio', 'slug' => ''],],
+		                  ['label' => 'Все работы', 'icon' => 'fas fa-cogs', 'url' => ['/portfolio/portfolio', 'slug' => ''],],
 		                  ['label' => '5 картинок для главной', 'icon' => 'fas fa-cogs', 'url' => ['/portfolio/portfolio/main', 'slug' => '1'],],]
 	                ],
 	                ['label' => Yii::t('contacts', 'Contacts'), 'icon' => 'fas fa-address-card',

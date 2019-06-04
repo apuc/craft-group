@@ -66,6 +66,7 @@ class PortfolioSearch extends Portfolio
             ->andFilterWhere(['like', 'h1', $this->h1])
             ->andFilterWhere(['like', 'meta_key', $this->meta_key])
             ->andFilterWhere(['like', 'meta_desc', $this->meta_desc])
+            ->andFilterWhere(['like', 'dt_add', $this->dt_add])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'stock', $this->stock])
             ->andFilterWhere(['like', 'href', $this->href])

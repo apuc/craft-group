@@ -142,4 +142,12 @@ class FeedbackController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionReturn()
+    {
+        if(isset(Yii::$app->request->referrer))
+        {
+            return $this->render('index');
+        }
+    }
 }
