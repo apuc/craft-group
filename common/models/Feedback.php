@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\classes\Debug;
 use Yii;
 
 /**
@@ -22,8 +23,10 @@ class Feedback extends \yii\db\ActiveRecord
 {
     public $fileName;
 
+
     const STATUS_NAME_ACTIVE = "активный";
     const STATUS_NAME_DISACTIVE = "не активный";
+
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
 
