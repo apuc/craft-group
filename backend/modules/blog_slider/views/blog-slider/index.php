@@ -40,7 +40,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             //'options',
             //'slug',
-            //'date',
+            [
+                'attribute' => 'date',
+                'value' => function($data){
+                    return Yii::$app->formatter->asDate( $data->date, 'd.MM.yyyy');
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
