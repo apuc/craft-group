@@ -49,7 +49,7 @@ $img = Url::to('@web/img/');
 							<div class="blog-single__text">
 								<?= $blog->description ?>
 
-                                <div style="display: flex; justify-content: space-around">
+                                <div class="blog-single__buttons">
                                     <?= Html::a('Назад в блог','/blog',['class'=>'vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty']) ?>
                                     <?= Html::a('Узнать больше','https://vk.com/web_craft_group',['class'=>'vacancies-p__vacancy-more vacancies-p__vacancy-more_novelty']) ?>
                                 </div>
