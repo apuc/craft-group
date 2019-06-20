@@ -176,7 +176,7 @@ AppAsset::register($this);
 		    'messageLabel'=>'Сообщение'
 	    ]) ?>
 
-        <div style="padding-top: 15px; padding-right: 15px;">
+        <div style="padding-top: 15px; padding-right: 15px;" class="callback-btn">
             <div id="myZadarmaCallmeWidget1034"></div>
             <script>
                 var myZadarmaCallmeWidget1034;
