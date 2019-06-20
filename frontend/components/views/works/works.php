@@ -35,7 +35,6 @@ $path = substr($path, 0, -1);
                     foreach ($portfolio as $key => $value): ?>
                         <?php if ($value->h1 == 'all'): ?>
                             <div class="gallery__block portfolio-link">
-                                <?php !file_exists(Yii::getAlias('@frontend/web') . urldecode($value['file'])) ? $value['file'] = '/uploads/global/unknown2.png': ""; ?>
                                     <img src="<?= $value['file'] ?>">
                                 <a class="gallery__block-link"
                                    href="<?= Url::toRoute(['/portfolio']); ?>"><?= $value->title ?></a>
@@ -44,7 +43,7 @@ $path = substr($path, 0, -1);
                         <?php elseif ($value->h1 != 'brief'): ?>
                             <div class="gallery__block portfolio-<?= $class[$i] ?> portfolio-link">
                                 <a href="<?= Url::toRoute(['/portfolio/' . $value->slug]); ?>">
-                                    <?= $this->render('_thumbnail', ['value'=>$value , 'path' => $path])?>
+                                    <img src="<?= $value->file ?>" alt="">
                                 </a>
                                 <span></span>
                             </div>
